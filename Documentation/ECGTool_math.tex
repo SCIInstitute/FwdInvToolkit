@@ -1,0 +1,559 @@
+\chapter{Mathematical Background} \label{sec:ch1}
+
+\section{Overview}
+
+In this chapter we describe the basic mathematical formulations and some
+solution approaches to the forward and inverse problems of
+electrocardiography. The goal of solutions to the forward problem is to
+predict potentials that could be measured in any accessible location,
+usually the surface of the torso, given a description of the cardiac
+electrical sources and the geometry and conductivities of the torso involved. The goal of
+solutions to the inverse problem is to predict cardiac sources given a set
+of measurements and the same geometry and conductivity information. It is
+important to note that a solution to the inverse problem presupposes an
+available solution to the forward problem. There is a large literature on
+both of these problems, going back many years, and many excellent textbook
+and reference chapters and tutorial articles. Here we briefly summarize the
+basic background to facilitate our description of the toolkit capabilities
+in subsequent chapters.
+
+Both forward and inverse solutions require a specific model formulation of
+the cardiac electrical sources. This toolkit treats two different
+equivalent source models. (These two models are arguably the two dominant
+formulations in current forward and inverse problem research.) One model,
+which we will refer to as the ``activation-based'' source model, assumes
+that the dominant feature of cardiac electrical activity is the timing of
+the arrival of the depolarization wavefront, known as ``activation times'',
+at each location in the heart. (There is a similar problem, solved in a
+similar fashion, in which the equivalent sources are the timing of
+repolarization at each location, called ``recovery times''.)  Classical
+results have shown that under assumptions of isotropy and homogeneity of
+the myocardium activation-based models can be reduced to the activation
+times on the surface of the heart; this is usually taken in this context as
+the epicardial (outer) and endocardial (inner) heart surfaces connected
+across the base of the heart by a fictitious connecting surface. The source
+in this case can be modeled by a moving set of current dipoles aligned
+along the ``activation wavefront'', that is the curve where activation is
+taking place on this surface at any given time.
+
+The second source model treated here, which we will refer to as the
+``potential-based'' source model, assumes that the cardiac sources can be
+represented by the time-varying electrical potentials present on a surface
+enclosing all the electrical sources. Gauss' Law implies that any such set
+of potentials is unique, and the closer the surface is to the myocardial
+surface the more useful the model is, so typically the surface is taking as
+the epicardium, closed off by a fictitious ``top'' surface at the base of
+the heart, or alternatively the same joint epicardial / endocardial surface
+used for activation-based models.
+
+In the rest of this chapter we describe solutions to the forward and
+inverse problem concentrating on the specific tools currently provided in
+this toolkit. Again we refer the reader to the literature for more complete
+background. 
+
+%%: 
+%%: 
+%%: The
+%%: relationship of the torso potentials and heart source in generally
+%%: expressed as $y=A(x)$ with $y$ as the torso potential vector, $x$ as the
+%%: heart sources, and $A$ as the function that relates the torso surface to
+%%: the heart surface.  In this chapter, we will provide examples of different
+%%: ways to formulate and compute the function $A$ and the torso potentials
+%%: from heart sources using SCIRun.
+%%: 
+%%: There are mainly two types of heart sources used in the forward problem:
+%%: cardiac surface potentials, and activation times.  The potential based
+%%: forward problem is more intuitive and can be thought of as a projection of
+%%: the cardiac potentials through the torso volume to the surface.  Each point
+%%: on the heart surface contributes directly to the torso surface potential in
+%%: a way described by the transfer function $A$.  In this case of the
+%%: potential based forward problem, $A$ is a matrix, and the forward problem
+%%: is solve by a matrix multiplication: $y=A \cdot x$, $x$ being the cardiac
+%%: potential vector.  The activation time base forward model is based on the
+%%: concept that activation wavefront of the myocardium contains a high
+%%: potential gradient with the rest of the heart either activated or resting,
+%%: generating a current source along the wavefront.  Using a uniform dipole
+%%: layer to represent the source of the wavefront, one can calculate the torso
+%%: surface potentials.   
+%%: 
+\section{Solutions to the Forward Problem in the Fwd/Inv Toolkit}
+
+The temporal frequencies which are relevant to electrocardiographic
+biolelectricity are relatively low, and the wavelengths many orders of
+magnitude larger than the dimensions of the human body, so from a
+biolelectricity viewpoint the governing partial differential equation (PDE)
+is Laplace's equation:
+
+\begin{equation} \nabla \cdot (\BM{\sigma} \nabla \Phi) =
+0, \label{eq:eq},
+\end{equation}
+where $\BM{\sigma}$ contain the relevant conductivities and $\Phi$ the
+electrical potentials. The boundary
+ conditions are given by:
+\begin{align} \Phi(x,y,z)|_{\Omega_k} &= V_k\\ \left. \frac{\partial
+\Phi}{\partial n} \right|_\Omega &= 0 \label{eq:bc}
+\end{align}
+where $\Omega_{k}$ is the surface on which the sources are located 
+
+As an alternative to solving this problem directly, a (weighted) integral
+can be taken over the solution domain on both sides of Eq.~(\ref{eq:eq})
+and the resulting integral equation solved for $\Phi$ at locations of
+interest. This is usually referred to as the ``weak form'' of the PDE
+solution and, aside from discontinuities which theoretically could be
+possible in the weak form solution, which are not of practical importance
+here, is equivalent to solving the original, or ``strong'' form. 
+
+In a tractable geometry, such as a set of concentric or even eccentric,
+spheres, this PDE can be solved via analytical expansions. However in
+complex geometries such as realistic torso models, numerical solutions must
+be applied. Again there is a large literature on such numerical
+methods. Two of these methods have predominated in the literature for
+forward electrocardiography, the Finite Element Method (FEM) and the
+Boundary Element Method (BEM), and it is those two methods which have been
+implemented in this toolkit. Thus in the rest of this subsection we give a
+very brief description of these two methods. 
+
+
+The major difference from the practical application point of view between
+FEM and BEM is in the way in which they discretize the solution domain.
+FEM relies on a volume discretization, that is the geometry is described by
+a mesh consisting of a collection of three dimensional volume elements,
+each with its own conductivity parameters, into which the solution domain
+has been subdivided. BEM on the other hand is a surface discretization
+method, with the geometry represented a collection of bounding surfaces
+separating regions in the volume with different conductivities. Each of
+these surfaces is then discretized into a mesh. In other words, in both FEM
+and BEM there is a collection of points, called nodes, which define the
+respective volume or surface elements, and the potential $\Phi$ (and the
+current, $\BM{\sigma} \nabla \Phi)$, are approximated by interpolation of
+potential and current across those elements based on its value at the
+nodes, using known (usually polynomial) interpolation functions. Thus
+numerical integration can be applied to the weak form and the node values
+come out of the integrals, leaving subintegrals over known functions which
+result in a set of weights. Thus the result in either case is a system of
+linear equations. 
+
+The boundary conditions in Eq.~(\ref{eq:bc} are applied differently  in FEM
+and BEM, another important difference between the two methods.
+
+
+%%: 
+%%: %%: collection of at surface elements. However, the BEM method is a
+%%: global method in that all points ``see'' each other, resulting in a
+%%: dense-matrix formulation while the basis functions used in FEM have
+%%: compact support, resulting in a sparse-matrix formulation.
+%%: 
+
+We note that either BEM or FEM can be applied to both activation-based and
+potential-based source models, although there are important implementation
+details. We briefly note these differences here, and some specifics of the
+applications in the context of the relevant SCIRun modules will be
+presented in Chapter~\ref{ch:fwd}.
+
+
+%%: The inverse problem of electrocardiography is to invert the model in the forward problem or, in other words, to solve for sources on the heart that suitably fit the given body surface potentials and forward model. This forward relationship can be described by the equation $y=A(x)$ where $y$ is the vector of body surface potentials, $A$ is the forward function, and $x$ are the sources on the heart.
+%%: 
+%%: Inverse solution methods can be split into two categories based on their source models: activation-based and potential-based. Potential-based source formulations typically assume that the sources are parameterized by electric potentials themselves and the forward function is linear matrix multiplication: $y=Ax$. Activation-based source formulations... 
+%%: 
+
+\subsection{FEM in the Fwd/Inv Toolkit}
+
+
+%%: The Finite Element Method is a volume-discretization method and is
+%%therefore a good choice when either the solution is desired throughout
+%%the entire volume or when there are detailed volume-varying parameters,
+%%such as conductivity, that are to be accounted for. FEM is fairly complex
+%%and volumes of literature exist on the method. Below is a brief overview
+%%of some of the key points of the method. 
+%%: 
+
+%%: As was previously stated, the steady state electrical potential in an
+%%: inhomogeneous volume conductor is described by the equation
+%%: %
+%%: \begin{equation} \nabla \cdot (\BM{\sigma} \nabla \Phi) =
+%%: 0, \label{eq:eq}.
+%%: \end{equation}
+%%: %
+%%: and again, the boundary conditions are given by:
+%%: \begin{align} \Phi(x,y,z)|_{\Omega_k} &= V_k\\ \left. \frac{\partial
+%%: \Phi}{\partial n} \right|_\Omega &= 0.
+%%: \end{align}
+%%: 
+%%: 
+
+The finite element method begins by the subdividing the geometry into a set of
+volume elements, with vertices at a set of nodes, and then approximating
+the potential in the volume by a basis expansion:
+\begin{equation} \bar{\Phi}(x,y,z) = \sum_i \Phi_i
+N_i(x,y,z), \label{eq:approx}
+\end{equation} 
+where $\{N_i\}$ are a set of basis functions, one for each node in the
+volume element discretization, and
+$\{\Phi_i\}$ are the corresponding (unknown) coefficients at those nodes. 
+Note that if the
+$\{Phi}_{i}$ can be determined then the potential everywhere in the volume
+can be approximated via the basis expansion in
+Eq.~(\ref{eq:approx}). Usually the basis functions are (Cartesian product)
+low-order polynomials, most commonly tri-linear functions, designed so that
+each function is $1$ at its ``own'' node and decays to $0$ at the other nodes of
+all elements which share that node (in which case $\Phi_{i}$ becomes a
+direct approximation of the potential at node $i$).
+
+
+The Galerkin method is applied to solve this Laplace equation. In
+particular, the basis expansion in Eq.~(\ref{eq:approx}) is substituted
+into Eq.~(\ref{eq:eq}), both sides of the equation are multiplied by a set
+of ``trial'' or ``test'' functions (typically taken to be the same family of
+functions as the basis functions $\{N_{i}\}$), and then the equation is
+integrated over the solution domain, resulting in a weak form of the
+PDE. 
+%%: %
+%%: This is the so called ``strong form'' of the equation. The weak form
+%%: comes by integrating both sides of (\ref{eq:strong}) against a ``trial
+%%: function'' (in this case we will use $N_j$ as a trial function, chosen
+%%: from the same set of basis functions as above. This leaves us with
+%%: \begin{equation} \int_\Omega \nabla \cdot (\BM{\sigma} \nabla \sum_i
+%%: \Phi_i N_i)N_j \, d\mathbf{V} = \int_\Omega 0 \cdot N_j \,
+%%: d\mathbf{V}.
+%%: \end{equation}
+%%: %
+%%: 
+
+Manipulation of the resuling integral equations yields, in the case where
+the test and basis function sets are the same,
+
+\begin{equation} \sum_i \Phi_i \int_{\Omega - \bar{\Omega} -
+\bar{\Omega}_k} \BM{\sigma} \nabla N_i \nabla N_j \, d\mathbf{V} =
+0. \label{eq:int_eq}
+\end{equation}
+
+This can be rewritten as the matrix vector equation :
+\begin{equation} \mathbf{K} \BM{\Phi} = 0 \label{eq:mat_eq}
+\end{equation}
+%
+where $\mathbf{K}_{ij} = \int \BM{\sigma} \nabla N_i \nabla N_j \,
+d\mathbf{V}$ is the stiffness matrix, and $\BM{\Phi} = [\Phi_1,
+\ldots, \Phi_n]^T$ is the vector of unknown coefficients. The critical
+point is that the coefficients in $\mathbf{K}$ depend only on the geometry
+and the choice of basis and test functions, and thus can be computed ahead
+of time. We note that this equation is clearly singular, and an additional
+condition must be imposed (biophysically equivalent to taking some
+potential value as a reference) to reduce the number of degrees of freedom
+by one.
+
+Once the equations are written the boundary conditions must be imposed. In
+the case of bioelectric field problems such as forward electrocardiography,
+this reduces to replacing the $0$'s on the right hand side by known
+currents or fixing some values of the vector $\BM{\Phi}$ to correspond to
+known voltages. There are a variety of ways to accomplish this to preserve
+certain numerical properties of the matrix equation, and again we refer the
+reader to the vast literature on this subject for details. If the
+measurement electrodes are treated as being larger than one node in size
+this can lead to additional boundary conditions which in turn leads to
+additional modifications of the equations, and again we refer the reader to
+the literature.
+
+The result is a matrix equation whose size is the total number of nodes in
+the volume, which tends to result in a relatively large system. However as
+long as the basis and test functions have local support (for example, with
+linear basis functions the support is restricted to all first-order
+neighboring nodes of the given node), most of the integrals defining the
+elements of $\mathbf{K}$ will involve non-overlapping functions and thus be
+equal to $0$, and thus $\mathbf{K}$ will be a very sparse matrix with
+strong structure, leading to the possibility of both efficient storage and
+efficient solution by iterative solvers. 
+
+We note that every time a different set of source currents
+(activation-based model) or potentials (potential-based model) is applied
+on the heart surface the modifications of the stiffness matrix are
+different and thus the system of equations must be solved \textit{de
+novo}. However for certain applications, where only the values of the potential at
+a subset of nodes is needed (for example, in forward electrocardiography,
+we are generally only interested in the solution on the measurement
+surface, \textit{e.g.} on the body surface), and the solution 
+is often needed repeatedly for the given geometry (for example when a time
+series of body surface potentials needs to be generated from a time series
+of sources). In this case it can be useful to extract a ``transfer matrix''
+from Eq.~(\ref{eq:mat_eq}), which directly relates the known sources to the
+unknown, and desired, measurement potentials. Once this is done solving the
+forward problem reduces to matrix-vector multiplication rather than the
+solution of a linear system.
+
+There are several approaches to this problem. In this toolkit we have
+provide an example SCIRun network to implement one of them, the so-called
+``lead field'' method, which solves the matrix equation repeatedly for
+source vectors consisting of a $1$ at each source node in turn and $0$ at
+all other source nodes. From this collection of solutions we can obtain the
+desired transfer matrix, which we will denote a $\mathbf{A}$.  This network is described below in
+Ch.~\ref{ch:fwd} and once again the details are available to the interested
+reader in the literature.
+
+\subsection{BEM in the Fwd/Inv Toolkit}
+
+Expanding on the initial description above, the boundary element method starts with the assumption
+that the domain can be divided into a (relatively small number) of
+(relatively large) subdomains in which the conductivities are isotropic
+(scalar) and constant. In addition there are other conditions on the
+subdomains, principally that they be bounded by closed surfaces. 
+They can be simply nested or can have a more complex arrangement. Given
+that assumption, the surfaces of those subdomains become a sufficient
+domain upon which to solve the problem for the entire domain.
+
+Briefly (and once again we refer the reader to the literature for the
+details and complications), one of the Green's Theorems from vector
+calculus is applied to an integrated form of Laplace's equation to transform the
+differential problem into a Fredholm integral problem.  The surfaces are
+each subdivided (tessellated) into a collection of small surface (or
+boundary) elements, and (two-dimensional) basis functions, again usually
+low-order polynomials, are used to
+approximate the quantities of interest between the nodes of the resulting
+surface meshes. Given this discretization, again after
+manipulation of the resulting integral equation,
+the integrals required can
+be computed through a series of numerical integrations over the mesh
+elements. In the BEM method these integrals involve as unknowns the
+potential and its gradient, integrated against functions involving the
+distance between each node in turn and locations on both the surface to
+which it belongs and all other surfaces. In complicated geometries, and in
+all cases when the node is integrated against the points on its ``own''
+surface, there are numerical difficulties in these integrals, for which a
+number of sophisticated solutions have been proposed in the literature (and
+some adopted in the SCIRun implementation). 
+
+The result of all these integrals is a transfer matrix, which again we will
+denote $\mathbf{A}$, relating the source potentials or currents to the
+unknown measurement potentials. In the BEM case, because of the all-to-all
+nature of the integrations required, this matrix will be dense, not
+sparse. On the other hand the size of the equation will be directly
+determined by the number of measurements and sources, rather than the
+number of nodes in the entire domain. (We note that there is an alternative
+formulation of the BEM method which retains the potentials at all nodes on
+all surfaces, and which can be reduced to the transfer matrix described
+here, but we omit the details as usual.)
+
+
+\section{Solutions to the Inverse Problem in the Fwd/Inv Toolkit}
+
+To describe the solution to the inverse problem in a manner useful for this
+toolkit we start with two different equations, depending on whether the
+activation-based or potential-based source models were used. Both
+approaches assume the availability of a forward transfer matrix
+$\mathbf{A}$, calculated by any appropriate method, including either FEM or
+BEM. 
+
+In the activation-based case the source model is that the unknowns are an
+activation surface, that is, activation times as a function of position on
+the heart surface, which we denote as $\tau(x)$, where $x$ indicates
+position on the heart surface. The assumptions required for the
+activation-based model imply that the temporal waveform of the potential
+(and current) at each source node has a fixed form, the same at all
+locations on the surface, which is assumed to be
+either a step function or a smoothed version of a step function (using
+piecewise polynomials or inverse trigonometric functions). We denote this
+function as $u(t)$. Thus the relevant forward equation can be written as
+
+\[ y(p,t) = \int_{x} \mathbf{A}_{p,x}u(t-\tau(x))\,dx \label{eq:act} \]
+where the integral is over the heart surface, $\mathbf{A}_{p,x}$ is the
+element of $\mathbf{A}$ relating source node $x$ to measurement node $p$,
+and $y(p,t)$ is the measurement surface potential at any time $t$ and at a
+position $p$ on the body surface. One advantage of the activation-based
+formulation is that the number of unknowns over an entire cardiac cycle is
+the number of solution nodes taken on the heart surface. On the other hand,
+as can be seen in Eq.~(\ref{eq:act}), the forward equation is non-linear in
+the unknown activation times.
+
+In the potential-based case the forward matrix can be applied in a more
+straightforward manner. If we collect all measurements at a given time $t$ into
+a vector $\mathbf{y(t)}$ and the potential at all desired heart surface locations
+into a vector $\mathbf{x(t)}$, then we have 
+
+\[ \mathbf{y}(t) = \mathbf{A}\mathbf{x}(t).
+\]
+
+The resulting equations over a time series can be collected into a
+matrix-matrix equation (with columns indexing time samples) or a single
+block matrix equation with a block diagonal matrix which has $\mathbf{A}$
+repeated along the diagonals. The number of unknowns for the potential-based
+inverse problem is then the product of the number of surface nodes and the
+number of time samples, and the time waveforms are left unconstrained, but
+the equations remain linear in the unknowns.
+
+Both approaches result in ill-conditioned systems of equations, a direct
+result of the fact that the inverse problem itself is intrinsically
+ill-posed. Thus effective numerical solutions need to impose additional
+\textit{a~priori} constraints to achieve useful solutions, usually through
+a technique known as ``regularization'', and much of the research on the
+inverse problem over the last 30+ years has concerned methods of
+regularizing this problem.
+
+\subsection{Activation-based Inverse Solutions in the Fwd/Inv Toolkit}
+
+Since this problem is non-linear, iterative solutions are employed. An
+``initial guess'', that is a starting point, is required, and then
+solutions are iteratively re-computed until a desired convergence criterion
+is met. Currently in the toolkit we have a Matlab version of a Gauss-Newton
+iterative solver which can be called from within SCIRun. The starting
+solution must be supplied by the user. We refer the reader to
+Ch.~\ref{ch:inv} for details. Regularization is done using a constraint on
+the $\ell_{2}$ norm of the Laplacian of the solution; see the next subsection
+for an explanation of Tihkhonov regularization.
+
+\subsection{Potential-based Inverse Solutions in the Fwd/Inv Toolkit}
+
+To combat the ill-posedness of the (linear) potential-based inverse
+problem, some form of what is known as ``regularization'' is typically
+applied. A number of such solution methods are available through the
+toolkit, either native in SCIRun or through the Matlab interface. Here we
+describe the basic formulation behind these approaches, while usage details
+are in Ch.~\ref{ch:inv}. 
+
+\paragraph{Standard Tikhonov regularization}
+
+The most common form of Tikhonov regularization substitutes for a solution to the original problem
+the minimization of the following scalar function 
+
+\begin{equation}
+  f(x)=\Vert{\mathbf{y}-\mathbf{A}\mathbf{x}}\Vert_2^2+\lambda^2\Vert{\mathbf{L}\mathbf{x}}\Vert_2^2
+\label{eq:Tikh}
+\end{equation} 
+where $\mathbf{L}$ is called the regularization matrix, the scalar
+$\lambda$ is called the regularization parameter, and the rest of the
+notation is as above. Conceptually $\lambda$ trades off between confidence
+in the data (measurements) and the forward solution (the first term in the
+equation) and confidence in an \textit{a~priori} constraint (encoded in the
+regularization matrix). The solution to Eq.~(\ref{eq:Tikh}) can be written
+as the solution of the following linear system
+
+\begin{equation}  \left(\mathbf{A}^T\mathbf{A} + \lambda^2 \mathbf{L}^T\mathbf{L}\right)\hat{\mathbf{x}}=\mathbf{A}^T\mathbf{y} \end{equation} 
+where this equation can be solved by a direct method (\textit{e.g.}
+Gaussian elimination or equivalent) or an iterative method (\textit{e.g.}
+conjugate gradients). 
+
+It is sometimes convenient to first decompose $\mathbf{A}$ by a
+singular value decomposition (SVD), and then use the factor matrices in the
+SVD to implement a solution to the same equation. Both the original and the
+SVD form are implemented in SCIRun as described below.
+
+\paragraph{Choosing the regularization parameter}
+
+Choosing an appropriate value of the regularization parameter is critical
+for achieving useful solutions; the solution typically depends on it in a
+sensitive fashion and good choices vary with the size, smoothness, etc., of
+the solution as well as with the choice of regularization constraint.  One
+commonly-used method to choose the regularization parameter automatically
+is to run the inverse solution for a large variety of parameters, observe
+the behavior of the resulting solutions by plotting on a log-log scale the
+value of the regularization constraint against the value of the residual
+($||\mathbf{y}-\mathbf{A}\mathbf{\hat{x}}||_{2}^{2}$, and choosing as a
+good tradeoff the point in the ``corner'' of the resulting curve, which
+typically has the shape characterized as similar to the letter
+``L''. L-curve regularization parameter selection is implemented as an
+option in some of the toolkit inverse solution modules.
+
+\paragraph{Truncated SVD Tikhonov regularization}
+
+Another approach to regularization is to approximate $\mathbf{A}$ with a
+low-rank substitute by truncating the low-order modes of its SVD. The
+choice of rank is equivalent to the choice of regularization parameter. 
+
+\paragraph{Isotropy Method}
+
+The inverse method knows as the ``isotropy'' method, introduced in the
+literature by Huiskamp and Greensite, attempts to decorrelate a time series
+of inverse solutions so as to incorporate information from the temporal
+correlation of the source waveforms, which is essential to approach any
+optimal solution. Since the temporal correlation of the source potentials
+is unknown, the isotropy method approximates it by the temporal correlation
+of the measurements. Under conditions of what is known as separability in
+the random field literature, which the authors of this method term isotropy,
+this produces an equivalent decorrelating basis. Once this decorrelation is
+achieved the resulting set of equations is truncated and then standard
+Tikhonov regularization is applied to each remaining system. After solving
+these systems the decorrelation is applied ``in reverse'' to restore the
+temporal correlation which had been estimated and removed.
+
+
+\paragraph{Total Variation Method}
+\subsection{} \label{sec:inv-tv}
+
+The effect of the $\ell_{2}$-norm regularization in Eq.~(\ref{eq:Tikh}) is
+typically to produce smooth solutions, where the smoothness is taken as a
+worthwhile cost to increase reliability in the face of
+ill-conditioning. However cardiac wavefronts are relatively sharp
+(non-smooth) in space, and thus Tikhonov methods typically produce overly
+smooth wavefronts. One approach to address this problem is to replace the
+typical regularization constraints with a ``total variation'' (TV) constraint,
+that is to constrain the $\ell_{1)$ norm of the gradient of the
+solution. Minimization of $\ell_{1}$ norms favors a small number of
+relatively large values in the solution compared to $\ell_{2}$ norm
+minimization, and thus using TV constraints will favor a sparse set of
+rapid spatial changes, which may allow reconstruction of wavefronts more
+accurately. 
+
+Specifically,  total variation regularization can be formulated as follows:
+%
+\begin{eqnarray}
+     \mathbf{\hat{x}} &=& \mbox{argmin   } \left\|\mathbf{A}\mathbf{x} -
+     \mathbf{y}\right\|^2_{2} + \lambda TV(\mathbf{x}) \label{eq:tv} \\
+     TV(\mathbf{u}) &=&  \left\| \mathbf{L}\mathbf{u} \right\|_{} = \sum_i |\mathbf{L}\mathbf{u}|_i \label{eq:tv-term}
+\end{eqnarray}
+%
+where $\mathbf{L}$ is a matrix approximation of the spatial gradient and
+the last sum is over the elements of the matrix-vector product.
+
+
+To solve this minimization problem, Eq.~(\ref{eq:tv}) is differentiated
+with respect to $\mathbf{x}$ and the gradient is set to zero. Because the total variation term, $TV(u)$, is not differentiable at zero, a positive constant $\beta$ is added:
+%
+\begin{eqnarray} \label{eqn:tv-term2}
+TV(\mathbf{u}) = \sum_i \sqrt{(|\mathbf{L}\mathbf{u}|_i)^2 + \beta^2} 
+\end{eqnarray}
+
+This results in the need to solve 
+%
+\begin{equation}\label{eq:tv3}
+(\mathbf{A}^T\mathbf{A}+\lambda
+\mathbf{L}^T\mathbf{W}_{\beta}(\mathbf{x})\mathbf{L}) \mathbf{x} =
+\mathbf{A}^T\mathbf{y} 
+\end{equation}
+%
+where the diagonal weight matrix $\mathbf{W}_{\beta}$ is defined as:
+%
+\begin{equation} \label{eq:tv-weightmat}
+\mathbf{W}_{\beta}(u) = \frac{1}{2} \mbox{diag} \left[ 1 / \sqrt{|[\mathbf{L}\mathbf{x}]_i|^2 + \beta^2}\right]
+\end{equation}
+
+It can be seen that the weight matrix $W$ depends on the local
+derivative. When the local derivative is small, the weight becomes a large
+value, imposing greater smoothness on the solution. When the local derive
+is large, the weight becomes a small value, making the solution less
+constrained.
+
+The total variation method is non-linear because the weight matrix
+$\mathbf{W}$ relies on the solution.  We solve this iteratively, with an all-zero initial
+guess.
+
+The total variation regularization contains two parameters to be tuned:
+$\beta$ and $\lambda$. $\beta$ controls the smoothness of the computed
+solution. A small $\beta$ allows sharp gradients in the solution. $\lambda$
+controls the amount of regularization.
+
+\paragraph{Wavefront-based potential reconstruction (WBPR) method}
+
+The WBPR method also attempts to impose a constraint, like TV, which
+encourages the presence of wavefronts in the solution. Simply put, the idea
+is, at each time instant, to locate the wavefront by an appropriate
+``jump-detection'' algorithm, and to then approximate that solution by one
+which has three regions: a non-activated region, which is flat, an
+activated region, which is also flat but at a different potential, and an
+``wavefront'' region, which is described in two dimensions by a smooth but
+sharp (across the wavefront) spatial function such as are used (in one
+dimension) for the time waveforms in activation-based methods. This
+three-region surface is then used as a constraint in an otherwise typical
+Tikhonov solution. The solution can be iterated forward or backward in
+time. It requires knowing the size of the potential jump across the
+wavefront, and that any drift in the potential of the regions far from the
+activation wavefront, typically caused by drift in the reference potential
+used in the measurements, be identified and eliminated. This method has
+shown considerable early promise but is included here as a ``research''
+approach and should be treated as such.
