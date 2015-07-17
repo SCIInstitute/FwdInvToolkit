@@ -2781,8 +2781,8 @@
 		<item>
 			<first>CreateStandardColorMap:9</first>
 			<second>
-				<first>-1.29200000000000000e+03</first>
-				<second>0.00000000000000000e+00</second>
+				<first>-1.21400000000000000e+03</first>
+				<second>-4.40000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
@@ -2865,8 +2865,8 @@
 		<item>
 			<first>RescaleColorMap:4</first>
 			<second>
-				<first>-1.82900000000000000e+03</first>
-				<second>5.60000000000000000e+02</second>
+				<first>-1.74900000000000000e+03</first>
+				<second>5.52000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
