@@ -4,7 +4,7 @@
 <networkFile class_id="0" tracking_level="0" version="3">
 	<networkInfo class_id="1" tracking_level="0" version="0">
 		<modules class_id="2" tracking_level="0" version="0">
-			<count>30</count>
+			<count>32</count>
 			<item_version>0</item_version>
 			<item class_id="3" tracking_level="0" version="0">
 				<first>AddKnownsToLinearSystem:12</first>
@@ -342,6 +342,70 @@
 .7        blood
 .3        atria
 .3        ventricle</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>CreateStandardColorMap:10</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>Visualization</category_name_>
+						<module_name_>CreateStandardColorMap</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>4</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>ColorMapInvert</name>
+								</first>
+								<second>
+									<name>ColorMapInvert</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ColorMapName</name>
+								</first>
+								<second>
+									<name>ColorMapName</name>
+									<value>
+										<which>2</which>
+										<value>Blackbody</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ColorMapResolution</name>
+								</first>
+								<second>
+									<name>ColorMapResolution</name>
+									<value>
+										<which>0</which>
+										<value>256</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ColorMapShift</name>
+								</first>
+								<second>
+									<name>ColorMapShift</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -1053,7 +1117,7 @@
 									<name>FixedMax</name>
 									<value>
 										<which>1</which>
-										<value>8.26715158405111894e-01</value>
+										<value>1.73735913221443244e-01</value>
 									</value>
 								</second>
 							</item>
@@ -1065,7 +1129,7 @@
 									<name>FixedMin</name>
 									<value>
 										<which>1</which>
-										<value>-9.90397994374156099e-01</value>
+										<value>-4.41052117187121950e-01</value>
 									</value>
 								</second>
 							</item>
@@ -1237,7 +1301,7 @@
 									<name>DisplayLength</name>
 									<value>
 										<which>0</which>
-										<value>0</value>
+										<value>2</value>
 									</value>
 								</second>
 							</item>
@@ -2066,6 +2130,46 @@
 				</second>
 			</item>
 			<item>
+				<first>SplitFieldByConnectedRegion:0</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>NewField</category_name_>
+						<module_name_>SplitFieldByConnectedRegion</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>2</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>SortAscending</name>
+								</first>
+								<second>
+									<name>SortAscending</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>SortDomainBySize</name>
+								</first>
+								<second>
+									<name>SortDomainBySize</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
 				<first>ViewScene:18</first>
 				<second>
 					<module>
@@ -2092,14 +2196,14 @@
 												<name>x</name>
 												<value>
 													<which>0</which>
-													<value>230</value>
+													<value>258</value>
 												</value>
 											</item>
 											<item>
 												<name>y</name>
 												<value>
 													<which>0</which>
-													<value>376</value>
+													<value>154</value>
 												</value>
 											</item>
 										</value>
@@ -2112,7 +2216,7 @@
 			</item>
 		</modules>
 		<connections class_id="13" tracking_level="0" version="0">
-			<count>40</count>
+			<count>41</count>
 			<item_version>0</item_version>
 			<item class_id="14" tracking_level="0" version="0">
 				<moduleId1_>AddKnownsToLinearSystem:12</moduleId1_>
@@ -2247,12 +2351,12 @@
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>CreateStandardColorMap:9</moduleId1_>
+				<moduleId1_>CreateStandardColorMap:10</moduleId1_>
 				<port1_>
 					<name>ColorMapObject</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>RescaleColorMap:4</moduleId2_>
+				<moduleId2_>RescaleColorMap:5</moduleId2_>
 				<port2_>
 					<name>ColorMapObject</name>
 					<id>0</id>
@@ -2264,7 +2368,7 @@
 					<name>ColorMapObject</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>RescaleColorMap:5</moduleId2_>
+				<moduleId2_>RescaleColorMap:4</moduleId2_>
 				<port2_>
 					<name>ColorMapObject</name>
 					<id>0</id>
@@ -2300,21 +2404,9 @@
 					<name>BoundaryField</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>FairMesh:16</moduleId2_>
+				<moduleId2_>SplitFieldByConnectedRegion:0</moduleId2_>
 				<port2_>
-					<name>Input_Mesh</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>GetFieldBoundary:15</moduleId1_>
-				<port1_>
-					<name>BoundaryField</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>RescaleColorMap:4</moduleId2_>
-				<port2_>
-					<name>Field</name>
+					<name>InputField</name>
 					<id>0</id>
 				</port2_>
 			</item>
@@ -2594,10 +2686,34 @@
 					<id>0</id>
 				</port2_>
 			</item>
+			<item>
+				<moduleId1_>SplitFieldByConnectedRegion:0</moduleId1_>
+				<port1_>
+					<name>OutputField1</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>FairMesh:16</moduleId2_>
+				<port2_>
+					<name>Input_Mesh</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>SplitFieldByConnectedRegion:0</moduleId1_>
+				<port1_>
+					<name>OutputField1</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>RescaleColorMap:4</moduleId2_>
+				<port2_>
+					<name>Field</name>
+					<id>1</id>
+				</port2_>
+			</item>
 		</connections>
 	</networkInfo>
 	<modulePositions class_id="16" tracking_level="0" version="0">
-		<count>30</count>
+		<count>32</count>
 		<item_version>0</item_version>
 		<item class_id="17" tracking_level="0" version="0">
 			<first>AddKnownsToLinearSystem:12</first>
@@ -2656,6 +2772,13 @@
 			</second>
 		</item>
 		<item>
+			<first>CreateStandardColorMap:10</first>
+			<second>
+				<first>-7.16000000000000000e+02</first>
+				<second>-3.10000000000000000e+01</second>
+			</second>
+		</item>
+		<item>
 			<first>CreateStandardColorMap:9</first>
 			<second>
 				<first>-1.29200000000000000e+03</first>
@@ -2665,8 +2788,8 @@
 		<item>
 			<first>FairMesh:16</first>
 			<second>
-				<first>-1.51200000000000000e+03</first>
-				<second>5.20000000000000000e+02</second>
+				<first>-1.38700000000000000e+03</first>
+				<second>5.76000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -2679,8 +2802,8 @@
 		<item>
 			<first>GetFieldBoundary:15</first>
 			<second>
-				<first>-1.59600000000000000e+03</first>
-				<second>3.80000000000000000e+02</second>
+				<first>-1.58400000000000000e+03</first>
+				<second>3.30000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -2742,8 +2865,8 @@
 		<item>
 			<first>RescaleColorMap:4</first>
 			<second>
-				<first>-1.90000000000000000e+03</first>
-				<second>5.32000000000000000e+02</second>
+				<first>-1.82900000000000000e+03</first>
+				<second>5.60000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -2756,8 +2879,8 @@
 		<item>
 			<first>SetFieldData:14</first>
 			<second>
-				<first>-1.57800000000000000e+03</first>
-				<second>2.75000000000000000e+02</second>
+				<first>-1.58100000000000000e+03</first>
+				<second>2.32000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -2770,8 +2893,8 @@
 		<item>
 			<first>ShowColorMap:1</first>
 			<second>
-				<first>-6.84000000000000000e+02</first>
-				<second>3.04000000000000000e+02</second>
+				<first>-6.59000000000000000e+02</first>
+				<second>3.19000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -2791,22 +2914,29 @@
 		<item>
 			<first>ShowField:8</first>
 			<second>
-				<first>-9.70000000000000000e+02</first>
-				<second>2.75000000000000000e+02</second>
+				<first>-9.75000000000000000e+02</first>
+				<second>3.21000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SolveLinearSystem:13</first>
 			<second>
-				<first>-1.90000000000000000e+03</first>
-				<second>1.52000000000000000e+02</second>
+				<first>-1.90200000000000000e+03</first>
+				<second>1.10000000000000000e+02</second>
+			</second>
+		</item>
+		<item>
+			<first>SplitFieldByConnectedRegion:0</first>
+			<second>
+				<first>-1.64500000000000000e+03</first>
+				<second>4.35000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ViewScene:18</first>
 			<second>
-				<first>-1.23540261250000003e+03</first>
-				<second>9.04211243750000108e+02</second>
+				<first>-1.38340261250000003e+03</first>
+				<second>8.82211243749999994e+02</second>
 			</second>
 		</item>
 	</modulePositions>
@@ -3108,7 +3238,7 @@ p, li { white-space: pre-wrap; }
 		<item_version>0</item_version>
 	</connectionNotes>
 	<moduleTags class_id="22" tracking_level="0" version="0">
-		<count>30</count>
+		<count>32</count>
 		<item_version>0</item_version>
 		<item class_id="23" tracking_level="0" version="0">
 			<first>AddKnownsToLinearSystem:12</first>
@@ -3140,6 +3270,10 @@ p, li { white-space: pre-wrap; }
 		</item>
 		<item>
 			<first>CreateMatrix:5</first>
+			<second>0</second>
+		</item>
+		<item>
+			<first>CreateStandardColorMap:10</first>
 			<second>0</second>
 		</item>
 		<item>
@@ -3224,6 +3358,10 @@ p, li { white-space: pre-wrap; }
 		</item>
 		<item>
 			<first>SolveLinearSystem:13</first>
+			<second>0</second>
+		</item>
+		<item>
+			<first>SplitFieldByConnectedRegion:0</first>
 			<second>0</second>
 		</item>
 		<item>
