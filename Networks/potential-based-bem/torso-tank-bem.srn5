@@ -4,7 +4,7 @@
 <networkFile class_id="0" tracking_level="0" version="3">
 	<networkInfo class_id="1" tracking_level="0" version="0">
 		<modules class_id="2" tracking_level="0" version="0">
-			<count>28</count>
+			<count>29</count>
 			<item_version>0</item_version>
 			<item class_id="3" tracking_level="0" version="0">
 				<first>BuildBEMatrix:6</first>
@@ -150,6 +150,70 @@
 						<stateMap>
 							<count>3</count>
 							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>ColorMapName</name>
+								</first>
+								<second>
+									<name>ColorMapName</name>
+									<value>
+										<which>2</which>
+										<value>Blackbody</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ColorMapResolution</name>
+								</first>
+								<second>
+									<name>ColorMapResolution</name>
+									<value>
+										<which>0</which>
+										<value>256</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ColorMapShift</name>
+								</first>
+								<second>
+									<name>ColorMapShift</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>CreateStandardColorMap:19</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>Visualization</category_name_>
+						<module_name_>CreateStandardColorMap</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>4</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>ColorMapInvert</name>
+								</first>
+								<second>
+									<name>ColorMapInvert</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
 							<item>
 								<first>
 									<name>ColorMapName</name>
@@ -818,7 +882,7 @@
 									<name>Filename</name>
 									<value>
 										<which>2</which>
-										<value>%SCIRUNDATADIR%/ToolKits/FwdInvToolbox/pot_based_BEM_forward/tank.fld</value>
+										<value>%SCIRUNDATADIR%/Data/pot_based_BEM_forward/tank.fld</value>
 									</value>
 								</second>
 							</item>
@@ -858,7 +922,7 @@
 									<name>Filename</name>
 									<value>
 										<which>2</which>
-										<value>%SCIRUNDATADIR%/ToolKits/FwdInvToolbox/pot_based_BEM_forward/cage.fld</value>
+										<value>%SCIRUNDATADIR%/Data/pot_based_BEM_forward/cage.fld</value>
 									</value>
 								</second>
 							</item>
@@ -898,7 +962,7 @@
 									<name>Filename</name>
 									<value>
 										<which>2</which>
-										<value>%SCIRUNDATADIR%/ToolKits/FwdInvToolbox/pot_based_BEM_forward/tank_measured_only.fld</value>
+										<value>%SCIRUNDATADIR%/Data/pot_based_BEM_forward/tank_measured_only.fld</value>
 									</value>
 								</second>
 							</item>
@@ -938,7 +1002,7 @@
 									<name>Filename</name>
 									<value>
 										<which>2</which>
-										<value>%SCIRUNDATADIR%/ToolKits/FwdInvToolbox/pot_based_BEM_forward/Utankr.mat</value>
+										<value>%SCIRUNDATADIR%/Data/pot_based_BEM_forward/Utankr.mat</value>
 									</value>
 								</second>
 							</item>
@@ -978,7 +1042,7 @@
 									<name>Filename</name>
 									<value>
 										<which>2</which>
-										<value>%SCIRUNDATADIR%/ToolKits/FwdInvToolbox/pot_based_BEM_forward/Ucager.mat</value>
+										<value>%SCIRUNDATADIR%/Data/pot_based_BEM_forward/Ucager.mat</value>
 									</value>
 								</second>
 							</item>
@@ -1382,7 +1446,7 @@
 									<name>DisplayLength</name>
 									<value>
 										<which>0</which>
-										<value>0</value>
+										<value>2</value>
 									</value>
 								</second>
 							</item>
@@ -2321,14 +2385,14 @@
 												<name>x</name>
 												<value>
 													<which>0</which>
-													<value>246</value>
+													<value>330</value>
 												</value>
 											</item>
 											<item>
 												<name>y</name>
 												<value>
 													<which>0</which>
-													<value>230</value>
+													<value>317</value>
 												</value>
 											</item>
 										</value>
@@ -2361,19 +2425,19 @@
 					<name>ColorMapObject</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>RescaleColorMap:7</moduleId2_>
+				<moduleId2_>RescaleColorMap:8</moduleId2_>
 				<port2_>
 					<name>ColorMapObject</name>
 					<id>0</id>
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>CreateStandardColorMap:18</moduleId1_>
+				<moduleId1_>CreateStandardColorMap:19</moduleId1_>
 				<port1_>
 					<name>ColorMapObject</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>RescaleColorMap:8</moduleId2_>
+				<moduleId2_>RescaleColorMap:7</moduleId2_>
 				<port2_>
 					<name>ColorMapObject</name>
 					<id>0</id>
@@ -2838,7 +2902,7 @@
 		</connections>
 	</networkInfo>
 	<modulePositions class_id="16" tracking_level="0" version="0">
-		<count>28</count>
+		<count>29</count>
 		<item_version>0</item_version>
 		<item class_id="17" tracking_level="0" version="0">
 			<first>BuildBEMatrix:6</first>
@@ -2850,8 +2914,15 @@
 		<item>
 			<first>CreateStandardColorMap:18</first>
 			<second>
-				<first>-6.08000000000000000e+02</first>
-				<second>-7.60000000000000000e+01</second>
+				<first>-1.31400000000000000e+03</first>
+				<second>-5.70000000000000000e+01</second>
+			</second>
+		</item>
+		<item>
+			<first>CreateStandardColorMap:19</first>
+			<second>
+				<first>-6.88000000000000000e+02</first>
+				<second>-9.10000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
@@ -2969,8 +3040,8 @@
 		<item>
 			<first>ShowColorMap:0</first>
 			<second>
-				<first>-4.56000000000000000e+02</first>
-				<second>3.80000000000000000e+02</second>
+				<first>-4.71000000000000000e+02</first>
+				<second>3.75000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -3033,7 +3104,7 @@
 			<first>ViewScene:19</first>
 			<second>
 				<first>-9.12000000000000000e+02</first>
-				<second>6.08000000000000000e+02</second>
+				<second>6.09000000000000000e+02</second>
 			</second>
 		</item>
 	</modulePositions>
@@ -3351,7 +3422,7 @@ computed potentials</noteText>
 		<item_version>0</item_version>
 	</connectionNotes>
 	<moduleTags class_id="22" tracking_level="0" version="0">
-		<count>28</count>
+		<count>29</count>
 		<item_version>0</item_version>
 		<item class_id="23" tracking_level="0" version="0">
 			<first>BuildBEMatrix:6</first>
@@ -3359,6 +3430,10 @@ computed potentials</noteText>
 		</item>
 		<item>
 			<first>CreateStandardColorMap:18</first>
+			<second>0</second>
+		</item>
+		<item>
+			<first>CreateStandardColorMap:19</first>
 			<second>0</second>
 		</item>
 		<item>
