@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="12">
-<networkFile class_id="0" tracking_level="0" version="3">
+<networkFile class_id="0" tracking_level="0" version="5">
 	<networkInfo class_id="1" tracking_level="0" version="0">
 		<modules class_id="2" tracking_level="0" version="0">
 			<count>16</count>
@@ -44,8 +44,23 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>4</count>
+							<count>5</count>
 							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>AlphaUserPointsVector</name>
+								</first>
+								<second>
+									<name>AlphaUserPointsVector</name>
+									<value>
+										<which>5</which>
+										<value class_id="12" tracking_level="0" version="0">
+											<count>0</count>
+											<item_version>0</item_version>
+										</value>
+									</value>
+								</second>
+							</item>
 							<item>
 								<first>
 									<name>ColorMapInvert</name>
@@ -108,7 +123,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>22</count>
+							<count>25</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -184,6 +199,18 @@
 							</item>
 							<item>
 								<first>
+									<name>NoTranslation</name>
+								</first>
+								<second>
+									<name>NoTranslation</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>OutputCenterX</name>
 								</first>
 								<second>
@@ -251,6 +278,18 @@
 									<value>
 										<which>1</which>
 										<value>8.26100000000000136e+01</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>RDITranslation</name>
+								</first>
+								<second>
+									<name>RDITranslation</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -368,6 +407,18 @@
 								</first>
 								<second>
 									<name>UseOutputSize</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>XYZTranslation</name>
+								</first>
+								<second>
+									<name>XYZTranslation</name>
 									<value>
 										<which>3</which>
 										<value>0</value>
@@ -568,7 +619,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>2</count>
+							<count>3</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -594,6 +645,18 @@
 									</value>
 								</second>
 							</item>
+							<item>
+								<first>
+									<name>ScriptEnvironmentVariable</name>
+								</first>
+								<second>
+									<name>ScriptEnvironmentVariable</name>
+									<value>
+										<which>2</which>
+										<value></value>
+									</value>
+								</second>
+							</item>
 						</stateMap>
 					</state>
 				</second>
@@ -608,7 +671,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>2</count>
+							<count>3</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -634,6 +697,18 @@
 									</value>
 								</second>
 							</item>
+							<item>
+								<first>
+									<name>ScriptEnvironmentVariable</name>
+								</first>
+								<second>
+									<name>ScriptEnvironmentVariable</name>
+									<value>
+										<which>2</which>
+										<value></value>
+									</value>
+								</second>
+							</item>
 						</stateMap>
 					</state>
 				</second>
@@ -648,7 +723,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>2</count>
+							<count>3</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -671,6 +746,18 @@
 									<value>
 										<which>2</which>
 										<value>%SCIRUNDATADIR%/Data/tikhonov_inv/for_mat_128.mat</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScriptEnvironmentVariable</name>
+								</first>
+								<second>
+									<name>ScriptEnvironmentVariable</name>
+									<value>
+										<which>2</which>
+										<value></value>
 									</value>
 								</second>
 							</item>
@@ -752,8 +839,32 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>17</count>
+							<count>37</count>
 							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>CullBackfacingText</name>
+								</first>
+								<second>
+									<name>CullBackfacingText</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>CylinderRadius</name>
+								</first>
+								<second>
+									<name>CylinderRadius</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000006e-01</value>
+									</value>
+								</second>
+							</item>
 							<item>
 								<first>
 									<name>CylinderResolution</name>
@@ -780,6 +891,18 @@
 							</item>
 							<item>
 								<first>
+									<name>DefaultTextColor</name>
+								</first>
+								<second>
+									<name>DefaultTextColor</name>
+									<value>
+										<which>2</which>
+										<value>Color(1,1,1)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>EdgeTransparency</name>
 								</first>
 								<second>
@@ -787,6 +910,18 @@
 									<value>
 										<which>3</which>
 										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>EdgeTransparencyValue</name>
+								</first>
+								<second>
+									<name>EdgeTransparencyValue</name>
+									<value>
+										<which>1</which>
+										<value>6.49999976158142090e-01</value>
 									</value>
 								</second>
 							</item>
@@ -823,6 +958,18 @@
 									<value>
 										<which>3</which>
 										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FaceInvertNormals</name>
+								</first>
+								<second>
+									<name>FaceInvertNormals</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -864,6 +1011,18 @@
 							</item>
 							<item>
 								<first>
+									<name>FieldName</name>
+								</first>
+								<second>
+									<name>FieldName</name>
+									<value>
+										<which>2</which>
+										<value></value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>NodeAsPoints</name>
 								</first>
 								<second>
@@ -900,6 +1059,18 @@
 							</item>
 							<item>
 								<first>
+									<name>NodeTransparencyValue</name>
+								</first>
+								<second>
+									<name>NodeTransparencyValue</name>
+									<value>
+										<which>1</which>
+										<value>6.49999976158142090e-01</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>NodesAvailable</name>
 								</first>
 								<second>
@@ -907,6 +1078,54 @@
 									<value>
 										<which>3</which>
 										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>RenderAsLocation</name>
+								</first>
+								<second>
+									<name>RenderAsLocation</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowCellIndices</name>
+								</first>
+								<second>
+									<name>ShowCellIndices</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowDataValues</name>
+								</first>
+								<second>
+									<name>ShowDataValues</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowEdgeIndices</name>
+								</first>
+								<second>
+									<name>ShowEdgeIndices</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -924,6 +1143,18 @@
 							</item>
 							<item>
 								<first>
+									<name>ShowFaceIndices</name>
+								</first>
+								<second>
+									<name>ShowFaceIndices</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>ShowFaces</name>
 								</first>
 								<second>
@@ -931,6 +1162,18 @@
 									<value>
 										<which>3</which>
 										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowNodeIndices</name>
+								</first>
+								<second>
+									<name>ShowNodeIndices</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -943,6 +1186,30 @@
 									<value>
 										<which>3</which>
 										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowText</name>
+								</first>
+								<second>
+									<name>ShowText</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>SphereResolution</name>
+								</first>
+								<second>
+									<name>SphereResolution</name>
+									<value>
+										<which>0</which>
+										<value>5</value>
 									</value>
 								</second>
 							</item>
@@ -955,6 +1222,66 @@
 									<value>
 										<which>1</which>
 										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>TextAlwaysVisible</name>
+								</first>
+								<second>
+									<name>TextAlwaysVisible</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>TextColoring</name>
+								</first>
+								<second>
+									<name>TextColoring</name>
+									<value>
+										<which>0</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>TextPrecision</name>
+								</first>
+								<second>
+									<name>TextPrecision</name>
+									<value>
+										<which>0</which>
+										<value>3</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>TextSize</name>
+								</first>
+								<second>
+									<name>TextSize</name>
+									<value>
+										<which>0</which>
+										<value>8</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>UseFaceNormals</name>
+								</first>
+								<second>
+									<name>UseFaceNormals</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -972,8 +1299,32 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>17</count>
+							<count>37</count>
 							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>CullBackfacingText</name>
+								</first>
+								<second>
+									<name>CullBackfacingText</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>CylinderRadius</name>
+								</first>
+								<second>
+									<name>CylinderRadius</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000006e-01</value>
+									</value>
+								</second>
+							</item>
 							<item>
 								<first>
 									<name>CylinderResolution</name>
@@ -1000,6 +1351,18 @@
 							</item>
 							<item>
 								<first>
+									<name>DefaultTextColor</name>
+								</first>
+								<second>
+									<name>DefaultTextColor</name>
+									<value>
+										<which>2</which>
+										<value>Color(1,1,1)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>EdgeTransparency</name>
 								</first>
 								<second>
@@ -1007,6 +1370,18 @@
 									<value>
 										<which>3</which>
 										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>EdgeTransparencyValue</name>
+								</first>
+								<second>
+									<name>EdgeTransparencyValue</name>
+									<value>
+										<which>1</which>
+										<value>6.49999976158142090e-01</value>
 									</value>
 								</second>
 							</item>
@@ -1043,6 +1418,18 @@
 									<value>
 										<which>3</which>
 										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FaceInvertNormals</name>
+								</first>
+								<second>
+									<name>FaceInvertNormals</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -1084,6 +1471,18 @@
 							</item>
 							<item>
 								<first>
+									<name>FieldName</name>
+								</first>
+								<second>
+									<name>FieldName</name>
+									<value>
+										<which>2</which>
+										<value></value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>NodeAsPoints</name>
 								</first>
 								<second>
@@ -1120,6 +1519,18 @@
 							</item>
 							<item>
 								<first>
+									<name>NodeTransparencyValue</name>
+								</first>
+								<second>
+									<name>NodeTransparencyValue</name>
+									<value>
+										<which>1</which>
+										<value>6.49999976158142090e-01</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>NodesAvailable</name>
 								</first>
 								<second>
@@ -1127,6 +1538,54 @@
 									<value>
 										<which>3</which>
 										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>RenderAsLocation</name>
+								</first>
+								<second>
+									<name>RenderAsLocation</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowCellIndices</name>
+								</first>
+								<second>
+									<name>ShowCellIndices</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowDataValues</name>
+								</first>
+								<second>
+									<name>ShowDataValues</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowEdgeIndices</name>
+								</first>
+								<second>
+									<name>ShowEdgeIndices</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -1144,6 +1603,18 @@
 							</item>
 							<item>
 								<first>
+									<name>ShowFaceIndices</name>
+								</first>
+								<second>
+									<name>ShowFaceIndices</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>ShowFaces</name>
 								</first>
 								<second>
@@ -1151,6 +1622,18 @@
 									<value>
 										<which>3</which>
 										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowNodeIndices</name>
+								</first>
+								<second>
+									<name>ShowNodeIndices</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -1163,6 +1646,30 @@
 									<value>
 										<which>3</which>
 										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowText</name>
+								</first>
+								<second>
+									<name>ShowText</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>SphereResolution</name>
+								</first>
+								<second>
+									<name>SphereResolution</name>
+									<value>
+										<which>0</which>
+										<value>5</value>
 									</value>
 								</second>
 							</item>
@@ -1175,6 +1682,66 @@
 									<value>
 										<which>1</which>
 										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>TextAlwaysVisible</name>
+								</first>
+								<second>
+									<name>TextAlwaysVisible</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>TextColoring</name>
+								</first>
+								<second>
+									<name>TextColoring</name>
+									<value>
+										<which>0</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>TextPrecision</name>
+								</first>
+								<second>
+									<name>TextPrecision</name>
+									<value>
+										<which>0</which>
+										<value>3</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>TextSize</name>
+								</first>
+								<second>
+									<name>TextSize</name>
+									<value>
+										<which>0</which>
+										<value>8</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>UseFaceNormals</name>
+								</first>
+								<second>
+									<name>UseFaceNormals</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -1192,7 +1759,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>10</count>
+							<count>12</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -1202,7 +1769,7 @@
 									<name>LCurveText</name>
 									<value>
 										<which>2</which>
-										<value>SolveInverseProblemWithTikhonov:0 plot_graph &quot; 2.55372 7.04212 2.55372 7.0409 2.55373 7.03946 2.55373 7.03778 2.55373 7.03582 2.55374 7.03352 2.55374 7.03084 2.55375 7.02772 2.55376 7.02409 2.55378 7.01987 2.55379 7.01498 2.55382 7.00931 2.55385 7.00278 2.5539 6.99525 2.55396 6.98662 2.55403 6.97675 2.55413 6.96551 2.55424 6.95277 2.55439 6.93839 2.55458 6.92224 2.5548 6.90421 2.55506 6.8842 2.55537 6.86212 2.55573 6.83792 2.55614 6.81158 2.5566 6.7831 2.5571 6.75251 2.55765 6.71991 2.55823 6.68538 2.55883 6.64909 2.55946 6.61118 2.5601 6.57185 2.56074 6.5313 2.56137 6.48975 2.562 6.44741 2.56261 6.40449 2.56321 6.36119 2.56378 6.3177 2.56433 6.27419 2.56486 6.2308 2.56536 6.18765 2.56584 6.14483 2.5663 6.1024 2.56674 6.06038 2.56716 6.01878 2.56757 5.97757 2.56796 5.93671 2.56833 5.89615 2.5687 5.85584 2.56905 5.81573 2.5694 5.7758 2.56973 5.73604 2.57006 5.69649 2.57037 5.65721 2.57068 5.61828 2.57098 5.57981 2.57127 5.54194 2.57155 5.50481 2.57182 5.46856 2.57209 5.43331 2.57234 5.39918 2.57259 5.36625 2.57283 5.33455 2.57307 5.30407 2.5733 5.27473 2.57353 5.24643 2.57376 5.219 2.574 5.19224 2.57424 5.16593 2.57448 5.13986 2.57474 5.11385 2.57501 5.08776 2.57529 5.06147 2.57558 5.03498 2.57589 5.00831 2.57621 4.98159 2.57654 4.955 2.57688 4.92878 2.57723 4.90321 2.57757 4.8786 2.57792 4.85526 2.57826 4.83345 2.5786 4.81338 2.57893 4.79521 2.57924 4.77897 2.57955 4.76464 2.57984 4.7521 2.58013 4.7412 2.58041 4.73174 2.58068 4.72351 2.58095 4.71631 2.58122 4.70995 2.5815 4.70425 2.58179 4.69909 2.58209 4.69434 2.58242 4.68991 2.58277 4.68573 2.58316 4.68174 2.5836 4.6779 2.58408 4.67417 2.58463 4.67052 2.58525 4.66693 2.58596 4.66339 2.58677 4.65986 2.58771 4.65633 2.58879 4.65279 2.59004 4.64921 2.59151 4.64558 2.59322 4.6419 2.59521 4.63815 2.59754 4.63432 2.60025 4.63041 2.60341 4.62641 2.60708 4.62232 2.61135 4.61813 2.61628 4.61383 2.62199 4.60941 2.62858 4.60486 2.63618 4.60014 2.64495 4.59523 2.65503 4.59009 2.66659 4.5847 2.6798 4.579 2.6948 4.57298 2.71169 4.56659 2.73055 4.5598 2.75134 4.55259 2.77399 4.54495 2.79835 4.53688 2.82422 4.52838 2.85135 4.51945 2.87952 4.51012 2.90848 4.5004 2.93807 4.49027 2.96815 4.47975 2.99864 4.46878 3.02951 4.45733 3.06076 4.44533 3.09239 4.43269 3.12442 4.41931 3.15681 4.40508 3.18947 4.38992 3.22227 4.37374 3.25503 4.35647 3.28751 4.3381 3.31948 4.31865 3.35069 4.29816 3.38092 4.27674 3.40999 4.25455 3.43776 4.23175 3.46417 4.20852 3.4892 4.18506 3.51288 4.16152 3.53533 4.13801 3.55667 4.11457 3.5771 4.09119 3.59678 4.06778 3.61592 4.04419 3.63469 4.02025 3.65322 3.99575 3.67163 3.9705 3.68994 3.94432 3.70816 3.91708 3.72622 3.8887 3.74402 3.85918 3.76144 3.82858 3.77834 3.79704 3.79458 3.76481 3.81007 3.73218 3.82469 3.69952 3.83841 3.66721 3.85121 3.63566 3.8631 3.60521 3.87414 3.57613 3.88442 3.54858 3.89405 3.52258 3.90318 3.49799 3.91197 3.47458 3.92058 3.45198 3.92921 3.42979 3.93804 3.40754 3.94721 3.3848 3.95687 3.36114 3.96712 3.33614 3.97799 3.30948 3.98948 3.28085 4.00149 3.25001 4.01391 3.21677 4.02656 3.18101 4.03924 3.14265 4.05177 3.10166 4.06395 3.05807 4.07562 3.01195 4.08665 2.9634 4.09693 2.91253 4.10641 2.8595 4.11507 2.80448 4.12289 2.74761 4.12991 2.68909 4.13615 2.62906 &quot; &quot; 1.55372 4.63432 2.59754 4.63432 2.59754 2.62906 &quot; 0.00740196 110 ; 
+										<value>SolveInverseProblemWithTikhonov:0 plot_graph &quot; 2.54936 7.00141 2.54936 7.00033 2.54937 6.99906 2.54937 6.99758 2.54937 6.99585 2.54937 6.99383 2.54938 6.99147 2.54938 6.98873 2.54939 6.98554 2.5494 6.98183 2.54942 6.97754 2.54944 6.97258 2.54946 6.96686 2.5495 6.96029 2.54954 6.95276 2.5496 6.94416 2.54967 6.93438 2.54976 6.92331 2.54988 6.91084 2.55002 6.89684 2.55019 6.88124 2.55041 6.86393 2.55066 6.84484 2.55095 6.82391 2.5513 6.80112 2.55169 6.77644 2.55212 6.74991 2.55261 6.72157 2.55313 6.69149 2.5537 6.65979 2.55429 6.62658 2.55491 6.59202 2.55556 6.55628 2.55621 6.51955 2.55687 6.48199 2.55753 6.44379 2.55819 6.4051 2.55884 6.36605 2.55948 6.32675 2.56011 6.28726 2.56073 6.24763 2.56134 6.20788 2.56193 6.16801 2.56251 6.128 2.56308 6.08785 2.56363 6.04757 2.56418 6.00715 2.56471 5.96662 2.56522 5.92602 2.56572 5.8854 2.56621 5.84482 2.56669 5.80437 2.56715 5.76415 2.56759 5.72426 2.56802 5.68485 2.56844 5.64606 2.56883 5.60805 2.56922 5.57097 2.56959 5.53494 2.56995 5.50005 2.57029 5.46632 2.57063 5.4337 2.57096 5.40207 2.57129 5.37125 2.57162 5.34102 2.57195 5.31113 2.57229 5.28135 2.57264 5.25147 2.573 5.22136 2.57337 5.19094 2.57375 5.1602 2.57414 5.12923 2.57454 5.09816 2.57495 5.0672 2.57535 5.0366 2.57576 5.00661 2.57616 4.97752 2.57657 4.94957 2.57696 4.923 2.57735 4.89799 2.57772 4.87465 2.5781 4.85305 2.57846 4.83322 2.57882 4.81511 2.57917 4.79864 2.57952 4.7837 2.57986 4.77015 2.58021 4.75786 2.58056 4.74669 2.58092 4.7365 2.58129 4.72716 2.58168 4.71858 2.58208 4.71066 2.58249 4.70333 2.58294 4.69652 2.5834 4.69019 2.5839 4.68428 2.58443 4.67878 2.585 4.67364 2.58561 4.66883 2.58626 4.66432 2.58697 4.66007 2.58774 4.65606 2.58858 4.65222 2.58952 4.64853 2.59057 4.64494 2.59175 4.64142 2.5931 4.63792 2.59466 4.63442 2.59646 4.63089 2.59855 4.62732 2.60098 4.62369 2.6038 4.62 2.60709 4.61622 2.61092 4.61236 2.61537 4.6084 2.62055 4.60431 2.62657 4.60009 2.63358 4.59569 2.64174 4.59109 2.65122 4.58625 2.66223 4.58112 2.67495 4.57567 2.68954 4.56986 2.70613 4.56365 2.72478 4.55702 2.74548 4.54995 2.76814 4.54242 2.79259 4.53444 2.81861 4.52602 2.84595 4.51716 2.87433 4.50789 2.90353 4.49822 2.93334 4.48814 2.96363 4.47766 2.99431 4.46675 3.02535 4.45535 3.05676 4.44341 3.08854 4.43083 3.1207 4.41751 3.15321 4.40336 3.18599 4.38827 3.2189 4.37217 3.25176 4.35499 3.28436 4.3367 3.31643 4.31734 3.34775 4.29694 3.37809 4.27562 3.40727 4.25352 3.43515 4.2308 3.46166 4.20767 3.48679 4.18428 3.51058 4.16081 3.53313 4.13736 3.55458 4.11398 3.5751 4.09064 3.59488 4.06727 3.61412 4.04371 3.63298 4.0198 3.65161 3.99532 3.6701 3.97008 3.6885 3.94391 3.70679 3.91667 3.72492 3.8883 3.74279 3.85879 3.76026 3.8282 3.77721 3.79669 3.7935 3.76448 3.80902 3.73189 3.82368 3.69926 3.83743 3.667 3.85025 3.6355 3.86217 3.6051 3.87323 3.57608 3.88353 3.54859 3.89318 3.52265 3.90233 3.49812 3.91114 3.47476 3.91978 3.4522 3.92843 3.43004 3.93728 3.40783 3.94649 3.38512 3.95619 3.36147 3.96648 3.3365 3.9774 3.30985 3.98893 3.28123 4.00099 3.2504 4.01345 3.21717 4.02614 3.18141 4.03888 3.14305 4.05145 3.10207 4.06367 3.05848 4.07537 3.01236 4.08643 2.96381 4.09674 2.91295 4.10625 2.85992 4.11493 2.80489 4.12277 2.74803 4.1298 2.68951 4.13606 2.62949 &quot; &quot; 1.54936 4.62732 2.59855 4.62732 2.59855 2.62949 &quot; 0.00740196 110 ; 
 </value>
 									</value>
 								</second>
@@ -1216,6 +1783,18 @@
 									<value>
 										<which>1</which>
 										<value>7.40195999691572581e-03</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>LambdaFromDirectEntry</name>
+								</first>
+								<second>
+									<name>LambdaFromDirectEntry</name>
+									<value>
+										<which>1</which>
+										<value>2.00000000000000004e-02</value>
 									</value>
 								</second>
 							</item>
@@ -1252,6 +1831,18 @@
 									<value>
 										<which>0</which>
 										<value>200</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>LambdaResolution</name>
+								</first>
+								<second>
+									<name>LambdaResolution</name>
+									<value>
+										<which>1</which>
+										<value>9.99999999999999955e-07</value>
 									</value>
 								</second>
 							</item>
@@ -1385,8 +1976,140 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>1</count>
+							<count>31</count>
 							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>Ambient</name>
+								</first>
+								<second>
+									<name>Ambient</name>
+									<value>
+										<which>1</which>
+										<value>2.00000000000000011e-01</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>BackCull</name>
+								</first>
+								<second>
+									<name>BackCull</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>BackgroundColor</name>
+								</first>
+								<second>
+									<name>BackgroundColor</name>
+									<value>
+										<which>2</which>
+										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Diffuse</name>
+								</first>
+								<second>
+									<name>Diffuse</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>DisplayList</name>
+								</first>
+								<second>
+									<name>DisplayList</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Emission</name>
+								</first>
+								<second>
+									<name>Emission</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FieldOfView</name>
+								</first>
+								<second>
+									<name>FieldOfView</name>
+									<value>
+										<which>0</which>
+										<value>20</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FogColor</name>
+								</first>
+								<second>
+									<name>FogColor</name>
+									<value>
+										<which>2</which>
+										<value>Color(0,0,1)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FogEnd</name>
+								</first>
+								<second>
+									<name>FogEnd</name>
+									<value>
+										<which>1</which>
+										<value>7.09999999999999964e-01</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FogOn</name>
+								</first>
+								<second>
+									<name>FogOn</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FogStart</name>
+								</first>
+								<second>
+									<name>FogStart</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
 							<item>
 								<first>
 									<name>GeometryFeedbackInfo</name>
@@ -1395,7 +2118,7 @@
 									<name>GeometryFeedbackInfo</name>
 									<value>
 										<which>5</which>
-										<value class_id="12" tracking_level="0" version="0">
+										<value>
 											<count>2</count>
 											<item_version>0</item_version>
 											<item>
@@ -1413,6 +2136,234 @@
 												</value>
 											</item>
 										</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Lighting</name>
+								</first>
+								<second>
+									<name>Lighting</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ObjectsOnly</name>
+								</first>
+								<second>
+									<name>ObjectsOnly</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PolygonOffset</name>
+								</first>
+								<second>
+									<name>PolygonOffset</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarFontSize</name>
+								</first>
+								<second>
+									<name>ScaleBarFontSize</name>
+									<value>
+										<which>0</which>
+										<value>8</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarHeight</name>
+								</first>
+								<second>
+									<name>ScaleBarHeight</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarLength</name>
+								</first>
+								<second>
+									<name>ScaleBarLength</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarLineWidth</name>
+								</first>
+								<second>
+									<name>ScaleBarLineWidth</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarMultiplier</name>
+								</first>
+								<second>
+									<name>ScaleBarMultiplier</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarNumTicks</name>
+								</first>
+								<second>
+									<name>ScaleBarNumTicks</name>
+									<value>
+										<which>0</which>
+										<value>11</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarUnitValue</name>
+								</first>
+								<second>
+									<name>ScaleBarUnitValue</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Shine</name>
+								</first>
+								<second>
+									<name>Shine</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowBBox</name>
+								</first>
+								<second>
+									<name>ShowBBox</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowScaleBar</name>
+								</first>
+								<second>
+									<name>ShowScaleBar</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Specular</name>
+								</first>
+								<second>
+									<name>Specular</name>
+									<value>
+										<which>1</which>
+										<value>4.00000000000000022e-01</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Stereo</name>
+								</first>
+								<second>
+									<name>Stereo</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>StereoFusion</name>
+								</first>
+								<second>
+									<name>StereoFusion</name>
+									<value>
+										<which>1</which>
+										<value>4.00000000000000022e-01</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>TextOffset</name>
+								</first>
+								<second>
+									<name>TextOffset</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>UseBGColor</name>
+								</first>
+								<second>
+									<name>UseBGColor</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>UseClip</name>
+								</first>
+								<second>
+									<name>UseClip</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
 									</value>
 								</second>
 							</item>
@@ -1684,8 +2635,8 @@
 		<item class_id="17" tracking_level="0" version="0">
 			<first>BuildNoiseColumnMatrix:5</first>
 			<second class_id="18" tracking_level="0" version="0">
-				<first>-7.69100000000000023e+02</first>
-				<second>-4.12199999999999932e+02</second>
+				<first>-7.69099999999999909e+02</first>
+				<second>-4.10199999999999932e+02</second>
 			</second>
 		</item>
 		<item>
@@ -1705,8 +2656,8 @@
 		<item>
 			<first>EvaluateLinearAlgebraBinary:4</first>
 			<second>
-				<first>-1.03525000000000000e+03</first>
-				<second>-5.38899999999999977e+02</second>
+				<first>-9.87250000000000000e+02</first>
+				<second>-5.54900000000000091e+02</second>
 			</second>
 		</item>
 		<item>
@@ -1719,8 +2670,8 @@
 		<item>
 			<first>GetMatrixSlice:3</first>
 			<second>
-				<first>-6.84000000000000000e+02</first>
-				<second>-6.84000000000000000e+02</second>
+				<first>-6.17000000000000000e+02</first>
+				<second>-7.03000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -1803,7 +2754,7 @@
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Generate Noise&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Generate Noise</noteText>
 				<position>6</position>
@@ -1816,7 +2767,7 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Apply Forward Solution&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Apply Forward Solution</noteText>
 				<position>6</position>
@@ -1829,7 +2780,7 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Add Noise to Forward Solution&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Add Noise to Forward Solution</noteText>
 				<position>6</position>
@@ -1842,7 +2793,7 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Choose a column&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;(single time instant) &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;from data matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
@@ -1859,7 +2810,7 @@ from data matrix</noteText>
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Load Epicardial Potential Data Matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Load Epicardial Potential Data Matrix</noteText>
 				<position>0</position>
@@ -1872,7 +2823,7 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Load Forward&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt; Solution Matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Load Forward
@@ -1887,8 +2838,8 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; color:#ffffff;&quot;&gt;ID: 12&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;ID: 12&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>ID: 12</noteText>
 				<position>0</position>
 				<fontSize>13</fontSize>
@@ -1900,7 +2851,7 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Visualize Solution &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;to Inverse Problem&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Visualize Solution 
@@ -1915,7 +2866,7 @@ to Inverse Problem</noteText>
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Solve Inverse Problem&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Solve Inverse Problem</noteText>
 				<position>6</position>
@@ -1928,7 +2879,7 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Assign Solution Matrix Values&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;to Epicardial Geometry&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Assign Solution Matrix Values
@@ -1943,7 +2894,7 @@ to Epicardial Geometry</noteText>
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Assign Data Matrix values&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;to Epicardial Geometry&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Assign Data Matrix values
@@ -1958,7 +2909,7 @@ to Epicardial Geometry</noteText>
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Show Visualizations of True&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;and Inverse Solution Potentials&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Show Visualizations of True
@@ -2040,6 +2991,19 @@ and Inverse Solution Potentials</noteText>
 			<second>0</second>
 		</item>
 	</moduleTags>
+	<disabledModules class_id="24" tracking_level="0" version="0">
+		<count>0</count>
+		<item_version>0</item_version>
+	</disabledModules>
+	<disabledConnections>
+		<count>0</count>
+		<item_version>0</item_version>
+	</disabledConnections>
+	<moduleTagLabels class_id="25" tracking_level="0" version="0">
+		<count>0</count>
+		<item_version>0</item_version>
+	</moduleTagLabels>
+	<loadTagGroups>0</loadTagGroups>
 </networkFile>
 </boost_serialization>
 

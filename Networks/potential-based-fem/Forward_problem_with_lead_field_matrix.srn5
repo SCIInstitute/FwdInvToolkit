@@ -1,198 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="12">
-<networkFile class_id="0" tracking_level="0" version="3">
+<networkFile class_id="0" tracking_level="0" version="5">
 	<networkInfo class_id="1" tracking_level="0" version="0">
 		<modules class_id="2" tracking_level="0" version="0">
-			<count>24</count>
+			<count>18</count>
 			<item_version>0</item_version>
 			<item class_id="3" tracking_level="0" version="0">
-				<first>ClipFieldByFunction:21</first>
+				<first>CreateStandardColorMap:10</first>
 				<second class_id="4" tracking_level="0" version="0">
 					<module class_id="5" tracking_level="0" version="0">
-						<package_name_>SCIRun</package_name_>
-						<category_name_>NewField</category_name_>
-						<module_name_>ClipFieldByFunction</module_name_>
-					</module>
-					<state class_id="6" tracking_level="0" version="0">
-						<stateMap class_id="7" tracking_level="0" version="0">
-							<count>2</count>
-							<item_version>0</item_version>
-							<item class_id="8" tracking_level="0" version="0">
-								<first class_id="9" tracking_level="0" version="0">
-									<name>ClipMethod</name>
-								</first>
-								<second class_id="10" tracking_level="0" version="0">
-									<name>ClipMethod</name>
-									<value class_id="11" tracking_level="0" version="0">
-										<which>2</which>
-										<value>Element Center</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>FunctionString</name>
-								</first>
-								<second>
-									<name>FunctionString</name>
-									<value>
-										<which>2</which>
-										<value>DATA &gt; 0;</value>
-									</value>
-								</second>
-							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
-				<first>ClipFieldByFunction:22</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>NewField</category_name_>
-						<module_name_>ClipFieldByFunction</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>2</count>
-							<item_version>0</item_version>
-							<item>
-								<first>
-									<name>ClipMethod</name>
-								</first>
-								<second>
-									<name>ClipMethod</name>
-									<value>
-										<which>2</which>
-										<value>Element Center</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>FunctionString</name>
-								</first>
-								<second>
-									<name>FunctionString</name>
-									<value>
-										<which>2</which>
-										<value>DATA != 10;</value>
-									</value>
-								</second>
-							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
-				<first>CreateLatVol:4</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>NewField</category_name_>
-						<module_name_>CreateLatVol</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>6</count>
-							<item_version>0</item_version>
-							<item>
-								<first>
-									<name>DataAtLocation</name>
-								</first>
-								<second>
-									<name>DataAtLocation</name>
-									<value>
-										<which>2</which>
-										<value>Nodes</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>ElementSizeNormalized</name>
-								</first>
-								<second>
-									<name>ElementSizeNormalized</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>PadPercent</name>
-								</first>
-								<second>
-									<name>PadPercent</name>
-									<value>
-										<which>1</which>
-										<value>0.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>XSize</name>
-								</first>
-								<second>
-									<name>XSize</name>
-									<value>
-										<which>0</which>
-										<value>55</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>YSize</name>
-								</first>
-								<second>
-									<name>YSize</name>
-									<value>
-										<which>0</which>
-										<value>55</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>ZSize</name>
-								</first>
-								<second>
-									<name>ZSize</name>
-									<value>
-										<which>0</which>
-										<value>80</value>
-									</value>
-								</second>
-							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
-				<first>CreateStandardColorMap:10</first>
-				<second>
-					<module>
 						<package_name_>SCIRun</package_name_>
 						<category_name_>Visualization</category_name_>
 						<module_name_>CreateStandardColorMap</module_name_>
 					</module>
-					<state>
-						<stateMap>
+					<state class_id="6" tracking_level="0" version="0">
+						<stateMap class_id="7" tracking_level="0" version="0">
 							<count>4</count>
 							<item_version>0</item_version>
-							<item>
-								<first>
+							<item class_id="8" tracking_level="0" version="0">
+								<first class_id="9" tracking_level="0" version="0">
 									<name>ColorMapInvert</name>
 								</first>
-								<second>
+								<second class_id="10" tracking_level="0" version="0">
 									<name>ColorMapInvert</name>
-									<value>
+									<value class_id="11" tracking_level="0" version="0">
 										<which>3</which>
 										<value>0</value>
 									</value>
@@ -343,7 +175,7 @@
 				</second>
 			</item>
 			<item>
-				<first>FairMesh:16</first>
+				<first>FairMesh:20</first>
 				<second>
 					<module>
 						<package_name_>SCIRun</package_name_>
@@ -402,22 +234,6 @@
 									</value>
 								</second>
 							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
-				<first>GetFieldBoundary:15</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>NewField</category_name_>
-						<module_name_>GetFieldBoundary</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>0</count>
-							<item_version>0</item_version>
 						</stateMap>
 					</state>
 				</second>
@@ -487,94 +303,6 @@
 				</second>
 			</item>
 			<item>
-				<first>MapFieldDataOntoElements:3</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>ChangeFieldData</category_name_>
-						<module_name_>MapFieldDataOntoElements</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>6</count>
-							<item_version>0</item_version>
-							<item>
-								<first>
-									<name>InterpolationModel</name>
-								</first>
-								<second>
-									<name>InterpolationModel</name>
-									<value>
-										<which>2</which>
-										<value>interpolateddata</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>MaxDistance</name>
-								</first>
-								<second>
-									<name>MaxDistance</name>
-									<value>
-										<which>1</which>
-										<value>1.79769313486231571e+308</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>OutsideValue</name>
-								</first>
-								<second>
-									<name>OutsideValue</name>
-									<value>
-										<which>1</which>
-										<value>0.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>Quantity</name>
-								</first>
-								<second>
-									<name>Quantity</name>
-									<value>
-										<which>2</which>
-										<value>value</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>SampleMethod</name>
-								</first>
-								<second>
-									<name>SampleMethod</name>
-									<value>
-										<which>2</which>
-										<value>mostcommon</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>SamplePoints</name>
-								</first>
-								<second>
-									<name>SamplePoints</name>
-									<value>
-										<which>2</which>
-										<value>regular2</value>
-									</value>
-								</second>
-							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
 				<first>ReadField:0</first>
 				<second>
 					<module>
@@ -606,7 +334,7 @@
 									<name>FileTypeName</name>
 									<value>
 										<which>2</which>
-										<value>NrrdFile</value>
+										<value>SCIRun Field File</value>
 									</value>
 								</second>
 							</item>
@@ -618,7 +346,7 @@
 									<name>Filename</name>
 									<value>
 										<which>2</which>
-										<value>%SCIRUNDATADIR%/Data/pot_based_FEM_forward/Segmentation.nrrd</value>
+										<value>%SCIRUNDATADIR%/Data/pot_based_FEM_forward/torso_surface.fld</value>
 									</value>
 								</second>
 							</item>
@@ -790,7 +518,7 @@
 									<name>FixedMax</name>
 									<value>
 										<which>1</which>
-										<value>4.20408455898367783e-01</value>
+										<value>2.45544203061431376e-01</value>
 									</value>
 								</second>
 							</item>
@@ -802,7 +530,7 @@
 									<name>FixedMin</name>
 									<value>
 										<which>1</which>
-										<value>-5.72636201673179079e-01</value>
+										<value>-5.32439624498212472e-01</value>
 									</value>
 								</second>
 							</item>
@@ -887,7 +615,7 @@
 				</second>
 			</item>
 			<item>
-				<first>SetFieldData:14</first>
+				<first>SetFieldData:17</first>
 				<second>
 					<module>
 						<package_name_>SCIRun</package_name_>
@@ -1739,46 +1467,6 @@
 				</second>
 			</item>
 			<item>
-				<first>SplitFieldByConnectedRegion:0</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>NewField</category_name_>
-						<module_name_>SplitFieldByConnectedRegion</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>2</count>
-							<item_version>0</item_version>
-							<item>
-								<first>
-									<name>SortAscending</name>
-								</first>
-								<second>
-									<name>SortAscending</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>SortDomainBySize</name>
-								</first>
-								<second>
-									<name>SortDomainBySize</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
 				<first>ViewScene:18</first>
 				<second>
 					<module>
@@ -1825,47 +1513,11 @@
 			</item>
 		</modules>
 		<connections class_id="13" tracking_level="0" version="0">
-			<count>29</count>
+			<count>22</count>
 			<item_version>0</item_version>
 			<item class_id="14" tracking_level="0" version="0">
-				<moduleId1_>ClipFieldByFunction:21</moduleId1_>
-				<port1_ class_id="15" tracking_level="0" version="0">
-					<name>OutputField</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>ClipFieldByFunction:22</moduleId2_>
-				<port2_>
-					<name>InputFields</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>ClipFieldByFunction:22</moduleId1_>
-				<port1_>
-					<name>OutputField</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>GetFieldBoundary:15</moduleId2_>
-				<port2_>
-					<name>InputField</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>CreateLatVol:4</moduleId1_>
-				<port1_>
-					<name>OutputField</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>MapFieldDataOntoElements:3</moduleId2_>
-				<port2_>
-					<name>Destination</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
 				<moduleId1_>CreateStandardColorMap:10</moduleId1_>
-				<port1_>
+				<port1_ class_id="15" tracking_level="0" version="0">
 					<name>ColorMapObject</name>
 					<id>0</id>
 				</port1_>
@@ -1893,14 +1545,14 @@
 					<name>Result</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>SetFieldData:14</moduleId2_>
+				<moduleId2_>SetFieldData:17</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
 					<id>0</id>
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>FairMesh:16</moduleId1_>
+				<moduleId1_>FairMesh:20</moduleId1_>
 				<port1_>
 					<name>Faired_Mesh</name>
 					<id>0</id>
@@ -1908,18 +1560,6 @@
 				<moduleId2_>ShowField:17</moduleId2_>
 				<port2_>
 					<name>Field</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>GetFieldBoundary:15</moduleId1_>
-				<port1_>
-					<name>BoundaryField</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>SplitFieldByConnectedRegion:0</moduleId2_>
-				<port2_>
-					<name>InputField</name>
 					<id>0</id>
 				</port2_>
 			</item>
@@ -1948,38 +1588,14 @@
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>MapFieldDataOntoElements:3</moduleId1_>
-				<port1_>
-					<name>OutputField</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>ClipFieldByFunction:21</moduleId2_>
-				<port2_>
-					<name>InputFields</name>
-					<id>1</id>
-				</port2_>
-			</item>
-			<item>
 				<moduleId1_>ReadField:0</moduleId1_>
 				<port1_>
 					<name>Field</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>CreateLatVol:4</moduleId2_>
+				<moduleId2_>SetFieldData:17</moduleId2_>
 				<port2_>
 					<name>InputField</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>ReadField:0</moduleId1_>
-				<port1_>
-					<name>Field</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>MapFieldDataOntoElements:3</moduleId2_>
-				<port2_>
-					<name>Source</name>
 					<id>0</id>
 				</port2_>
 			</item>
@@ -2068,19 +1684,19 @@
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>SetFieldData:14</moduleId1_>
+				<moduleId1_>SetFieldData:17</moduleId1_>
 				<port1_>
 					<name>OutputField</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>FairMesh:16</moduleId2_>
+				<moduleId2_>FairMesh:20</moduleId2_>
 				<port2_>
 					<name>Input_Mesh</name>
 					<id>0</id>
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>SetFieldData:14</moduleId1_>
+				<moduleId1_>SetFieldData:17</moduleId1_>
 				<port1_>
 					<name>OutputField</name>
 					<id>0</id>
@@ -2088,7 +1704,7 @@
 				<moduleId2_>RescaleColorMap:4</moduleId2_>
 				<port2_>
 					<name>Field</name>
-					<id>2</id>
+					<id>3</id>
 				</port2_>
 			</item>
 			<item>
@@ -2163,77 +1779,37 @@
 					<id>1</id>
 				</port2_>
 			</item>
-			<item>
-				<moduleId1_>SplitFieldByConnectedRegion:0</moduleId1_>
-				<port1_>
-					<name>OutputField1</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>SetFieldData:14</moduleId2_>
-				<port2_>
-					<name>InputField</name>
-					<id>0</id>
-				</port2_>
-			</item>
 		</connections>
 	</networkInfo>
 	<modulePositions class_id="16" tracking_level="0" version="0">
-		<count>24</count>
+		<count>18</count>
 		<item_version>0</item_version>
 		<item class_id="17" tracking_level="0" version="0">
-			<first>ClipFieldByFunction:21</first>
-			<second class_id="18" tracking_level="0" version="0">
-				<first>-2.12300000000000000e+03</first>
-				<second>-8.09677500000000009e+02</second>
-			</second>
-		</item>
-		<item>
-			<first>ClipFieldByFunction:22</first>
-			<second>
-				<first>-2.12693499999999949e+03</first>
-				<second>-6.96420000000000073e+02</second>
-			</second>
-		</item>
-		<item>
-			<first>CreateLatVol:4</first>
-			<second>
-				<first>-2.05200000000000000e+03</first>
-				<second>-1.06400000000000000e+03</second>
-			</second>
-		</item>
-		<item>
 			<first>CreateStandardColorMap:10</first>
-			<second>
-				<first>-1.08308274350468719e+03</first>
-				<second>-7.46545347846093136e+02</second>
+			<second class_id="18" tracking_level="0" version="0">
+				<first>-1.50108274350468719e+03</first>
+				<second>-5.30545347846093136e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>CreateStandardColorMap:9</first>
 			<second>
-				<first>-1.51760274350468717e+03</first>
-				<second>-7.39707847846093159e+02</second>
+				<first>-1.87360274350468717e+03</first>
+				<second>-5.50707847846093046e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>EvaluateLinearAlgebraBinary:0</first>
 			<second>
-				<first>-1.57526000000000067e+03</first>
-				<second>-9.41967500000000200e+02</second>
+				<first>-1.77926000000000067e+03</first>
+				<second>-9.56967500000000200e+02</second>
 			</second>
 		</item>
 		<item>
-			<first>FairMesh:16</first>
+			<first>FairMesh:20</first>
 			<second>
-				<first>-1.74879274350468745e+03</first>
-				<second>-2.17572847846093254e+02</second>
-			</second>
-		</item>
-		<item>
-			<first>GetFieldBoundary:15</first>
-			<second>
-				<first>-2.12829774350468733e+03</first>
-				<second>-5.86887847846093223e+02</second>
+				<first>-1.83500000000000000e+03</first>
+				<second>-7.06000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -2241,13 +1817,6 @@
 			<second>
 				<first>-1.36800000000000000e+03</first>
 				<second>-1.06400000000000000e+03</second>
-			</second>
-		</item>
-		<item>
-			<first>MapFieldDataOntoElements:3</first>
-			<second>
-				<first>-2.10012999999999965e+03</first>
-				<second>-9.35007499999999936e+02</second>
 			</second>
 		</item>
 		<item>
@@ -2260,168 +1829,94 @@
 		<item>
 			<first>ReadField:2</first>
 			<second>
-				<first>-8.36000000000000000e+02</first>
-				<second>-1.14000000000000000e+03</second>
+				<first>-1.04700000000000000e+03</first>
+				<second>-1.23400000000000000e+03</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadMatrix:1</first>
 			<second>
-				<first>-1.36800000000000000e+03</first>
-				<second>-1.21500000000000000e+03</second>
+				<first>-1.38100000000000000e+03</first>
+				<second>-1.23000000000000000e+03</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadMatrix:2</first>
 			<second>
-				<first>-1.64532249999999976e+03</first>
-				<second>-1.21799999999999977e+03</second>
+				<first>-1.67832249999999976e+03</first>
+				<second>-1.23300000000000000e+03</second>
 			</second>
 		</item>
 		<item>
 			<first>RescaleColorMap:4</first>
 			<second>
-				<first>-2.11740524350468650e+03</first>
-				<second>-1.62222847846093345e+02</second>
+				<first>-2.03040524350468650e+03</first>
+				<second>-4.00222847846093373e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>RescaleColorMap:5</first>
 			<second>
-				<first>-1.27908274350468719e+03</first>
-				<second>-5.63545347846093364e+02</second>
+				<first>-1.48500000000000000e+03</first>
+				<second>-4.15000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
-			<first>SetFieldData:14</first>
+			<first>SetFieldData:17</first>
 			<second>
-				<first>-1.84847249999999985e+03</first>
-				<second>-3.56980000000000132e+02</second>
+				<first>-1.99900000000000000e+03</first>
+				<second>-8.25000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SetFieldData:3</first>
 			<second>
-				<first>-9.88000000000000000e+02</first>
-				<second>-9.12000000000000000e+02</second>
+				<first>-1.57000000000000000e+03</first>
+				<second>-7.36000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowColorMap:1</first>
 			<second>
-				<first>-1.02608274350468719e+03</first>
-				<second>-3.96545347846093250e+02</second>
+				<first>-1.34308274350468719e+03</first>
+				<second>-3.04545347846093250e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowColorMap:2</first>
 			<second>
-				<first>-2.03908274350468719e+03</first>
-				<second>-3.15453478460933070e+01</second>
+				<first>-2.03008274350468719e+03</first>
+				<second>-2.77545347846093364e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:17</first>
 			<second>
-				<first>-1.65908274350468719e+03</first>
-				<second>-3.15453478460933070e+01</second>
+				<first>-1.78308274350468719e+03</first>
+				<second>-2.85545347846093364e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:8</first>
 			<second>
-				<first>-1.34208274350468719e+03</first>
-				<second>-3.94545347846093250e+02</second>
-			</second>
-		</item>
-		<item>
-			<first>SplitFieldByConnectedRegion:0</first>
-			<second>
-				<first>-2.12052774350468735e+03</first>
-				<second>-4.69662847846093200e+02</second>
+				<first>-1.57408274350468719e+03</first>
+				<second>-2.98545347846093250e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ViewScene:18</first>
 			<second>
-				<first>-1.75048535600468722e+03</first>
-				<second>1.66665895903906630e+02</second>
+				<first>-1.86748535600468722e+03</first>
+				<second>-8.73341040960933697e+01</second>
 			</second>
 		</item>
 	</modulePositions>
 	<moduleNotes class_id="19" tracking_level="0" version="0">
-		<count>14</count>
+		<count>8</count>
 		<item_version>0</item_version>
 		<item class_id="20" tracking_level="0" version="0">
-			<first>ClipFieldByFunction:21</first>
-			<second class_id="21" tracking_level="0" version="0">
-				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Remove Air From Mesh&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Remove Air From Mesh</noteText>
-				<position>0</position>
-				<fontSize>13</fontSize>
-			</second>
-		</item>
-		<item>
-			<first>ClipFieldByFunction:22</first>
-			<second>
-				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Remove Heart From Mesh&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Remove Heart From Mesh</noteText>
-				<position>0</position>
-				<fontSize>13</fontSize>
-			</second>
-		</item>
-		<item>
-			<first>CreateLatVol:4</first>
-			<second>
-				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Adjust resolution of the problem&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Adjust resolution of the problem</noteText>
-				<position>0</position>
-				<fontSize>13</fontSize>
-			</second>
-		</item>
-		<item>
-			<first>FairMesh:16</first>
-			<second>
-				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Smooth Torso Surface&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Smooth Torso Surface</noteText>
-				<position>0</position>
-				<fontSize>13</fontSize>
-			</second>
-		</item>
-		<item>
-			<first>GetFieldBoundary:15</first>
-			<second>
-				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Isolate Torso Surface&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:16pt; color:#ffffff;&quot;&gt;With Solution Imposed&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Isolate Torso Surface
-With Solution Imposed</noteText>
-				<position>0</position>
-				<fontSize>13</fontSize>
-			</second>
-		</item>
-		<item>
 			<first>GetMatrixSlice:24</first>
-			<second>
+			<second class_id="21" tracking_level="0" version="0">
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -2439,9 +1934,9 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Segmentation File&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Segmentation File&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Segmentation File</noteText>
-				<position>0</position>
+				<position>3</position>
 				<fontSize>13</fontSize>
 			</second>
 		</item>
@@ -2452,9 +1947,9 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Sock geometry&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Sock geometry&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Sock geometry</noteText>
-				<position>0</position>
+				<position>3</position>
 				<fontSize>13</fontSize>
 			</second>
 		</item>
@@ -2465,11 +1960,13 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Matrix of Epicardial potentials &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;for all time steps&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Matrix of Epicardial potentials 
-for all time steps</noteText>
-				<position>0</position>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Matrix of Epicardial &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;potentials for all &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;time steps&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>Matrix of Epicardial 
+potentials for all 
+time steps</noteText>
+				<position>3</position>
 				<fontSize>13</fontSize>
 			</second>
 		</item>
@@ -2480,22 +1977,9 @@ for all time steps</noteText>
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:16pt;&quot;&gt;lead field matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;lead field matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>lead field matrix</noteText>
-				<position>6</position>
-				<fontSize>13</fontSize>
-			</second>
-		</item>
-		<item>
-			<first>SetFieldData:14</first>
-			<second>
-				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Map Data to Geometry&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Map Data to Geometry</noteText>
-				<position>0</position>
+				<position>3</position>
 				<fontSize>13</fontSize>
 			</second>
 		</item>
@@ -2544,105 +2028,94 @@ p, li { white-space: pre-wrap; }
 		<item_version>0</item_version>
 	</connectionNotes>
 	<moduleTags class_id="22" tracking_level="0" version="0">
-		<count>24</count>
+		<count>18</count>
 		<item_version>0</item_version>
 		<item class_id="23" tracking_level="0" version="0">
-			<first>ClipFieldByFunction:21</first>
-			<second>0</second>
-		</item>
-		<item>
-			<first>ClipFieldByFunction:22</first>
-			<second>0</second>
-		</item>
-		<item>
-			<first>CreateLatVol:4</first>
-			<second>0</second>
-		</item>
-		<item>
 			<first>CreateStandardColorMap:10</first>
-			<second>0</second>
+			<second>3</second>
 		</item>
 		<item>
 			<first>CreateStandardColorMap:9</first>
-			<second>0</second>
+			<second>3</second>
 		</item>
 		<item>
 			<first>EvaluateLinearAlgebraBinary:0</first>
-			<second>0</second>
+			<second>9</second>
 		</item>
 		<item>
-			<first>FairMesh:16</first>
-			<second>0</second>
-		</item>
-		<item>
-			<first>GetFieldBoundary:15</first>
-			<second>0</second>
+			<first>FairMesh:20</first>
+			<second>-1</second>
 		</item>
 		<item>
 			<first>GetMatrixSlice:24</first>
-			<second>0</second>
-		</item>
-		<item>
-			<first>MapFieldDataOntoElements:3</first>
-			<second>0</second>
+			<second>5</second>
 		</item>
 		<item>
 			<first>ReadField:0</first>
-			<second>0</second>
+			<second>1</second>
 		</item>
 		<item>
 			<first>ReadField:2</first>
-			<second>0</second>
+			<second>1</second>
 		</item>
 		<item>
 			<first>ReadMatrix:1</first>
-			<second>0</second>
+			<second>1</second>
 		</item>
 		<item>
 			<first>ReadMatrix:2</first>
-			<second>0</second>
+			<second>1</second>
 		</item>
 		<item>
 			<first>RescaleColorMap:4</first>
-			<second>0</second>
+			<second>3</second>
 		</item>
 		<item>
 			<first>RescaleColorMap:5</first>
-			<second>0</second>
+			<second>3</second>
 		</item>
 		<item>
-			<first>SetFieldData:14</first>
-			<second>0</second>
+			<first>SetFieldData:17</first>
+			<second>-1</second>
 		</item>
 		<item>
 			<first>SetFieldData:3</first>
-			<second>0</second>
+			<second>-1</second>
 		</item>
 		<item>
 			<first>ShowColorMap:1</first>
-			<second>0</second>
+			<second>3</second>
 		</item>
 		<item>
 			<first>ShowColorMap:2</first>
-			<second>0</second>
+			<second>3</second>
 		</item>
 		<item>
 			<first>ShowField:17</first>
-			<second>0</second>
+			<second>3</second>
 		</item>
 		<item>
 			<first>ShowField:8</first>
-			<second>0</second>
-		</item>
-		<item>
-			<first>SplitFieldByConnectedRegion:0</first>
-			<second>0</second>
+			<second>3</second>
 		</item>
 		<item>
 			<first>ViewScene:18</first>
-			<second>0</second>
+			<second>3</second>
 		</item>
 	</moduleTags>
+	<disabledModules class_id="24" tracking_level="0" version="0">
+		<count>0</count>
+		<item_version>0</item_version>
+	</disabledModules>
+	<disabledConnections>
+		<count>0</count>
+		<item_version>0</item_version>
+	</disabledConnections>
+	<moduleTagLabels class_id="25" tracking_level="0" version="0">
+		<count>0</count>
+		<item_version>0</item_version>
+	</moduleTagLabels>
+	<loadTagGroups>0</loadTagGroups>
 </networkFile>
 </boost_serialization>
 
