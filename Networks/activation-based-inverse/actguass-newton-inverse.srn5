@@ -324,7 +324,7 @@ i4 = matrixInput4 # perturbed activation times
 field1 = fieldInput1
 
 
-print(len(i2))
+#print(len(i2))
 
 # clip BSP to QRS only.
 qrsstart=1
@@ -334,8 +334,8 @@ eng.workspace[&apos;qrsstart&apos;]=qrsstart
 eng.workspace[&apos;qrsend&apos;]=qrsend
 bsp=eng.eval(&apos;i2(:,qrsstart:qrsend)&apos;)
 
-print(type(bsp))
-print((bsp.size))
+#print(type(bsp))
+#print((bsp.size))
 
 # algorithm parameters
 
@@ -343,22 +343,12 @@ lbda=1e-9
 w=5.0
 minstep=1e-2
 
-print(&apos;w &apos;+str(type(w)))
-
-A=matlab.double(i1)
-print(&apos;A &apos;+str(type(A)))
-
-#print(i3)
-
-L=matlab.double(i3)
-print(&apos;L &apos;+str(type(L)))
-Tau=matlab.double(i4)
-print(&apos;Tau &apos;+str(type(Tau)))
-
+# run algorithm
 o1=eng.ActGaussNewton(matlab.double(i1),bsp,matlab.double(i3),matlab.double(i4),lbda,w,minstep)
 
-print(o1.size)
+#print(o1.size)
 
+#prepare for output
 x=eng.transpose(o1)
 c=[]
 for _ in range(x.size[1]):
@@ -1672,7 +1662,7 @@ matrixOutput1 = c</value>
 									<name>UseFaceNormals</name>
 									<value>
 										<which>3</which>
-										<value>0</value>
+										<value>1</value>
 									</value>
 								</second>
 							</item>
@@ -2708,36 +2698,36 @@ matrixOutput1 = c</value>
 		<item class_id="17" tracking_level="0" version="0">
 			<first>BuildNoiseColumnMatrix:0</first>
 			<second class_id="18" tracking_level="0" version="0">
-				<first>-2.79000000000000000e+02</first>
-				<second>-2.19000000000000000e+02</second>
+				<first>-4.25000000000000000e+02</first>
+				<second>-2.25000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>BuildSurfaceLaplacianMatrix:0</first>
 			<second>
-				<first>-1.20000000000000000e+02</first>
-				<second>-2.57000000000000000e+02</second>
+				<first>-6.30000000000000000e+01</first>
+				<second>-2.51000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ConvertMatrixType:0</first>
 			<second>
-				<first>1.30000000000000000e+02</first>
-				<second>-1.06000000000000000e+02</second>
+				<first>6.90000000000000000e+01</first>
+				<second>-1.18000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>CreateStandardColorMap:0</first>
 			<second>
-				<first>-4.46000000000000000e+02</first>
-				<second>4.20000000000000000e+01</second>
+				<first>-2.42000000000000000e+02</first>
+				<second>3.07000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>EvaluateLinearAlgebraBinary:0</first>
 			<second>
-				<first>-2.36000000000000000e+02</first>
-				<second>-8.00000000000000000e+01</second>
+				<first>-4.36000000000000000e+02</first>
+				<second>-1.31000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -2778,8 +2768,8 @@ matrixOutput1 = c</value>
 		<item>
 			<first>RescaleColorMap:0</first>
 			<second>
-				<first>-3.76000000000000000e+02</first>
-				<second>2.60000000000000000e+02</second>
+				<first>-2.32000000000000000e+02</first>
+				<second>3.87000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -2792,22 +2782,22 @@ matrixOutput1 = c</value>
 		<item>
 			<first>SetFieldData:1</first>
 			<second>
-				<first>-4.12000000000000000e+02</first>
-				<second>-7.80000000000000000e+01</second>
+				<first>-4.30000000000000000e+02</first>
+				<second>1.34000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:0</first>
 			<second>
-				<first>-4.71000000000000000e+02</first>
-				<second>4.26000000000000000e+02</second>
+				<first>-4.67000000000000000e+02</first>
+				<second>4.69000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:1</first>
 			<second>
-				<first>-7.00000000000000000e+01</first>
-				<second>4.31000000000000000e+02</second>
+				<first>-7.80000000000000000e+01</first>
+				<second>4.61000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -2826,11 +2816,84 @@ matrixOutput1 = c</value>
 		</item>
 	</modulePositions>
 	<moduleNotes class_id="19" tracking_level="0" version="0">
-		<count>6</count>
+		<count>11</count>
 		<item_version>0</item_version>
 		<item class_id="20" tracking_level="0" version="0">
-			<first>ReadField:0</first>
+			<first>BuildNoiseColumnMatrix:0</first>
 			<second class_id="21" tracking_level="0" version="0">
+				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;make noise&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>make noise</noteText>
+				<position>0</position>
+				<fontSize>13</fontSize>
+			</second>
+		</item>
+		<item>
+			<first>BuildSurfaceLaplacianMatrix:0</first>
+			<second>
+				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;surface laplacian matrix&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;for regularization&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>surface laplacian matrix
+for regularization</noteText>
+				<position>0</position>
+				<fontSize>13</fontSize>
+			</second>
+		</item>
+		<item>
+			<first>ConvertMatrixType:0</first>
+			<second>
+				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;must be dense matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>must be dense matrix</noteText>
+				<position>0</position>
+				<fontSize>13</fontSize>
+			</second>
+		</item>
+		<item>
+			<first>EvaluateLinearAlgebraBinary:0</first>
+			<second>
+				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;perturb activation times &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;for initial guess&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>perturb activation times 
+for initial guess</noteText>
+				<position>0</position>
+				<fontSize>13</fontSize>
+			</second>
+		</item>
+		<item>
+			<first>InterfaceWithPython:1</first>
+			<second>
+				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Executes Gauss Newton calculations.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Runs matlab in Python.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Open the Python Console window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>Executes Gauss Newton calculations.
+Runs matlab in Python.
+Open the Python Console window.</noteText>
+				<position>0</position>
+				<fontSize>13</fontSize>
+			</second>
+		</item>
+		<item>
+			<first>ReadField:0</first>
+			<second>
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -2928,7 +2991,7 @@ p, li { white-space: pre-wrap; }
 		</item>
 		<item>
 			<first>CreateStandardColorMap:0</first>
-			<second>-1</second>
+			<second>3</second>
 		</item>
 		<item>
 			<first>EvaluateLinearAlgebraBinary:0</first>
@@ -2936,27 +2999,27 @@ p, li { white-space: pre-wrap; }
 		</item>
 		<item>
 			<first>InterfaceWithPython:1</first>
-			<second>-1</second>
+			<second>9</second>
 		</item>
 		<item>
 			<first>ReadField:0</first>
-			<second>-1</second>
+			<second>1</second>
 		</item>
 		<item>
 			<first>ReadMatrix:0</first>
-			<second>-1</second>
+			<second>1</second>
 		</item>
 		<item>
 			<first>ReadMatrix:1</first>
-			<second>-1</second>
+			<second>1</second>
 		</item>
 		<item>
 			<first>ReadMatrix:2</first>
-			<second>-1</second>
+			<second>1</second>
 		</item>
 		<item>
 			<first>RescaleColorMap:0</first>
-			<second>-1</second>
+			<second>3</second>
 		</item>
 		<item>
 			<first>SetFieldData:0</first>
@@ -2968,19 +3031,19 @@ p, li { white-space: pre-wrap; }
 		</item>
 		<item>
 			<first>ShowField:0</first>
-			<second>-1</second>
+			<second>3</second>
 		</item>
 		<item>
 			<first>ShowField:1</first>
-			<second>-1</second>
+			<second>3</second>
 		</item>
 		<item>
 			<first>ViewScene:0</first>
-			<second>-1</second>
+			<second>3</second>
 		</item>
 		<item>
 			<first>ViewScene:1</first>
-			<second>-1</second>
+			<second>3</second>
 		</item>
 	</moduleTags>
 	<disabledModules class_id="24" tracking_level="0" version="0">

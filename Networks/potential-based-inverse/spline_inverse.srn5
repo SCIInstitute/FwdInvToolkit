@@ -221,7 +221,7 @@
 									<name>SliceIndex</name>
 									<value>
 										<which>0</which>
-										<value>56</value>
+										<value>66</value>
 									</value>
 								</second>
 							</item>
@@ -580,7 +580,7 @@ o1 = c
 									<name>Filename</name>
 									<value>
 										<which>2</which>
-										<value>/Users/jess/software/trunk/SCIRunData/FwdInvToolbox/spline_inverse/subject1_myocardium_registered.mat</value>
+										<value>%SCIRUNDATADIR%/Data/spline_inverse/subject1_myocardium_registered.mat</value>
 									</value>
 								</second>
 							</item>
@@ -632,7 +632,7 @@ o1 = c
 									<name>Filename</name>
 									<value>
 										<which>2</which>
-										<value>/Users/jess/software/trunk/SCIRunData/FwdInvToolbox/spline_inverse/subject1____LV_1a_1_qrs.mat</value>
+										<value>%SCIRUNDATADIR%/Data/spline_inverse/subject1____LV_1a_1_qrs.mat</value>
 									</value>
 								</second>
 							</item>
@@ -684,7 +684,7 @@ o1 = c
 									<name>Filename</name>
 									<value>
 										<which>2</which>
-										<value>/Users/jess/software/trunk/SCIRunData/FwdInvToolbox/spline_inverse/subject1_forward_matrix.mat</value>
+										<value>%SCIRUNDATADIR%/Data/spline_inverse/subject1_forward_matrix.mat</value>
 									</value>
 								</second>
 							</item>
@@ -736,7 +736,7 @@ o1 = c
 									<name>Filename</name>
 									<value>
 										<which>2</which>
-										<value>/Users/jess/software/trunk/SCIRunData/FwdInvToolbox/spline_inverse/subject1_volume_derivative_regularization_matrix.mat</value>
+										<value>%SCIRUNDATADIR%/Data/spline_inverse/subject1_volume_derivative_regularization_matrix.mat</value>
 									</value>
 								</second>
 							</item>
@@ -804,7 +804,7 @@ o1 = c
 									<name>FixedMax</name>
 									<value>
 										<which>1</which>
-										<value>5.02921378290430932e-01</value>
+										<value>8.21981216554930727e-01</value>
 									</value>
 								</second>
 							</item>
@@ -816,7 +816,7 @@ o1 = c
 									<name>FixedMin</name>
 									<value>
 										<which>1</which>
-										<value>-5.08256601016717213e-01</value>
+										<value>-5.56961960968115788e-01</value>
 									</value>
 								</second>
 							</item>
@@ -2095,15 +2095,15 @@ o1 = c
 		<item>
 			<first>CreateStandardColorMap:0</first>
 			<second>
-				<first>-5.86000000000000000e+02</first>
-				<second>3.53000000000000000e+02</second>
+				<first>-5.57000000000000000e+02</first>
+				<second>4.73000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>GetMatrixSlice:0</first>
 			<second>
-				<first>-3.50000000000000000e+02</first>
-				<second>2.50000000000000000e+02</second>
+				<first>-3.62000000000000000e+02</first>
+				<second>1.87000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -2137,8 +2137,8 @@ o1 = c
 		<item>
 			<first>ReadMatrix:2</first>
 			<second>
-				<first>-2.51000000000000000e+02</first>
-				<second>-3.78000000000000000e+02</second>
+				<first>-2.50000000000000000e+02</first>
+				<second>-3.77000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -2151,36 +2151,36 @@ o1 = c
 		<item>
 			<first>RescaleColorMap:0</first>
 			<second>
-				<first>-4.11000000000000000e+02</first>
-				<second>4.76000000000000000e+02</second>
+				<first>-3.44000000000000000e+02</first>
+				<second>5.54000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SetFieldData:0</first>
 			<second>
-				<first>-3.73000000000000000e+02</first>
-				<second>3.54000000000000000e+02</second>
+				<first>-4.06000000000000000e+02</first>
+				<second>2.84000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowColorMap:0</first>
 			<second>
-				<first>-2.05000000000000000e+02</first>
-				<second>5.92000000000000000e+02</second>
+				<first>-2.40000000000000000e+02</first>
+				<second>6.34000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:0</first>
 			<second>
-				<first>-4.31000000000000000e+02</first>
-				<second>5.67000000000000000e+02</second>
+				<first>-5.18000000000000000e+02</first>
+				<second>6.36000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ViewScene:0</first>
 			<second>
-				<first>-4.34000000000000000e+02</first>
-				<second>6.81000000000000000e+02</second>
+				<first>-4.19000000000000000e+02</first>
+				<second>7.19000000000000000e+02</second>
 			</second>
 		</item>
 	</modulePositions>
@@ -2313,63 +2313,63 @@ Matrix</noteText>
 		<item_version>0</item_version>
 		<item class_id="23" tracking_level="0" version="0">
 			<first>CreateMatrix:0</first>
-			<second>0</second>
+			<second>2</second>
 		</item>
 		<item>
 			<first>CreateMatrix:1</first>
-			<second>0</second>
+			<second>2</second>
 		</item>
 		<item>
 			<first>CreateStandardColorMap:0</first>
-			<second>0</second>
+			<second>3</second>
 		</item>
 		<item>
 			<first>GetMatrixSlice:0</first>
-			<second>0</second>
+			<second>5</second>
 		</item>
 		<item>
 			<first>InterfaceWithPython:0</first>
-			<second>0</second>
+			<second>9</second>
 		</item>
 		<item>
 			<first>ReadField:0</first>
-			<second>0</second>
+			<second>1</second>
 		</item>
 		<item>
 			<first>ReadMatrix:0</first>
-			<second>0</second>
+			<second>1</second>
 		</item>
 		<item>
 			<first>ReadMatrix:1</first>
-			<second>0</second>
+			<second>1</second>
 		</item>
 		<item>
 			<first>ReadMatrix:2</first>
-			<second>0</second>
+			<second>1</second>
 		</item>
 		<item>
 			<first>ReportMatrixInfo:0</first>
-			<second>0</second>
-		</item>
-		<item>
-			<first>RescaleColorMap:0</first>
-			<second>0</second>
-		</item>
-		<item>
-			<first>SetFieldData:0</first>
-			<second>0</second>
-		</item>
-		<item>
-			<first>ShowColorMap:0</first>
 			<second>-1</second>
 		</item>
 		<item>
+			<first>RescaleColorMap:0</first>
+			<second>3</second>
+		</item>
+		<item>
+			<first>SetFieldData:0</first>
+			<second>-1</second>
+		</item>
+		<item>
+			<first>ShowColorMap:0</first>
+			<second>3</second>
+		</item>
+		<item>
 			<first>ShowField:0</first>
-			<second>0</second>
+			<second>3</second>
 		</item>
 		<item>
 			<first>ViewScene:0</first>
-			<second>0</second>
+			<second>3</second>
 		</item>
 	</moduleTags>
 	<disabledModules class_id="24" tracking_level="0" version="0">
