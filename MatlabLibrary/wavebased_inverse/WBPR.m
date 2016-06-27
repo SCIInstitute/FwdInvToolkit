@@ -40,7 +40,6 @@ function [x_WBPR_forward,x_WBPR_backward] = WBPR(A,y,heart,first_act,last_act)
 %
 
 
-
 % If reg_tools is installed
 if exist('csvd')
 
