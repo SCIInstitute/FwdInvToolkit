@@ -4,10 +4,10 @@
 <networkFile class_id="0" tracking_level="0" version="5">
 	<networkInfo class_id="1" tracking_level="0" version="0">
 		<modules class_id="2" tracking_level="0" version="0">
-			<count>16</count>
+			<count>17</count>
 			<item_version>0</item_version>
 			<item class_id="3" tracking_level="0" version="0">
-				<first>BuildNoiseColumnMatrix:5</first>
+				<first>BuildNoiseColumnMatrix:0</first>
 				<second class_id="4" tracking_level="0" version="0">
 					<module class_id="5" tracking_level="0" version="0">
 						<package_name_>SCIRun</package_name_>
@@ -26,7 +26,7 @@
 									<name>SignalToNoiseRatio</name>
 									<value class_id="11" tracking_level="0" version="0">
 										<which>1</which>
-										<value>3.05599999999999987e+01</value>
+										<value>1.00000000000000000e+01</value>
 									</value>
 								</second>
 							</item>
@@ -35,7 +35,51 @@
 				</second>
 			</item>
 			<item>
-				<first>CreateStandardColorMap:15</first>
+				<first>BuildSurfaceLaplacianMatrix:0</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>Inverse</category_name_>
+						<module_name_>BuildSurfaceLaplacianMatrix</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>0</count>
+							<item_version>0</item_version>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>ConvertMatrixType:0</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>Math</category_name_>
+						<module_name_>ConvertMatrixType</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>OutputMatrixType</name>
+								</first>
+								<second>
+									<name>OutputMatrixType</name>
+									<value>
+										<which>2</which>
+										<value>dense</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>CreateStandardColorMap:0</first>
 				<second>
 					<module>
 						<package_name_>SCIRun</package_name_>
@@ -114,363 +158,7 @@
 				</second>
 			</item>
 			<item>
-				<first>EditMeshBoundingBox:11</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>ChangeMesh</category_name_>
-						<module_name_>EditMeshBoundingBox</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>25</count>
-							<item_version>0</item_version>
-							<item>
-								<first>
-									<name>InputCenterX</name>
-								</first>
-								<second>
-									<name>InputCenterX</name>
-									<value>
-										<which>2</which>
-										<value> -8.2600</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>InputCenterY</name>
-								</first>
-								<second>
-									<name>InputCenterY</name>
-									<value>
-										<which>2</which>
-										<value> 33.5300</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>InputCenterZ</name>
-								</first>
-								<second>
-									<name>InputCenterZ</name>
-									<value>
-										<which>2</which>
-										<value>264.6850</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>InputSizeX</name>
-								</first>
-								<second>
-									<name>InputSizeX</name>
-									<value>
-										<which>2</which>
-										<value> 76.7400</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>InputSizeY</name>
-								</first>
-								<second>
-									<name>InputSizeY</name>
-									<value>
-										<which>2</which>
-										<value> 71.6200</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>InputSizeZ</name>
-								</first>
-								<second>
-									<name>InputSizeZ</name>
-									<value>
-										<which>2</which>
-										<value> 82.6100</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>NoTranslation</name>
-								</first>
-								<second>
-									<name>NoTranslation</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>OutputCenterX</name>
-								</first>
-								<second>
-									<name>OutputCenterX</name>
-									<value>
-										<which>1</which>
-										<value>-8.25999999999999979e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>OutputCenterY</name>
-								</first>
-								<second>
-									<name>OutputCenterY</name>
-									<value>
-										<which>1</which>
-										<value>3.35300000000000011e+01</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>OutputCenterZ</name>
-								</first>
-								<second>
-									<name>OutputCenterZ</name>
-									<value>
-										<which>1</which>
-										<value>1.50000000000000000e+02</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>OutputSizeX</name>
-								</first>
-								<second>
-									<name>OutputSizeX</name>
-									<value>
-										<which>1</which>
-										<value>7.67400000000000091e+01</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>OutputSizeY</name>
-								</first>
-								<second>
-									<name>OutputSizeY</name>
-									<value>
-										<which>1</which>
-										<value>7.16200000000000045e+01</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>OutputSizeZ</name>
-								</first>
-								<second>
-									<name>OutputSizeZ</name>
-									<value>
-										<which>1</which>
-										<value>8.26100000000000136e+01</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>RDITranslation</name>
-								</first>
-								<second>
-									<name>RDITranslation</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>Resetting</name>
-								</first>
-								<second>
-									<name>Resetting</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>RestrictD</name>
-								</first>
-								<second>
-									<name>RestrictD</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>RestrictI</name>
-								</first>
-								<second>
-									<name>RestrictI</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>RestrictR</name>
-								</first>
-								<second>
-									<name>RestrictR</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>RestrictX</name>
-								</first>
-								<second>
-									<name>RestrictX</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>RestrictY</name>
-								</first>
-								<second>
-									<name>RestrictY</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>RestrictZ</name>
-								</first>
-								<second>
-									<name>RestrictZ</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>Scale</name>
-								</first>
-								<second>
-									<name>Scale</name>
-									<value>
-										<which>1</which>
-										<value>1.00000000000000006e-01</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>UseOutputCenter</name>
-								</first>
-								<second>
-									<name>UseOutputCenter</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>UseOutputSize</name>
-								</first>
-								<second>
-									<name>UseOutputSize</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>XYZTranslation</name>
-								</first>
-								<second>
-									<name>XYZTranslation</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
-				<first>EvaluateLinearAlgebraBinary:4</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>Math</category_name_>
-						<module_name_>EvaluateLinearAlgebraBinary</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>2</count>
-							<item_version>0</item_version>
-							<item>
-								<first>
-									<name>FunctionString</name>
-								</first>
-								<second>
-									<name>FunctionString</name>
-									<value>
-										<which>2</which>
-										<value>x+y</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>Operator</name>
-								</first>
-								<second>
-									<name>Operator</name>
-									<value>
-										<which>0</which>
-										<value>2</value>
-									</value>
-								</second>
-							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
-				<first>EvaluateLinearAlgebraBinary:6</first>
+				<first>EvaluateLinearAlgebraBinary:0</first>
 				<second>
 					<module>
 						<package_name_>SCIRun</package_name_>
@@ -510,98 +198,273 @@
 				</second>
 			</item>
 			<item>
-				<first>GetMatrixSlice:3</first>
+				<first>InterfaceWithPython:1</first>
 				<second>
 					<module>
 						<package_name_>SCIRun</package_name_>
-						<category_name_>Math</category_name_>
-						<module_name_>GetMatrixSlice</module_name_>
+						<category_name_>Python</category_name_>
+						<module_name_>InterfaceWithPython</module_name_>
 					</module>
 					<state>
 						<stateMap>
-							<count>7</count>
+							<count>17</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
-									<name>IsSliceColumn</name>
+									<name>InputField:0</name>
 								</first>
 								<second>
-									<name>IsSliceColumn</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>MaxIndex</name>
-								</first>
-								<second>
-									<name>MaxIndex</name>
-									<value>
-										<which>0</which>
-										<value>20</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>PlayMode</name>
-								</first>
-								<second>
-									<name>PlayMode</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>PlayModeDelay</name>
-								</first>
-								<second>
-									<name>PlayModeDelay</name>
-									<value>
-										<which>0</which>
-										<value>500</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>PlayModeType</name>
-								</first>
-								<second>
-									<name>PlayModeType</name>
+									<name>InputField:0</name>
 									<value>
 										<which>2</which>
-										<value>looponce</value>
+										<value>fieldInput1</value>
 									</value>
 								</second>
 							</item>
 							<item>
 								<first>
-									<name>SliceIncrement</name>
+									<name>InputMatrix:0</name>
 								</first>
 								<second>
-									<name>SliceIncrement</name>
+									<name>InputMatrix:0</name>
 									<value>
-										<which>0</which>
-										<value>1</value>
+										<which>2</which>
+										<value>matrixInput1</value>
 									</value>
 								</second>
 							</item>
 							<item>
 								<first>
-									<name>SliceIndex</name>
+									<name>InputMatrix:1</name>
 								</first>
 								<second>
-									<name>SliceIndex</name>
+									<name>InputMatrix:1</name>
+									<value>
+										<which>2</which>
+										<value>matrixInput2</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>InputMatrix:2</name>
+								</first>
+								<second>
+									<name>InputMatrix:2</name>
+									<value>
+										<which>2</which>
+										<value>matrixInput3</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>InputMatrix:3</name>
+								</first>
+								<second>
+									<name>InputMatrix:3</name>
+									<value>
+										<which>2</which>
+										<value>matrixInput4</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>NumberOfRetries</name>
+								</first>
+								<second>
+									<name>NumberOfRetries</name>
 									<value>
 										<which>0</which>
-										<value>7</value>
+										<value>50</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PollingIntervalMilliseconds</name>
+								</first>
+								<second>
+									<name>PollingIntervalMilliseconds</name>
+									<value>
+										<which>0</which>
+										<value>200</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PythonCode</name>
+								</first>
+								<second>
+									<name>PythonCode</name>
+									<value>
+										<which>2</which>
+										<value>
+#
+
+
+# check for a running matlab engine
+if (&apos;eng&apos; in globals()) == False:
+  print(&apos;Starting Matlab.&apos;)
+  print(&apos;To avoid restarting matlab every execution, use Matlab2016 functions,&apos;)
+  print(&apos;or type the following code in the console:&apos;)
+  print(&apos;import matlab.engine&apos;)
+  print(&apos;eng =matlab.engine.start_matlab()&apos;)
+  import matlab.engine
+  eng=matlab.engine.start_matlab()
+else:
+  print(&apos;matlab already started.&apos;)
+
+# inputs
+i1 = matrixInput1 # forward matrix
+i2 = matrixInput2 # body surface potentials
+i3 = matrixInput3 # surface laplacian matrix
+i4 = matrixInput4 # perturbed activation times
+
+field1 = fieldInput1
+
+
+#print(len(i2))
+
+# clip BSP to QRS only.
+qrsstart=1
+qrsend=93
+eng.workspace[&apos;i2&apos;]=matlab.double(i2)
+eng.workspace[&apos;qrsstart&apos;]=qrsstart
+eng.workspace[&apos;qrsend&apos;]=qrsend
+bsp=eng.eval(&apos;i2(:,qrsstart:qrsend)&apos;)
+
+#print(type(bsp))
+#print((bsp.size))
+
+# algorithm parameters
+
+lbda=1e-9
+w=5.0
+minstep=1e-2
+
+# run algorithm
+o1=eng.ActGaussNewton(matlab.double(i1),bsp,matlab.double(i3),matlab.double(i4),lbda,w,minstep)
+
+#print(o1.size)
+
+#prepare for output
+x=eng.transpose(o1)
+c=[]
+for _ in range(x.size[1]):
+  c.append(x._data[_*x.size[0]:_*x.size[0]+x.size[0]].tolist())
+
+matrixOutput1 = c</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PythonOutputField1Name</name>
+								</first>
+								<second>
+									<name>PythonOutputField1Name</name>
+									<value>
+										<which>2</which>
+										<value>fieldOutput1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PythonOutputField2Name</name>
+								</first>
+								<second>
+									<name>PythonOutputField2Name</name>
+									<value>
+										<which>2</which>
+										<value>fieldOutput2</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PythonOutputField3Name</name>
+								</first>
+								<second>
+									<name>PythonOutputField3Name</name>
+									<value>
+										<which>2</which>
+										<value>fieldOutput3</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PythonOutputMatrix1Name</name>
+								</first>
+								<second>
+									<name>PythonOutputMatrix1Name</name>
+									<value>
+										<which>2</which>
+										<value>matrixOutput1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PythonOutputMatrix2Name</name>
+								</first>
+								<second>
+									<name>PythonOutputMatrix2Name</name>
+									<value>
+										<which>2</which>
+										<value>matrixOutput2</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PythonOutputMatrix3Name</name>
+								</first>
+								<second>
+									<name>PythonOutputMatrix3Name</name>
+									<value>
+										<which>2</which>
+										<value>matrixOutput3</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PythonOutputString1Name</name>
+								</first>
+								<second>
+									<name>PythonOutputString1Name</name>
+									<value>
+										<which>2</which>
+										<value>stringOutput1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PythonOutputString2Name</name>
+								</first>
+								<second>
+									<name>PythonOutputString2Name</name>
+									<value>
+										<which>2</which>
+										<value>stringOutput2</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PythonOutputString3Name</name>
+								</first>
+								<second>
+									<name>PythonOutputString3Name</name>
+									<value>
+										<which>2</which>
+										<value>stringOutput3</value>
 									</value>
 								</second>
 							</item>
@@ -610,7 +473,7 @@
 				</second>
 			</item>
 			<item>
-				<first>ReadField:9</first>
+				<first>ReadField:0</first>
 				<second>
 					<module>
 						<package_name_>SCIRun</package_name_>
@@ -629,7 +492,7 @@
 									<name>FileTypeName</name>
 									<value>
 										<which>2</which>
-										<value>SCIRun Field File</value>
+										<value>Matlab Field</value>
 									</value>
 								</second>
 							</item>
@@ -641,7 +504,59 @@
 									<name>Filename</name>
 									<value>
 										<which>2</which>
-										<value>%SCIRUNDATADIR%/Data/tikhonov_inv/25feb97_sock_closed.fld</value>
+										<value>%SCIRUNDATADIR%/Data/gauss_newton_act_inv/heart.mat</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScriptEnvironmentVariable</name>
+								</first>
+								<second>
+									<name>ScriptEnvironmentVariable</name>
+									<value>
+										<which>2</which>
+										<value></value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>ReadMatrix:0</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>DataIO</category_name_>
+						<module_name_>ReadMatrix</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>3</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>FileTypeName</name>
+								</first>
+								<second>
+									<name>FileTypeName</name>
+									<value>
+										<which>2</which>
+										<value>Matlab Matrix</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Filename</name>
+								</first>
+								<second>
+									<name>Filename</name>
+									<value>
+										<which>2</which>
+										<value>%SCIRUNDATADIR%/Data/gauss_newton_act_inv/depol.mat</value>
 									</value>
 								</second>
 							</item>
@@ -681,7 +596,7 @@
 									<name>FileTypeName</name>
 									<value>
 										<which>2</which>
-										<value>SCIRun Matrix File</value>
+										<value>Matlab Matrix</value>
 									</value>
 								</second>
 							</item>
@@ -693,7 +608,7 @@
 									<name>Filename</name>
 									<value>
 										<which>2</which>
-										<value>%SCIRUNDATADIR%/Data/tikhonov_inv/epi_pot_128_fr_170to190.mat</value>
+										<value>%SCIRUNDATADIR%/Data/gauss_newton_act_inv/wct.mat</value>
 									</value>
 								</second>
 							</item>
@@ -733,7 +648,7 @@
 									<name>FileTypeName</name>
 									<value>
 										<which>2</which>
-										<value>SCIRun Matrix File</value>
+										<value>Matlab Matrix</value>
 									</value>
 								</second>
 							</item>
@@ -745,7 +660,7 @@
 									<name>Filename</name>
 									<value>
 										<which>2</which>
-										<value>%SCIRUNDATADIR%/Data/tikhonov_inv/for_mat_128.mat</value>
+										<value>%SCIRUNDATADIR%/Data/gauss_newton_act_inv/bsp.mat</value>
 									</value>
 								</second>
 							</item>
@@ -766,7 +681,7 @@
 				</second>
 			</item>
 			<item>
-				<first>RescaleColorMap:6</first>
+				<first>RescaleColorMap:0</first>
 				<second>
 					<module>
 						<package_name_>SCIRun</package_name_>
@@ -797,7 +712,7 @@
 									<name>FixedMax</name>
 									<value>
 										<which>1</which>
-										<value>9.77500000000000000e+03</value>
+										<value>9.29187000000000012e+01</value>
 									</value>
 								</second>
 							</item>
@@ -809,7 +724,7 @@
 									<name>FixedMin</name>
 									<value>
 										<which>1</which>
-										<value>-1.54150000000000000e+04</value>
+										<value>7.32549999999999990e+00</value>
 									</value>
 								</second>
 							</item>
@@ -830,7 +745,63 @@
 				</second>
 			</item>
 			<item>
-				<first>ShowField:12</first>
+				<first>SetFieldData:0</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>ChangeFieldData</category_name_>
+						<module_name_>SetFieldData</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>keepTypeCheckBox</name>
+								</first>
+								<second>
+									<name>keepTypeCheckBox</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>SetFieldData:1</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>ChangeFieldData</category_name_>
+						<module_name_>SetFieldData</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>keepTypeCheckBox</name>
+								</first>
+								<second>
+									<name>keepTypeCheckBox</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>ShowField:0</first>
 				<second>
 					<module>
 						<package_name_>SCIRun</package_name_>
@@ -839,7 +810,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>37</count>
+							<count>35</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -885,7 +856,7 @@
 									<name>DefaultMeshColor</name>
 									<value>
 										<which>2</which>
-										<value>Color(160,160,164)</value>
+										<value>Color(0.5,0.5,0.5)</value>
 									</value>
 								</second>
 							</item>
@@ -932,20 +903,8 @@
 								<second>
 									<name>EdgesAsCylinders</name>
 									<value>
-										<which>3</which>
+										<which>0</which>
 										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>EdgesAsLines</name>
-								</first>
-								<second>
-									<name>EdgesAsLines</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
 									</value>
 								</second>
 							</item>
@@ -993,7 +952,7 @@
 									<name>FaceTransparencyValue</name>
 									<value>
 										<which>1</which>
-										<value>5.00000000000000000e-01</value>
+										<value>6.49999976158142090e-01</value>
 									</value>
 								</second>
 							</item>
@@ -1023,24 +982,12 @@
 							</item>
 							<item>
 								<first>
-									<name>NodeAsPoints</name>
-								</first>
-								<second>
-									<name>NodeAsPoints</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
 									<name>NodeAsSpheres</name>
 								</first>
 								<second>
 									<name>NodeAsSpheres</name>
 									<value>
-										<which>3</which>
+										<which>0</which>
 										<value>0</value>
 									</value>
 								</second>
@@ -1221,7 +1168,7 @@
 									<name>SphereScaleValue</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>2.99999999999999989e-02</value>
 									</value>
 								</second>
 							</item>
@@ -1281,7 +1228,7 @@
 									<name>UseFaceNormals</name>
 									<value>
 										<which>3</which>
-										<value>0</value>
+										<value>1</value>
 									</value>
 								</second>
 							</item>
@@ -1290,7 +1237,7 @@
 				</second>
 			</item>
 			<item>
-				<first>ShowField:13</first>
+				<first>ShowField:1</first>
 				<second>
 					<module>
 						<package_name_>SCIRun</package_name_>
@@ -1299,7 +1246,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>37</count>
+							<count>35</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -1345,7 +1292,7 @@
 									<name>DefaultMeshColor</name>
 									<value>
 										<which>2</which>
-										<value>Color(160,160,164)</value>
+										<value>Color(0.5,0.5,0.5)</value>
 									</value>
 								</second>
 							</item>
@@ -1392,20 +1339,8 @@
 								<second>
 									<name>EdgesAsCylinders</name>
 									<value>
-										<which>3</which>
+										<which>0</which>
 										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>EdgesAsLines</name>
-								</first>
-								<second>
-									<name>EdgesAsLines</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
 									</value>
 								</second>
 							</item>
@@ -1453,7 +1388,7 @@
 									<name>FaceTransparencyValue</name>
 									<value>
 										<which>1</which>
-										<value>5.00000000000000000e-01</value>
+										<value>6.49999976158142090e-01</value>
 									</value>
 								</second>
 							</item>
@@ -1483,24 +1418,12 @@
 							</item>
 							<item>
 								<first>
-									<name>NodeAsPoints</name>
-								</first>
-								<second>
-									<name>NodeAsPoints</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
 									<name>NodeAsSpheres</name>
 								</first>
 								<second>
 									<name>NodeAsSpheres</name>
 									<value>
-										<which>3</which>
+										<which>0</which>
 										<value>0</value>
 									</value>
 								</second>
@@ -1681,7 +1604,7 @@
 									<name>SphereScaleValue</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>2.99999999999999989e-02</value>
 									</value>
 								</second>
 							</item>
@@ -1741,7 +1664,7 @@
 									<name>UseFaceNormals</name>
 									<value>
 										<which>3</which>
-										<value>0</value>
+										<value>1</value>
 									</value>
 								</second>
 							</item>
@@ -1750,224 +1673,7 @@
 				</second>
 			</item>
 			<item>
-				<first>SolveInverseProblemWithTikhonov:0</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>Inverse</category_name_>
-						<module_name_>SolveInverseProblemWithTikhonov</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>12</count>
-							<item_version>0</item_version>
-							<item>
-								<first>
-									<name>LCurveText</name>
-								</first>
-								<second>
-									<name>LCurveText</name>
-									<value>
-										<which>2</which>
-										<value>SolveInverseProblemWithTikhonov:0 plot_graph &quot; 2.54936 7.00141 2.54936 7.00033 2.54937 6.99906 2.54937 6.99758 2.54937 6.99585 2.54937 6.99383 2.54938 6.99147 2.54938 6.98873 2.54939 6.98554 2.5494 6.98183 2.54942 6.97754 2.54944 6.97258 2.54946 6.96686 2.5495 6.96029 2.54954 6.95276 2.5496 6.94416 2.54967 6.93438 2.54976 6.92331 2.54988 6.91084 2.55002 6.89684 2.55019 6.88124 2.55041 6.86393 2.55066 6.84484 2.55095 6.82391 2.5513 6.80112 2.55169 6.77644 2.55212 6.74991 2.55261 6.72157 2.55313 6.69149 2.5537 6.65979 2.55429 6.62658 2.55491 6.59202 2.55556 6.55628 2.55621 6.51955 2.55687 6.48199 2.55753 6.44379 2.55819 6.4051 2.55884 6.36605 2.55948 6.32675 2.56011 6.28726 2.56073 6.24763 2.56134 6.20788 2.56193 6.16801 2.56251 6.128 2.56308 6.08785 2.56363 6.04757 2.56418 6.00715 2.56471 5.96662 2.56522 5.92602 2.56572 5.8854 2.56621 5.84482 2.56669 5.80437 2.56715 5.76415 2.56759 5.72426 2.56802 5.68485 2.56844 5.64606 2.56883 5.60805 2.56922 5.57097 2.56959 5.53494 2.56995 5.50005 2.57029 5.46632 2.57063 5.4337 2.57096 5.40207 2.57129 5.37125 2.57162 5.34102 2.57195 5.31113 2.57229 5.28135 2.57264 5.25147 2.573 5.22136 2.57337 5.19094 2.57375 5.1602 2.57414 5.12923 2.57454 5.09816 2.57495 5.0672 2.57535 5.0366 2.57576 5.00661 2.57616 4.97752 2.57657 4.94957 2.57696 4.923 2.57735 4.89799 2.57772 4.87465 2.5781 4.85305 2.57846 4.83322 2.57882 4.81511 2.57917 4.79864 2.57952 4.7837 2.57986 4.77015 2.58021 4.75786 2.58056 4.74669 2.58092 4.7365 2.58129 4.72716 2.58168 4.71858 2.58208 4.71066 2.58249 4.70333 2.58294 4.69652 2.5834 4.69019 2.5839 4.68428 2.58443 4.67878 2.585 4.67364 2.58561 4.66883 2.58626 4.66432 2.58697 4.66007 2.58774 4.65606 2.58858 4.65222 2.58952 4.64853 2.59057 4.64494 2.59175 4.64142 2.5931 4.63792 2.59466 4.63442 2.59646 4.63089 2.59855 4.62732 2.60098 4.62369 2.6038 4.62 2.60709 4.61622 2.61092 4.61236 2.61537 4.6084 2.62055 4.60431 2.62657 4.60009 2.63358 4.59569 2.64174 4.59109 2.65122 4.58625 2.66223 4.58112 2.67495 4.57567 2.68954 4.56986 2.70613 4.56365 2.72478 4.55702 2.74548 4.54995 2.76814 4.54242 2.79259 4.53444 2.81861 4.52602 2.84595 4.51716 2.87433 4.50789 2.90353 4.49822 2.93334 4.48814 2.96363 4.47766 2.99431 4.46675 3.02535 4.45535 3.05676 4.44341 3.08854 4.43083 3.1207 4.41751 3.15321 4.40336 3.18599 4.38827 3.2189 4.37217 3.25176 4.35499 3.28436 4.3367 3.31643 4.31734 3.34775 4.29694 3.37809 4.27562 3.40727 4.25352 3.43515 4.2308 3.46166 4.20767 3.48679 4.18428 3.51058 4.16081 3.53313 4.13736 3.55458 4.11398 3.5751 4.09064 3.59488 4.06727 3.61412 4.04371 3.63298 4.0198 3.65161 3.99532 3.6701 3.97008 3.6885 3.94391 3.70679 3.91667 3.72492 3.8883 3.74279 3.85879 3.76026 3.8282 3.77721 3.79669 3.7935 3.76448 3.80902 3.73189 3.82368 3.69926 3.83743 3.667 3.85025 3.6355 3.86217 3.6051 3.87323 3.57608 3.88353 3.54859 3.89318 3.52265 3.90233 3.49812 3.91114 3.47476 3.91978 3.4522 3.92843 3.43004 3.93728 3.40783 3.94649 3.38512 3.95619 3.36147 3.96648 3.3365 3.9774 3.30985 3.98893 3.28123 4.00099 3.2504 4.01345 3.21717 4.02614 3.18141 4.03888 3.14305 4.05145 3.10207 4.06367 3.05848 4.07537 3.01236 4.08643 2.96381 4.09674 2.91295 4.10625 2.85992 4.11493 2.80489 4.12277 2.74803 4.1298 2.68951 4.13606 2.62949 &quot; &quot; 1.54936 4.62732 2.59855 4.62732 2.59855 2.62949 &quot; 0.00740196 110 ; 
-</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>LambdaCorner</name>
-								</first>
-								<second>
-									<name>LambdaCorner</name>
-									<value>
-										<which>1</which>
-										<value>7.40195999691572581e-03</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>LambdaFromDirectEntry</name>
-								</first>
-								<second>
-									<name>LambdaFromDirectEntry</name>
-									<value>
-										<which>1</which>
-										<value>2.00000000000000004e-02</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>LambdaMax</name>
-								</first>
-								<second>
-									<name>LambdaMax</name>
-									<value>
-										<which>1</which>
-										<value>1.00000000000000000e+01</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>LambdaMin</name>
-								</first>
-								<second>
-									<name>LambdaMin</name>
-									<value>
-										<which>1</which>
-										<value>9.99999999999999955e-07</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>LambdaNum</name>
-								</first>
-								<second>
-									<name>LambdaNum</name>
-									<value>
-										<which>0</which>
-										<value>200</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>LambdaResolution</name>
-								</first>
-								<second>
-									<name>LambdaResolution</name>
-									<value>
-										<which>1</which>
-										<value>9.99999999999999955e-07</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>LambdaSliderValue</name>
-								</first>
-								<second>
-									<name>LambdaSliderValue</name>
-									<value>
-										<which>1</which>
-										<value>1.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>RegularizationMethod</name>
-								</first>
-								<second>
-									<name>RegularizationMethod</name>
-									<value>
-										<which>2</which>
-										<value>lcurve</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>TikhonovCase</name>
-								</first>
-								<second>
-									<name>TikhonovCase</name>
-									<value>
-										<which>0</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>TikhonovResidualSubcase</name>
-								</first>
-								<second>
-									<name>TikhonovResidualSubcase</name>
-									<value>
-										<which>0</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>TikhonovSolutionSubcase</name>
-								</first>
-								<second>
-									<name>TikhonovSolutionSubcase</name>
-									<value>
-										<which>0</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
-				<first>SwapFieldDataWithMatrixEntries:7</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>ChangeFieldData</category_name_>
-						<module_name_>SwapFieldDataWithMatrixEntries</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>
-									<name>PreserveScalar</name>
-								</first>
-								<second>
-									<name>PreserveScalar</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
-				<first>SwapFieldDataWithMatrixEntries:8</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>ChangeFieldData</category_name_>
-						<module_name_>SwapFieldDataWithMatrixEntries</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>
-									<name>PreserveScalar</name>
-								</first>
-								<second>
-									<name>PreserveScalar</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
-				<first>ViewScene:15</first>
+				<first>ViewScene:0</first>
 				<second>
 					<module>
 						<package_name_>SCIRun</package_name_>
@@ -1976,7 +1682,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>31</count>
+							<count>30</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -2112,30 +1818,377 @@
 							</item>
 							<item>
 								<first>
-									<name>GeometryFeedbackInfo</name>
+									<name>Lighting</name>
 								</first>
 								<second>
-									<name>GeometryFeedbackInfo</name>
+									<name>Lighting</name>
 									<value>
-										<which>5</which>
-										<value>
-											<count>2</count>
-											<item_version>0</item_version>
-											<item>
-												<name>x</name>
-												<value>
-													<which>0</which>
-													<value>270</value>
-												</value>
-											</item>
-											<item>
-												<name>y</name>
-												<value>
-													<which>0</which>
-													<value>118</value>
-												</value>
-											</item>
-										</value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ObjectsOnly</name>
+								</first>
+								<second>
+									<name>ObjectsOnly</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PolygonOffset</name>
+								</first>
+								<second>
+									<name>PolygonOffset</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarFontSize</name>
+								</first>
+								<second>
+									<name>ScaleBarFontSize</name>
+									<value>
+										<which>0</which>
+										<value>8</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarHeight</name>
+								</first>
+								<second>
+									<name>ScaleBarHeight</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarLength</name>
+								</first>
+								<second>
+									<name>ScaleBarLength</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarLineWidth</name>
+								</first>
+								<second>
+									<name>ScaleBarLineWidth</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarMultiplier</name>
+								</first>
+								<second>
+									<name>ScaleBarMultiplier</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarNumTicks</name>
+								</first>
+								<second>
+									<name>ScaleBarNumTicks</name>
+									<value>
+										<which>0</which>
+										<value>11</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarUnitValue</name>
+								</first>
+								<second>
+									<name>ScaleBarUnitValue</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Shine</name>
+								</first>
+								<second>
+									<name>Shine</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowBBox</name>
+								</first>
+								<second>
+									<name>ShowBBox</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowScaleBar</name>
+								</first>
+								<second>
+									<name>ShowScaleBar</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Specular</name>
+								</first>
+								<second>
+									<name>Specular</name>
+									<value>
+										<which>1</which>
+										<value>4.00000000000000022e-01</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Stereo</name>
+								</first>
+								<second>
+									<name>Stereo</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>StereoFusion</name>
+								</first>
+								<second>
+									<name>StereoFusion</name>
+									<value>
+										<which>1</which>
+										<value>4.00000000000000022e-01</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>TextOffset</name>
+								</first>
+								<second>
+									<name>TextOffset</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>UseBGColor</name>
+								</first>
+								<second>
+									<name>UseBGColor</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>UseClip</name>
+								</first>
+								<second>
+									<name>UseClip</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>ViewScene:1</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>Render</category_name_>
+						<module_name_>ViewScene</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>30</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>Ambient</name>
+								</first>
+								<second>
+									<name>Ambient</name>
+									<value>
+										<which>1</which>
+										<value>2.00000000000000011e-01</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>BackCull</name>
+								</first>
+								<second>
+									<name>BackCull</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>BackgroundColor</name>
+								</first>
+								<second>
+									<name>BackgroundColor</name>
+									<value>
+										<which>2</which>
+										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Diffuse</name>
+								</first>
+								<second>
+									<name>Diffuse</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>DisplayList</name>
+								</first>
+								<second>
+									<name>DisplayList</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Emission</name>
+								</first>
+								<second>
+									<name>Emission</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FieldOfView</name>
+								</first>
+								<second>
+									<name>FieldOfView</name>
+									<value>
+										<which>0</which>
+										<value>20</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FogColor</name>
+								</first>
+								<second>
+									<name>FogColor</name>
+									<value>
+										<which>2</which>
+										<value>Color(0,0,1)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FogEnd</name>
+								</first>
+								<second>
+									<name>FogEnd</name>
+									<value>
+										<which>1</which>
+										<value>7.09999999999999964e-01</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FogOn</name>
+								</first>
+								<second>
+									<name>FogOn</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FogStart</name>
+								</first>
+								<second>
+									<name>FogStart</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -2373,125 +2426,161 @@
 			</item>
 		</modules>
 		<connections class_id="13" tracking_level="0" version="0">
-			<count>21</count>
+			<count>22</count>
 			<item_version>0</item_version>
 			<item class_id="14" tracking_level="0" version="0">
-				<moduleId1_>BuildNoiseColumnMatrix:5</moduleId1_>
+				<moduleId1_>BuildNoiseColumnMatrix:0</moduleId1_>
 				<port1_ class_id="15" tracking_level="0" version="0">
 					<name>ResultMatrix</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>EvaluateLinearAlgebraBinary:6</moduleId2_>
+				<moduleId2_>EvaluateLinearAlgebraBinary:0</moduleId2_>
 				<port2_>
 					<name>RHS</name>
 					<id>0</id>
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>CreateStandardColorMap:15</moduleId1_>
+				<moduleId1_>BuildSurfaceLaplacianMatrix:0</moduleId1_>
 				<port1_>
-					<name>ColorMapObject</name>
+					<name>ResultMatrix</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>RescaleColorMap:6</moduleId2_>
-				<port2_>
-					<name>ColorMapObject</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>EditMeshBoundingBox:11</moduleId1_>
-				<port1_>
-					<name>OutputField</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>ShowField:13</moduleId2_>
-				<port2_>
-					<name>Field</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>EvaluateLinearAlgebraBinary:4</moduleId1_>
-				<port1_>
-					<name>Result</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>BuildNoiseColumnMatrix:5</moduleId2_>
+				<moduleId2_>ConvertMatrixType:0</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
 					<id>0</id>
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>EvaluateLinearAlgebraBinary:4</moduleId1_>
+				<moduleId1_>ConvertMatrixType:0</moduleId1_>
+				<port1_>
+					<name>ResultMatrix</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>InterfaceWithPython:1</moduleId2_>
+				<port2_>
+					<name>InputMatrix</name>
+					<id>2</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>CreateStandardColorMap:0</moduleId1_>
+				<port1_>
+					<name>ColorMapObject</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>RescaleColorMap:0</moduleId2_>
+				<port2_>
+					<name>ColorMapObject</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>EvaluateLinearAlgebraBinary:0</moduleId1_>
 				<port1_>
 					<name>Result</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>EvaluateLinearAlgebraBinary:6</moduleId2_>
+				<moduleId2_>InterfaceWithPython:1</moduleId2_>
+				<port2_>
+					<name>InputMatrix</name>
+					<id>3</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>InterfaceWithPython:1</moduleId1_>
+				<port1_>
+					<name>PythonMatrix1</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>SetFieldData:0</moduleId2_>
+				<port2_>
+					<name>InputMatrix</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>ReadField:0</moduleId1_>
+				<port1_>
+					<name>Field</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>BuildSurfaceLaplacianMatrix:0</moduleId2_>
+				<port2_>
+					<name>Source</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>ReadField:0</moduleId1_>
+				<port1_>
+					<name>Field</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>InterfaceWithPython:1</moduleId2_>
+				<port2_>
+					<name>InputField</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>ReadField:0</moduleId1_>
+				<port1_>
+					<name>Field</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>SetFieldData:0</moduleId2_>
+				<port2_>
+					<name>InputField</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>ReadField:0</moduleId1_>
+				<port1_>
+					<name>Field</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>SetFieldData:1</moduleId2_>
+				<port2_>
+					<name>InputField</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>ReadMatrix:0</moduleId1_>
+				<port1_>
+					<name>Matrix</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>BuildNoiseColumnMatrix:0</moduleId2_>
+				<port2_>
+					<name>InputMatrix</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>ReadMatrix:0</moduleId1_>
+				<port1_>
+					<name>Matrix</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>EvaluateLinearAlgebraBinary:0</moduleId2_>
 				<port2_>
 					<name>LHS</name>
 					<id>0</id>
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>EvaluateLinearAlgebraBinary:6</moduleId1_>
+				<moduleId1_>ReadMatrix:0</moduleId1_>
 				<port1_>
-					<name>Result</name>
+					<name>Matrix</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>SolveInverseProblemWithTikhonov:0</moduleId2_>
-				<port2_>
-					<name>MeasuredPotentials</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>GetMatrixSlice:3</moduleId1_>
-				<port1_>
-					<name>OutputMatrix</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>EvaluateLinearAlgebraBinary:4</moduleId2_>
-				<port2_>
-					<name>RHS</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>GetMatrixSlice:3</moduleId1_>
-				<port1_>
-					<name>OutputMatrix</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>SwapFieldDataWithMatrixEntries:8</moduleId2_>
+				<moduleId2_>SetFieldData:1</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>ReadField:9</moduleId1_>
-				<port1_>
-					<name>Field</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>SwapFieldDataWithMatrixEntries:7</moduleId2_>
-				<port2_>
-					<name>InputField</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>ReadField:9</moduleId1_>
-				<port1_>
-					<name>Field</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>SwapFieldDataWithMatrixEntries:8</moduleId2_>
-				<port2_>
-					<name>InputField</name>
 					<id>0</id>
 				</port2_>
 			</item>
@@ -2501,7 +2590,7 @@
 					<name>Matrix</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>GetMatrixSlice:3</moduleId2_>
+				<moduleId2_>InterfaceWithPython:1</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
 					<id>0</id>
@@ -2513,294 +2602,320 @@
 					<name>Matrix</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>EvaluateLinearAlgebraBinary:4</moduleId2_>
+				<moduleId2_>InterfaceWithPython:1</moduleId2_>
 				<port2_>
-					<name>LHS</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>ReadMatrix:2</moduleId1_>
-				<port1_>
-					<name>Matrix</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>SolveInverseProblemWithTikhonov:0</moduleId2_>
-				<port2_>
-					<name>ForwardMatrix</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>RescaleColorMap:6</moduleId1_>
-				<port1_>
-					<name>ColorMapOutput</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>ShowField:12</moduleId2_>
-				<port2_>
-					<name>ColorMapObject</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>RescaleColorMap:6</moduleId1_>
-				<port1_>
-					<name>ColorMapOutput</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>ShowField:13</moduleId2_>
-				<port2_>
-					<name>ColorMapObject</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>ShowField:12</moduleId1_>
-				<port1_>
-					<name>SceneGraph</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>ViewScene:15</moduleId2_>
-				<port2_>
-					<name>GeneralGeom</name>
+					<name>InputMatrix</name>
 					<id>1</id>
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>ShowField:13</moduleId1_>
+				<moduleId1_>RescaleColorMap:0</moduleId1_>
+				<port1_>
+					<name>ColorMapOutput</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>ShowField:0</moduleId2_>
+				<port2_>
+					<name>ColorMapObject</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>RescaleColorMap:0</moduleId1_>
+				<port1_>
+					<name>ColorMapOutput</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>ShowField:1</moduleId2_>
+				<port2_>
+					<name>ColorMapObject</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>SetFieldData:0</moduleId1_>
+				<port1_>
+					<name>OutputField</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>ShowField:1</moduleId2_>
+				<port2_>
+					<name>Field</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>SetFieldData:1</moduleId1_>
+				<port1_>
+					<name>OutputField</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>RescaleColorMap:0</moduleId2_>
+				<port2_>
+					<name>Field</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>SetFieldData:1</moduleId1_>
+				<port1_>
+					<name>OutputField</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>ShowField:0</moduleId2_>
+				<port2_>
+					<name>Field</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>ShowField:0</moduleId1_>
 				<port1_>
 					<name>SceneGraph</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>ViewScene:15</moduleId2_>
+				<moduleId2_>ViewScene:0</moduleId2_>
 				<port2_>
 					<name>GeneralGeom</name>
 					<id>0</id>
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>SolveInverseProblemWithTikhonov:0</moduleId1_>
+				<moduleId1_>ShowField:1</moduleId1_>
 				<port1_>
-					<name>InverseSolution</name>
+					<name>SceneGraph</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>SwapFieldDataWithMatrixEntries:7</moduleId2_>
+				<moduleId2_>ViewScene:1</moduleId2_>
 				<port2_>
-					<name>InputMatrix</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>SwapFieldDataWithMatrixEntries:7</moduleId1_>
-				<port1_>
-					<name>OutputField</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>EditMeshBoundingBox:11</moduleId2_>
-				<port2_>
-					<name>InputField</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>SwapFieldDataWithMatrixEntries:8</moduleId1_>
-				<port1_>
-					<name>OutputField</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>RescaleColorMap:6</moduleId2_>
-				<port2_>
-					<name>Field</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>SwapFieldDataWithMatrixEntries:8</moduleId1_>
-				<port1_>
-					<name>OutputField</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>ShowField:12</moduleId2_>
-				<port2_>
-					<name>Field</name>
+					<name>GeneralGeom</name>
 					<id>0</id>
 				</port2_>
 			</item>
 		</connections>
 	</networkInfo>
 	<modulePositions class_id="16" tracking_level="0" version="0">
-		<count>16</count>
+		<count>17</count>
 		<item_version>0</item_version>
 		<item class_id="17" tracking_level="0" version="0">
-			<first>BuildNoiseColumnMatrix:5</first>
+			<first>BuildNoiseColumnMatrix:0</first>
 			<second class_id="18" tracking_level="0" version="0">
-				<first>-7.69099999999999909e+02</first>
-				<second>-4.10199999999999932e+02</second>
+				<first>-4.25000000000000000e+02</first>
+				<second>-2.25000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
-			<first>CreateStandardColorMap:15</first>
+			<first>BuildSurfaceLaplacianMatrix:0</first>
 			<second>
-				<first>0.00000000000000000e+00</first>
-				<second>-7.60000000000000000e+01</second>
+				<first>-6.30000000000000000e+01</first>
+				<second>-2.51000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
-			<first>EditMeshBoundingBox:11</first>
+			<first>ConvertMatrixType:0</first>
 			<second>
-				<first>-4.57520874999999933e+02</first>
-				<second>2.41731624999999894e+02</second>
+				<first>6.90000000000000000e+01</first>
+				<second>-1.18000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
-			<first>EvaluateLinearAlgebraBinary:4</first>
+			<first>CreateStandardColorMap:0</first>
 			<second>
-				<first>-9.87250000000000000e+02</first>
-				<second>-5.54900000000000091e+02</second>
+				<first>-2.42000000000000000e+02</first>
+				<second>3.07000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
-			<first>EvaluateLinearAlgebraBinary:6</first>
+			<first>EvaluateLinearAlgebraBinary:0</first>
 			<second>
-				<first>-8.35999999999999886e+02</first>
-				<second>-2.26850000000000023e+02</second>
+				<first>-4.36000000000000000e+02</first>
+				<second>-1.31000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
-			<first>GetMatrixSlice:3</first>
+			<first>InterfaceWithPython:1</first>
 			<second>
-				<first>-6.17000000000000000e+02</first>
-				<second>-7.03000000000000000e+02</second>
+				<first>-8.59499999999999602e+01</first>
+				<second>6.07500000000000000e+01</second>
 			</second>
 		</item>
 		<item>
-			<first>ReadField:9</first>
+			<first>ReadField:0</first>
 			<second>
-				<first>-2.29150000000000091e+02</first>
-				<second>-6.83999999999999886e+02</second>
+				<first>-2.48000000000000000e+02</first>
+				<second>-3.54000000000000000e+02</second>
+			</second>
+		</item>
+		<item>
+			<first>ReadMatrix:0</first>
+			<second>
+				<first>-4.77000000000000000e+02</first>
+				<second>-3.50000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadMatrix:1</first>
 			<second>
-				<first>-6.84000000000000000e+02</first>
-				<second>-8.36000000000000000e+02</second>
+				<first>-4.50000000000000000e+01</first>
+				<second>-3.62000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadMatrix:2</first>
 			<second>
-				<first>-1.06630000000000018e+03</first>
-				<second>-8.35999999999999886e+02</second>
+				<first>1.61000000000000000e+02</first>
+				<second>-3.58000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
-			<first>RescaleColorMap:6</first>
+			<first>RescaleColorMap:0</first>
 			<second>
-				<first>0.00000000000000000e+00</first>
-				<second>1.52000000000000000e+02</second>
+				<first>-2.32000000000000000e+02</first>
+				<second>3.87000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
-			<first>ShowField:12</first>
+			<first>SetFieldData:0</first>
 			<second>
-				<first>-1.53520875000000046e+02</first>
-				<second>3.94881624999999985e+02</second>
+				<first>-1.22000000000000000e+02</first>
+				<second>1.46000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
-			<first>ShowField:13</first>
+			<first>SetFieldData:1</first>
 			<second>
-				<first>-6.09520874999999933e+02</first>
-				<second>3.93731624999999894e+02</second>
+				<first>-4.30000000000000000e+02</first>
+				<second>1.34000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
-			<first>SolveInverseProblemWithTikhonov:0</first>
+			<first>ShowField:0</first>
 			<second>
-				<first>-9.93461357187500084e+02</first>
-				<second>-7.19772856250000359e+01</second>
+				<first>-4.67000000000000000e+02</first>
+				<second>4.69000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
-			<first>SwapFieldDataWithMatrixEntries:7</first>
+			<first>ShowField:1</first>
 			<second>
-				<first>-4.60311357187499993e+02</first>
-				<second>8.00227143750000209e+01</second>
+				<first>-7.80000000000000000e+01</first>
+				<second>4.61000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
-			<first>SwapFieldDataWithMatrixEntries:8</first>
+			<first>ViewScene:0</first>
 			<second>
-				<first>-3.04000000000000000e+02</first>
-				<second>-5.30849999999999909e+02</second>
+				<first>-4.80000000000000000e+02</first>
+				<second>5.55000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
-			<first>ViewScene:15</first>
+			<first>ViewScene:1</first>
 			<second>
-				<first>-3.04000000000000000e+02</first>
-				<second>5.32000000000000000e+02</second>
+				<first>-6.50000000000000000e+01</first>
+				<second>5.37000000000000000e+02</second>
 			</second>
 		</item>
 	</modulePositions>
 	<moduleNotes class_id="19" tracking_level="0" version="0">
-		<count>12</count>
+		<count>11</count>
 		<item_version>0</item_version>
 		<item class_id="20" tracking_level="0" version="0">
-			<first>BuildNoiseColumnMatrix:5</first>
+			<first>BuildNoiseColumnMatrix:0</first>
 			<second class_id="21" tracking_level="0" version="0">
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Generate Noise&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Generate Noise</noteText>
-				<position>6</position>
-				<fontSize>13</fontSize>
-			</second>
-		</item>
-		<item>
-			<first>EvaluateLinearAlgebraBinary:4</first>
-			<second>
-				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Apply Forward Solution&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Apply Forward Solution</noteText>
-				<position>6</position>
-				<fontSize>13</fontSize>
-			</second>
-		</item>
-		<item>
-			<first>EvaluateLinearAlgebraBinary:6</first>
-			<second>
-				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Add Noise to Forward Solution&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Add Noise to Forward Solution</noteText>
-				<position>6</position>
-				<fontSize>13</fontSize>
-			</second>
-		</item>
-		<item>
-			<first>GetMatrixSlice:3</first>
-			<second>
-				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Choose a column&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;(single time instant) &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;from data matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Choose a column
-(single time instant) 
-from data matrix</noteText>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;make noise&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>make noise</noteText>
 				<position>0</position>
+				<fontSize>13</fontSize>
+			</second>
+		</item>
+		<item>
+			<first>BuildSurfaceLaplacianMatrix:0</first>
+			<second>
+				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;surface laplacian matrix&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;for regularization&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>surface laplacian matrix
+for regularization</noteText>
+				<position>0</position>
+				<fontSize>13</fontSize>
+			</second>
+		</item>
+		<item>
+			<first>ConvertMatrixType:0</first>
+			<second>
+				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;must be dense matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>must be dense matrix</noteText>
+				<position>0</position>
+				<fontSize>13</fontSize>
+			</second>
+		</item>
+		<item>
+			<first>EvaluateLinearAlgebraBinary:0</first>
+			<second>
+				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;perturb activation times &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;for initial guess&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>perturb activation times 
+for initial guess</noteText>
+				<position>0</position>
+				<fontSize>13</fontSize>
+			</second>
+		</item>
+		<item>
+			<first>InterfaceWithPython:1</first>
+			<second>
+				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Executes Gauss Newton calculations.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Runs matlab in Python.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Open the Python Console window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>Executes Gauss Newton calculations.
+Runs matlab in Python.
+Open the Python Console window.</noteText>
+				<position>0</position>
+				<fontSize>13</fontSize>
+			</second>
+		</item>
+		<item>
+			<first>ReadField:0</first>
+			<second>
+				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Heart Geometry&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>Heart Geometry</noteText>
+				<position>3</position>
+				<fontSize>13</fontSize>
+			</second>
+		</item>
+		<item>
+			<first>ReadMatrix:0</first>
+			<second>
+				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;True Activation times&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>True Activation times</noteText>
+				<position>3</position>
 				<fontSize>13</fontSize>
 			</second>
 		</item>
@@ -2811,9 +2926,9 @@ from data matrix</noteText>
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Load Epicardial Potential Data Matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Load Epicardial Potential Data Matrix</noteText>
-				<position>0</position>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Forward Solution Matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>Forward Solution Matrix</noteText>
+				<position>3</position>
 				<fontSize>13</fontSize>
 			</second>
 		</item>
@@ -2824,96 +2939,34 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Load Forward&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt; Solution Matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Load Forward
- Solution Matrix</noteText>
-				<position>6</position>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Body surface potentials&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>Body surface potentials</noteText>
+				<position>3</position>
 				<fontSize>13</fontSize>
 			</second>
 		</item>
 		<item>
-			<first>ShowField:12</first>
+			<first>ViewScene:0</first>
 			<second>
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;ID: 12&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>ID: 12</noteText>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;true activation times&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>true activation times</noteText>
 				<position>0</position>
 				<fontSize>13</fontSize>
 			</second>
 		</item>
 		<item>
-			<first>ShowField:13</first>
+			<first>ViewScene:1</first>
 			<second>
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Visualize Solution &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;to Inverse Problem&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Visualize Solution 
-to Inverse Problem</noteText>
-				<position>5</position>
-				<fontSize>13</fontSize>
-			</second>
-		</item>
-		<item>
-			<first>SolveInverseProblemWithTikhonov:0</first>
-			<second>
-				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Solve Inverse Problem&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Solve Inverse Problem</noteText>
-				<position>6</position>
-				<fontSize>13</fontSize>
-			</second>
-		</item>
-		<item>
-			<first>SwapFieldDataWithMatrixEntries:7</first>
-			<second>
-				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Assign Solution Matrix Values&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;to Epicardial Geometry&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Assign Solution Matrix Values
-to Epicardial Geometry</noteText>
-				<position>6</position>
-				<fontSize>13</fontSize>
-			</second>
-		</item>
-		<item>
-			<first>SwapFieldDataWithMatrixEntries:8</first>
-			<second>
-				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Assign Data Matrix values&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;to Epicardial Geometry&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Assign Data Matrix values
-to Epicardial Geometry</noteText>
-				<position>6</position>
-				<fontSize>13</fontSize>
-			</second>
-		</item>
-		<item>
-			<first>ViewScene:15</first>
-			<second>
-				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Show Visualizations of True&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;and Inverse Solution Potentials&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Show Visualizations of True
-and Inverse Solution Potentials</noteText>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;computed activation times&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>computed activation times</noteText>
 				<position>0</position>
 				<fontSize>13</fontSize>
 			</second>
@@ -2924,71 +2977,75 @@ and Inverse Solution Potentials</noteText>
 		<item_version>0</item_version>
 	</connectionNotes>
 	<moduleTags class_id="22" tracking_level="0" version="0">
-		<count>16</count>
+		<count>17</count>
 		<item_version>0</item_version>
 		<item class_id="23" tracking_level="0" version="0">
-			<first>BuildNoiseColumnMatrix:5</first>
-			<second>0</second>
+			<first>BuildNoiseColumnMatrix:0</first>
+			<second>-1</second>
 		</item>
 		<item>
-			<first>CreateStandardColorMap:15</first>
-			<second>0</second>
+			<first>BuildSurfaceLaplacianMatrix:0</first>
+			<second>-1</second>
 		</item>
 		<item>
-			<first>EditMeshBoundingBox:11</first>
-			<second>0</second>
+			<first>ConvertMatrixType:0</first>
+			<second>-1</second>
 		</item>
 		<item>
-			<first>EvaluateLinearAlgebraBinary:4</first>
-			<second>0</second>
+			<first>CreateStandardColorMap:0</first>
+			<second>3</second>
 		</item>
 		<item>
-			<first>EvaluateLinearAlgebraBinary:6</first>
-			<second>0</second>
+			<first>EvaluateLinearAlgebraBinary:0</first>
+			<second>-1</second>
 		</item>
 		<item>
-			<first>GetMatrixSlice:3</first>
-			<second>0</second>
+			<first>InterfaceWithPython:1</first>
+			<second>9</second>
 		</item>
 		<item>
-			<first>ReadField:9</first>
-			<second>0</second>
+			<first>ReadField:0</first>
+			<second>1</second>
+		</item>
+		<item>
+			<first>ReadMatrix:0</first>
+			<second>1</second>
 		</item>
 		<item>
 			<first>ReadMatrix:1</first>
-			<second>0</second>
+			<second>1</second>
 		</item>
 		<item>
 			<first>ReadMatrix:2</first>
-			<second>0</second>
+			<second>1</second>
 		</item>
 		<item>
-			<first>RescaleColorMap:6</first>
-			<second>0</second>
+			<first>RescaleColorMap:0</first>
+			<second>3</second>
 		</item>
 		<item>
-			<first>ShowField:12</first>
-			<second>0</second>
+			<first>SetFieldData:0</first>
+			<second>-1</second>
 		</item>
 		<item>
-			<first>ShowField:13</first>
-			<second>0</second>
+			<first>SetFieldData:1</first>
+			<second>-1</second>
 		</item>
 		<item>
-			<first>SolveInverseProblemWithTikhonov:0</first>
-			<second>0</second>
+			<first>ShowField:0</first>
+			<second>3</second>
 		</item>
 		<item>
-			<first>SwapFieldDataWithMatrixEntries:7</first>
-			<second>0</second>
+			<first>ShowField:1</first>
+			<second>3</second>
 		</item>
 		<item>
-			<first>SwapFieldDataWithMatrixEntries:8</first>
-			<second>0</second>
+			<first>ViewScene:0</first>
+			<second>3</second>
 		</item>
 		<item>
-			<first>ViewScene:15</first>
-			<second>0</second>
+			<first>ViewScene:1</first>
+			<second>3</second>
 		</item>
 	</moduleTags>
 	<disabledModules class_id="24" tracking_level="0" version="0">
