@@ -314,6 +314,8 @@ if (&apos;eng&apos; in globals()) == False:
   print(&apos;eng =matlab.engine.start_matlab()&apos;)
   import matlab.engine
   eng=matlab.engine.start_matlab()
+else:
+  print(&apos;matlab already started.&apos;)
 
 # inputs
 i1 = matrixInput1 # forward matrix
