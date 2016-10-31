@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import scipy as sp
+import numpy as np
+
 def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
 #   Implements the Gauss-Newton algorithm for solving the activation-based
 #   inverse problem of electrocardiography.
@@ -19,13 +22,20 @@ def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
 #   Output Variables:
 #   tau: Solution phase shifts of the step functions
 
-#   import scipy and numpy packages
-    import scipy as sp
-    import numpy as np
+#   import scipy and numpy package
+#    import scipy as sp
+#    import numpy as np
+
+    #from sp.sparse import csr_matrix
+    #L = csc_matrix.todense(L)
     
-    L = sp.sparse.csc_matrix.todense(L)
-    tau = tauinit()
-    dims_tau = np.shape(tauinit)
+    
+    tau = np.array(tauinit)
+    A = np.array(A)
+    Y = np.array(Y)
+    L = np.array(L)
+    
+    dims_tau = np.shape(tau)
     step = 2*np.ones(dims_tau)
 #   num = linesteps the number of steps in [0,1] to consider for the line search
     alpha = np.linspace(0,1, num = 100)
@@ -34,13 +44,15 @@ def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
     N = dims_N[1]
     dims_T = np.shape(Y)
     T = dims_T[1]
-    u = np.linspace(1,T,T)
+    u = np.linspace(1,T,1)
 
 #   if width variable isn't an array, make it a constant array
-# need reshape    dims_w = np.shape(w)
-    if dims_w[1] == 1:
-        w = w * np.ones((N,1)) 
-        Iter = 0
+# need reshape
+    #dims_w = len(w)
+    #print(dims_w)
+    #if dims_w == 1:
+    w = w * np.ones((N,1))
+    Iter = 0
         
     while np.linalg.norm(step)> minstep:
 #       calculate the jacobian matrix and the residuals
@@ -84,16 +96,18 @@ def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
         Iter = Iter+1
         print('Step: %i\nSize: %f'%(Iter,np.linalg.norm(step)))
         return tau
-###############################################################################        
+
+
+###############################################################################
 def agnresidual(A,Y,L,tau,Lambda,w):
 
     dim_A = np.shape(A)
     dim_Y = np.shape(Y)
     N = dim_A[1]
     T = dim_Y[1]
-    H = np.zeros((N,T)
-    for i in range(0,N,N):
-        H[i,:] = polyactrow(u-tau[i],w(i))
+    H = np.empty(N,T)
+    for i in range(0,N):
+      H[i,:] = polyactrow(u-tau[i],w(i))
     E = Y-A*H
     R = np.sqrt(Lambda)*L*H
     dims_E = np.shape(E)
@@ -102,7 +116,9 @@ def agnresidual(A,Y,L,tau,Lambda,w):
     vec_R = np.transpose(np.reshape(R,(dims_R[0]*dims_R[1])))
     r = np.concatenate((vec_E,vec_R), axis=0)
     return r
-###############################################################################   
+
+                 
+###############################################################################
 def agnjacobian(A,Y,L,tau,Lambda,w):
     from numpy import matlib as ml        
     dim_A = np.shape(A)
@@ -110,12 +126,12 @@ def agnjacobian(A,Y,L,tau,Lambda,w):
     M = dim_A[0]
     N = dim_A[1]
     T = dim_Y[1]
-    dE = np.zeros((M,T,N))
-    dR = np.zeros((N,T,N))
-    HdH = np.zeros((1,T,N))
+    dE = np.empty((M,T,N))
+    dR = np.empty((N,T,N))
+    HdH = np.empty((1,T,N))
     u = np.linspace(1,T,T)
-    for i in range(0,N,N):
-        HdH[1,:,i] = dpolyactrow(u-tau[i],w(i))
+    for i in range(0,N):
+        HdH[0,:,i] = dpolyactrow(u-tau[i],w(i))
     A = np.reshape(A,(M,1,N)) # MxTxL
     L = np.reshape(L,(N,1,N)) # NxTxL
     HdHm = np.ml.repmat(HdH,[M,1,1]) # MxTxL

@@ -4,7 +4,7 @@
 <networkFile class_id="0" tracking_level="0" version="5">
 	<networkInfo class_id="1" tracking_level="0" version="0">
 		<modules class_id="2" tracking_level="0" version="0">
-			<count>16</count>
+			<count>17</count>
 			<item_version>0</item_version>
 			<item class_id="3" tracking_level="0" version="0">
 				<first>BuildNoiseColumnMatrix:5</first>
@@ -123,8 +123,32 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>25</count>
+							<count>27</count>
 							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>BoxMode</name>
+								</first>
+								<second>
+									<name>BoxMode</name>
+									<value>
+										<which>0</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>BoxRealScale</name>
+								</first>
+								<second>
+									<name>BoxRealScale</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
 							<item>
 								<first>
 									<name>InputCenterX</name>
@@ -629,7 +653,7 @@
 									<name>FileTypeName</name>
 									<value>
 										<which>2</which>
-										<value>SCIRun Field File</value>
+										<value>Matlab Field</value>
 									</value>
 								</second>
 							</item>
@@ -641,7 +665,7 @@
 									<name>Filename</name>
 									<value>
 										<which>2</which>
-										<value>%SCIRUNDATADIR%/Data/tikhonov_inv/25feb97_sock_closed.fld</value>
+										<value>/usr/sci/projects/Edgar/Unmodified/Torso_Tank/Utah-10-03-02/Meshes/10-03-02_sock_247node.mat</value>
 									</value>
 								</second>
 							</item>
@@ -681,7 +705,7 @@
 									<name>FileTypeName</name>
 									<value>
 										<which>2</which>
-										<value>SCIRun Matrix File</value>
+										<value>Matlab Matrix</value>
 									</value>
 								</second>
 							</item>
@@ -693,7 +717,7 @@
 									<name>Filename</name>
 									<value>
 										<which>2</which>
-										<value>%SCIRUNDATADIR%/Data/tikhonov_inv/epi_pot_128_fr_170to190.mat</value>
+										<value>/usr/sci/projects/Edgar/Unmodified/Torso_Tank/Utah-10-03-02/Interventions/I2-Supply_Ischemia-20to5ml/I2_Time_Signals/Sock_/Run0067-cs.mat</value>
 									</value>
 								</second>
 							</item>
@@ -733,7 +757,7 @@
 									<name>FileTypeName</name>
 									<value>
 										<which>2</which>
-										<value>SCIRun Matrix File</value>
+										<value>Matlab Matrix</value>
 									</value>
 								</second>
 							</item>
@@ -745,7 +769,59 @@
 									<name>Filename</name>
 									<value>
 										<which>2</which>
-										<value>%SCIRUNDATADIR%/Data/tikhonov_inv/for_mat_128.mat</value>
+										<value>/usr/sci/projects/Edgar/Unmodified/Torso_Tank/Utah-10-03-02/Forward_Transforms/BEM_forward_transformation_measuredlocations.mat</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScriptEnvironmentVariable</name>
+								</first>
+								<second>
+									<name>ScriptEnvironmentVariable</name>
+									<value>
+										<which>2</which>
+										<value></value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>ReadMatrix:3</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>DataIO</category_name_>
+						<module_name_>ReadMatrix</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>3</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>FileTypeName</name>
+								</first>
+								<second>
+									<name>FileTypeName</name>
+									<value>
+										<which>2</which>
+										<value>Matlab Matrix</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Filename</name>
+								</first>
+								<second>
+									<name>Filename</name>
+									<value>
+										<which>2</which>
+										<value>/usr/sci/projects/Edgar/Unmodified/Torso_Tank/Utah-10-03-02/Interventions/I2-Supply_Ischemia-20to5ml/I2_Time_Signals/Tank_/Run0067-ts.mat</value>
 									</value>
 								</second>
 							</item>
@@ -839,7 +915,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>37</count>
+							<count>40</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -963,6 +1039,18 @@
 							</item>
 							<item>
 								<first>
+									<name>EdgesColoring</name>
+								</first>
+								<second>
+									<name>EdgesColoring</name>
+									<value>
+										<which>0</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>FaceInvertNormals</name>
 								</first>
 								<second>
@@ -1005,6 +1093,18 @@
 									<name>FacesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FacesColoring</name>
+								</first>
+								<second>
+									<name>FacesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -1077,6 +1177,18 @@
 									<name>NodesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>NodesColoring</name>
+								</first>
+								<second>
+									<name>NodesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -1299,7 +1411,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>37</count>
+							<count>40</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -1423,6 +1535,18 @@
 							</item>
 							<item>
 								<first>
+									<name>EdgesColoring</name>
+								</first>
+								<second>
+									<name>EdgesColoring</name>
+									<value>
+										<which>0</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>FaceInvertNormals</name>
 								</first>
 								<second>
@@ -1465,6 +1589,18 @@
 									<name>FacesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FacesColoring</name>
+								</first>
+								<second>
+									<name>FacesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -1537,6 +1673,18 @@
 									<name>NodesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>NodesColoring</name>
+								</first>
+								<second>
+									<name>NodesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -2279,7 +2427,7 @@
 									<name>ScaleBarFontSize</name>
 									<value>
 										<which>0</which>
-										<value>8</value>
+										<value>1</value>
 									</value>
 								</second>
 							</item>
@@ -2291,7 +2439,7 @@
 									<name>ScaleBarHeight</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -2303,7 +2451,7 @@
 									<name>ScaleBarLength</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -2327,7 +2475,7 @@
 									<name>ScaleBarMultiplier</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -2339,7 +2487,7 @@
 									<name>ScaleBarNumTicks</name>
 									<value>
 										<which>0</which>
-										<value>11</value>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -2726,7 +2874,7 @@
 		</connections>
 	</networkInfo>
 	<modulePositions class_id="16" tracking_level="0" version="0">
-		<count>16</count>
+		<count>17</count>
 		<item_version>0</item_version>
 		<item class_id="17" tracking_level="0" version="0">
 			<first>BuildNoiseColumnMatrix:5</first>
@@ -2792,6 +2940,13 @@
 			</second>
 		</item>
 		<item>
+			<first>ReadMatrix:3</first>
+			<second>
+				<first>-8.76000000000000000e+02</first>
+				<second>-8.14000000000000000e+02</second>
+			</second>
+		</item>
+		<item>
 			<first>RescaleColorMap:6</first>
 			<second>
 				<first>-1.13000000000000000e+02</first>
@@ -2842,7 +2997,7 @@
 		</item>
 	</modulePositions>
 	<moduleNotes class_id="19" tracking_level="0" version="0">
-		<count>13</count>
+		<count>14</count>
 		<item_version>0</item_version>
 		<item class_id="20" tracking_level="0" version="0">
 			<first>BuildNoiseColumnMatrix:5</first>
@@ -2944,6 +3099,21 @@ p, li { white-space: pre-wrap; }
 			</second>
 		</item>
 		<item>
+			<first>ReadMatrix:3</first>
+			<second>
+				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Load Tank&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Potential Data Matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>Load Tank
+Potential Data Matrix</noteText>
+				<position>3</position>
+				<fontSize>13</fontSize>
+			</second>
+		</item>
+		<item>
 			<first>ShowField:12</first>
 			<second>
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -3035,7 +3205,7 @@ and Inverse Solution Potentials</noteText>
 		<item_version>0</item_version>
 	</connectionNotes>
 	<moduleTags class_id="22" tracking_level="0" version="0">
-		<count>16</count>
+		<count>17</count>
 		<item_version>0</item_version>
 		<item class_id="23" tracking_level="0" version="0">
 			<first>BuildNoiseColumnMatrix:5</first>
@@ -3072,6 +3242,10 @@ and Inverse Solution Potentials</noteText>
 		<item>
 			<first>ReadMatrix:2</first>
 			<second>1</second>
+		</item>
+		<item>
+			<first>ReadMatrix:3</first>
+			<second>-1</second>
 		</item>
 		<item>
 			<first>RescaleColorMap:6</first>
