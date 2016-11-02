@@ -4,7 +4,7 @@
 <networkFile class_id="0" tracking_level="0" version="5">
 	<networkInfo class_id="1" tracking_level="0" version="0">
 		<modules class_id="2" tracking_level="0" version="0">
-			<count>18</count>
+			<count>20</count>
 			<item_version>0</item_version>
 			<item class_id="3" tracking_level="0" version="0">
 				<first>BuildNoiseColumnMatrix:0</first>
@@ -313,12 +313,17 @@
 									<name>PythonCode</name>
 									<value>
 										<which>2</which>
-										<value># inputs
+										<value>#import scipy.io as sio
+
+# inputs
 A = matrixInput1 # forward matrix
 Y = matrixInput2 # body surface potentials
 L = matrixInput3 # surface laplacian matrix
 tauinit = matrixInput4 # perturbed activation times
 path_in = stringInput1 #data path
+#print(path_in+&apos;tauinit.mat&apos;)
+#sio.savemat(path_in+&apos;tauinit.mat&apos;, {&apos;tauinit&apos;:tauinit})
+#print(&apos;saved&apos;)
 #gn_path = path_in + &quot;../../PythonLibrary/activation_inverse/&quot;
 #exec(open(gn_path + &quot;actgaussnewton.py&quot;).read())
 
@@ -451,6 +456,34 @@ matrixOutput1 = c</value>
 									<value>
 										<which>2</which>
 										<value>stringOutput3</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>PrintStringIntoString:0</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>String</category_name_>
+						<module_name_>PrintStringIntoString</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>FormatString</name>
+								</first>
+								<second>
+									<name>FormatString</name>
+									<value>
+										<which>2</which>
+										<value>%stuiinit.mat</value>
 									</value>
 								</second>
 							</item>
@@ -2690,9 +2723,61 @@ matrixOutput1 = c</value>
 					</state>
 				</second>
 			</item>
+			<item>
+				<first>WriteMatrix:0</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>DataIO</category_name_>
+						<module_name_>WriteMatrix</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>3</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>FileTypeList</name>
+								</first>
+								<second>
+									<name>FileTypeList</name>
+									<value>
+										<which>2</which>
+										<value>SCIRun Matrix Binary (*.mat);;SCIRun Matrix ASCII (*.mat);;ECGSimFile (*.*);;Matlab Matrix (*.mat);;SimpleTextFile (*.*)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FileTypeName</name>
+								</first>
+								<second>
+									<name>FileTypeName</name>
+									<value>
+										<which>2</which>
+										<value>Matlab Matrix</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Filename</name>
+								</first>
+								<second>
+									<name>Filename</name>
+									<value>
+										<which>2</which>
+										<value>%SCIRUNDATADIR%/Data/gauss_newton_act_inv/tuiinit.mat</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
 		</modules>
 		<connections class_id="13" tracking_level="0" version="0">
-			<count>24</count>
+			<count>27</count>
 			<item_version>0</item_version>
 			<item class_id="14" tracking_level="0" version="0">
 				<moduleId1_>BuildNoiseColumnMatrix:0</moduleId1_>
@@ -2755,6 +2840,18 @@ matrixOutput1 = c</value>
 				</port2_>
 			</item>
 			<item>
+				<moduleId1_>EvaluateLinearAlgebraBinary:0</moduleId1_>
+				<port1_>
+					<name>Result</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>WriteMatrix:0</moduleId2_>
+				<port2_>
+					<name>MatrixToWrite</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
 				<moduleId1_>InterfaceWithPython:1</moduleId1_>
 				<port1_>
 					<name>PythonMatrix1</name>
@@ -2763,6 +2860,18 @@ matrixOutput1 = c</value>
 				<moduleId2_>SetFieldData:0</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>PrintStringIntoString:0</moduleId1_>
+				<port1_>
+					<name>Output</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>WriteMatrix:0</moduleId2_>
+				<port2_>
+					<name>Filename</name>
 					<id>0</id>
 				</port2_>
 			</item>
@@ -2982,10 +3091,22 @@ matrixOutput1 = c</value>
 					<id>0</id>
 				</port2_>
 			</item>
+			<item>
+				<moduleId1_>SplitFileName:0</moduleId1_>
+				<port1_>
+					<name>Pathname</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>PrintStringIntoString:0</moduleId2_>
+				<port2_>
+					<name>Input</name>
+					<id>0</id>
+				</port2_>
+			</item>
 		</connections>
 	</networkInfo>
 	<modulePositions class_id="16" tracking_level="0" version="0">
-		<count>18</count>
+		<count>20</count>
 		<item_version>0</item_version>
 		<item class_id="17" tracking_level="0" version="0">
 			<first>BuildNoiseColumnMatrix:0</first>
@@ -3027,6 +3148,13 @@ matrixOutput1 = c</value>
 			<second>
 				<first>-8.59499999999999602e+01</first>
 				<second>6.07500000000000000e+01</second>
+			</second>
+		</item>
+		<item>
+			<first>PrintStringIntoString:0</first>
+			<second>
+				<first>-2.88000000000000000e+02</first>
+				<second>-2.30000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
@@ -3111,6 +3239,13 @@ matrixOutput1 = c</value>
 			<second>
 				<first>-6.50000000000000000e+01</first>
 				<second>5.37000000000000000e+02</second>
+			</second>
+		</item>
+		<item>
+			<first>WriteMatrix:0</first>
+			<second>
+				<first>-3.08000000000000000e+02</first>
+				<second>5.90000000000000000e+01</second>
 			</second>
 		</item>
 	</modulePositions>
@@ -3274,7 +3409,7 @@ p, li { white-space: pre-wrap; }
 		<item_version>0</item_version>
 	</connectionNotes>
 	<moduleTags class_id="22" tracking_level="0" version="0">
-		<count>18</count>
+		<count>20</count>
 		<item_version>0</item_version>
 		<item class_id="23" tracking_level="0" version="0">
 			<first>BuildNoiseColumnMatrix:0</first>
@@ -3299,6 +3434,10 @@ p, li { white-space: pre-wrap; }
 		<item>
 			<first>InterfaceWithPython:1</first>
 			<second>9</second>
+		</item>
+		<item>
+			<first>PrintStringIntoString:0</first>
+			<second>-1</second>
 		</item>
 		<item>
 			<first>ReadField:0</first>
@@ -3347,6 +3486,10 @@ p, li { white-space: pre-wrap; }
 		<item>
 			<first>ViewScene:1</first>
 			<second>3</second>
+		</item>
+		<item>
+			<first>WriteMatrix:0</first>
+			<second>-1</second>
 		</item>
 	</moduleTags>
 	<disabledModules class_id="24" tracking_level="0" version="0">

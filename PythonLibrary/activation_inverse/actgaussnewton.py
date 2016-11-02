@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scipy as sp
 import numpy as np
+import scipy.io as sio
 
 def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
 #   Implements the Gauss-Newton algorithm for solving the activation-based
@@ -44,7 +45,7 @@ def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
     N = dims_N[1]
     dims_T = np.shape(Y)
     T = dims_T[1]
-    u = np.linspace(1,T,1)
+    u = np.linspace(1,T,T)
 
 #   if width variable isn't an array, make it a constant array
 # need reshape
@@ -55,33 +56,55 @@ def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
     Iter = 0
         
     while np.linalg.norm(step)> minstep:
+        print('starting while loop')
+        
 #       calculate the jacobian matrix and the residuals
         J = agnjacobian(A,Y,L,tau,Lambda,w)
         r = agnresidual(A,Y,L,tau,Lambda,w)
     
 #       calculate the step direction
-        G = np.multiply(np.transpose(J),J)
+        G = np.dot(np.transpose(J),J)
+        print('trying to save')
+        sio.savemat('/Users/jess/Downloads/G.mat', {'G': G})
+        
         size_G = np.shape(G)
-        while np.cond(G)<=(np.info(float).eps):
-        # possibly reciprocal of np.linalg.cond or just np.linalg.cond
-#       see actgaussnewton.m line 34
+        print('size G = ',size_G)
+        print('G= ',G)
+        print('norm G = ',np.linalg.norm(G))
+        print('max G = ',np.max(G))
+        s = np.linalg.svd(G, full_matrices = 0,compute_uv=0)
+        cond_g = s[0]/s[len(s)-1]
+        print('cond of G =',cond_g)
+        # improve the conditioning of matrix G
+        cnt = 0
+        print('starting condition test')
+        while (1/np.linalg.cond(G,1))<=(np.finfo(float).eps):
+            cnt = cnt +1
             G = G+Lambda*np.identity(size_G)
+            print(cnt)
 
-        step = -G*np.linalg.inv(np.transpose(J))*r
+        print('conditioning of G complete')
+
+        step = np.linalg.lstsq(-G,np.transpose(J))*r
+
+        print('step computed')
 
 #       perform a line search in the step direction
         err = np.zeros(dims_alpha)
-        for i in range(0,dims_alpha[1],1):
+        for k in range(0,dims_alpha[1],1):
             H = np.zeros((N,T))
             for n in range(1,N,1):
-                H[n-1,:] = polyactrow(u-alpha[i]*step[n]-tau[n],w[n])
+                H[n-1,:] = polyactrow(u-alpha[k]*step[n]-tau[n],w[n])
                 
-            err[i] = np.linalg.norm(Y-A*H,'fro')+ \
-            Lambda*np.linalg.norm(L*H,'fro')^2
-            if i>1:
-                if err[i]>err[i-1]:
-                    err = err[0:i]
+            err[k] = (np.linalg.norm(Y-np.dot(A,H),'fro'))^2+Lambda*(np.linalg.norm(np.dot(L,H),'fro'))^2
+            if k>0:
+                if err[k]>err[k-1]:
+                    err = err[0:k]
                     break;
+
+        print('for loop comlete')
+
+
            
 #       update step with the result of the line search
         dims_err = np.shape(err)
@@ -105,11 +128,21 @@ def agnresidual(A,Y,L,tau,Lambda,w):
     dim_Y = np.shape(Y)
     N = dim_A[1]
     T = dim_Y[1]
-    H = np.empty(N,T)
-    for i in range(0,N):
-      H[i,:] = polyactrow(u-tau[i],w(i))
-    E = Y-A*H
-    R = np.sqrt(Lambda)*L*H
+    
+    u = np.linspace(1,T,T)
+    
+    H = np.zeros((N,T))
+    
+    for k in range(0,N):
+      H[k,:] = polyactrow(u-tau[k],w[k])
+    
+    
+    #    print("size Y = ",np.shape(Y))
+    #print("size A = ",np.shape(A))
+    #print("size H = ",np.shape(H))
+
+    E = Y-np.dot(A,H)
+    R = np.sqrt(Lambda)*np.dot(L,H)
     dims_E = np.shape(E)
     dims_R = np.shape(R)
     vec_E = np.transpose(np.reshape(E,(dims_E[0]*dims_E[1])))
@@ -120,7 +153,6 @@ def agnresidual(A,Y,L,tau,Lambda,w):
                  
 ###############################################################################
 def agnjacobian(A,Y,L,tau,Lambda,w):
-    from numpy import matlib as ml        
     dim_A = np.shape(A)
     dim_Y = np.shape(Y)
     M = dim_A[0]
@@ -128,54 +160,93 @@ def agnjacobian(A,Y,L,tau,Lambda,w):
     T = dim_Y[1]
     dE = np.empty((M,T,N))
     dR = np.empty((N,T,N))
-    HdH = np.empty((1,T,N))
+    HdH = np.zeros((1,T,N))
     u = np.linspace(1,T,T)
-    for i in range(0,N):
-        HdH[0,:,i] = dpolyactrow(u-tau[i],w(i))
+    
+    for k in range(0,N):
+      HdH[0,:,k] = dpolyactrow(u-tau[k],w[k])
+    
+    #print('size HdH = ',np.shape(HdH))
+    #print('norm HdH = ',np.linalg.norm(HdH))
+    #print('max HdH = ',np.max(HdH))
+
     A = np.reshape(A,(M,1,N)) # MxTxL
     L = np.reshape(L,(N,1,N)) # NxTxL
-    HdHm = np.ml.repmat(HdH,[M,1,1]) # MxTxL
-    HdHn = np.ml.repmat(HdH,[N,1,1]) # NxTxL
+    
+    HdHm = np.tile(HdH,[M,1,1]) # MxTxL
+    HdHn = np.tile(HdH,[N,1,1]) # NxTxL
+
+    A = np.tile(A, [1,T,1])
+    L = np.tile(L, [1,T,1])
+
+#print("size A = ",np.shape(A))
+#print('norm A = ',np.linalg.norm(A))
+#    print('max A = ',np.max(A))
+#    print("size L = ",np.shape(L))
+#    print('norm L = ',np.linalg.norm(L))
+#    print('max L = ',np.max(L))
+#    print("size HdHm = ",np.shape(HdHm))
+#    print('norm HdHm = ',np.linalg.norm(HdHm))
+#    print('max HdHm = ',np.max(HdHm))
+#    print("size HdHn = ",np.shape(HdHn))
+#    print('norm HdHn = ',np.linalg.norm(HdHn))
+#    print('max HdHn = ',np.max(HdHn))
+
     dE = np.multiply(A,HdHm)
     dR = -np.sqrt(Lambda)*np.multiply(L,HdHn)
-    J = zeros(((M+N)*T,N))
-    for i in range(1,N,N):
-        tempE = dE[:,:,i]
-        tempR = dR[:,:,i]
+
+#    print("size dE = ",np.shape(dE))
+#    print('norm dE = ',np.linalg.norm(dE))
+#    print('max dE = ',np.max(dE))
+#    print("size dR = ",np.shape(dR))
+#    print('norm dR = ',np.linalg.norm(dR))
+#    print('max dR = ',np.max(dR))
+
+    J = np.zeros(((M+N)*T,N))
+    for k in range(1,N):
+        tempE = dE[:,:,k]
+        tempR = dR[:,:,k]
         dims_tempE = np.shape(tempE)
         dims_tempR = np.shape(tempR)
         vec_tempE = np.transpose(np.reshape(tempE,(dims_tempE[0]*dims_tempE[1])))
         vec_tempR = np.transpose(np.reshape(tempR,(dims_tempR[0]*dims_tempR[1])))
-        J[:,i] = np.concatenate((vec_tempE,vec_tempR), axis=0)
+        J[:,k] = np.concatenate((vec_tempE,vec_tempR), axis=0)
+    #print('norm J = ',np.linalg.norm(J))
+    #print('max J = ',np.max(J))
+    #print('size J = ',np.shape(J))
+    #print('J= ',J)
     return J
 ###############################################################################        
 def polyactrow(u,w):
     
     dims_u = np.shape(u)
-    u = np.reshape(u,(1,(dims_u[0]*dims_u[1])),order='f')
-    u = np.transpose(u)
-    h = np.zeros(dims_u[0],dims_u[1])
+    h = np.zeros(dims_u)
+    
     h[u <= -w/2] = 0
     h[u >= w/2] = 1
     if w>0:
-        h[(-w/2)<u] = 0.5*(((2/w)*u[-w/2<u]+1)**2)
-        h[u<=0] = 0.5*(((2/w)*u[u<=0]+1)**2)
-        h[0<u] = 1-0.5*(((2/w)*u[0<u]-1)**2)
-        h[u<=(w/2)] = 1-0.5*(((2/w)*u[u<(w/2)]-1)**2)
+        h[((-w/2)<u) & (u<=0)] = 0.5*(((2/w)*u[((-w/2)<u) & (u<=0)]+1)**2)
+        h[(0<u) & (u<=(w/2))] = 1-0.5*(((2/w)*u[(0<u) & (u<=(w/2))]-1)**2)
     return h
 ###############################################################################        
 def dpolyactrow(u,w):
-    
+  
     dims_u = np.shape(u)
-    u = np.reshape(u,(1,(dims_u[0]*dims_u[1])),order='f')
-    dh = np.zeros(dims_u[0],dims_u[1])
+    dh = np.zeros(dims_u)
+
+#print('size u = ',dims_u)
+#    print('u = ',u)
+
+
     dh[u <= -w/2] = 0
     dh[u >= w/2] = 1
+    #    print('dh = ', dh)
+
     if w>0:
-        dh[-w/2<u] = (4/(w**2))*u[-w/2<u]+(2/w)
-        dh[u<=0] = (4/(w**2))*u[u<=0]+(2/w)
-        dh[0<u] = -(4/(w**2))*u[0<u]+(2/w)
-        dh[u<=(w/2)] = -(4/(w**2))*u[u<=(w/2)]+(2/w)
+        dh[(-w/2<u) & (u<=0)] = (4/(w**2))*u[(-w/2<u) & (u<=0)]+(2/w)
+        dh[(0<u) & (u<=(w/2))] = -(4/(w**2))*u[(0<u) & (u<=(w/2))]+(2/w)
+          #print('dh = ', dh)
+#return false
     return dh
             
         
