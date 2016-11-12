@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import scipy as sp
 import numpy as np
-import scipy.io as sio
+import numpy.linalg as la
+#import scipy.io as sio
 
 def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
 #   Implements the Gauss-Newton algorithm for solving the activation-based
@@ -33,12 +34,15 @@ def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
     
     tau = np.array(tauinit)
     A = np.array(A)
-    Y = np.array(Y)
+    #Y = np.array(Y)
     L = np.array(L)
+    print('size Y = ',Y.shape)
+    
+#    sio.savemat('/Users/jess/Downloads/Y.mat', {'Y_tmp': Y})
     
     dims_tau = np.shape(tau)
     step = 2*np.ones(dims_tau)
-    print('size step = ',step.shape)
+    #    print('size step = ',step.shape)
 #   num = linesteps the number of steps in [0,1] to consider for the line search
     alpha = np.linspace(0,1, num = 100)
     dims_alpha = np.shape(alpha)
@@ -56,7 +60,7 @@ def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
     w = w * np.ones((N,1))
     Iter = 0
         
-    while np.linalg.norm(step)> minstep:
+    while la.norm(step)> minstep:
         print('starting while loop')
         
 #       calculate the jacobian matrix and the residuals
@@ -64,40 +68,46 @@ def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
         r = agnresidual(A,Y,L,tau,Lambda,w)
     
 #       calculate the step direction
-        G = np.dot(np.transpose(J),J)
+        G = np.dot(J.T,J)
         #print('trying to save')
         #sio.savemat('/Users/jess/Downloads/G.mat', {'G_tmp': G})
         #sio.savemat('/Users/jess/Downloads/r.mat', {'r_tmp': r})
-        print('size r = ',r.shape)
-        print('norm r = ',np.linalg.norm(r))
-        print('max r = ',np.max(r))
+        #print('size r = ',r.shape)
+        #print('norm r = ',la.norm(r))
+        #print('max r = ',np.max(r))
         
         size_G = np.shape(G)
-        print('size G = ',size_G)
+        #print('size G = ',size_G)
         #print('G= ',G)
-        print('norm G = ',np.linalg.norm(G))
-        print('max G = ',np.max(G))
-        s = np.linalg.svd(G, full_matrices = 0,compute_uv=0)
-        cond_g = s[0]/s[len(s)-1]
-        print('rcond of G =',1/cond_g)
+        #print('norm G = ',la.norm(G))
+        #print('max G = ',np.max(G))
+        
+        print('starting condition test')
+        s = la.svd(G, full_matrices = 0,compute_uv=0)
+        cond_g = s[len(s)-1]/s[0]
+        print('rcond of G =',cond_g)
         # improve the conditioning of matrix G
         cnt = 0
-        print('starting condition test')
-        while (1/np.linalg.cond(G,1))<=(np.finfo(float).eps):
+
+        while cond_g<=(np.finfo(float).eps):
             cnt = cnt +1
-            G = G+Lambda*np.identity(size_G)
+            G = G+Lambda*np.identity(size_G[0])
             print(cnt)
+            
+            s = la.svd(G, full_matrices = 0,compute_uv=0)
+            cond_g = s[len(s)-1]/s[0]
+
 
         print('conditioning of G complete')
         
         
 
-#step = np.dot(np.linalg.lstsq(-G,np.transpose(J))[0],np.transpose(r))
+#step = np.dot(la.lstsq(-G,np.transpose(J))[0],np.transpose(r))
         #find least sqares solution with qr decomp.
-        qdc,rdc = np.linalg.qr(-G)
-        step = np.dot(np.dot(np.linalg.inv(rdc),np.dot(qdc.T,J.T)),r.T)
+        qdc,rdc = la.qr(-G)
+        step = np.dot(np.dot(la.inv(rdc),np.dot(qdc.T,J.T)),r.T)
         step = np.reshape(step,dims_tau)
-        print('size step = ',step.shape)
+        #print('size step = ',step.shape)
         #sio.savemat('/Users/jess/Downloads/step.mat', {'step_tmp': step})
 
         print('step computed')
@@ -109,7 +119,7 @@ def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
             for n in range(0,N):
                 H[n,:] = polyactrow(u-alpha[k]*step[n]-tau[n],w[n])
                 
-            err[k] = (np.linalg.norm(Y-np.dot(A,H),'fro'))**2+Lambda*(np.linalg.norm(np.dot(L,H),'fro'))**2
+            err[k] = (la.norm(Y-np.dot(A,H),'fro'))**2+Lambda*(la.norm(np.dot(L,H),'fro'))**2
             if k>0:
                 if err[k]>err[k-1]:
                     err = err[0:k]
@@ -123,20 +133,20 @@ def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
         dims_err = np.shape(err)
         vec_err = err.T
         ind = np.argmin(err)
-        print('ind = ',ind)
+        #print('ind = ',ind)
         step = alpha[ind]*step
-        print('size step = ',step.shape)
-        print('size tau = ',tau.shape)
+        #print('size step = ',step.shape)
+        #print('size tau = ',tau.shape)
         #        print('tau = ',tau)
 #       update tau with the result of the step
         tau = tau+step
-        print('size tau = ',tau.shape)
+        #print('size tau = ',tau.shape)
         #        print('tau = ',tau)
         
 #       display the progress of the optimization routine
         Iter = Iter+1
-        print('Iter = ',Iter)
-        print('Step: %i\nSize: %f'%(Iter,np.linalg.norm(step)))
+        #print('Iter = ',Iter)
+        #print('Step: %i\nSize: %f'%(Iter,la.norm(step)))
         return tau
 
 
@@ -153,7 +163,7 @@ def agnresidual(A,Y,L,tau,Lambda,w):
     H = np.zeros((N,T))
     
     for k in range(0,N):
-      H[k,:] = polyactrow(u-tau[k],w[k])
+        H[k,:] = polyactrow(u-tau[k],w[k])
     
     #sio.savemat('/Users/jess/Downloads/H.mat', {'H_tmp': H})
 
@@ -165,8 +175,8 @@ def agnresidual(A,Y,L,tau,Lambda,w):
     R = np.sqrt(Lambda)*np.dot(L,H)
     dims_E = np.shape(E)
     dims_R = np.shape(R)
-    vec_E = np.transpose(np.reshape(np.transpose(E),(dims_E[0]*dims_E[1])))
-    vec_R = np.transpose(np.reshape(np.transpose(R),(dims_R[0]*dims_R[1])))
+    vec_E = np.reshape(E.T,(dims_E[0]*dims_E[1])).T
+    vec_R = np.reshape(R.T,(dims_R[0]*dims_R[1])).T
 
 #    sio.savemat('/Users/jess/Downloads/E.mat', {'E_tmp': E})
 #    sio.savemat('/Users/jess/Downloads/R.mat', {'R_tmp': R})
@@ -190,12 +200,12 @@ def agnjacobian(A,Y,L,tau,Lambda,w):
     u = np.linspace(1,T,T)
     
     for k in range(0,N):
-      HdH[0,:,k] = dpolyactrow(u-tau[k],w[k])
+        HdH[0,:,k] = dpolyactrow(u-tau[k],w[k])
     
-    #    sio.savemat('/Users/jess/Downloads/HdH.mat', {'HdH_tmp': HdH})
+    #sio.savemat('/Users/jess/Downloads/HdH.mat', {'HdH_tmp': HdH})
     
     #print('size HdH = ',np.shape(HdH))
-    #print('norm HdH = ',np.linalg.norm(HdH))
+    #print('norm HdH = ',la.norm(HdH))
     #print('max HdH = ',np.max(HdH))
 
     A = np.reshape(A,(M,1,N)) # MxTxL
@@ -204,39 +214,40 @@ def agnjacobian(A,Y,L,tau,Lambda,w):
     HdHm = np.tile(HdH,[M,1,1]) # MxTxL
     HdHn = np.tile(HdH,[N,1,1]) # NxTxL
 
-#    sio.savemat('/Users/jess/Downloads/HdHm.mat', {'HdHm_tmp': HdHm})
+#sio.savemat('/Users/jess/Downloads/HdHm.mat', {'HdHm_tmp': HdHm})
 #    sio.savemat('/Users/jess/Downloads/HdHn.mat', {'HdHn_tmp': HdHn})
 
     A = np.tile(A, [1,T,1])
     L = np.tile(L, [1,T,1])
 
-#sio.savemat('/Users/jess/Downloads/A.mat', {'A_tmp': A})
-#   sio.savemat('/Users/jess/Downloads/L.mat', {'L_tmp': L})
+#    sio.savemat('/Users/jess/Downloads/A.mat', {'A_tmp': A})
+#    sio.savemat('/Users/jess/Downloads/L.mat', {'L_tmp': L})
 
-    print("size A = ",np.shape(A))
-#print('norm A = ',np.linalg.norm(A))
+
+#    print("size A = ",np.shape(A))
+#    print('norm A = ',la.norm(A))
 #    print('max A = ',np.max(A))
 #    print("size L = ",np.shape(L))
-#    print('norm L = ',np.linalg.norm(L))
+#    print('norm L = ',la.norm(L))
 #    print('max L = ',np.max(L))
 #    print("size HdHm = ",np.shape(HdHm))
-#    print('norm HdHm = ',np.linalg.norm(HdHm))
+#    print('norm HdHm = ',la.norm(HdHm))
 #    print('max HdHm = ',np.max(HdHm))
 #    print("size HdHn = ",np.shape(HdHn))
-#    print('norm HdHn = ',np.linalg.norm(HdHn))
+#    print('norm HdHn = ',la.norm(HdHn))
 #    print('max HdHn = ',np.max(HdHn))
 
     dE = np.multiply(A,HdHm)
     dR = -np.sqrt(Lambda)*np.multiply(L,HdHn)
 
-#sio.savemat('/Users/jess/Downloads/dE.mat', {'dE_tmp': dE})
+#    sio.savemat('/Users/jess/Downloads/dE.mat', {'dE_tmp': dE})
 #    sio.savemat('/Users/jess/Downloads/dR.mat', {'dR_tmp': dR})
     
-    print("size dE = ",np.shape(dE))
-#    print('norm dE = ',np.linalg.norm(dE))
+#    print("size dE = ",np.shape(dE))
+#    print('norm dE = ',la.norm(dE))
 #    print('max dE = ',np.max(dE))
 #    print("size dR = ",np.shape(dR))
-#    print('norm dR = ',np.linalg.norm(dR))
+#    print('norm dR = ',la.norm(dR))
 #    print('max dR = ',np.max(dR))
 
     J = np.zeros(((M+N)*T,N))
@@ -245,8 +256,8 @@ def agnjacobian(A,Y,L,tau,Lambda,w):
         tempR = dR[:,:,k]
         dims_tempE = np.shape(tempE)
         dims_tempR = np.shape(tempR)
-        vec_tempE = np.transpose(np.reshape(np.transpose(tempE),(dims_tempE[0]*dims_tempE[1])))
-        vec_tempR = np.transpose(np.reshape(np.transpose(tempR),(dims_tempR[0]*dims_tempR[1])))
+        vec_tempE = np.reshape(tempE.T,(dims_tempE[0]*dims_tempE[1])).T
+        vec_tempR = np.reshape(tempR.T,(dims_tempR[0]*dims_tempR[1])).T
         #sio.savemat('/Users/jess/Downloads/tempE.mat', {'tempE_tmp': tempE})
         #sio.savemat('/Users/jess/Downloads/tempR.mat', {'tempR_tmp': tempR})
         #sio.savemat('/Users/jess/Downloads/vec_tempE.mat', {'vec_tempE_tmp': vec_tempE})
@@ -254,11 +265,11 @@ def agnjacobian(A,Y,L,tau,Lambda,w):
         J[:,k] = np.concatenate((vec_tempE,vec_tempR), axis=0)
         #sio.savemat('/Users/jess/Downloads/J1.mat', {'J_tmp': J})
         #return false
-    #print('norm J = ',np.linalg.norm(J))
-    #print('max J = ',np.max(J))
-    #print('size J = ',np.shape(J))
-    #print('J= ',J)
-#sio.savemat('/Users/jess/Downloads/J.mat', {'J_tmp': J})
+#    print('norm J = ',la.norm(J))
+#    print('max J = ',np.max(J))
+#    print('size J = ',np.shape(J))
+#    print('J= ',J)
+#    sio.savemat('/Users/jess/Downloads/J.mat', {'J_tmp': J})
     return J
 ###############################################################################        
 def polyactrow(u,w):
@@ -292,8 +303,3 @@ def dpolyactrow(u,w):
           #print('dh = ', dh)
 #return false
     return dh
-            
-        
-        
-        
-        
