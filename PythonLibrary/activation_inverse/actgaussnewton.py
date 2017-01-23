@@ -88,8 +88,14 @@ def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
         print('rcond of G =',cond_g)
         # improve the conditioning of matrix G
         cnt = 0
+        
+        #print('checking')
+        #print(np.finfo(float).eps)
+        #print(cond_g<=(np.finfo(float).eps))
 
-        while cond_g<=(np.finfo(float).eps):
+#        while cond_g<=(np.finfo(float).eps):
+        while cond_g<=(2.22e-16):
+            print('check point')
             cnt = cnt +1
             G = G+Lambda*np.identity(size_G[0])
             print(cnt)

@@ -2071,7 +2071,7 @@ matrixOutput1 = c</value>
 									<name>ScaleBarFontSize</name>
 									<value>
 										<which>0</which>
-										<value>1</value>
+										<value>99</value>
 									</value>
 								</second>
 							</item>
@@ -2095,7 +2095,7 @@ matrixOutput1 = c</value>
 									<name>ScaleBarLength</name>
 									<value>
 										<which>1</which>
-										<value>0.00000000000000000e+00</value>
+										<value>9.99899999999999949e+01</value>
 									</value>
 								</second>
 							</item>
@@ -3175,7 +3175,7 @@ matrixOutput1 = c</value>
 		<item>
 			<first>ReadMatrix:0</first>
 			<second>
-				<first>-4.77000000000000000e+02</first>
+				<first>-4.73000000000000000e+02</first>
 				<second>-3.50000000000000000e+02</second>
 			</second>
 		</item>
