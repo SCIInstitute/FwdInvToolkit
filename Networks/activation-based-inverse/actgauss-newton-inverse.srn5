@@ -4,7 +4,7 @@
 <networkFile class_id="0" tracking_level="0" version="5">
 	<networkInfo class_id="1" tracking_level="0" version="0">
 		<modules class_id="2" tracking_level="0" version="0">
-			<count>17</count>
+			<count>20</count>
 			<item_version>0</item_version>
 			<item class_id="3" tracking_level="0" version="0">
 				<first>BuildNoiseColumnMatrix:0</first>
@@ -207,7 +207,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>17</count>
+							<count>18</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -271,13 +271,25 @@
 							</item>
 							<item>
 								<first>
+									<name>InputString:0</name>
+								</first>
+								<second>
+									<name>InputString:0</name>
+									<value>
+										<which>2</which>
+										<value>stringInput1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>NumberOfRetries</name>
 								</first>
 								<second>
 									<name>NumberOfRetries</name>
 									<value>
 										<which>0</which>
-										<value>50</value>
+										<value>47</value>
 									</value>
 								</second>
 							</item>
@@ -289,7 +301,7 @@
 									<name>PollingIntervalMilliseconds</name>
 									<value>
 										<which>0</which>
-										<value>200</value>
+										<value>50</value>
 									</value>
 								</second>
 							</item>
@@ -301,40 +313,33 @@
 									<name>PythonCode</name>
 									<value>
 										<which>2</which>
-										<value>
-#
-
-
-# check for a running matlab engine
-if (&apos;eng&apos; in globals()) == False:
-  print(&apos;Starting Matlab.&apos;)
-  print(&apos;To avoid restarting matlab every execution, use Matlab2016 functions,&apos;)
-  print(&apos;or type the following code in the console:&apos;)
-  print(&apos;import matlab.engine&apos;)
-  print(&apos;eng =matlab.engine.start_matlab()&apos;)
-  import matlab.engine
-  eng=matlab.engine.start_matlab()
-else:
-  print(&apos;matlab already started.&apos;)
+										<value>#import scipy.io as sio
 
 # inputs
-i1 = matrixInput1 # forward matrix
-i2 = matrixInput2 # body surface potentials
-i3 = matrixInput3 # surface laplacian matrix
-i4 = matrixInput4 # perturbed activation times
+A = matrixInput1 # forward matrix
+Y = matrixInput2 # body surface potentials
+L = matrixInput3 # surface laplacian matrix
+tauinit = matrixInput4 # perturbed activation times
+path_in = stringInput1 #data path
+#print(path_in+&apos;tauinit.mat&apos;)
+#sio.savemat(path_in+&apos;tauinit.mat&apos;, {&apos;tauinit&apos;:tauinit})
+#print(&apos;saved&apos;)
+#gn_path = path_in + &quot;../../PythonLibrary/activation_inverse/&quot;
+#print(gn_path)
+#exec(open(gn_path + &quot;actgaussnewton.py&quot;).read())
 
+sys.path.append(os.environ[&apos;SCIRUNDATADIR&apos;]+&apos;/PythonLibrary/activation_inverse&apos;)
+from actgaussnewton import *
+
+print(&apos;script loaded&apos;)
 field1 = fieldInput1
 
-
-#print(len(i2))
-
 # clip BSP to QRS only.
-qrsstart=1
+qrsstart=0
 qrsend=93
-eng.workspace[&apos;i2&apos;]=matlab.double(i2)
-eng.workspace[&apos;qrsstart&apos;]=qrsstart
-eng.workspace[&apos;qrsend&apos;]=qrsend
-bsp=eng.eval(&apos;i2(:,qrsstart:qrsend)&apos;)
+Y = np.array(Y)
+Y = Y[:,qrsstart:qrsend]
+
 
 #print(type(bsp))
 #print((bsp.size))
@@ -346,15 +351,9 @@ w=5.0
 minstep=1e-2
 
 # run algorithm
-o1=eng.ActGaussNewton(matlab.double(i1),bsp,matlab.double(i3),matlab.double(i4),lbda,w,minstep)
+o1 = ActGaussNewton(A, Y, L, tauinit, lbda, w, minstep)
 
-#print(o1.size)
-
-#prepare for output
-x=eng.transpose(o1)
-c=[]
-for _ in range(x.size[1]):
-  c.append(x._data[_*x.size[0]:_*x.size[0]+x.size[0]].tolist())
+c = o1.tolist()
 
 matrixOutput1 = c</value>
 									</value>
@@ -465,6 +464,34 @@ matrixOutput1 = c</value>
 									<value>
 										<which>2</which>
 										<value>stringOutput3</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>PrintStringIntoString:0</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>String</category_name_>
+						<module_name_>PrintStringIntoString</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>FormatString</name>
+								</first>
+								<second>
+									<name>FormatString</name>
+									<value>
+										<which>2</which>
+										<value>%stuiinit.mat</value>
 									</value>
 								</second>
 							</item>
@@ -810,7 +837,7 @@ matrixOutput1 = c</value>
 					</module>
 					<state>
 						<stateMap>
-							<count>35</count>
+							<count>38</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -922,6 +949,18 @@ matrixOutput1 = c</value>
 							</item>
 							<item>
 								<first>
+									<name>EdgesColoring</name>
+								</first>
+								<second>
+									<name>EdgesColoring</name>
+									<value>
+										<which>0</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>FaceInvertNormals</name>
 								</first>
 								<second>
@@ -964,6 +1003,18 @@ matrixOutput1 = c</value>
 									<name>FacesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FacesColoring</name>
+								</first>
+								<second>
+									<name>FacesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -1024,6 +1075,18 @@ matrixOutput1 = c</value>
 									<name>NodesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>NodesColoring</name>
+								</first>
+								<second>
+									<name>NodesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -1246,7 +1309,7 @@ matrixOutput1 = c</value>
 					</module>
 					<state>
 						<stateMap>
-							<count>35</count>
+							<count>38</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -1358,6 +1421,18 @@ matrixOutput1 = c</value>
 							</item>
 							<item>
 								<first>
+									<name>EdgesColoring</name>
+								</first>
+								<second>
+									<name>EdgesColoring</name>
+									<value>
+										<which>0</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>FaceInvertNormals</name>
 								</first>
 								<second>
@@ -1400,6 +1475,18 @@ matrixOutput1 = c</value>
 									<name>FacesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FacesColoring</name>
+								</first>
+								<second>
+									<name>FacesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -1460,6 +1547,18 @@ matrixOutput1 = c</value>
 									<name>NodesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>NodesColoring</name>
+								</first>
+								<second>
+									<name>NodesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -1668,6 +1767,22 @@ matrixOutput1 = c</value>
 									</value>
 								</second>
 							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>SplitFileName:0</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>String</category_name_>
+						<module_name_>SplitFileName</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>0</count>
+							<item_version>0</item_version>
 						</stateMap>
 					</state>
 				</second>
@@ -1956,7 +2071,7 @@ matrixOutput1 = c</value>
 									<name>ScaleBarFontSize</name>
 									<value>
 										<which>0</which>
-										<value>8</value>
+										<value>99</value>
 									</value>
 								</second>
 							</item>
@@ -1968,7 +2083,7 @@ matrixOutput1 = c</value>
 									<name>ScaleBarHeight</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -1980,7 +2095,7 @@ matrixOutput1 = c</value>
 									<name>ScaleBarLength</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>9.99899999999999949e+01</value>
 									</value>
 								</second>
 							</item>
@@ -2004,7 +2119,7 @@ matrixOutput1 = c</value>
 									<name>ScaleBarMultiplier</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -2016,7 +2131,7 @@ matrixOutput1 = c</value>
 									<name>ScaleBarNumTicks</name>
 									<value>
 										<which>0</which>
-										<value>11</value>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -2428,7 +2543,7 @@ matrixOutput1 = c</value>
 									<name>ScaleBarFontSize</name>
 									<value>
 										<which>0</which>
-										<value>8</value>
+										<value>1</value>
 									</value>
 								</second>
 							</item>
@@ -2440,7 +2555,7 @@ matrixOutput1 = c</value>
 									<name>ScaleBarHeight</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -2452,7 +2567,7 @@ matrixOutput1 = c</value>
 									<name>ScaleBarLength</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -2476,7 +2591,7 @@ matrixOutput1 = c</value>
 									<name>ScaleBarMultiplier</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -2488,7 +2603,7 @@ matrixOutput1 = c</value>
 									<name>ScaleBarNumTicks</name>
 									<value>
 										<which>0</which>
-										<value>11</value>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -2616,9 +2731,61 @@ matrixOutput1 = c</value>
 					</state>
 				</second>
 			</item>
+			<item>
+				<first>WriteMatrix:0</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>DataIO</category_name_>
+						<module_name_>WriteMatrix</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>3</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>FileTypeList</name>
+								</first>
+								<second>
+									<name>FileTypeList</name>
+									<value>
+										<which>2</which>
+										<value>SCIRun Matrix Binary (*.mat);;SCIRun Matrix ASCII (*.mat);;ECGSimFile (*.*);;Matlab Matrix (*.mat);;SimpleTextFile (*.*)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FileTypeName</name>
+								</first>
+								<second>
+									<name>FileTypeName</name>
+									<value>
+										<which>2</which>
+										<value>Matlab Matrix</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Filename</name>
+								</first>
+								<second>
+									<name>Filename</name>
+									<value>
+										<which>2</which>
+										<value>%SCIRUNDATADIR%/Data/gauss_newton_act_inv/tuiinit.mat</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
 		</modules>
 		<connections class_id="13" tracking_level="0" version="0">
-			<count>22</count>
+			<count>27</count>
 			<item_version>0</item_version>
 			<item class_id="14" tracking_level="0" version="0">
 				<moduleId1_>BuildNoiseColumnMatrix:0</moduleId1_>
@@ -2681,6 +2848,18 @@ matrixOutput1 = c</value>
 				</port2_>
 			</item>
 			<item>
+				<moduleId1_>EvaluateLinearAlgebraBinary:0</moduleId1_>
+				<port1_>
+					<name>Result</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>WriteMatrix:0</moduleId2_>
+				<port2_>
+					<name>MatrixToWrite</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
 				<moduleId1_>InterfaceWithPython:1</moduleId1_>
 				<port1_>
 					<name>PythonMatrix1</name>
@@ -2689,6 +2868,18 @@ matrixOutput1 = c</value>
 				<moduleId2_>SetFieldData:0</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>PrintStringIntoString:0</moduleId1_>
+				<port1_>
+					<name>Output</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>WriteMatrix:0</moduleId2_>
+				<port2_>
+					<name>Filename</name>
 					<id>0</id>
 				</port2_>
 			</item>
@@ -2791,6 +2982,18 @@ matrixOutput1 = c</value>
 			<item>
 				<moduleId1_>ReadMatrix:2</moduleId1_>
 				<port1_>
+					<name>FileLoaded</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>SplitFileName:0</moduleId2_>
+				<port2_>
+					<name>Full_Filename</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>ReadMatrix:2</moduleId1_>
+				<port1_>
 					<name>Matrix</name>
 					<id>0</id>
 				</port1_>
@@ -2884,10 +3087,34 @@ matrixOutput1 = c</value>
 					<id>0</id>
 				</port2_>
 			</item>
+			<item>
+				<moduleId1_>SplitFileName:0</moduleId1_>
+				<port1_>
+					<name>Pathname</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>InterfaceWithPython:1</moduleId2_>
+				<port2_>
+					<name>InputString</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>SplitFileName:0</moduleId1_>
+				<port1_>
+					<name>Pathname</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>PrintStringIntoString:0</moduleId2_>
+				<port2_>
+					<name>Input</name>
+					<id>0</id>
+				</port2_>
+			</item>
 		</connections>
 	</networkInfo>
 	<modulePositions class_id="16" tracking_level="0" version="0">
-		<count>17</count>
+		<count>20</count>
 		<item_version>0</item_version>
 		<item class_id="17" tracking_level="0" version="0">
 			<first>BuildNoiseColumnMatrix:0</first>
@@ -2906,8 +3133,8 @@ matrixOutput1 = c</value>
 		<item>
 			<first>ConvertMatrixType:0</first>
 			<second>
-				<first>6.90000000000000000e+01</first>
-				<second>-1.18000000000000000e+02</second>
+				<first>-5.50000000000000000e+01</first>
+				<second>-1.16000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -2927,21 +3154,28 @@ matrixOutput1 = c</value>
 		<item>
 			<first>InterfaceWithPython:1</first>
 			<second>
-				<first>-8.59499999999999602e+01</first>
-				<second>6.07500000000000000e+01</second>
+				<first>-8.99499999999999602e+01</first>
+				<second>5.37500000000000000e+01</second>
+			</second>
+		</item>
+		<item>
+			<first>PrintStringIntoString:0</first>
+			<second>
+				<first>-2.83000000000000000e+02</first>
+				<second>-2.00000000000000000e+00</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadField:0</first>
 			<second>
 				<first>-2.48000000000000000e+02</first>
-				<second>-3.54000000000000000e+02</second>
+				<second>-3.31000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadMatrix:0</first>
 			<second>
-				<first>-4.77000000000000000e+02</first>
+				<first>-4.73000000000000000e+02</first>
 				<second>-3.50000000000000000e+02</second>
 			</second>
 		</item>
@@ -2995,6 +3229,13 @@ matrixOutput1 = c</value>
 			</second>
 		</item>
 		<item>
+			<first>SplitFileName:0</first>
+			<second>
+				<first>2.75000000000000000e+02</first>
+				<second>-7.40000000000000000e+01</second>
+			</second>
+		</item>
+		<item>
 			<first>ViewScene:0</first>
 			<second>
 				<first>-4.80000000000000000e+02</first>
@@ -3008,6 +3249,13 @@ matrixOutput1 = c</value>
 				<second>5.37000000000000000e+02</second>
 			</second>
 		</item>
+		<item>
+			<first>WriteMatrix:0</first>
+			<second>
+				<first>-3.08000000000000000e+02</first>
+				<second>7.40000000000000000e+01</second>
+			</second>
+		</item>
 	</modulePositions>
 	<moduleNotes class_id="19" tracking_level="0" version="0">
 		<count>11</count>
@@ -3018,8 +3266,8 @@ matrixOutput1 = c</value>
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Lucida Grande UI&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;make noise&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;make noise&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>make noise</noteText>
 				<position>0</position>
 				<fontSize>13</fontSize>
@@ -3031,9 +3279,9 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Lucida Grande UI&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;surface laplacian matrix&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;for regularization&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;surface laplacian matrix&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;for regularization&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>surface laplacian matrix
 for regularization</noteText>
 				<position>0</position>
@@ -3046,8 +3294,8 @@ for regularization</noteText>
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Lucida Grande UI&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;must be dense matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;must be dense matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>must be dense matrix</noteText>
 				<position>0</position>
 				<fontSize>13</fontSize>
@@ -3059,9 +3307,9 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Lucida Grande UI&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;perturb activation times &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;for initial guess&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;perturb activation times &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;for initial guess&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>perturb activation times 
 for initial guess</noteText>
 				<position>0</position>
@@ -3074,10 +3322,10 @@ for initial guess</noteText>
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Lucida Grande UI&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;;&quot;&gt;Executes Gauss Newton calculations.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;;&quot;&gt;Runs matlab in Python.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;;&quot;&gt;Open the Python Console window.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Executes Gauss Newton calculations.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Runs matlab in Python.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Open the Python Console window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Executes Gauss Newton calculations.
 Runs matlab in Python.
 Open the Python Console window.</noteText>
@@ -3091,8 +3339,8 @@ Open the Python Console window.</noteText>
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Lucida Grande UI&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;Heart Geometry&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Heart Geometry&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Heart Geometry</noteText>
 				<position>3</position>
 				<fontSize>13</fontSize>
@@ -3104,8 +3352,8 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Lucida Grande UI&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;True Activation times&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;True Activation times&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>True Activation times</noteText>
 				<position>3</position>
 				<fontSize>13</fontSize>
@@ -3117,8 +3365,8 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Lucida Grande UI&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;Forward Solution Matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Forward Solution Matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Forward Solution Matrix</noteText>
 				<position>3</position>
 				<fontSize>13</fontSize>
@@ -3130,8 +3378,8 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Lucida Grande UI&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;Body surface potentials&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Body surface potentials&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Body surface potentials</noteText>
 				<position>3</position>
 				<fontSize>13</fontSize>
@@ -3143,8 +3391,8 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Lucida Grande UI&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;true activation times&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;true activation times&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>true activation times</noteText>
 				<position>0</position>
 				<fontSize>13</fontSize>
@@ -3156,8 +3404,8 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Lucida Grande UI&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;computed activation times&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;computed activation times&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>computed activation times</noteText>
 				<position>0</position>
 				<fontSize>13</fontSize>
@@ -3169,7 +3417,7 @@ p, li { white-space: pre-wrap; }
 		<item_version>0</item_version>
 	</connectionNotes>
 	<moduleTags class_id="22" tracking_level="0" version="0">
-		<count>17</count>
+		<count>20</count>
 		<item_version>0</item_version>
 		<item class_id="23" tracking_level="0" version="0">
 			<first>BuildNoiseColumnMatrix:0</first>
@@ -3194,6 +3442,10 @@ p, li { white-space: pre-wrap; }
 		<item>
 			<first>InterfaceWithPython:1</first>
 			<second>9</second>
+		</item>
+		<item>
+			<first>PrintStringIntoString:0</first>
+			<second>-1</second>
 		</item>
 		<item>
 			<first>ReadField:0</first>
@@ -3232,12 +3484,20 @@ p, li { white-space: pre-wrap; }
 			<second>3</second>
 		</item>
 		<item>
+			<first>SplitFileName:0</first>
+			<second>-1</second>
+		</item>
+		<item>
 			<first>ViewScene:0</first>
 			<second>3</second>
 		</item>
 		<item>
 			<first>ViewScene:1</first>
 			<second>3</second>
+		</item>
+		<item>
+			<first>WriteMatrix:0</first>
+			<second>-1</second>
 		</item>
 	</moduleTags>
 	<disabledModules class_id="24" tracking_level="0" version="0">

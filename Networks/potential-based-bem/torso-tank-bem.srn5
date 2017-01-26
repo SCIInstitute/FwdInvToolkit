@@ -306,8 +306,32 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>25</count>
+							<count>27</count>
 							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>BoxMode</name>
+								</first>
+								<second>
+									<name>BoxMode</name>
+									<value>
+										<which>0</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>BoxRealScale</name>
+								</first>
+								<second>
+									<name>BoxRealScale</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
 							<item>
 								<first>
 									<name>InputCenterX</name>
@@ -400,7 +424,7 @@
 									<name>OutputCenterX</name>
 									<value>
 										<which>1</which>
-										<value>-1.51700000000000017e+01</value>
+										<value>-1.51699999999999999e+01</value>
 									</value>
 								</second>
 							</item>
@@ -568,7 +592,7 @@
 									<name>Scale</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000006e-01</value>
+										<value>1.45519152283668518e+00</value>
 									</value>
 								</second>
 							</item>
@@ -1320,7 +1344,7 @@
 									<name>ccInv</name>
 									<value>
 										<which>1</which>
-										<value>2.12149963157642896e-02</value>
+										<value>2.12149963157644006e-02</value>
 									</value>
 								</second>
 							</item>
@@ -1332,7 +1356,7 @@
 									<name>rmsRel</name>
 									<value>
 										<which>1</which>
-										<value>1.26051816876977574e+00</value>
+										<value>1.26051816876975753e+00</value>
 									</value>
 								</second>
 							</item>
@@ -1372,7 +1396,7 @@
 									<name>FixedMax</name>
 									<value>
 										<which>1</which>
-										<value>2.43337597424018892e-01</value>
+										<value>2.43337597424019753e-01</value>
 									</value>
 								</second>
 							</item>
@@ -1384,7 +1408,7 @@
 									<name>FixedMin</name>
 									<value>
 										<which>1</which>
-										<value>-2.82538420207060437e-01</value>
+										<value>-2.82538420207058827e-01</value>
 									</value>
 								</second>
 							</item>
@@ -1822,7 +1846,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>37</count>
+							<count>40</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -1946,6 +1970,18 @@
 							</item>
 							<item>
 								<first>
+									<name>EdgesColoring</name>
+								</first>
+								<second>
+									<name>EdgesColoring</name>
+									<value>
+										<which>0</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>FaceInvertNormals</name>
 								</first>
 								<second>
@@ -1988,6 +2024,18 @@
 									<name>FacesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FacesColoring</name>
+								</first>
+								<second>
+									<name>FacesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -2060,6 +2108,18 @@
 									<name>NodesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>NodesColoring</name>
+								</first>
+								<second>
+									<name>NodesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -2282,7 +2342,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>37</count>
+							<count>40</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -2304,7 +2364,7 @@
 									<name>CylinderRadius</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000006e-01</value>
+										<value>5.00000000000000000e-01</value>
 									</value>
 								</second>
 							</item>
@@ -2406,6 +2466,18 @@
 							</item>
 							<item>
 								<first>
+									<name>EdgesColoring</name>
+								</first>
+								<second>
+									<name>EdgesColoring</name>
+									<value>
+										<which>0</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>FaceInvertNormals</name>
 								</first>
 								<second>
@@ -2448,6 +2520,18 @@
 									<name>FacesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FacesColoring</name>
+								</first>
+								<second>
+									<name>FacesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -2520,6 +2604,18 @@
 									<name>NodesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>NodesColoring</name>
+								</first>
+								<second>
+									<name>NodesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -2742,7 +2838,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>37</count>
+							<count>40</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -2866,6 +2962,18 @@
 							</item>
 							<item>
 								<first>
+									<name>EdgesColoring</name>
+								</first>
+								<second>
+									<name>EdgesColoring</name>
+									<value>
+										<which>0</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>FaceInvertNormals</name>
 								</first>
 								<second>
@@ -2908,6 +3016,18 @@
 									<name>FacesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FacesColoring</name>
+								</first>
+								<second>
+									<name>FacesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -2980,6 +3100,18 @@
 									<name>NodesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>NodesColoring</name>
+								</first>
+								<second>
+									<name>NodesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -3589,7 +3721,7 @@
 									<name>ScaleBarFontSize</name>
 									<value>
 										<which>0</which>
-										<value>8</value>
+										<value>1</value>
 									</value>
 								</second>
 							</item>
@@ -3601,7 +3733,7 @@
 									<name>ScaleBarHeight</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -3613,7 +3745,7 @@
 									<name>ScaleBarLength</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -3637,7 +3769,7 @@
 									<name>ScaleBarMultiplier</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -3649,7 +3781,7 @@
 									<name>ScaleBarNumTicks</name>
 									<value>
 										<which>0</which>
-										<value>11</value>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -3862,7 +3994,7 @@
 				<moduleId2_>ViewScene:19</moduleId2_>
 				<port2_>
 					<name>GeneralGeom</name>
-					<id>5</id>
+					<id>10</id>
 				</port2_>
 			</item>
 			<item>
