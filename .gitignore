@@ -1,0 +1,9 @@
+*DS_Store
+Documentation/*.aux
+Documentation/*.blg
+Documentation/*.bbl
+Documentation/*.log
+Documentation/*.out
+Documentation/*.toc
+Documentation/*.synctex.gz
+Documentation/*.pdf
