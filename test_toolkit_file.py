@@ -19,6 +19,10 @@ networks = toolkit[0]
 for child in networks:
     print(child.tag, child.attrib)
 
+# count is first:
+assert networks[0].tag == 'count'
+# update actual network count here:
+assert networks[0].text == '11'
 
 # remove when done with real code
 assert False
