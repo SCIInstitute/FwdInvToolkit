@@ -9,9 +9,10 @@ assert os.path.isfile(toolkit)
 tree = ET.parse(toolkit)
 root = tree.getroot()
 
-print(root.tag)
-print(root.attrib)
-for child in root:
+
+assert root.tag == 'boost_serialization'
+assert len(root) == 1
+for child in root[0]:
     print(child.tag, child.attrib)
 
 
