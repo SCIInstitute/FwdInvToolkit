@@ -24,5 +24,15 @@ assert networks[0].tag == 'count'
 # update actual network count here:
 assert networks[0].text == '11'
 
+# item_version next:
+assert networks[1].text == 'item_version'
+
+# get actual network items:
+network_items = networks[2:]
+
+expected_network_count = int(networks[0].text)
+
+assert len(network_items) == expected_network_count
+
 # remove when done with real code
 assert False
