@@ -35,11 +35,19 @@ def test_toolkit_file():
         assert len(child) == 2
         assert child[0].tag == 'first'
         assert child[1].tag == 'second'
-        print(child[0].text)
+        network_file = child[0].text
+        assert(os.path.isfile('Networks/' + network_file))
         network_xml = child[1]
-        for component in network_xml:
-            print(component.tag)
-        assert child[1][0].tag == 'networkInfo'
+        assert len(network_xml) == 9 # update when version changes
+        assert network_xml[0].tag == 'networkInfo'
+        assert network_xml[1].tag == 'modulePositions'
+        assert network_xml[2].tag == 'moduleNotes'
+        assert network_xml[3].tag == 'connectionNotes'
+        assert network_xml[4].tag == 'moduleTags'
+        assert network_xml[5].tag == 'disabledModules'
+        assert network_xml[6].tag == 'disabledConnections'
+        assert network_xml[7].tag == 'moduleTagLabels'
+        assert network_xml[8].tag == 'loadTagGroups'
 
     # remove when done with real code
     assert False
