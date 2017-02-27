@@ -16,7 +16,7 @@ def verify_network_node(network_xml):
 def compare_toolkit_network_versions(toolkit_version, network_file):
     file = 'Networks/' + network_file
     assert(os.path.isfile(file))
-    assert ET.tostring(toolkit_version) == ET.parse(file).getroot()
+    assert ET.tostring(toolkit_version) == ET.tostring(ET.parse(file).getroot())
 
 def test_toolkit_file():
     toolkit_file = 'Networks/FwdInvToolkit.toolkit'
