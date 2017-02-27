@@ -1,4 +1,9 @@
 import xml.etree.ElementTree as ET
+import os
 
-tree = ET.parse('Networks/FwdInvToolkit.toolkit')
+toolkit = 'Networks/FwdInvToolkit.toolkit'
+
+assert os.path.isfile(toolkit)
+
+tree = ET.parse(toolkit)
 root = tree.getroot()
