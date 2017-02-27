@@ -35,4 +35,4 @@ expected_network_count = int(networks[0].text)
 assert len(network_items) == expected_network_count
 
 # remove when done with real code
-#assert False
+assert False
