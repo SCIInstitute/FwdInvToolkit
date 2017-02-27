@@ -36,8 +36,10 @@ def test_toolkit_file():
         assert child[0].tag == 'first'
         assert child[1].tag == 'second'
         print(child[0].text)
-        assert len(child[1]) == 1
+        network_xml = child[1]
+        for component in network_xml:
+            print(component.tag)
         assert child[1][0].tag == 'networkInfo'
 
     # remove when done with real code
-    #assert False
+    assert False
