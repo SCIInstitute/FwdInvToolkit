@@ -34,5 +34,13 @@ expected_network_count = int(networks[0].text)
 
 assert len(network_items) == expected_network_count
 
+for child in network_items:
+    assert len(child) == 2
+    assert child[0].tag == 'first'
+    assert child[1].tag == 'second'
+    print(child[0].text)
+    assert len(child[1]) == 1
+    assert child[1][0].tag == 'networkInfo'
+
 # remove when done with real code
 assert False
