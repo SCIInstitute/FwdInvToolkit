@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 import os
+import glob
 
 def verify_network_node(network_xml):
     assert len(network_xml) == 9 # update when version changes
@@ -69,16 +70,19 @@ def test_toolkit_file():
 
     expected_network_count = int(networks[0].text)
 
+    network_files = glob.glob('Networks/*/*.srn5')
+    # for filename in network_files:
+    #     print(filename)
+
     assert len(network_items) == expected_network_count
+    assert len(network_files) == expected_network_count
 
     for child in network_items:
         assert len(child) == 2
         assert child[0].tag == 'first'
         assert child[1].tag == 'second'
         network_file = child[0].text
+        assert ('Networks/' + network_file) in network_files
         network_xml = child[1]
         verify_network_node(network_xml)
         compare_toolkit_network_versions(network_xml, network_file)
-
-    # remove when done with real code
-    #assert False
