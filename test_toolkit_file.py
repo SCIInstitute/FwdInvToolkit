@@ -86,3 +86,6 @@ def test_toolkit_file():
         network_xml = child[1]
         verify_network_node(network_xml)
         compare_toolkit_network_versions(network_xml, network_file)
+
+    # dummy code to trigger build
+    assert False
