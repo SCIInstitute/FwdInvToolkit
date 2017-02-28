@@ -13,12 +13,25 @@ def verify_network_node(network_xml):
     assert network_xml[7].tag == 'moduleTagLabels'
     assert network_xml[8].tag == 'loadTagGroups'
 
+def trim_all_whitespace(s):
+    if s is not None:
+        return "".join(s.split())
+    return None
+
 def elements_equal(e1, e2):
-    if e1.tag != e2.tag: return False
-    if e1.text != e2.text: return False
-    if e1.tail != e2.tail: return False
+    if e1.tag != e2.tag:
+        print("tags not equal")
+        return False
+    if trim_all_whitespace(e1.text) != trim_all_whitespace(e2.text):
+        print("text not equal: ", e1.text, e2.text)
+        return False
+    if trim_all_whitespace(e1.tail) != trim_all_whitespace(e2.tail):
+        print("tail not equal: ", e1.tail, e2.tail)
+        return False
     #if e1.attrib != e2.attrib: return False
-    if len(e1) != len(e2): return False
+    if len(e1) != len(e2):
+        print("child count not equal")
+        return False
     return all(elements_equal(c1, c2) for c1, c2 in zip(e1, e2))
 
 def compare_toolkit_network_versions(toolkit_version, network_file):
@@ -68,4 +81,4 @@ def test_toolkit_file():
         compare_toolkit_network_versions(network_xml, network_file)
 
     # remove when done with real code
-    assert False
+    #assert False
