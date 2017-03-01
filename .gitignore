@@ -9,3 +9,4 @@ Documentation/*.toc
 Documentation/*.synctex.gz
 Documentation/*.pdf
 __pycache__
+.cache
