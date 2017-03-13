@@ -447,7 +447,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>22</count>
+							<count>25</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -523,6 +523,30 @@
 							</item>
 							<item>
 								<first>
+									<name>InputField:6</name>
+								</first>
+								<second>
+									<name>InputField:6</name>
+									<value>
+										<which>2</which>
+										<value>fieldInput2</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>InputField:7</name>
+								</first>
+								<second>
+									<name>InputField:7</name>
+									<value>
+										<which>2</which>
+										<value>fieldInput3</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>InputMatrix:0</name>
 								</first>
 								<second>
@@ -565,7 +589,19 @@
 									<name>InputMatrix:3</name>
 									<value>
 										<which>2</which>
-										<value>matrixInput4</value>
+										<value>matrixInput2</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>InputMatrix:4</name>
+								</first>
+								<second>
+									<name>InputMatrix:4</name>
+									<value>
+										<which>2</which>
+										<value>matrixInput3</value>
 									</value>
 								</second>
 							</item>
@@ -607,13 +643,6 @@
 sys.path.append(os.environ[&apos;SCIRUNDATADIR&apos;]+&apos;/PythonLibrary/MFS_inverse&apos;)
 from mfs_inverse import *
 
-
-# modify geometry for visualization
-
-
-
-#mfs inverse
-
 scale_out = 40.0
 scale_in = 10.0
 
@@ -625,6 +654,24 @@ tank_pot = matrixInput1
 electnodes = matrixInput2
 lmbd = matrixInput3
 
+# modify geometry for visualization
+print(len(tank[&apos;node&apos;]))
+print(electnodes[100][0])
+
+new_tank_node=[]
+new_tank_face=[]
+for k in electnodes:
+  k_t = int(k[0])
+  new_tank_node.append(tank[&apos;node&apos;][k_t])
+
+
+new_tank = {&apos;node&apos; : new_tank_node,&apos;meshtype&apos;: &apos;PointCloudMesh&apos;}
+
+print(tank)
+print(new_tank)
+
+
+outputField1 = new_tank
 
 # run mfs inverse
 epis = mfs_inverse(heart,tank,sock_pts,tank_pot,electnodes,lmbd[0][0],scale_out,scale_in)
@@ -949,7 +996,7 @@ matrixOutput1 = epi_out
 									<name>InterpolationModel</name>
 									<value>
 										<which>2</which>
-										<value>interpolateddata</value>
+										<value>closestnodedata</value>
 									</value>
 								</second>
 							</item>
@@ -1405,7 +1452,7 @@ matrixOutput1 = epi_out
 									<name>FixedMax</name>
 									<value>
 										<which>1</which>
-										<value>9.18214394725856664e+00</value>
+										<value>8.20278959281147202e+00</value>
 									</value>
 								</second>
 							</item>
@@ -1417,7 +1464,7 @@ matrixOutput1 = epi_out
 									<name>FixedMin</name>
 									<value>
 										<which>1</which>
-										<value>-1.38017841816456173e+01</value>
+										<value>-1.30251228068234237e+01</value>
 									</value>
 								</second>
 							</item>
@@ -1973,7 +2020,7 @@ matrixOutput1 = epi_out
 									<name>NodeAsSpheres</name>
 									<value>
 										<which>0</which>
-										<value>0</value>
+										<value>1</value>
 									</value>
 								</second>
 							</item>
@@ -2165,7 +2212,7 @@ matrixOutput1 = epi_out
 									<name>SphereScaleValue</name>
 									<value>
 										<which>1</which>
-										<value>2.99999999999999989e-02</value>
+										<value>1.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -6029,7 +6076,7 @@ matrixOutput1 = epi_out
 									<name>LCurveText</name>
 									<value>
 										<which>2</which>
-										<value>SolveInverseProblemWithTikhonov:0 plot_graph &quot; -0.302487 2.01079 -0.301 1.97991 -0.299458 1.95587 -0.297737 1.93626 -0.29563 1.91897 -0.292778 1.90218 -0.28858 1.88433 -0.282052 1.86393 -0.27176 1.83954 -0.256054 1.8101 -0.233829 1.77534 -0.205364 1.73622 -0.172241 1.69456 -0.136056 1.65186 -0.0971803 1.6081 -0.054962 1.56176 -0.00924958 1.51125 0.03836 1.45649 0.0850709 1.39958 0.128752 1.34358 0.169384 1.29004 0.209116 1.23722 0.250935 1.1806 0.296494 1.11491 0.344549 1.03599 0.391506 0.941861 0.433568 0.833149 0.468475 0.71304 0.495856 0.586732 0.516686 0.460102 0.532556 0.337352 0.545089 0.218683 0.555549 0.10027 0.56464 -0.0231227 0.572554 -0.155366 0.579218 -0.297917 0.584561 -0.450256 0.588637 -0.610811 0.591619 -0.777728 0.593733 -0.949314 0.595195 -1.1242 0.596191 -1.30138 0.596861 -1.4801 0.597308 -1.65986 0.597606 -1.84032 0.597803 -2.02124 0.597933 -2.20247 0.598019 -2.3839 0.598076 -2.56546 0.598113 -2.74711 0.598138 -2.92881 0.598154 -3.11056 0.598164 -3.29233 0.598171 -3.47412 0.598176 -3.65591 0.598179 -3.83772 0.598181 -4.01953 0.598182 -4.20134 0.598183 -4.38315 0.598184 -4.56497 0.598184 -4.74679 0.598184 -4.9286 0.598185 -5.11042 0.598185 -5.29224 0.598185 -5.47406 0.598185 -5.65587 0.598185 -5.83769 0.598185 -6.01951 0.598185 -6.20133 0.598185 -6.38315 0.598185 -6.56496 0.598185 -6.74678 0.598185 -6.9286 0.598185 -7.11042 0.598185 -7.29224 0.598185 -7.47405 0.598185 -7.65587 0.598185 -7.83769 0.598185 -8.01951 0.598185 -8.20133 0.598185 -8.38315 0.598185 -8.56496 0.598185 -8.74678 0.598185 -8.9286 0.598185 -9.11042 0.598185 -9.29224 0.598185 -9.47405 0.598185 -9.65587 0.598185 -9.83769 0.598185 -10.0195 0.598185 -10.2013 0.598185 -10.3831 0.598185 -10.565 0.598185 -10.7468 0.598185 -10.9286 0.598185 -11.1104 0.598185 -11.2922 0.598185 -11.4741 0.598185 -11.6559 0.598185 -11.8377 &quot; &quot; -1.30249 1.88433 -0.28858 1.88433 -0.28858 -11.8377 &quot; 0.00351119 6 ; 
+										<value>SolveInverseProblemWithTikhonov:0 plot_graph &quot; -0.423593 1.97496 -0.421694 1.94865 -0.419533 1.92647 -0.416981 1.90732 -0.413856 1.89036 -0.409821 1.8746 -0.40418 1.85871 -0.395629 1.84108 -0.382166 1.8201 -0.36155 1.79463 -0.332466 1.76444 -0.295556 1.73031 -0.252955 1.69359 -0.20648 1.6551 -0.15643 1.61422 -0.102385 1.56927 -0.0451442 1.51883 0.0124523 1.4632 0.0668752 1.40489 0.116029 1.3474 0.160376 1.29259 0.202615 1.23891 0.24616 1.18182 0.29295 1.11597 0.341909 1.03708 0.389546 0.943097 0.432129 0.834556 0.467434 0.714586 0.495116 0.588331 0.516168 0.461641 0.532199 0.338728 0.544846 0.219844 0.555386 0.10122 0.564532 -0.0223437 0.572482 -0.154712 0.579171 -0.297351 0.58453 -0.449748 0.588617 -0.610342 0.591606 -0.777286 0.593724 -0.948889 0.595189 -1.12379 0.596187 -1.30097 0.596858 -1.4797 0.597307 -1.65946 0.597605 -1.83993 0.597802 -2.02085 0.597933 -2.20208 0.598019 -2.3835 0.598076 -2.56507 0.598113 -2.74671 0.598138 -2.92842 0.598154 -3.11017 0.598164 -3.29194 0.598171 -3.47372 0.598176 -3.65552 0.598179 -3.83733 0.598181 -4.01913 0.598182 -4.20095 0.598183 -4.38276 0.598184 -4.56458 0.598184 -4.74639 0.598184 -4.92821 0.598185 -5.11003 0.598185 -5.29185 0.598185 -5.47366 0.598185 -5.65548 0.598185 -5.8373 0.598185 -6.01912 0.598185 -6.20094 0.598185 -6.38275 0.598185 -6.56457 0.598185 -6.74639 0.598185 -6.92821 0.598185 -7.11003 0.598185 -7.29184 0.598185 -7.47366 0.598185 -7.65548 0.598185 -7.8373 0.598185 -8.01912 0.598185 -8.20094 0.598185 -8.38275 0.598185 -8.56457 0.598185 -8.74639 0.598185 -8.92821 0.598185 -9.11003 0.598185 -9.29184 0.598185 -9.47366 0.598185 -9.65548 0.598185 -9.8373 0.598185 -10.0191 0.598185 -10.2009 0.598185 -10.3828 0.598185 -10.5646 0.598185 -10.7464 0.598185 -10.9282 0.598185 -11.11 0.598185 -11.2918 0.598185 -11.4737 0.598185 -11.6555 0.598185 -11.8373 &quot; &quot; -1.42359 1.85871 -0.40418 1.85871 -0.40418 -11.8373 &quot; 0.00351119 6 ; 
 </value>
 									</value>
 								</second>
@@ -6498,7 +6545,7 @@ matrixOutput1 = epi_out
 									<name>ScaleBarHeight</name>
 									<value>
 										<which>1</which>
-										<value>9.99899999999999949e+01</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -6510,7 +6557,7 @@ matrixOutput1 = epi_out
 									<name>ScaleBarLength</name>
 									<value>
 										<which>1</which>
-										<value>9.99899999999999949e+01</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -7490,7 +7537,7 @@ matrixOutput1 = epi_out
 									<name>ScaleBarNumTicks</name>
 									<value>
 										<which>0</which>
-										<value>1</value>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -7628,18 +7675,6 @@ matrixOutput1 = epi_out
 					<name>OutputField</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>InterfaceWithPython:0</moduleId2_>
-				<port2_>
-					<name>InputField</name>
-					<id>4</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>AlignMeshBoundingBoxes:0</moduleId1_>
-				<port1_>
-					<name>OutputField</name>
-					<id>0</id>
-				</port1_>
 				<moduleId2_>ShowField:12</moduleId2_>
 				<port2_>
 					<name>Field</name>
@@ -7703,7 +7738,7 @@ matrixOutput1 = epi_out
 				<moduleId2_>InterfaceWithPython:0</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
-					<id>2</id>
+					<id>4</id>
 				</port2_>
 			</item>
 			<item>
@@ -7763,6 +7798,18 @@ matrixOutput1 = epi_out
 				<moduleId2_>SelectSubMatrix:2</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>InterfaceWithPython:0</moduleId1_>
+				<port1_>
+					<name>PythonField1</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>SetFieldData:1</moduleId2_>
+				<port2_>
+					<name>InputField</name>
 					<id>0</id>
 				</port2_>
 			</item>
@@ -7863,6 +7910,18 @@ matrixOutput1 = epi_out
 				</port2_>
 			</item>
 			<item>
+				<moduleId1_>ReadField:10</moduleId1_>
+				<port1_>
+					<name>Field</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>InterfaceWithPython:0</moduleId2_>
+				<port2_>
+					<name>InputField</name>
+					<id>6</id>
+				</port2_>
+			</item>
+			<item>
 				<moduleId1_>ReadField:1</moduleId1_>
 				<port1_>
 					<name>Field</name>
@@ -7883,18 +7942,6 @@ matrixOutput1 = epi_out
 				<moduleId2_>InterfaceWithTetGen:0</moduleId2_>
 				<port2_>
 					<name>Main</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>ReadField:1</moduleId1_>
-				<port1_>
-					<name>Field</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>SetFieldData:1</moduleId2_>
-				<port2_>
-					<name>InputField</name>
 					<id>0</id>
 				</port2_>
 			</item>
@@ -8019,18 +8066,6 @@ matrixOutput1 = epi_out
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>ReadMatrix:1</moduleId1_>
-				<port1_>
-					<name>Matrix</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>InterfaceWithPython:0</moduleId2_>
-				<port2_>
-					<name>InputMatrix</name>
-					<id>1</id>
-				</port2_>
-			</item>
-			<item>
 				<moduleId1_>RescaleColorMap:0</moduleId1_>
 				<port1_>
 					<name>ColorMapOutput</name>
@@ -8076,6 +8111,18 @@ matrixOutput1 = epi_out
 				<port2_>
 					<name>ForwardMatrix</name>
 					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>SelectSubMatrix:2</moduleId1_>
+				<port1_>
+					<name>ResultMatrix</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>InterfaceWithPython:0</moduleId2_>
+				<port2_>
+					<name>InputMatrix</name>
+					<id>3</id>
 				</port2_>
 			</item>
 			<item>
@@ -8291,7 +8338,7 @@ matrixOutput1 = epi_out
 				<moduleId2_>InterfaceWithPython:0</moduleId2_>
 				<port2_>
 					<name>InputField</name>
-					<id>5</id>
+					<id>7</id>
 				</port2_>
 			</item>
 			<item>
@@ -8418,15 +8465,15 @@ matrixOutput1 = epi_out
 		<item>
 			<first>GetFieldData:0</first>
 			<second>
-				<first>1.65000000000000000e+02</first>
-				<second>-2.38000000000000000e+02</second>
+				<first>2.83000000000000000e+02</first>
+				<second>-2.29000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>InterfaceWithPython:0</first>
 			<second>
-				<first>-4.23000000000000000e+02</first>
-				<second>-1.60000000000000000e+01</second>
+				<first>-2.89000000000000000e+02</first>
+				<second>-1.30000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
@@ -8439,8 +8486,8 @@ matrixOutput1 = epi_out
 		<item>
 			<first>MapFieldDataOntoNodes:0</first>
 			<second>
-				<first>1.38000000000000000e+02</first>
-				<second>-3.25000000000000000e+02</second>
+				<first>2.63000000000000000e+02</first>
+				<second>-3.28000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -8468,7 +8515,7 @@ matrixOutput1 = epi_out
 			<first>ReadField:2</first>
 			<second>
 				<first>-4.87000000000000000e+02</first>
-				<second>-5.50000000000000000e+02</second>
+				<second>-5.51000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -8537,8 +8584,8 @@ matrixOutput1 = epi_out
 		<item>
 			<first>SetFieldData:1</first>
 			<second>
-				<first>-1.39000000000000000e+02</first>
-				<second>2.90000000000000000e+01</second>
+				<first>-1.57000000000000000e+02</first>
+				<second>8.90000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
@@ -8572,8 +8619,8 @@ matrixOutput1 = epi_out
 		<item>
 			<first>ShowField:13</first>
 			<second>
-				<first>3.65000000000000000e+02</first>
-				<second>-2.62000000000000000e+02</second>
+				<first>4.51000000000000000e+02</first>
+				<second>-2.52000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -8622,14 +8669,14 @@ matrixOutput1 = epi_out
 			<first>TransformMeshWithTransform:0</first>
 			<second>
 				<first>-6.20000000000000000e+01</first>
-				<second>-8.90000000000000000e+01</second>
+				<second>-9.00000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
 			<first>TransformMeshWithTransform:1</first>
 			<second>
-				<first>-2.12000000000000000e+02</first>
-				<second>-2.32000000000000000e+02</second>
+				<first>-2.99000000000000000e+02</first>
+				<second>-2.68000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
