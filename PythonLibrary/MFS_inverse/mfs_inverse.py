@@ -200,8 +200,8 @@ def assign_elec(electrodes,torso,torso_norms):
     elec_pts = zeros([len(electrodes),3])
     elec_norms = zeros([len(electrodes),3])
     for i in range(len(electrodes)):
-        elec_pts[i,:] = torso[electrodes[i],:]
-        elec_norms[i,:] = torso_norms[electrodes[i],:]
+        elec_pts[i,:] = torso[int(electrodes[i]),:]
+        elec_norms[i,:] = torso_norms[int(electrodes[i]),:]
 
     return elec_pts,elec_norms
 
