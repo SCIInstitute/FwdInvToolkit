@@ -43,7 +43,7 @@
     5) electrodes - list of of ints that maps the jacket (measurement)
     electrodes to the tank surface node numbers.
 
-    6) lambda - the value of the regularisation parameter.
+    6) lmbd - the value of the regularisation parameter.
 
     7) scale_out - distance to move points of the tank surface
     
