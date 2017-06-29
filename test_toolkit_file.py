@@ -3,7 +3,7 @@ import os
 import glob
 
 def verify_network_node(network_xml):
-    assert len(network_xml) == 9 # update when version changes
+    assert len(network_xml) == 10 # update when version changes
     assert network_xml[0].tag == 'networkInfo'
     assert network_xml[1].tag == 'modulePositions'
     assert network_xml[2].tag == 'moduleNotes'
