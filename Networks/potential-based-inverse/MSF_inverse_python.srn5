@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="12">
-<networkFile class_id="0" tracking_level="0" version="5">
+<networkFile class_id="0" tracking_level="0" version="6">
 	<networkInfo class_id="1" tracking_level="0" version="0">
 		<modules class_id="2" tracking_level="0" version="0">
-			<count>44</count>
+			<count>43</count>
 			<item_version>0</item_version>
 			<item class_id="3" tracking_level="0" version="0">
 				<first>AlignMeshBoundingBoxes:0</first>
@@ -808,178 +808,6 @@ matrixOutput1 = epi_out
 									<value>
 										<which>2</which>
 										<value>stringOutput3</value>
-									</value>
-								</second>
-							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
-				<first>InterfaceWithTetGen:0</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>NewField</category_name_>
-						<module_name_>InterfaceWithTetGen</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>13</count>
-							<item_version>0</item_version>
-							<item>
-								<first>
-									<name>AssignFlag</name>
-								</first>
-								<second>
-									<name>AssignFlag</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>DetectIntersectionsFlag</name>
-								</first>
-								<second>
-									<name>DetectIntersectionsFlag</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>MaxVolConstraint</name>
-								</first>
-								<second>
-									<name>MaxVolConstraint</name>
-									<value>
-										<which>1</which>
-										<value>1.00000000000000006e-01</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>MinRadius</name>
-								</first>
-								<second>
-									<name>MinRadius</name>
-									<value>
-										<which>1</which>
-										<value>2.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>MoreSwitches</name>
-								</first>
-								<second>
-									<name>MoreSwitches</name>
-									<value>
-										<which>2</which>
-										<value></value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>PiecewiseFlag</name>
-								</first>
-								<second>
-									<name>PiecewiseFlag</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>QualityFlag</name>
-								</first>
-								<second>
-									<name>QualityFlag</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>SetMaxVolConstraintFlag</name>
-								</first>
-								<second>
-									<name>SetMaxVolConstraintFlag</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>SetNonzeroAttributeFlag</name>
-								</first>
-								<second>
-									<name>SetNonzeroAttributeFlag</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>SetRatioFlag</name>
-								</first>
-								<second>
-									<name>SetRatioFlag</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>SetSplitFlag</name>
-								</first>
-								<second>
-									<name>SetSplitFlag</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>SuppressSplitFlag</name>
-								</first>
-								<second>
-									<name>SuppressSplitFlag</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>VolConstraintFlag</name>
-								</first>
-								<second>
-									<name>VolConstraintFlag</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -7806,7 +7634,7 @@ matrixOutput1 = epi_out
 			</item>
 		</modules>
 		<connections class_id="13" tracking_level="0" version="0">
-			<count>63</count>
+			<count>61</count>
 			<item_version>0</item_version>
 			<item class_id="14" tracking_level="0" version="0">
 				<moduleId1_>AlignMeshBoundingBoxes:0</moduleId1_>
@@ -7989,18 +7817,6 @@ matrixOutput1 = epi_out
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>InterfaceWithTetGen:0</moduleId1_>
-				<port1_>
-					<name>TetVol</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>GetFieldBoundary:0</moduleId2_>
-				<port2_>
-					<name>InputField</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
 				<moduleId1_>MapFieldDataOntoNodes:0</moduleId1_>
 				<port1_>
 					<name>OutputField</name>
@@ -8081,18 +7897,6 @@ matrixOutput1 = epi_out
 				<moduleId2_>AlignMeshBoundingBoxes:0</moduleId2_>
 				<port2_>
 					<name>InputField</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>ReadField:1</moduleId1_>
-				<port1_>
-					<name>Field</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>InterfaceWithTetGen:0</moduleId2_>
-				<port2_>
-					<name>Main</name>
 					<id>0</id>
 				</port2_>
 			</item>
@@ -8567,314 +8371,307 @@ matrixOutput1 = epi_out
 		</connections>
 	</networkInfo>
 	<modulePositions class_id="16" tracking_level="0" version="0">
-		<count>44</count>
+		<count>43</count>
 		<item_version>0</item_version>
 		<item class_id="17" tracking_level="0" version="0">
 			<first>AlignMeshBoundingBoxes:0</first>
 			<second class_id="18" tracking_level="0" version="0">
-				<first>-7.80000000000000000e+01</first>
-				<second>-3.67000000000000000e+02</second>
+				<first>8.30000000000000000e+02</first>
+				<second>2.50000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>BuildBEMatrix:0</first>
 			<second>
-				<first>3.11000000000000000e+02</first>
-				<second>-2.10000000000000000e+01</second>
+				<first>1.21900000000000000e+03</first>
+				<second>5.96000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ClipFieldByFunction:2</first>
 			<second>
-				<first>-8.92000000000000000e+02</first>
-				<second>3.28000000000000000e+02</second>
+				<first>1.60000000000000000e+01</first>
+				<second>9.45000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>CreateFieldData:0</first>
 			<second>
-				<first>2.40000000000000000e+02</first>
-				<second>-4.18000000000000000e+02</second>
+				<first>1.14800000000000000e+03</first>
+				<second>1.99000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>CreateMatrix:0</first>
 			<second>
-				<first>-1.84000000000000000e+02</first>
-				<second>-4.39000000000000000e+02</second>
+				<first>7.24000000000000000e+02</first>
+				<second>1.78000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>CreateStandardColorMap:0</first>
 			<second>
-				<first>-5.55000000000000000e+02</first>
-				<second>7.40000000000000000e+01</second>
+				<first>3.53000000000000000e+02</first>
+				<second>6.91000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>EvaluateLinearAlgebraUnary:0</first>
 			<second>
-				<first>4.40000000000000000e+01</first>
-				<second>-2.24000000000000000e+02</second>
+				<first>9.52000000000000000e+02</first>
+				<second>3.93000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>GetFieldBoundary:0</first>
 			<second>
-				<first>-8.42000000000000000e+02</first>
-				<second>2.03000000000000000e+02</second>
+				<first>6.60000000000000000e+01</first>
+				<second>8.20000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>GetFieldData:0</first>
 			<second>
-				<first>2.83000000000000000e+02</first>
-				<second>-2.29000000000000000e+02</second>
+				<first>1.19100000000000000e+03</first>
+				<second>3.88000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>InterfaceWithPython:0</first>
 			<second>
-				<first>-2.88000000000000000e+02</first>
-				<second>-1.30000000000000000e+01</second>
-			</second>
-		</item>
-		<item>
-			<first>InterfaceWithTetGen:0</first>
-			<second>
-				<first>-8.15000000000000000e+02</first>
-				<second>9.60000000000000000e+01</second>
+				<first>6.20000000000000000e+02</first>
+				<second>6.04000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>MapFieldDataOntoNodes:0</first>
 			<second>
-				<first>2.63000000000000000e+02</first>
-				<second>-3.28000000000000000e+02</second>
+				<first>1.17100000000000000e+03</first>
+				<second>2.89000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadField:0</first>
 			<second>
-				<first>-8.58000000000000000e+02</first>
-				<second>-5.52000000000000000e+02</second>
+				<first>5.00000000000000000e+01</first>
+				<second>6.50000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadField:1</first>
 			<second>
-				<first>-6.85000000000000000e+02</first>
-				<second>-5.45000000000000000e+02</second>
+				<first>2.23000000000000000e+02</first>
+				<second>7.20000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadField:10</first>
 			<second>
-				<first>1.99000000000000000e+02</first>
-				<second>-6.04000000000000000e+02</second>
+				<first>1.10700000000000000e+03</first>
+				<second>1.30000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadField:2</first>
 			<second>
-				<first>-4.87000000000000000e+02</first>
-				<second>-5.51000000000000000e+02</second>
+				<first>4.21000000000000000e+02</first>
+				<second>6.60000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadField:9</first>
 			<second>
-				<first>6.20000000000000000e+01</first>
-				<second>-6.17000000000000000e+02</second>
+				<first>9.70000000000000000e+02</first>
+				<second>0.00000000000000000e+00</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadMatrix:0</first>
 			<second>
-				<first>-4.06000000000000000e+02</first>
-				<second>-4.49000000000000000e+02</second>
+				<first>5.02000000000000000e+02</first>
+				<second>1.68000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadMatrix:1</first>
 			<second>
-				<first>-2.66000000000000000e+02</first>
-				<second>-5.45000000000000000e+02</second>
+				<first>6.42000000000000000e+02</first>
+				<second>7.20000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
 			<first>ReportMatrixInfo:0</first>
 			<second>
-				<first>-3.50000000000000000e+02</first>
-				<second>1.66000000000000000e+02</second>
+				<first>5.58000000000000000e+02</first>
+				<second>7.83000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>RescaleColorMap:0</first>
 			<second>
-				<first>-3.99000000000000000e+02</first>
-				<second>4.34000000000000000e+02</second>
+				<first>5.09000000000000000e+02</first>
+				<second>1.05100000000000000e+03</second>
 			</second>
 		</item>
 		<item>
 			<first>RescaleColorMap:1</first>
 			<second>
-				<first>-1.42000000000000000e+02</first>
-				<second>1.92000000000000000e+02</second>
+				<first>7.66000000000000000e+02</first>
+				<second>8.09000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>RescaleColorMap:2</first>
 			<second>
-				<first>-1.23000000000000000e+02</first>
-				<second>4.29000000000000000e+02</second>
+				<first>7.85000000000000000e+02</first>
+				<second>1.04600000000000000e+03</second>
 			</second>
 		</item>
 		<item>
 			<first>SelectSubMatrix:1</first>
 			<second>
-				<first>3.25000000000000000e+02</first>
-				<second>9.10000000000000000e+01</second>
+				<first>1.23300000000000000e+03</first>
+				<second>7.08000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SelectSubMatrix:2</first>
 			<second>
-				<first>1.71000000000000000e+02</first>
-				<second>-1.21000000000000000e+02</second>
+				<first>1.07900000000000000e+03</first>
+				<second>4.96000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SetFieldData:0</first>
 			<second>
-				<first>-5.34000000000000000e+02</first>
-				<second>1.44000000000000000e+02</second>
+				<first>3.74000000000000000e+02</first>
+				<second>7.61000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SetFieldData:1</first>
 			<second>
-				<first>-1.57000000000000000e+02</first>
-				<second>8.90000000000000000e+01</second>
+				<first>7.51000000000000000e+02</first>
+				<second>7.06000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SetFieldData:2</first>
 			<second>
-				<first>3.26000000000000000e+02</first>
-				<second>3.43000000000000000e+02</second>
+				<first>1.23400000000000000e+03</first>
+				<second>9.60000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SetFieldData:3</first>
 			<second>
-				<first>2.09000000000000000e+02</first>
-				<second>9.10000000000000000e+01</second>
+				<first>1.11700000000000000e+03</first>
+				<second>7.08000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:0</first>
 			<second>
-				<first>-4.46000000000000000e+02</first>
-				<second>5.52000000000000000e+02</second>
+				<first>4.62000000000000000e+02</first>
+				<second>1.16900000000000000e+03</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:1</first>
 			<second>
-				<first>-2.22000000000000000e+02</first>
-				<second>2.84000000000000000e+02</second>
+				<first>6.86000000000000000e+02</first>
+				<second>9.01000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:12</first>
 			<second>
-				<first>2.90000000000000000e+01</first>
-				<second>1.03000000000000000e+02</second>
+				<first>9.37000000000000000e+02</first>
+				<second>7.20000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:13</first>
 			<second>
-				<first>4.51000000000000000e+02</first>
-				<second>-2.52000000000000000e+02</second>
+				<first>1.35900000000000000e+03</first>
+				<second>3.65000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:14</first>
 			<second>
-				<first>-2.74000000000000000e+02</first>
-				<second>-2.81000000000000000e+02</second>
+				<first>6.34000000000000000e+02</first>
+				<second>3.36000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:15</first>
 			<second>
-				<first>1.37000000000000000e+02</first>
-				<second>2.27000000000000000e+02</second>
+				<first>1.04500000000000000e+03</first>
+				<second>8.44000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:18</first>
 			<second>
-				<first>-1.47000000000000000e+02</first>
-				<second>5.33000000000000000e+02</second>
+				<first>7.61000000000000000e+02</first>
+				<second>1.15000000000000000e+03</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:2</first>
 			<second>
-				<first>-8.40000000000000000e+02</first>
-				<second>-2.63000000000000000e+02</second>
+				<first>6.80000000000000000e+01</first>
+				<second>3.54000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:3</first>
 			<second>
-				<first>-8.12000000000000000e+02</first>
-				<second>-1.51000000000000000e+02</second>
+				<first>9.60000000000000000e+01</first>
+				<second>4.66000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SolveInverseProblemWithTikhonov:0</first>
 			<second>
-				<first>3.61000000000000000e+02</first>
-				<second>2.30000000000000000e+02</second>
+				<first>1.26900000000000000e+03</first>
+				<second>8.47000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>TransformMeshWithTransform:0</first>
 			<second>
-				<first>-6.20000000000000000e+01</first>
-				<second>-9.00000000000000000e+01</second>
+				<first>8.46000000000000000e+02</first>
+				<second>5.27000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>TransformMeshWithTransform:1</first>
 			<second>
-				<first>-4.31000000000000000e+02</first>
-				<second>-2.00000000000000000e+02</second>
+				<first>4.77000000000000000e+02</first>
+				<second>4.17000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ViewScene:1</first>
 			<second>
-				<first>-9.08000000000000000e+02</first>
-				<second>-1.40000000000000000e+01</second>
+				<first>0.00000000000000000e+00</first>
+				<second>6.03000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ViewScene:6</first>
 			<second>
-				<first>7.40000000000000000e+01</first>
-				<second>3.73000000000000000e+02</second>
+				<first>9.82000000000000000e+02</first>
+				<second>9.90000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ViewScene:7</first>
 			<second>
-				<first>-3.27000000000000000e+02</first>
-				<second>6.73000000000000000e+02</second>
+				<first>5.81000000000000000e+02</first>
+				<second>1.29000000000000000e+03</second>
 			</second>
 		</item>
 	</modulePositions>
@@ -8969,7 +8766,7 @@ node numbers</noteText>
 		<item_version>0</item_version>
 	</connectionNotes>
 	<moduleTags class_id="22" tracking_level="0" version="0">
-		<count>44</count>
+		<count>43</count>
 		<item_version>0</item_version>
 		<item class_id="23" tracking_level="0" version="0">
 			<first>AlignMeshBoundingBoxes:0</first>
@@ -9009,10 +8806,6 @@ node numbers</noteText>
 		</item>
 		<item>
 			<first>InterfaceWithPython:0</first>
-			<second>-1</second>
-		</item>
-		<item>
-			<first>InterfaceWithTetGen:0</first>
 			<second>-1</second>
 		</item>
 		<item>
@@ -9161,6 +8954,10 @@ node numbers</noteText>
 		<item_version>0</item_version>
 	</moduleTagLabels>
 	<loadTagGroups>0</loadTagGroups>
+	<subnetworks class_id="26" tracking_level="0" version="0">
+		<count>0</count>
+		<item_version>0</item_version>
+	</subnetworks>
 </networkFile>
 </boost_serialization>
 

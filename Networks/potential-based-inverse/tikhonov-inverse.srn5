@@ -2567,7 +2567,7 @@
 									<name>ScaleBarMultiplier</name>
 									<value>
 										<which>1</which>
-										<value>0.00000000000000000e+00</value>
+										<value>9.99899999999999949e+01</value>
 									</value>
 								</second>
 							</item>
@@ -2983,113 +2983,113 @@
 		<item class_id="17" tracking_level="0" version="0">
 			<first>BuildNoiseColumnMatrix:5</first>
 			<second class_id="18" tracking_level="0" version="0">
-				<first>-7.69099999999999909e+02</first>
-				<second>-4.10199999999999932e+02</second>
+				<first>2.68200000000000273e+02</first>
+				<second>4.24800000000000068e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>CreateStandardColorMap:15</first>
 			<second>
-				<first>-1.03000000000000000e+02</first>
-				<second>1.51000000000000000e+02</second>
+				<first>9.34300000000000182e+02</first>
+				<second>9.86000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>EditMeshBoundingBox:11</first>
 			<second>
-				<first>-4.81520874999999933e+02</first>
-				<second>2.28731624999999894e+02</second>
+				<first>5.55779125000000249e+02</first>
+				<second>1.06373162499999989e+03</second>
 			</second>
 		</item>
 		<item>
 			<first>EvaluateLinearAlgebraBinary:4</first>
 			<second>
-				<first>-8.28250000000000000e+02</first>
-				<second>-5.17900000000000091e+02</second>
+				<first>2.09050000000000182e+02</first>
+				<second>3.17099999999999909e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>EvaluateLinearAlgebraBinary:6</first>
 			<second>
-				<first>-8.19000000000000000e+02</first>
-				<second>-2.65000000000000000e+02</second>
+				<first>2.18300000000000182e+02</first>
+				<second>5.70000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>GetMatrixSlice:3</first>
 			<second>
-				<first>-6.62000000000000000e+02</first>
-				<second>-6.75000000000000000e+02</second>
+				<first>3.75300000000000182e+02</first>
+				<second>1.60000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadField:9</first>
 			<second>
-				<first>-4.23000000000000000e+02</first>
-				<second>-8.35000000000000000e+02</second>
+				<first>6.15300000000000182e+02</first>
+				<second>2.90000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadMatrix:1</first>
 			<second>
-				<first>-6.88000000000000000e+02</first>
-				<second>-8.12000000000000000e+02</second>
+				<first>3.49300000000000182e+02</first>
+				<second>2.30000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadMatrix:2</first>
 			<second>
-				<first>-1.03730000000000018e+03</first>
-				<second>-8.08000000000000000e+02</second>
+				<first>0.00000000000000000e+00</first>
+				<second>2.70000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
 			<first>RescaleColorMap:6</first>
 			<second>
-				<first>-1.13000000000000000e+02</first>
-				<second>2.89000000000000000e+02</second>
+				<first>9.24300000000000182e+02</first>
+				<second>1.12400000000000000e+03</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:12</first>
 			<second>
-				<first>-1.53520875000000046e+02</first>
-				<second>3.94881624999999985e+02</second>
+				<first>8.83779125000000136e+02</first>
+				<second>1.22988162499999999e+03</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:13</first>
 			<second>
-				<first>-6.09520874999999933e+02</first>
-				<second>3.94731624999999894e+02</second>
+				<first>4.27779125000000249e+02</first>
+				<second>1.22973162499999989e+03</second>
 			</second>
 		</item>
 		<item>
 			<first>SolveInverseProblemWithTikhonov:0</first>
 			<second>
-				<first>-8.45000000000000000e+02</first>
-				<second>-7.60000000000000000e+01</second>
+				<first>1.92300000000000182e+02</first>
+				<second>7.59000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SwapFieldDataWithMatrixEntries:7</first>
 			<second>
-				<first>-8.55311357187500107e+02</first>
-				<second>4.80227143750000209e+01</second>
+				<first>1.81988642812500075e+02</first>
+				<second>8.83022714375000078e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SwapFieldDataWithMatrixEntries:8</first>
 			<second>
-				<first>-2.93000000000000000e+02</first>
-				<second>-4.58499999999999091e+01</second>
+				<first>7.44300000000000182e+02</first>
+				<second>7.89150000000000091e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ViewScene:15</first>
 			<second>
-				<first>-3.04000000000000000e+02</first>
-				<second>5.33000000000000000e+02</second>
+				<first>7.33300000000000182e+02</first>
+				<second>1.36800000000000000e+03</second>
 			</second>
 		</item>
 	</modulePositions>
