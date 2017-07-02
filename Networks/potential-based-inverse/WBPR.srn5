@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="12">
-<networkFile class_id="0" tracking_level="0" version="5">
+<networkFile class_id="0" tracking_level="0" version="6">
 	<networkInfo class_id="1" tracking_level="0" version="0">
 		<modules class_id="2" tracking_level="0" version="0">
 			<count>12</count>
@@ -898,7 +898,7 @@ matrixOutput2 = c
 					</module>
 					<state>
 						<stateMap>
-							<count>35</count>
+							<count>38</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -1010,6 +1010,18 @@ matrixOutput2 = c
 							</item>
 							<item>
 								<first>
+									<name>EdgesColoring</name>
+								</first>
+								<second>
+									<name>EdgesColoring</name>
+									<value>
+										<which>0</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>FaceInvertNormals</name>
 								</first>
 								<second>
@@ -1052,6 +1064,18 @@ matrixOutput2 = c
 									<name>FacesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FacesColoring</name>
+								</first>
+								<second>
+									<name>FacesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -1112,6 +1136,18 @@ matrixOutput2 = c
 									<name>NodesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>NodesColoring</name>
+								</first>
+								<second>
+									<name>NodesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -1334,7 +1370,7 @@ matrixOutput2 = c
 					</module>
 					<state>
 						<stateMap>
-							<count>38</count>
+							<count>39</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -1608,7 +1644,7 @@ matrixOutput2 = c
 									<name>ScaleBarFontSize</name>
 									<value>
 										<which>0</which>
-										<value>8</value>
+										<value>1</value>
 									</value>
 								</second>
 							</item>
@@ -1620,7 +1656,7 @@ matrixOutput2 = c
 									<name>ScaleBarHeight</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -1632,7 +1668,7 @@ matrixOutput2 = c
 									<name>ScaleBarLength</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -1656,7 +1692,7 @@ matrixOutput2 = c
 									<name>ScaleBarMultiplier</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -1668,7 +1704,7 @@ matrixOutput2 = c
 									<name>ScaleBarNumTicks</name>
 									<value>
 										<which>0</which>
-										<value>11</value>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -1714,6 +1750,18 @@ matrixOutput2 = c
 								</first>
 								<second>
 									<name>ShowScaleBar</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowViewer</name>
+								</first>
+								<second>
+									<name>ShowViewer</name>
 									<value>
 										<which>3</which>
 										<value>0</value>
@@ -1976,85 +2024,85 @@ matrixOutput2 = c
 		<item class_id="17" tracking_level="0" version="0">
 			<first>BuildBEMatrix:0</first>
 			<second class_id="18" tracking_level="0" version="0">
-				<first>-5.68000000000000000e+02</first>
-				<second>-2.90000000000000000e+02</second>
+				<first>1.32000000000000000e+02</first>
+				<second>2.73000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>CreateStandardColorMap:0</first>
 			<second>
-				<first>-3.54000000000000000e+02</first>
-				<second>2.24000000000000000e+02</second>
+				<first>3.46000000000000000e+02</first>
+				<second>7.87000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>GetMatrixSlice:0</first>
 			<second>
-				<first>-4.21000000000000000e+02</first>
-				<second>5.00000000000000000e+00</second>
+				<first>2.79000000000000000e+02</first>
+				<second>5.68000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>InterfaceWithPython:0</first>
 			<second>
-				<first>-3.95000000000000000e+02</first>
-				<second>-1.52000000000000000e+02</second>
+				<first>3.05000000000000000e+02</first>
+				<second>4.11000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadField:0</first>
 			<second>
-				<first>-7.00000000000000000e+02</first>
-				<second>-5.62000000000000000e+02</second>
+				<first>0.00000000000000000e+00</first>
+				<second>1.00000000000000000e+00</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadField:1</first>
 			<second>
-				<first>-5.08000000000000000e+02</first>
-				<second>-5.57000000000000000e+02</second>
+				<first>1.92000000000000000e+02</first>
+				<second>6.00000000000000000e+00</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadMatrix:0</first>
 			<second>
-				<first>-2.84000000000000000e+02</first>
-				<second>-5.63000000000000000e+02</second>
+				<first>4.16000000000000000e+02</first>
+				<second>0.00000000000000000e+00</second>
 			</second>
 		</item>
 		<item>
 			<first>RescaleColorMap:0</first>
 			<second>
-				<first>-4.46000000000000000e+02</first>
-				<second>3.17000000000000000e+02</second>
+				<first>2.54000000000000000e+02</first>
+				<second>8.80000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SelectSubMatrix:0</first>
 			<second>
-				<first>-1.87000000000000000e+02</first>
-				<second>-4.20000000000000000e+02</second>
+				<first>5.13000000000000000e+02</first>
+				<second>1.43000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SetFieldData:0</first>
 			<second>
-				<first>-5.02000000000000000e+02</first>
-				<second>1.00000000000000000e+02</second>
+				<first>1.98000000000000000e+02</first>
+				<second>6.63000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:0</first>
 			<second>
-				<first>-4.70000000000000000e+02</first>
-				<second>3.94000000000000000e+02</second>
+				<first>2.30000000000000000e+02</first>
+				<second>9.57000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ViewScene:0</first>
 			<second>
-				<first>-4.68000000000000000e+02</first>
-				<second>4.78000000000000000e+02</second>
+				<first>2.32000000000000000e+02</first>
+				<second>1.04100000000000000e+03</second>
 			</second>
 		</item>
 	</modulePositions>
@@ -2151,6 +2199,10 @@ matrixOutput2 = c
 		</item>
 	</moduleTagLabels>
 	<loadTagGroups>1</loadTagGroups>
+	<subnetworks class_id="25" tracking_level="0" version="0">
+		<count>0</count>
+		<item_version>0</item_version>
+	</subnetworks>
 </networkFile>
 </boost_serialization>
 

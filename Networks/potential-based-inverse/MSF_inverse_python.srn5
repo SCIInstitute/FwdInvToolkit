@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="12">
-<networkFile class_id="0" tracking_level="0" version="5">
+<networkFile class_id="0" tracking_level="0" version="6">
 	<networkInfo class_id="1" tracking_level="0" version="0">
 		<modules class_id="2" tracking_level="0" version="0">
-			<count>42</count>
+			<count>43</count>
 			<item_version>0</item_version>
 			<item class_id="3" tracking_level="0" version="0">
 				<first>AlignMeshBoundingBoxes:0</first>
@@ -266,7 +266,7 @@
 									<name>TextEntry</name>
 									<value>
 										<which>2</which>
-										<value>2</value>
+										<value>0.0000000001</value>
 									</value>
 								</second>
 							</item>
@@ -643,8 +643,8 @@
 sys.path.append(os.environ[&apos;SCIRUNDATADIR&apos;]+&apos;/PythonLibrary/MFS_inverse&apos;)
 from mfs_inverse import *
 
-scale_out = 40.0
-scale_in = 10.0
+scale_out = 1.0
+scale_in = 0.5
 
 # get inputs
 heart = fieldInput1
@@ -656,7 +656,7 @@ lmbd = matrixInput3
 
 # modify geometry for visualization
 print(len(tank[&apos;node&apos;]))
-print(electnodes[100][0])
+#print(electnodes[100][0])
 
 new_tank_node=[]
 new_tank_face=[]
@@ -665,13 +665,6 @@ for k in electnodes:
   new_tank_node.append(tank[&apos;node&apos;][k_t])
 
 
-new_tank = {&apos;node&apos; : new_tank_node,&apos;meshtype&apos;: &apos;PointCloudMesh&apos;}
-
-print(tank)
-print(new_tank)
-
-
-outputField1 = new_tank
 
 # run mfs inverse
 epis = mfs_inverse(heart,tank,sock_pts,tank_pot,electnodes,lmbd[0][0],scale_out,scale_in)
@@ -683,8 +676,26 @@ for k in range(0,len(epis)):
   epi_out[k] = [epis[k]]
 
 
+#field =[[0]*len(new_tank_node)]
+#new_tank=sock_pts
+#new_tank[&apos;field&apos;]=field
+#new_tank[&apos;node&apos;]=new_tank_node
+new_tank={&apos;node&apos;:new_tank_node}
+
+
+
+#print(tank)
+print(len(new_tank_node))
+
+
+fieldOutput1 = new_tank
+
+#print(fieldOutput1)
+
+
 # send output
 matrixOutput1 = epi_out
+
 
 
 
@@ -797,178 +808,6 @@ matrixOutput1 = epi_out
 									<value>
 										<which>2</which>
 										<value>stringOutput3</value>
-									</value>
-								</second>
-							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
-				<first>InterfaceWithTetGen:0</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>NewField</category_name_>
-						<module_name_>InterfaceWithTetGen</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>13</count>
-							<item_version>0</item_version>
-							<item>
-								<first>
-									<name>AssignFlag</name>
-								</first>
-								<second>
-									<name>AssignFlag</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>DetectIntersectionsFlag</name>
-								</first>
-								<second>
-									<name>DetectIntersectionsFlag</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>MaxVolConstraint</name>
-								</first>
-								<second>
-									<name>MaxVolConstraint</name>
-									<value>
-										<which>1</which>
-										<value>1.00000000000000006e-01</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>MinRadius</name>
-								</first>
-								<second>
-									<name>MinRadius</name>
-									<value>
-										<which>1</which>
-										<value>2.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>MoreSwitches</name>
-								</first>
-								<second>
-									<name>MoreSwitches</name>
-									<value>
-										<which>2</which>
-										<value></value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>PiecewiseFlag</name>
-								</first>
-								<second>
-									<name>PiecewiseFlag</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>QualityFlag</name>
-								</first>
-								<second>
-									<name>QualityFlag</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>SetMaxVolConstraintFlag</name>
-								</first>
-								<second>
-									<name>SetMaxVolConstraintFlag</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>SetNonzeroAttributeFlag</name>
-								</first>
-								<second>
-									<name>SetNonzeroAttributeFlag</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>SetRatioFlag</name>
-								</first>
-								<second>
-									<name>SetRatioFlag</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>SetSplitFlag</name>
-								</first>
-								<second>
-									<name>SetSplitFlag</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>SuppressSplitFlag</name>
-								</first>
-								<second>
-									<name>SuppressSplitFlag</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>VolConstraintFlag</name>
-								</first>
-								<second>
-									<name>VolConstraintFlag</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -1452,7 +1291,7 @@ matrixOutput1 = epi_out
 									<name>FixedMax</name>
 									<value>
 										<which>1</which>
-										<value>8.20278959281147202e+00</value>
+										<value>1.56427286097704443e+00</value>
 									</value>
 								</second>
 							</item>
@@ -1464,7 +1303,7 @@ matrixOutput1 = epi_out
 									<name>FixedMin</name>
 									<value>
 										<which>1</which>
-										<value>-1.30251228068234237e+01</value>
+										<value>-9.57253795822079212e+00</value>
 									</value>
 								</second>
 							</item>
@@ -1516,7 +1355,7 @@ matrixOutput1 = epi_out
 									<name>FixedMax</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>6.26551999999999998e-01</value>
 									</value>
 								</second>
 							</item>
@@ -1528,7 +1367,71 @@ matrixOutput1 = epi_out
 									<name>FixedMin</name>
 									<value>
 										<which>1</which>
-										<value>0.00000000000000000e+00</value>
+										<value>-5.87254000000000054e-01</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Symmetric</name>
+								</first>
+								<second>
+									<name>Symmetric</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>RescaleColorMap:2</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>Visualization</category_name_>
+						<module_name_>RescaleColorMap</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>4</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>AutoScale</name>
+								</first>
+								<second>
+									<name>AutoScale</name>
+									<value>
+										<which>0</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FixedMax</name>
+								</first>
+								<second>
+									<name>FixedMax</name>
+									<value>
+										<which>1</which>
+										<value>8.20278959281147202e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FixedMin</name>
+								</first>
+								<second>
+									<name>FixedMin</name>
+									<value>
+										<which>1</which>
+										<value>-1.30251228068234237e+01</value>
 									</value>
 								</second>
 							</item>
@@ -1809,6 +1712,34 @@ matrixOutput1 = epi_out
 				</second>
 			</item>
 			<item>
+				<first>SetFieldData:3</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>ChangeFieldData</category_name_>
+						<module_name_>SetFieldData</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>keepTypeCheckBox</name>
+								</first>
+								<second>
+									<name>keepTypeCheckBox</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
 				<first>ShowField:0</first>
 				<second>
 					<module>
@@ -2008,7 +1939,7 @@ matrixOutput1 = epi_out
 									<name>FieldName</name>
 									<value>
 										<which>2</which>
-										<value></value>
+										<value>MFSsoluiton</value>
 									</value>
 								</second>
 							</item>
@@ -2396,7 +2327,7 @@ matrixOutput1 = epi_out
 									<name>EdgesAvailable</name>
 									<value>
 										<which>3</which>
-										<value>1</value>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -2456,7 +2387,7 @@ matrixOutput1 = epi_out
 									<name>FacesAvailable</name>
 									<value>
 										<which>3</which>
-										<value>1</value>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -2480,7 +2411,7 @@ matrixOutput1 = epi_out
 									<name>FieldName</name>
 									<value>
 										<which>2</which>
-										<value></value>
+										<value>measurements</value>
 									</value>
 								</second>
 							</item>
@@ -2492,7 +2423,7 @@ matrixOutput1 = epi_out
 									<name>NodeAsSpheres</name>
 									<value>
 										<which>0</which>
-										<value>0</value>
+										<value>1</value>
 									</value>
 								</second>
 							</item>
@@ -2624,31 +2555,31 @@ matrixOutput1 = epi_out
 									<name>ShowFaces</name>
 									<value>
 										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowNodeIndices</name>
+								</first>
+								<second>
+									<name>ShowNodeIndices</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowNodes</name>
+								</first>
+								<second>
+									<name>ShowNodes</name>
+									<value>
+										<which>3</which>
 										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>ShowNodeIndices</name>
-								</first>
-								<second>
-									<name>ShowNodeIndices</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>ShowNodes</name>
-								</first>
-								<second>
-									<name>ShowNodes</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -2684,7 +2615,7 @@ matrixOutput1 = epi_out
 									<name>SphereScaleValue</name>
 									<value>
 										<which>1</which>
-										<value>2.99999999999999989e-02</value>
+										<value>1.13000000000000012e+00</value>
 									</value>
 								</second>
 							</item>
@@ -4840,7 +4771,7 @@ matrixOutput1 = epi_out
 									<name>FieldName</name>
 									<value>
 										<which>2</which>
-										<value></value>
+										<value>tikhonovsolution</value>
 									</value>
 								</second>
 							</item>
@@ -6250,478 +6181,6 @@ matrixOutput1 = epi_out
 				</second>
 			</item>
 			<item>
-				<first>ViewScene:0</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>Render</category_name_>
-						<module_name_>ViewScene</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>38</count>
-							<item_version>0</item_version>
-							<item>
-								<first>
-									<name>Ambient</name>
-								</first>
-								<second>
-									<name>Ambient</name>
-									<value>
-										<which>1</which>
-										<value>2.00000000000000011e-01</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>BackCull</name>
-								</first>
-								<second>
-									<name>BackCull</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>BackgroundColor</name>
-								</first>
-								<second>
-									<name>BackgroundColor</name>
-									<value>
-										<which>2</which>
-										<value>Color(0,0,0)</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>Diffuse</name>
-								</first>
-								<second>
-									<name>Diffuse</name>
-									<value>
-										<which>1</which>
-										<value>1.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>DisplayList</name>
-								</first>
-								<second>
-									<name>DisplayList</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>Emission</name>
-								</first>
-								<second>
-									<name>Emission</name>
-									<value>
-										<which>1</which>
-										<value>1.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>FieldOfView</name>
-								</first>
-								<second>
-									<name>FieldOfView</name>
-									<value>
-										<which>0</which>
-										<value>20</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>FogColor</name>
-								</first>
-								<second>
-									<name>FogColor</name>
-									<value>
-										<which>2</which>
-										<value>Color(0,0,1)</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>FogEnd</name>
-								</first>
-								<second>
-									<name>FogEnd</name>
-									<value>
-										<which>1</which>
-										<value>7.09999999999999964e-01</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>FogOn</name>
-								</first>
-								<second>
-									<name>FogOn</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>FogStart</name>
-								</first>
-								<second>
-									<name>FogStart</name>
-									<value>
-										<which>1</which>
-										<value>0.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>HeadLightColor</name>
-								</first>
-								<second>
-									<name>HeadLightColor</name>
-									<value>
-										<which>2</which>
-										<value>Color(0,0,0)</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>HeadLightOn</name>
-								</first>
-								<second>
-									<name>HeadLightOn</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>Light1Color</name>
-								</first>
-								<second>
-									<name>Light1Color</name>
-									<value>
-										<which>2</which>
-										<value>Color(0,0,0)</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>Light1On</name>
-								</first>
-								<second>
-									<name>Light1On</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>Light2Color</name>
-								</first>
-								<second>
-									<name>Light2Color</name>
-									<value>
-										<which>2</which>
-										<value>Color(0,0,0)</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>Light2On</name>
-								</first>
-								<second>
-									<name>Light2On</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>Light3Color</name>
-								</first>
-								<second>
-									<name>Light3Color</name>
-									<value>
-										<which>2</which>
-										<value>Color(0,0,0)</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>Light3On</name>
-								</first>
-								<second>
-									<name>Light3On</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>Lighting</name>
-								</first>
-								<second>
-									<name>Lighting</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>ObjectsOnly</name>
-								</first>
-								<second>
-									<name>ObjectsOnly</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>PolygonOffset</name>
-								</first>
-								<second>
-									<name>PolygonOffset</name>
-									<value>
-										<which>1</which>
-										<value>0.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>ScaleBarFontSize</name>
-								</first>
-								<second>
-									<name>ScaleBarFontSize</name>
-									<value>
-										<which>0</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>ScaleBarHeight</name>
-								</first>
-								<second>
-									<name>ScaleBarHeight</name>
-									<value>
-										<which>1</which>
-										<value>0.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>ScaleBarLength</name>
-								</first>
-								<second>
-									<name>ScaleBarLength</name>
-									<value>
-										<which>1</which>
-										<value>0.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>ScaleBarLineWidth</name>
-								</first>
-								<second>
-									<name>ScaleBarLineWidth</name>
-									<value>
-										<which>1</which>
-										<value>1.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>ScaleBarMultiplier</name>
-								</first>
-								<second>
-									<name>ScaleBarMultiplier</name>
-									<value>
-										<which>1</which>
-										<value>0.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>ScaleBarNumTicks</name>
-								</first>
-								<second>
-									<name>ScaleBarNumTicks</name>
-									<value>
-										<which>0</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>ScaleBarUnitValue</name>
-								</first>
-								<second>
-									<name>ScaleBarUnitValue</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>Shine</name>
-								</first>
-								<second>
-									<name>Shine</name>
-									<value>
-										<which>1</which>
-										<value>1.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>ShowBBox</name>
-								</first>
-								<second>
-									<name>ShowBBox</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>ShowScaleBar</name>
-								</first>
-								<second>
-									<name>ShowScaleBar</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>Specular</name>
-								</first>
-								<second>
-									<name>Specular</name>
-									<value>
-										<which>1</which>
-										<value>4.00000000000000022e-01</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>Stereo</name>
-								</first>
-								<second>
-									<name>Stereo</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>StereoFusion</name>
-								</first>
-								<second>
-									<name>StereoFusion</name>
-									<value>
-										<which>1</which>
-										<value>4.00000000000000022e-01</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>TextOffset</name>
-								</first>
-								<second>
-									<name>TextOffset</name>
-									<value>
-										<which>1</which>
-										<value>0.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>UseBGColor</name>
-								</first>
-								<second>
-									<name>UseBGColor</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>UseClip</name>
-								</first>
-								<second>
-									<name>UseClip</name>
-									<value>
-										<which>3</which>
-										<value>1</value>
-									</value>
-								</second>
-							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
 				<first>ViewScene:1</first>
 				<second>
 					<module>
@@ -6731,7 +6190,7 @@ matrixOutput1 = epi_out
 					</module>
 					<state>
 						<stateMap>
-							<count>38</count>
+							<count>39</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -7111,6 +6570,18 @@ matrixOutput1 = epi_out
 								</first>
 								<second>
 									<name>ShowScaleBar</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowViewer</name>
+								</first>
+								<second>
+									<name>ShowViewer</name>
 									<value>
 										<which>3</which>
 										<value>0</value>
@@ -7203,7 +6674,7 @@ matrixOutput1 = epi_out
 					</module>
 					<state>
 						<stateMap>
-							<count>38</count>
+							<count>39</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -7586,6 +7057,502 @@ matrixOutput1 = epi_out
 									<value>
 										<which>3</which>
 										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowViewer</name>
+								</first>
+								<second>
+									<name>ShowViewer</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Specular</name>
+								</first>
+								<second>
+									<name>Specular</name>
+									<value>
+										<which>1</which>
+										<value>4.00000000000000022e-01</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Stereo</name>
+								</first>
+								<second>
+									<name>Stereo</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>StereoFusion</name>
+								</first>
+								<second>
+									<name>StereoFusion</name>
+									<value>
+										<which>1</which>
+										<value>4.00000000000000022e-01</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>TextOffset</name>
+								</first>
+								<second>
+									<name>TextOffset</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>UseBGColor</name>
+								</first>
+								<second>
+									<name>UseBGColor</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>UseClip</name>
+								</first>
+								<second>
+									<name>UseClip</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>ViewScene:7</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>Render</category_name_>
+						<module_name_>ViewScene</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>39</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>Ambient</name>
+								</first>
+								<second>
+									<name>Ambient</name>
+									<value>
+										<which>1</which>
+										<value>2.00000000000000011e-01</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>BackCull</name>
+								</first>
+								<second>
+									<name>BackCull</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>BackgroundColor</name>
+								</first>
+								<second>
+									<name>BackgroundColor</name>
+									<value>
+										<which>2</which>
+										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Diffuse</name>
+								</first>
+								<second>
+									<name>Diffuse</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>DisplayList</name>
+								</first>
+								<second>
+									<name>DisplayList</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Emission</name>
+								</first>
+								<second>
+									<name>Emission</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FieldOfView</name>
+								</first>
+								<second>
+									<name>FieldOfView</name>
+									<value>
+										<which>0</which>
+										<value>20</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FogColor</name>
+								</first>
+								<second>
+									<name>FogColor</name>
+									<value>
+										<which>2</which>
+										<value>Color(0,0,1)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FogEnd</name>
+								</first>
+								<second>
+									<name>FogEnd</name>
+									<value>
+										<which>1</which>
+										<value>7.09999999999999964e-01</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FogOn</name>
+								</first>
+								<second>
+									<name>FogOn</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FogStart</name>
+								</first>
+								<second>
+									<name>FogStart</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>HeadLightColor</name>
+								</first>
+								<second>
+									<name>HeadLightColor</name>
+									<value>
+										<which>2</which>
+										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>HeadLightOn</name>
+								</first>
+								<second>
+									<name>HeadLightOn</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Light1Color</name>
+								</first>
+								<second>
+									<name>Light1Color</name>
+									<value>
+										<which>2</which>
+										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Light1On</name>
+								</first>
+								<second>
+									<name>Light1On</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Light2Color</name>
+								</first>
+								<second>
+									<name>Light2Color</name>
+									<value>
+										<which>2</which>
+										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Light2On</name>
+								</first>
+								<second>
+									<name>Light2On</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Light3Color</name>
+								</first>
+								<second>
+									<name>Light3Color</name>
+									<value>
+										<which>2</which>
+										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Light3On</name>
+								</first>
+								<second>
+									<name>Light3On</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Lighting</name>
+								</first>
+								<second>
+									<name>Lighting</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ObjectsOnly</name>
+								</first>
+								<second>
+									<name>ObjectsOnly</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PolygonOffset</name>
+								</first>
+								<second>
+									<name>PolygonOffset</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarFontSize</name>
+								</first>
+								<second>
+									<name>ScaleBarFontSize</name>
+									<value>
+										<which>0</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarHeight</name>
+								</first>
+								<second>
+									<name>ScaleBarHeight</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarLength</name>
+								</first>
+								<second>
+									<name>ScaleBarLength</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarLineWidth</name>
+								</first>
+								<second>
+									<name>ScaleBarLineWidth</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarMultiplier</name>
+								</first>
+								<second>
+									<name>ScaleBarMultiplier</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarNumTicks</name>
+								</first>
+								<second>
+									<name>ScaleBarNumTicks</name>
+									<value>
+										<which>0</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScaleBarUnitValue</name>
+								</first>
+								<second>
+									<name>ScaleBarUnitValue</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Shine</name>
+								</first>
+								<second>
+									<name>Shine</name>
+									<value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowBBox</name>
+								</first>
+								<second>
+									<name>ShowBBox</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowScaleBar</name>
+								</first>
+								<second>
+									<name>ShowScaleBar</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowViewer</name>
+								</first>
+								<second>
+									<name>ShowViewer</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
 									</value>
 								</second>
 							</item>
@@ -7766,6 +7733,18 @@ matrixOutput1 = epi_out
 				</port2_>
 			</item>
 			<item>
+				<moduleId1_>CreateStandardColorMap:0</moduleId1_>
+				<port1_>
+					<name>ColorMapObject</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>RescaleColorMap:2</moduleId2_>
+				<port2_>
+					<name>ColorMapObject</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
 				<moduleId1_>EvaluateLinearAlgebraUnary:0</moduleId1_>
 				<port1_>
 					<name>Result</name>
@@ -7834,18 +7813,6 @@ matrixOutput1 = epi_out
 				<moduleId2_>SetFieldData:0</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>InterfaceWithTetGen:0</moduleId1_>
-				<port1_>
-					<name>TetVol</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>GetFieldBoundary:0</moduleId2_>
-				<port2_>
-					<name>InputField</name>
 					<id>0</id>
 				</port2_>
 			</item>
@@ -7930,18 +7897,6 @@ matrixOutput1 = epi_out
 				<moduleId2_>AlignMeshBoundingBoxes:0</moduleId2_>
 				<port2_>
 					<name>InputField</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>ReadField:1</moduleId1_>
-				<port1_>
-					<name>Field</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>InterfaceWithTetGen:0</moduleId2_>
-				<port2_>
-					<name>Main</name>
 					<id>0</id>
 				</port2_>
 			</item>
@@ -8047,6 +8002,18 @@ matrixOutput1 = epi_out
 					<name>Matrix</name>
 					<id>0</id>
 				</port1_>
+				<moduleId2_>SetFieldData:3</moduleId2_>
+				<port2_>
+					<name>InputMatrix</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>ReadMatrix:0</moduleId1_>
+				<port1_>
+					<name>Matrix</name>
+					<id>0</id>
+				</port1_>
 				<moduleId2_>SolveInverseProblemWithTikhonov:0</moduleId2_>
 				<port2_>
 					<name>MeasuredPotentials</name>
@@ -8078,24 +8045,24 @@ matrixOutput1 = epi_out
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>RescaleColorMap:0</moduleId1_>
-				<port1_>
-					<name>ColorMapOutput</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>ShowField:18</moduleId2_>
-				<port2_>
-					<name>ColorMapObject</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
 				<moduleId1_>RescaleColorMap:1</moduleId1_>
 				<port1_>
 					<name>ColorMapOutput</name>
 					<id>0</id>
 				</port1_>
 				<moduleId2_>ShowField:1</moduleId2_>
+				<port2_>
+					<name>ColorMapObject</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>RescaleColorMap:2</moduleId1_>
+				<port1_>
+					<name>ColorMapOutput</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>ShowField:18</moduleId2_>
 				<port2_>
 					<name>ColorMapObject</name>
 					<id>0</id>
@@ -8191,10 +8158,10 @@ matrixOutput1 = epi_out
 					<name>OutputField</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>RescaleColorMap:0</moduleId2_>
+				<moduleId2_>RescaleColorMap:2</moduleId2_>
 				<port2_>
 					<name>Field</name>
-					<id>1</id>
+					<id>0</id>
 				</port2_>
 			</item>
 			<item>
@@ -8215,7 +8182,7 @@ matrixOutput1 = epi_out
 					<name>SceneGraph</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>ViewScene:0</moduleId2_>
+				<moduleId2_>ViewScene:7</moduleId2_>
 				<port2_>
 					<name>GeneralGeom</name>
 					<id>0</id>
@@ -8275,7 +8242,7 @@ matrixOutput1 = epi_out
 					<name>SceneGraph</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>ViewScene:0</moduleId2_>
+				<moduleId2_>ViewScene:7</moduleId2_>
 				<port2_>
 					<name>GeneralGeom</name>
 					<id>2</id>
@@ -8287,7 +8254,7 @@ matrixOutput1 = epi_out
 					<name>SceneGraph</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>ViewScene:0</moduleId2_>
+				<moduleId2_>ViewScene:7</moduleId2_>
 				<port2_>
 					<name>GeneralGeom</name>
 					<id>1</id>
@@ -8404,300 +8371,307 @@ matrixOutput1 = epi_out
 		</connections>
 	</networkInfo>
 	<modulePositions class_id="16" tracking_level="0" version="0">
-		<count>42</count>
+		<count>43</count>
 		<item_version>0</item_version>
 		<item class_id="17" tracking_level="0" version="0">
 			<first>AlignMeshBoundingBoxes:0</first>
 			<second class_id="18" tracking_level="0" version="0">
-				<first>-7.80000000000000000e+01</first>
-				<second>-3.67000000000000000e+02</second>
+				<first>8.30000000000000000e+02</first>
+				<second>2.50000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>BuildBEMatrix:0</first>
 			<second>
-				<first>3.11000000000000000e+02</first>
-				<second>-2.10000000000000000e+01</second>
+				<first>1.21900000000000000e+03</first>
+				<second>5.96000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ClipFieldByFunction:2</first>
 			<second>
-				<first>-8.92000000000000000e+02</first>
-				<second>3.28000000000000000e+02</second>
+				<first>1.60000000000000000e+01</first>
+				<second>9.45000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>CreateFieldData:0</first>
 			<second>
-				<first>2.40000000000000000e+02</first>
-				<second>-4.18000000000000000e+02</second>
+				<first>1.14800000000000000e+03</first>
+				<second>1.99000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>CreateMatrix:0</first>
 			<second>
-				<first>-1.68000000000000000e+02</first>
-				<second>-4.55000000000000000e+02</second>
+				<first>7.24000000000000000e+02</first>
+				<second>1.78000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>CreateStandardColorMap:0</first>
 			<second>
-				<first>-5.55000000000000000e+02</first>
-				<second>7.40000000000000000e+01</second>
+				<first>3.53000000000000000e+02</first>
+				<second>6.91000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>EvaluateLinearAlgebraUnary:0</first>
 			<second>
-				<first>4.40000000000000000e+01</first>
-				<second>-2.24000000000000000e+02</second>
+				<first>9.52000000000000000e+02</first>
+				<second>3.93000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>GetFieldBoundary:0</first>
 			<second>
-				<first>-8.42000000000000000e+02</first>
-				<second>2.03000000000000000e+02</second>
+				<first>6.60000000000000000e+01</first>
+				<second>8.20000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>GetFieldData:0</first>
 			<second>
-				<first>2.83000000000000000e+02</first>
-				<second>-2.29000000000000000e+02</second>
+				<first>1.19100000000000000e+03</first>
+				<second>3.88000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>InterfaceWithPython:0</first>
 			<second>
-				<first>-2.89000000000000000e+02</first>
-				<second>-1.30000000000000000e+01</second>
-			</second>
-		</item>
-		<item>
-			<first>InterfaceWithTetGen:0</first>
-			<second>
-				<first>-8.15000000000000000e+02</first>
-				<second>9.60000000000000000e+01</second>
+				<first>6.20000000000000000e+02</first>
+				<second>6.04000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>MapFieldDataOntoNodes:0</first>
 			<second>
-				<first>2.63000000000000000e+02</first>
-				<second>-3.28000000000000000e+02</second>
+				<first>1.17100000000000000e+03</first>
+				<second>2.89000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadField:0</first>
 			<second>
-				<first>-8.58000000000000000e+02</first>
-				<second>-5.52000000000000000e+02</second>
+				<first>5.00000000000000000e+01</first>
+				<second>6.50000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadField:1</first>
 			<second>
-				<first>-6.85000000000000000e+02</first>
-				<second>-5.45000000000000000e+02</second>
+				<first>2.23000000000000000e+02</first>
+				<second>7.20000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadField:10</first>
 			<second>
-				<first>2.48000000000000000e+02</first>
-				<second>-6.32000000000000000e+02</second>
+				<first>1.10700000000000000e+03</first>
+				<second>1.30000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadField:2</first>
 			<second>
-				<first>-4.87000000000000000e+02</first>
-				<second>-5.51000000000000000e+02</second>
+				<first>4.21000000000000000e+02</first>
+				<second>6.60000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadField:9</first>
 			<second>
-				<first>6.20000000000000000e+01</first>
-				<second>-6.17000000000000000e+02</second>
+				<first>9.70000000000000000e+02</first>
+				<second>0.00000000000000000e+00</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadMatrix:0</first>
 			<second>
-				<first>-4.06000000000000000e+02</first>
-				<second>-4.49000000000000000e+02</second>
+				<first>5.02000000000000000e+02</first>
+				<second>1.68000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadMatrix:1</first>
 			<second>
-				<first>-2.66000000000000000e+02</first>
-				<second>-5.45000000000000000e+02</second>
+				<first>6.42000000000000000e+02</first>
+				<second>7.20000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
 			<first>ReportMatrixInfo:0</first>
 			<second>
-				<first>-3.64000000000000000e+02</first>
-				<second>8.70000000000000000e+01</second>
+				<first>5.58000000000000000e+02</first>
+				<second>7.83000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>RescaleColorMap:0</first>
 			<second>
-				<first>-3.97000000000000000e+02</first>
-				<second>4.32000000000000000e+02</second>
+				<first>5.09000000000000000e+02</first>
+				<second>1.05100000000000000e+03</second>
 			</second>
 		</item>
 		<item>
 			<first>RescaleColorMap:1</first>
 			<second>
-				<first>-1.42000000000000000e+02</first>
-				<second>1.92000000000000000e+02</second>
+				<first>7.66000000000000000e+02</first>
+				<second>8.09000000000000000e+02</second>
+			</second>
+		</item>
+		<item>
+			<first>RescaleColorMap:2</first>
+			<second>
+				<first>7.85000000000000000e+02</first>
+				<second>1.04600000000000000e+03</second>
 			</second>
 		</item>
 		<item>
 			<first>SelectSubMatrix:1</first>
 			<second>
-				<first>3.25000000000000000e+02</first>
-				<second>9.10000000000000000e+01</second>
+				<first>1.23300000000000000e+03</first>
+				<second>7.08000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SelectSubMatrix:2</first>
 			<second>
-				<first>1.89000000000000000e+02</first>
-				<second>-1.37000000000000000e+02</second>
+				<first>1.07900000000000000e+03</first>
+				<second>4.96000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SetFieldData:0</first>
 			<second>
-				<first>-5.33000000000000000e+02</first>
-				<second>1.43000000000000000e+02</second>
+				<first>3.74000000000000000e+02</first>
+				<second>7.61000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SetFieldData:1</first>
 			<second>
-				<first>-1.57000000000000000e+02</first>
-				<second>8.90000000000000000e+01</second>
+				<first>7.51000000000000000e+02</first>
+				<second>7.06000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SetFieldData:2</first>
 			<second>
-				<first>3.25000000000000000e+02</first>
-				<second>3.45000000000000000e+02</second>
+				<first>1.23400000000000000e+03</first>
+				<second>9.60000000000000000e+02</second>
+			</second>
+		</item>
+		<item>
+			<first>SetFieldData:3</first>
+			<second>
+				<first>1.11700000000000000e+03</first>
+				<second>7.08000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:0</first>
 			<second>
-				<first>-4.46000000000000000e+02</first>
-				<second>5.52000000000000000e+02</second>
+				<first>4.62000000000000000e+02</first>
+				<second>1.16900000000000000e+03</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:1</first>
 			<second>
-				<first>-2.22000000000000000e+02</first>
-				<second>2.84000000000000000e+02</second>
+				<first>6.86000000000000000e+02</first>
+				<second>9.01000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:12</first>
 			<second>
-				<first>2.90000000000000000e+01</first>
-				<second>1.03000000000000000e+02</second>
+				<first>9.37000000000000000e+02</first>
+				<second>7.20000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:13</first>
 			<second>
-				<first>4.51000000000000000e+02</first>
-				<second>-2.52000000000000000e+02</second>
+				<first>1.35900000000000000e+03</first>
+				<second>3.65000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:14</first>
 			<second>
-				<first>-2.74000000000000000e+02</first>
-				<second>-2.81000000000000000e+02</second>
+				<first>6.34000000000000000e+02</first>
+				<second>3.36000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:15</first>
 			<second>
-				<first>1.37000000000000000e+02</first>
-				<second>2.27000000000000000e+02</second>
+				<first>1.04500000000000000e+03</first>
+				<second>8.44000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:18</first>
 			<second>
-				<first>-1.47000000000000000e+02</first>
-				<second>5.34000000000000000e+02</second>
+				<first>7.61000000000000000e+02</first>
+				<second>1.15000000000000000e+03</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:2</first>
 			<second>
-				<first>-8.40000000000000000e+02</first>
-				<second>-2.63000000000000000e+02</second>
+				<first>6.80000000000000000e+01</first>
+				<second>3.54000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:3</first>
 			<second>
-				<first>-8.12000000000000000e+02</first>
-				<second>-1.51000000000000000e+02</second>
+				<first>9.60000000000000000e+01</first>
+				<second>4.66000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SolveInverseProblemWithTikhonov:0</first>
 			<second>
-				<first>3.61000000000000000e+02</first>
-				<second>2.30000000000000000e+02</second>
+				<first>1.26900000000000000e+03</first>
+				<second>8.47000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>TransformMeshWithTransform:0</first>
 			<second>
-				<first>-6.20000000000000000e+01</first>
-				<second>-9.00000000000000000e+01</second>
+				<first>8.46000000000000000e+02</first>
+				<second>5.27000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>TransformMeshWithTransform:1</first>
 			<second>
-				<first>-2.99000000000000000e+02</first>
-				<second>-2.68000000000000000e+02</second>
-			</second>
-		</item>
-		<item>
-			<first>ViewScene:0</first>
-			<second>
-				<first>-2.63000000000000000e+02</first>
-				<second>6.81000000000000000e+02</second>
+				<first>4.77000000000000000e+02</first>
+				<second>4.17000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ViewScene:1</first>
 			<second>
-				<first>-9.08000000000000000e+02</first>
-				<second>-1.40000000000000000e+01</second>
+				<first>0.00000000000000000e+00</first>
+				<second>6.03000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ViewScene:6</first>
 			<second>
-				<first>7.40000000000000000e+01</first>
-				<second>3.73000000000000000e+02</second>
+				<first>9.82000000000000000e+02</first>
+				<second>9.90000000000000000e+02</second>
+			</second>
+		</item>
+		<item>
+			<first>ViewScene:7</first>
+			<second>
+				<first>5.81000000000000000e+02</first>
+				<second>1.29000000000000000e+03</second>
 			</second>
 		</item>
 	</modulePositions>
@@ -8711,9 +8685,11 @@ matrixOutput1 = epi_out
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.SF NS Text&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;Lambda&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Lambda</noteText>
-				<position>3</position>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lambda&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Default&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+				<noteText>Lambda
+Default</noteText>
+				<position>0</position>
 				<fontSize>13</fontSize>
 			</second>
 		</item>
@@ -8790,7 +8766,7 @@ node numbers</noteText>
 		<item_version>0</item_version>
 	</connectionNotes>
 	<moduleTags class_id="22" tracking_level="0" version="0">
-		<count>42</count>
+		<count>43</count>
 		<item_version>0</item_version>
 		<item class_id="23" tracking_level="0" version="0">
 			<first>AlignMeshBoundingBoxes:0</first>
@@ -8830,10 +8806,6 @@ node numbers</noteText>
 		</item>
 		<item>
 			<first>InterfaceWithPython:0</first>
-			<second>-1</second>
-		</item>
-		<item>
-			<first>InterfaceWithTetGen:0</first>
 			<second>-1</second>
 		</item>
 		<item>
@@ -8881,6 +8853,10 @@ node numbers</noteText>
 			<second>-1</second>
 		</item>
 		<item>
+			<first>RescaleColorMap:2</first>
+			<second>-1</second>
+		</item>
+		<item>
 			<first>SelectSubMatrix:1</first>
 			<second>-1</second>
 		</item>
@@ -8898,6 +8874,10 @@ node numbers</noteText>
 		</item>
 		<item>
 			<first>SetFieldData:2</first>
+			<second>-1</second>
+		</item>
+		<item>
+			<first>SetFieldData:3</first>
 			<second>-1</second>
 		</item>
 		<item>
@@ -8949,15 +8929,15 @@ node numbers</noteText>
 			<second>-1</second>
 		</item>
 		<item>
-			<first>ViewScene:0</first>
-			<second>-1</second>
-		</item>
-		<item>
 			<first>ViewScene:1</first>
 			<second>-1</second>
 		</item>
 		<item>
 			<first>ViewScene:6</first>
+			<second>-1</second>
+		</item>
+		<item>
+			<first>ViewScene:7</first>
 			<second>-1</second>
 		</item>
 	</moduleTags>
@@ -8974,6 +8954,10 @@ node numbers</noteText>
 		<item_version>0</item_version>
 	</moduleTagLabels>
 	<loadTagGroups>0</loadTagGroups>
+	<subnetworks class_id="26" tracking_level="0" version="0">
+		<count>0</count>
+		<item_version>0</item_version>
+	</subnetworks>
 </networkFile>
 </boost_serialization>
 

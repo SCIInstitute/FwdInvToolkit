@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="12">
-<networkFile class_id="0" tracking_level="0" version="5">
+<networkFile class_id="0" tracking_level="0" version="6">
 	<networkInfo class_id="1" tracking_level="0" version="0">
 		<modules class_id="2" tracking_level="0" version="0">
 			<count>18</count>
@@ -1126,7 +1126,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>37</count>
+							<count>40</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -1250,6 +1250,18 @@
 							</item>
 							<item>
 								<first>
+									<name>EdgesColoring</name>
+								</first>
+								<second>
+									<name>EdgesColoring</name>
+									<value>
+										<which>0</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>FaceInvertNormals</name>
 								</first>
 								<second>
@@ -1292,6 +1304,18 @@
 									<name>FacesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FacesColoring</name>
+								</first>
+								<second>
+									<name>FacesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -1364,6 +1388,18 @@
 									<name>NodesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>NodesColoring</name>
+								</first>
+								<second>
+									<name>NodesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -1586,7 +1622,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>37</count>
+							<count>40</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -1710,6 +1746,18 @@
 							</item>
 							<item>
 								<first>
+									<name>EdgesColoring</name>
+								</first>
+								<second>
+									<name>EdgesColoring</name>
+									<value>
+										<which>0</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>FaceInvertNormals</name>
 								</first>
 								<second>
@@ -1752,6 +1800,18 @@
 									<name>FacesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>FacesColoring</name>
+								</first>
+								<second>
+									<name>FacesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -1824,6 +1884,18 @@
 									<name>NodesAvailable</name>
 									<value>
 										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>NodesColoring</name>
+								</first>
+								<second>
+									<name>NodesColoring</name>
+									<value>
+										<which>0</which>
 										<value>1</value>
 									</value>
 								</second>
@@ -2046,7 +2118,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>39</count>
+							<count>40</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -2349,7 +2421,7 @@
 									<name>ScaleBarFontSize</name>
 									<value>
 										<which>0</which>
-										<value>8</value>
+										<value>99</value>
 									</value>
 								</second>
 							</item>
@@ -2361,7 +2433,7 @@
 									<name>ScaleBarHeight</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -2373,7 +2445,7 @@
 									<name>ScaleBarLength</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -2397,7 +2469,7 @@
 									<name>ScaleBarMultiplier</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -2409,7 +2481,7 @@
 									<name>ScaleBarNumTicks</name>
 									<value>
 										<which>0</which>
-										<value>11</value>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -2455,6 +2527,18 @@
 								</first>
 								<second>
 									<name>ShowScaleBar</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowViewer</name>
+								</first>
+								<second>
+									<name>ShowViewer</name>
 									<value>
 										<which>3</which>
 										<value>0</value>
@@ -2813,127 +2897,127 @@
 		<item class_id="17" tracking_level="0" version="0">
 			<first>CreateStandardColorMap:10</first>
 			<second class_id="18" tracking_level="0" version="0">
-				<first>-1.50108274350468719e+03</first>
-				<second>-5.30545347846093136e+02</second>
+				<first>5.77917256495312813e+02</first>
+				<second>7.03454652153906864e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>CreateStandardColorMap:9</first>
 			<second>
-				<first>-1.87360274350468717e+03</first>
-				<second>-5.50707847846093046e+02</second>
+				<first>2.05397256495312831e+02</first>
+				<second>6.83292152153906954e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>EvaluateLinearAlgebraBinary:0</first>
 			<second>
-				<first>-1.77926000000000067e+03</first>
-				<second>-9.56967500000000200e+02</second>
+				<first>2.99739999999999327e+02</first>
+				<second>2.77032499999999800e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>FairMesh:20</first>
 			<second>
-				<first>-1.83500000000000000e+03</first>
-				<second>-7.06000000000000000e+02</second>
+				<first>2.44000000000000000e+02</first>
+				<second>5.28000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>GetMatrixSlice:24</first>
 			<second>
-				<first>-1.36800000000000000e+03</first>
-				<second>-1.06400000000000000e+03</second>
+				<first>7.11000000000000000e+02</first>
+				<second>1.70000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadField:0</first>
 			<second>
-				<first>-2.07900000000000000e+03</first>
-				<second>-1.22900000000000000e+03</second>
+				<first>0.00000000000000000e+00</first>
+				<second>5.00000000000000000e+00</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadField:2</first>
 			<second>
-				<first>-1.04700000000000000e+03</first>
-				<second>-1.23400000000000000e+03</second>
+				<first>1.03200000000000000e+03</first>
+				<second>0.00000000000000000e+00</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadMatrix:1</first>
 			<second>
-				<first>-1.38100000000000000e+03</first>
-				<second>-1.23000000000000000e+03</second>
+				<first>6.98000000000000000e+02</first>
+				<second>4.00000000000000000e+00</second>
 			</second>
 		</item>
 		<item>
 			<first>ReadMatrix:2</first>
 			<second>
-				<first>-1.67832249999999976e+03</first>
-				<second>-1.23300000000000000e+03</second>
+				<first>4.00677500000000236e+02</first>
+				<second>1.00000000000000000e+00</second>
 			</second>
 		</item>
 		<item>
 			<first>RescaleColorMap:4</first>
 			<second>
-				<first>-2.03040524350468650e+03</first>
-				<second>-4.00222847846093373e+02</second>
+				<first>4.85947564953135043e+01</first>
+				<second>8.33777152153906627e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>RescaleColorMap:5</first>
 			<second>
-				<first>-1.48500000000000000e+03</first>
-				<second>-4.15000000000000000e+02</second>
+				<first>5.94000000000000000e+02</first>
+				<second>8.19000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SetFieldData:17</first>
 			<second>
-				<first>-1.99900000000000000e+03</first>
-				<second>-8.25000000000000000e+02</second>
+				<first>8.00000000000000000e+01</first>
+				<second>4.09000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>SetFieldData:3</first>
 			<second>
-				<first>-1.57000000000000000e+03</first>
-				<second>-7.36000000000000000e+02</second>
+				<first>5.09000000000000000e+02</first>
+				<second>4.98000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowColorMap:1</first>
 			<second>
-				<first>-1.34308274350468719e+03</first>
-				<second>-3.04545347846093250e+02</second>
+				<first>7.35917256495312813e+02</first>
+				<second>9.29454652153906750e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowColorMap:2</first>
 			<second>
-				<first>-2.03008274350468719e+03</first>
-				<second>-2.77545347846093364e+02</second>
+				<first>4.89172564953128131e+01</first>
+				<second>9.56454652153906636e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:17</first>
 			<second>
-				<first>-1.78308274350468719e+03</first>
-				<second>-2.85545347846093364e+02</second>
+				<first>2.95917256495312813e+02</first>
+				<second>9.48454652153906636e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ShowField:8</first>
 			<second>
-				<first>-1.57408274350468719e+03</first>
-				<second>-2.98545347846093250e+02</second>
+				<first>5.04917256495312813e+02</first>
+				<second>9.35454652153906750e+02</second>
 			</second>
 		</item>
 		<item>
 			<first>ViewScene:18</first>
 			<second>
-				<first>-1.86748535600468722e+03</first>
-				<second>-8.73341040960933697e+01</second>
+				<first>2.11514643995312781e+02</first>
+				<second>1.14666589590390663e+03</second>
 			</second>
 		</item>
 	</modulePositions>
@@ -2946,7 +3030,7 @@
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.SF NS Text&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Choose time step&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Choose time step</noteText>
 				<position>0</position>
@@ -2959,8 +3043,8 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Segmentation File&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.SF NS Text&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;Segmentation File&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Segmentation File</noteText>
 				<position>3</position>
 				<fontSize>13</fontSize>
@@ -2972,8 +3056,8 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Sock geometry&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.SF NS Text&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;Sock geometry&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Sock geometry</noteText>
 				<position>3</position>
 				<fontSize>13</fontSize>
@@ -2985,10 +3069,10 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Matrix of Epicardial &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;potentials for all &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;time steps&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.SF NS Text&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;Matrix of Epicardial &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;potentials for all &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;time steps&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Matrix of Epicardial 
 potentials for all 
 time steps</noteText>
@@ -3002,8 +3086,8 @@ time steps</noteText>
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;lead field matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.SF NS Text&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;lead field matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>lead field matrix</noteText>
 				<position>3</position>
 				<fontSize>13</fontSize>
@@ -3015,7 +3099,7 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.SF NS Text&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Map Data to Heart Geometry&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Map Data to Heart Geometry</noteText>
 				<position>0</position>
@@ -3028,7 +3112,7 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.SF NS Text&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8pt; color:#ffffff;&quot;&gt;ID: 17&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>ID: 17</noteText>
 				<position>0</position>
@@ -3041,7 +3125,7 @@ p, li { white-space: pre-wrap; }
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.SF NS Text&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8pt; color:#ffffff;&quot;&gt;ID: 8&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>ID: 8</noteText>
 				<position>0</position>
@@ -3158,6 +3242,10 @@ p, li { white-space: pre-wrap; }
 		</item>
 	</moduleTagLabels>
 	<loadTagGroups>1</loadTagGroups>
+	<subnetworks class_id="27" tracking_level="0" version="0">
+		<count>0</count>
+		<item_version>0</item_version>
+	</subnetworks>
 </networkFile>
 </boost_serialization>
 
