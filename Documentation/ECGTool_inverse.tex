@@ -5,381 +5,528 @@
 
 The inverse problem of electrocardiography is to find suitable electrical source parameters on the heart that adequately describe the observed body surface potentials. Regularization is typically employed in solution methods to reduce the sensitivity of the problem to relatively small errors in the observed body surface potentials, thereby stabilizing it. As a result, solution methods may be supplied body surface potentials, a forward model, and method-specific regularization parameters as input. Specific use of each method is described below. As output, modules primarily produce the resulting solution with extra outputs, depending on the specific method.
 
-\section{Module Descriptions for Inverse Solution Methods}
+\section{Descriptions of the Inverse Solution Methods Implemented in SCIRun}
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Tikhonov Regularization}
-
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=0.7\textwidth]{ECGToolkitGuide_figures/tik1.png}
-\caption{Revised Tikhonov module: {\tt SolveInverseProblemWithTikhonov}.  }
-\label{tik_module}
-\end{center}
-\end{figure}
-
-The module that solves the inverse problem by means of Tikhonov regularization is\\
-\href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}}.
-This module requires the Forward matrix and a vector of measured potentials (see figure \ref{tik_module}-1,3 ). In this case the module will calculate the standard Tikhonov regularization with $l2$ regularization:
-\begin{center}
- \begin{eqnarray}
-  x = argmin_x \|Ax -y\|_2 + \lambda \|x\|_2
- \end{eqnarray}
-\end{center}
-
-Optionally, the algorithm allows to use other constraints in both the solution and the measurements. In the module, this matrices are respectively called solution constraint 
-matrix (R) and residual constraint matrix (L) (see figure \ref{tik_module}-2,4). In the general case the formula would result:
-\begin{center}
- \begin{eqnarray}
-  x = argmin_x \|Ax -Ly\|_2 + \lambda \|Rx\|_2
- \end{eqnarray}
-\end{center}
-
-The module is also prepared to compute the solution more efficiently depending in whether the problem is underdetermined or overdetermined. In both cases the underlying 
-algorithm will be the Gaussian elimination, but the equations to solve will differ. This will give for the underdetermined case:
-\begin{center}
- \begin{eqnarray}
-  (ALL^TA^T + \lambda RR^T)x' &=& y\\
-  x &=& LL^TA^Tx'
-  \label{tik_problem_underdet_invop}
- \end{eqnarray}
-\end{center}
-\noindent and for the overdetermined case:
-\begin{center}
- \begin{eqnarray}
-  (A^TL^TLA + \lambda R^TR)x = A^TL^TLy 
-  \label{tik_problem_overdet_invop}
- \end{eqnarray}
-\end{center}
-
-\noindent In both cases, the algorithm could be solved by using a linear operator $G$. This operator requires some inverses and might result in an inefficient implementation. 
-For this reason it is not used as is, but it might be obtained by the user as one of the outputs of the module.\\
-In the case of the overdetermined case the operator is:
-\begin{center}
-\begin{eqnarray}
-   G &=& (A^{T} P^{T} P A + \lambda^{2} L L^{T})^{-1} A^{T} P^{T} P
-\label{tik_problem_overdet_invop}
-\end{eqnarray}
-\end{center}
-\noindent and for the underdetermined case:
-\begin{center}
-\begin{eqnarray}
-   G &=& W W ^{T} A^{T} (A W W^{T} A^{T} + \lambda^{2} C C^{T})^{-1} .
-\label{tik_problem_underdet_invop}
-\end{eqnarray}
-\end{center}
-
-
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=0.8\textwidth]{ECGToolkitGuide_figures/tik2.png}
-\caption{GUI from revised Tikhonov module: {\tt SolveInverseProblemWithTikhonov}.}
-\label{tik_module_gui}
-\end{center}
-\end{figure}
-
-\subsection*{Manual selection of the regularization parameter ``$\lambda$''}
-
-The user is able to enter a specific regularization parameter to be used in
-the inverse calculation. Further, the user can also specify a
-range of equally distributed regularization parameters and select a particular one using the slider.
-
-\subsection*{Automatic selection of the regularization parameter ``$\lambda$'' - the L-curve}
-
-In figure \ref{tik_module_gui}, an example of a L-Curve is shown.
-The automatic procedure to find the L-Curve corner evaluates the
-curvature at each of the discrete points of the L-curve and estimates the maximal absolute curvature.
-
-%% TODO: restore this text when the GUI has been rewritten in Qt, and there is a way to
-%% pick a better regularization parameter
-%Initially, the automatic procedure to find the L-Curve corner evaluates the
-%curvature at each of the discrete points of the L-curve and estimates the maximal absolute curvature.
-%In some cases, the automatically chosen regularization parameter is not optimal.
-%Because of this, a slider under the L-Curve is available; it allows the user to choose a better regularization parameter.
-%While moving the slider, the chosen L-Curve-Corner depicted in green, is updated.
-%If a more reasonable regularization parameter is found by the user, it can be used later on for a single inverse computation
-%by pressing the button, ``Update Lambda Value''.
-%This will load the lambda value in the uppermost input field, which can later be activated with the radio button next to it.
-
-\subsection*{Computational efficiency}
-
-The module can automatically (by default) decide which case (overdetermined or
-underdetermined) should be used to benefit from the most computationally efficient
-approach. The user can manually decide which case should be used as
-well (clicking to one of the radio buttons under ``Regularization formulation selection'').\\
-%For demanding computations of the L-curve, the faster numerical
-%approximation approach is used (formula \ref{tik_problem_overdet} or \ref{tik_problem_underdet})
-%to determine the finally used regularization parameter. Any final solution is computed by
-%using the more accurate inverse operator (see formula \ref{tik_problem_overdet_invop} and
-%\ref{tik_problem_underdet_invop}). \\
-
-To start any computation, the ``Execute'' button must be clicked.
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Tikhonov Singular Value Decomposition (SVD)}
-
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth]{ECGToolkitGuide_figures/SolveInverseProblemWithTikhonovSVD.png}
-\caption{Tikhonov SVD Module.}
-\label{tikhonovsvd}
-\end{center}
-\end{figure}
-
-\vspace{5pt}\textit{This is a method of solving the potential-based inverse problem.}\vspace{5pt}
-
-This module implements Tikhonov regularization (closed-form solution) using the singular value decomposition (SVD) in SCIRun, and is called
-\\{\tt SolveInverseProblemWithTikhonovSVD}. The module requires that the SVD of a forward solution matrix (left/right singular vector matrices and singular value matrix), regularization matrix (such as a surface Laplacian approximation), and a vector (single-column matrix) of observed/measured body surface potentials are supplied as input.
-
-In the user interface (UI), one can explicitly specify a scalar regularization parameter that weights the influence of the regularization matrix on the solution. The module can also automatically select a regularization parameter using the L-curve method.
-
-Upon completion, the module will output the inverse solution. In addition, it will either output the specified or automatically-chosen regularization parameter, as well as the regularized inverse matrix (a closed-form Tikhonov inverse operator, computed using the provided SVD).
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Truncated SVD}
-
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth]{ECGToolkitGuide_figures/SolveInverseProblemWithTSVD.png}
-\caption{Truncated SVD Module}
-\label{tsvd}
-\end{center}
-\end{figure}
-
-\vspace{5pt}\textit{This is a method of solving the potential-based inverse problem.}\vspace{5pt}
-
-This module, called {\tt SolveInverseProblemWithTSVD}, computes an inverse solution by creating a pseudo-inverse operator and multiplying that with the measured body surface potentials. The module requires that the SVD of a forward solution matrix (left/right singular vector matrices and singular value matrix) and a vector of observed/measured body surface potentials are supplied as input.
-
-In the user interface (UI), one can explicitly specify a scalar-integer regularization parameter to control the amount of regularization imposed on the problem. Assuming the singular values are sorted from largest to smallest (and therefore most significant to least significant), the regularization parameter controls how many significant singular values to consider (truncation degree) when calculating the pseudo-inverse. Alternatively, the module will use the L-curve method to automatically obtain a suitable truncation degree.
-
-The primary output of this module is a vector containing the inverse solution. In addition, it will output the regularization parameter and regularized inverse operator used to obtain the inverse solution from the measured body surface potentials.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Matlab Interface}
-
-The \textit{InterfaceWithMatlab} module allows a SCIRun network to make use of Matlab for some of its calculations. In Figure \ref{matlabinterfacemodule}, the user interface for this module shows how SCIRun data types from the module's input pipes are converted to Matlab variables for use in a Matlab script. Upon completion of the Matlab script, Matlab variables are converted back to SCIRun data types to be sent to the module's output pipes.
-
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=0.8\textwidth]{ECGToolkitGuide_figures/InterfaceWithMatlab.png}
-\caption{The InterfaceWithMatlab Module and its corresponding user interface}
-\label{matlabinterfacemodule}
-\end{center}
-\end{figure}
-
-In the rest of this section, we will describe some of the inverse solution methods distributed with SCIRun that have been implemented in Matlab.
-
-
-\subsubsection{Isotropy Method}
-
-\vspace{5pt}\textit{This is a method of solving the potential-based inverse problem.}\vspace{5pt}
-
-\begin{verbatim}
-function X_reg=greensite(A,Y,trunc_deg)
-% Function to calculate the Greensite inverse solution
-%   A - forward matrix
-%   Y - data
-%   trunc_deg - truncation degree
-%   X_reg - inverse solution
-\end{verbatim}
-
-The isotropy method (a.k.a. Greensite method) takes as input a forward solution matrix, measured body surface potential data, and an optional integer regularization parameter (truncation degree). In this method, the truncation degree controls the number of significant singular values of the measured body surface potential data to be used when computing the inverse solution. Consequently, the truncation degree partitions the measured body surface potential data into independent ``signal'' and ``noise'' components, ignoring the ``noise'' component in its calculation of the inverse solution. The only output of the method is the inverse solution.
-
-\subsubsection{Gauss-Newton Method}
-
-\vspace{5pt}\textit{This is a method of solving the activation-based inverse problem.}\vspace{5pt}
-
-\begin{verbatim}
-function tau = ActGaussNewton(A,Y,L,tauinit,lambda,w,minstep)
-% Implements the Gauss-Newton algorithm for solving the activation-based
-% inverse problem of electrocardiography.
-% => minimizes the objective function ||Y-A*X||^2+lambda*||L*X||^2 where
-% X is parameterized by the C^1 polynomial approximation to a step function
-% as explained in "The Depolarization Sequence of the Human Heart Surface
-% Computed from Measured Body Surface Potentials" by Geertjan Huiskamp and
-% Adriaan van Oosterom.
-%
-% Input Variables:
-% A: Forward matrix
-% Y: Observations (columns index time from 1 to T=size(Y,2))
-% L: Regularization matrix (typically a surface Laplacian approximation)
-% lambda: Regularization parameter
-% w: Width parameter in step function approximation
-% tauinit: Initial phase shifts for starting the algorithm
-%
-% Output Variables:
-% tau: Solution phase shifts of the step functions
-\end{verbatim}
-
-The activation-based inverse problem of electrocardiography is to solve for electrical activation times (i.e. depolarization times) on the heart, given body surface potentials during the QRS complex. This results in a nonlinear least-squares optimization problem that this method solves using the Gauss-Newton algorithm. Solutions are typically highly dependent on the choice of the initial guess. This method requires a forward solution matrix, body surface potentials, regularization matrix, initial guess, regularization parameter, activation waveform transition width, and convergence parameter to be specified as input. The body surface potentials should be provided as a $M \times T$ matrix, where $M$ is the number of leads from which potentials are recorded and $T$ is the number of time samples recorded during the QRS complex of the heart, whose activation times are to be estimated. The regularization matrix and corresponding parameter influence the inverse solution as in Tikhonov regularization (see above). The initial guess is the set of activation times from which the Gauss-Newton algorithm starts pursuing a more suitable inverse solution. The transition width controls the number of time samples (not necessarily integer) taken by each source to transition from inactivated to activated in this method. The convergence parameter is the minimum norm of the step taken by the iterations within the Gauss-Newton algorithm before the method is deemed to have converged to a suitable solution. The only output of the method is the inverse solution (in this case: an array/vector of activation times).
-
-\subsubsection{Wavefront-Based Potential Reconstruction}
-
-\vspace{5pt}\textit{This is a method of solving the potential-based inverse problem.}\vspace{5pt}
-
-\begin{verbatim}
-function [x_WBPR_forward,x_WBPR_backward] = WBPR(A,y,heart,first_act,last_act)
-% Function to calculate the WBPR solutions
-% Inputs:
-%   A: forward matrix
-%   y: torso data
-%   heart: heart geometry
-%   first_act: first activated node
-%   last_act: last activated node
-%
-% Outputs:
-%   x_WBPR_forward: inverse solution using forward WBPR
-%   x_WBPR_backward: inverse solution using backward WBPR
-\end{verbatim}
-
-The Wavefront-Based Potential Reconstruction (WBPR) method imposes prior knowledge about the spatial patterns of electric potentials on the heart during the QRS complex to reconstruct an inverse solution. This method requires a forward solution matrix, measured body surface potentials, a structure containing the triangles and nodes of the heart geometry mesh, and the first/last nodes to activate during the QRS complex of the heart beat. The body surface potentials should be provided as a $M \times T$ matrix, where $M$ is the number of leads from which potentials are recorded, and $T$ is the number of time samples recorded during the QRS complex of the heart beat, whose electric potentials are to be estimated. The heart geometry is a Matlab ``struct'' that must contain a matrix of node coordinates and a matrix of indices for triangles that connect the nodes on the surface of the heart. The first/last nodes to activate are specified as the indices of the nodes.
-
-As output, WBPR produces two inverse solutions. The procedure by which the inverse solutions are obtained may be run both forward and backward in time. Therefore, the ``forward WBPR'' solution is that obtained by applying the method starting from the earliest sample time and ending at the latest. On the other hand, the ``backward WBPR'' solution is obtained by starting from the latest sample time and traversing the samples in reverse until ending at the earliest.
-
-NOTE: This code requires the software package reguTools (http://www.imm.dtu.dk/~pcha/Regutools/) to be incorporated in the default path from MATLAB.
-
-
-\subsubsection{Non-Negative Transmembrane Potential Inverse}
-
-\vspace{5pt}\textit{This is a method of solving the potential-based inverse problem.}\vspace{5pt}
-\begin{verbatim}
-%% MESSNARZ INVERSE SCRIPT FOR SCIRUN
-%
-%		This is a script for the matlab interface in the SCIRUN network
-%		nonNegative.srn.
-%		This method consists in a potential based inverse method that 
-%		uses tikhonov reularization in a minimization algorithm that 
-%		constrains the solutions to be monotonically non-decreasing.
-%		
-%			Inputs:
-%				   i1 - double - primal/dual tradeoff parameter from the ADMM algorithm.
-%				   i2 - <N,T>double - ECG recordings. (N leads, T time samples)
-%				   i3 - <N,M>double - forward matrix.
-%				   i4 - <1,3>int - lambda parameters: [minLam maxLam numLam].
-%			                           minLam - minimum lambda = 10^minLam
-%			                           maxLam - maximum lambda = 10^maxLam
-%			                           numLam - number of lambdas to use 
-%			Outputs::
-%				   o1 - <M,T>double - estimated solution.
-%				   o2 - <M,T+1>double - dual variables of ADMM code.
-%
-\end{verbatim}
-
-The non-negativeTMP code estimates the transmembrane potentials by solving a constrained Tikhonov problem.
-Thus the function to be optimized over is a standard Tikhonov problem but restricts the solutions to always be non-decreasing.
-Thus, the problem to be solved is:
-\begin{equation}\begin{split}
-		\min_{x(t), t=1\dots T} &\|y(t) - Ax(t)\|_2^2 + \lambda*\|Rx(t)\|_2^2 \\
-		&s.t.\\
-   		&\hspace{2cm}x(1) >= minB\\
-     	&\hspace{2cm}x(t+1) >= x(t), \hspace{.2cm}t=1\dots T-1\\
-     	&\hspace{2cm}x(T) <= maxB
-\end{split}
-\end{equation}
-Where $minB$ and $maxB$ are the minimum and maximum bounds for the TMP.
-For memory efficiency, this problem is implemented with an ADMM solver.
-This algorithm tends to work well for relatively small geometries ($<1000$ nodes).
-The resulting potentials have sharp increases of potentials similar to the typically observed in TMPs 
-for most of the nodes on the heart geometry.
-In general, the final solution is insensitive to the initial guess but it will affect the time of convergence.
-The script is set up such that the initial guess for the first lambda is a simple ramp, after each initial guess is the final result of the previous lambda. 
-The decision of the correct lambda is done automatically using an L-corner detection.
-This algorithm is implemented as the SCIRUN network nonNegativeTMP.srn
-
-NOTE: This code requires the software package reguTools (http://www.imm.dtu.dk/~pcha/Regutools/) to be incorporated in the default path from MATLAB.
-
-\subsubsection{Spline Interpolation Inverse}
-
-\vspace{5pt}\textit{This is a method of solving the potential-based inverse problem.}\vspace{5pt}
-\begin{verbatim}
-%		This code implements the inverse solutions pipeline presented in
-%		the paper:
-%	        Erem, Coll-font, Martinez Orellana - 2013 - 
-%	        Using Transmural Regularization and Dynamic Modeling 
-%	        for Non-Invasive Cardiac Potential Imaging of 
-%	        Endocardial Pacing Sites with Imprecise Thoracic Geometry.
-%
-%		Inputs
-%				  i1 - <N,T>double - measured potentials on the torso.
-%				  i2 - <N,M>double - forward matrix.
-%				  i3 - <L,M>double - regularization matrix.
-%				  i4 - <3,1>int - regularization constant params.
-%				                  i4(1) - log10 min lambda.
-%				                  i4(2) - log10 max lambda
-%				                  i4(3) - num lambda.
-%		Outputs
-%				  o1 - <M,T>double - estimated heart potentials.
-\end{verbatim}
-
-This code implements a spline interpolation based inverse for ECG.
-It works under the assumption that the measured cardiac potentials, treated as a vector in high dimensional space, span a 1-D manifold in time.
-This algorithm approximates this manifold with a spline, effectively filtering out noise to describe the evolution of these potentials.
-Then it estimates the inverse of the reference points (knot points) of the spline and reconstructs the full evolution of potentials in the heart using the time dynamics from the body surface potentials.
-This algorithm works well when the regularization matrix used in the inverses estimates the spatial derivative in the volume of the heart.
-An example of a SCIRUN implementation for this code can be found in the spline$\_$inverse.srn network. 
-
-\subsubsection{Total Variation Inverse}
-
-\vspace{5pt}\textit{This is a method of solving the potential-based inverse problem.}\vspace{5pt}
-\begin{verbatim}
-%	This script implements a Total Variation method to solve the inverse
-%	problem in electrocardiography 
-%
-%	This code needs of the convex optimization toolbox from CVX
-%	(http://cvxr.com/cvx/)
-%
-%	Inputs:
-%    field1 - struct - full bofy geometry.
-%    field2 - struct - heart geometry.
-%    field3 - struct - torso geometry.
-%    i1 - <N,1>double - ECG measured potentials.
-%     i2 - <N,1>int - indices of the geometry where ECG where measured.
-%    i3 - <M,M>double - stiffness matrix on the heart.
-%     i4 - <N+M,N+M>double - stiffness matrix on the whole body.
-%	Outputs:
-%    o1 - <M,1>double - estimated inverse solution.
-%
-%	Dependencies:
-%    cvx - convex optimization package
-%
-\end{verbatim}
-
-This code is an implementation of a full pipeline that covers from the solution of the forward problem to an implementation of a Total Variation inverse solution.
-This method uses a FEM geometry to calculate the forward matrices needed and then computes the inverse solution from body surface measurements.
-The solutions it obtains tend to have sharper spatial transitions that the regular Tikhonov solutions.
-An example SCIRUN implementation for this MATLAB implementation is the Total$\_$Variation.srn in the FwdInvToolbox.
-
-NOTE: This code requires the software package CVX (http://cvxr.com/cvx/) for MATLAB to be set up in the default path of MATLAB.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Example Simulations}
-
-\subsection{Tikhonov Regularization}
-
-\vspace{5pt}\textit{The SCIRun network for this example can be found at:\\{\tt src/nets/FwdInvToolbox/potential-based-inverse/tikhonov-inversion.srn}\\in the SCIRun source code directory.}\vspace{5pt}
-
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/TikhonovNetwork.png}
-\caption{The SCIRun network for the Tikhonov inverse solution example.}
-\label{TikhonovNetworkExample}
-\end{center}
-\end{figure}
-
-This example shows how to use the {\tt SolveInverseProblemWithTikhonov} module in a SCIRun network to solve a potential-based ECG inverse problem using Tikhonov regularization. Specifically, this example simulates ``measured'' body surface potentials by applying a forward solution and adding pseudorandom noise with a specified signal-to-noise ratio (SNR). The forward solution is obtained by multiplying a known vector of epicardial potential data by a pre-computed forward solution matrix. The simulated measurements and forward solution matrix are the inputs to the {\tt SolveInverseProblemWithTikhonov} module. The regularization parameter of this method is controlled via the user interface (UI) in this example. The output from the module is the inverse solution. This example compares the inverse solution to the known epicardial potentials from which the measurements were simulated. A visualization of both can be seen in the UI of the {\tt ViewScene} module.
-
-\subsection{Gauss-Newton Method}
-
-\vspace{5pt}\textit{The SCIRun network for this example can be found at:\\{\tt src/nets/FwdInvToolbox/activation-based-inverse/actgaussnewton-inversion.srn}\\in the SCIRun source code directory.}\vspace{5pt}
-
-This example shows how to use the {\tt InterfaceWithMatlab} module in a SCIRun network to solve an activation-based ECG inverse problem using the Gauss-Newton method. This example uses the ``normal male'' dataset and geometries from ECGSIM. Specifically, this method compares measured body surface potentials with body surface potentials simulated from activation times. We search the set of possible activation times for ones that minimize the squared error residual between the measured and simulated body surface potentials. The Gauss-Newton method in this example is implemented as a Matlab function and is used in SCIRun via the {\tt InterfaceWithMatlab} module. As a numerical optimization method, Gauss-Newton will look for a local minimizer of the squared error residual starting from a suitable initialization point. In this example, we initialize the method with the activation times reported for the dataset in ECGSIM, but perturbed by noise.
-
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/actgaussnewtonnetwork.png}
-\caption{The SCIRun network for the activation-based Gauss-Newton inverse solution example.}
-\label{GaussNewtonNetworkExample}
-\end{center}
-\end{figure}
+\subsection{Tikhonov Regularization}\label{sec:inverse:tikhonov}
+    
+    As described in \autoref{sec:math:standardTikhonov}, Tikhonov regularization is a classical inverse method that solves the following least squares problem:
+    \begin{center}
+        \begin{eqnarray}
+            min_{X} \| P (Y - A X) \|^{2}_{2} + \lambda^{2} \| RX \|^{2}_{2},
+        \label{eq:inverseSec_tik_problem}
+        \end{eqnarray}
+    \end{center}
+    where $Y$ are the measured ECG potentials, $A$ is the forward matrix, $X$ are the unknown potentials on the heart, $\lambda$ is the regularization parameter, $R$ is a regularization matrix and $P$ is the sensor covariance matrix. 
+    All these variables can be found as inputs or outputs of the module \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}}, shown in \autoref{fig:tik_module}.
+    \begin{figure}
+        \begin{center}
+        \includegraphics[width=0.7\textwidth]{ECGToolkitGuide_figures/tik1.png}
+        \caption{Revised Tikhonov module: {\tt SolveInverseProblemWithTikhonov}.  }
+        \label{fig:tik_module}
+        \end{center}
+    \end{figure}
+    \noindent{\bf Inputs:}
+    \begin{enumerate}
+        \item Forward Matrix ($A\in\Re^{N,M}$)
+        \item Weights in Source Space ($R\in\Re^{L,M}$ or squared $R^2\in\Re^{M,M}$ o)
+        \item Measured Potentials ($Y\in\Re^{N,T}$)
+        \item Weights in Sensor Space ($P\in\Re^{F,N}$ or squared $P^2\in\Re^{N,N}$),
+    \end{enumerate}
+    {\bf Outputs:}
+     \begin{enumerate}
+        \item Inverse Solution ($X\in\Re^{M,T}$)
+        \item Regularization Parameter ($\lambda$)
+        \item Regularized Inverse ($G\in\Re^{M,N}$)
+    \end{enumerate}
+
+    An example of the usage of the module \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}} can be found in the network ``potential-based-inverse/tikhonov-inverse.srn5'', which is shown in \autoref{TikhonovNetworkExample}.
+    This example network is composed of four main blocks:
+    \begin{itemize}
+        \item {\bf Loading Data (green):} These are the modules that load the data into SCIRun.
+        \item {\bf Forward Solution (white):} These modules compute simulations of ECG potentials that would be measured on the body surface.
+        \item {\bf Tikhonov Inverse (black):} This module computes the Tikhonov inverse solution.
+        \item {\bf Visualization (purple):} These modules provide visualization of the solution and the ground truth.
+    \end{itemize}
+    
+    \subsubsection{Options and Modes of Operation}
+    
+    The \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}} module allows for multiple modes of operation that provide different functionalities and computational advantages.
+    These modes of operation, can be found in the two panels of the module user interface, shown in \autoref{fig:tik_module_gui}. 
+    The options within each of the two panels are described in the following:
+    
+    \begin{figure}
+    \begin{center}
+    \includegraphics[width=0.45\textwidth]{ECGToolkitGuide_figures/tik2.png}
+    \includegraphics[width=0.45\textwidth]{ECGToolkitGuide_figures/tik3.png}
+    \caption{GUI from revised Tikhonov module. Left: problem description. Right: Lambda selection method {\tt SolveInverseProblemWithTikhonov}.}
+    \label{fig:tik_module_gui}
+    \end{center}
+    \end{figure}
+
+    \noindent{\bf Problem Description:}
+    
+    There are two formulations for the solutions of least squares problem in \autoref{eq:inverseSec_tik_problem}.
+    These are the overdetermined formulation:
+    \begin{center}
+    \begin{eqnarray}
+        \hat{x}   &=& \left(A^T P^TPA + \lambda^{2}R^TR\right)^{-1} A^T P^TP Y,
+    \label{eq:inverseSec_TikhonovSolutions1}
+    \end{eqnarray}
+    \end{center}    
+    and the underdetermined:
+    \begin{center}
+    \begin{eqnarray}
+        \hat{x}  &=& (R^TR)^{-1} A^T \left( A(R^TR)^{-1}A^T + \lambda^2 (P^TP)^{-1}  \right)^{-1}Y.
+    \label{eq:inverseSec_TikhonovSolutions2}
+    \end{eqnarray}
+    \end{center}
+    The difference between these two formulations is computational. 
+    It can be observed from equations \ref{eq:inverseSec_TikhonovSolutions1} and \ref{eq:inverseSec_TikhonovSolutions2} that the size of the inverse matrix that needs to be computed is $N$ in the overdetermined case and $M$ in the underdetermined.
+    Thus, when the number of ECG measurements is smaller than the number of sources on the heart ($N<M$), it is computationally desirable to use \autoref{eq:inverseSec_TikhonovSolutions1}.
+    On the other hand, if the number of ECG measurements is larger than the number of sources ($N>M$), it is preferable to use \autoref{eq:inverseSec_TikhonovSolutions2}.
+    \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}} is prepared to use either formulation upon request of the user or choose it automatically based on the size of the forward matrix.
+    To choose the desired option, the user must select the appropriate radial button in the ``Regularization Formulation'' option within the  ``Problem Description'' panel.
+    
+    The ``Problem Description'' panel also allows to modify how the source and sensor weight matrices ($R$ and $P$) are defined.
+    As can be observed in equations \ref{eq:inverseSec_TikhonovSolutions1} and \ref{eq:inverseSec_TikhonovSolutions2}, these two matrices appear in quadratic form. For this reason, many users might prefer to define them in the quadratic form (i.e. $R^2=R^TR$ and $C^2=C^TC$).
+    \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}} allows users to change the default definition of these input matrices to the squared form by selecting the appropriate radial buttons in the ``Constraint Matrices'' options within the  ``Problem Description'' panel.
+    
+    
+    \noindent{\bf Lambda Method:}
+    
+    The solutions to the Tikhonov regularization problem depend on the selection of the regularization parameter ($\lambda$).
+    There are multiple approaches in the literature that allow for its selection.
+    \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}} is currently implemented so that the user can choose between a direct entry, selection using a slider and the L-curve method, described in \autoref{sec:math:regparam}.
+    These methods can be found by selecting the appropriate option in the drop-down menu within the ``Lambda Method'' panel.
+    
+    
+    \begin{figure}
+        \begin{center}
+        \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/TikhonovNetwork.png}
+        \caption{The SCIRun network for the Tikhonov inverse solution example.}
+        \label{TikhonovNetworkExample}
+        \end{center}
+    \end{figure}
+    
+
+
+    
+\subsection{Tikhonov SVD Method}
+
+    The Tikhonov SVD method effectively solves the same least squares problem as the Tikhonov method described above.
+    The difference between these two implementations is computational. 
+    The \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php5/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonovSVD}{{\tt SolveInverseProblemWithTikhonovSVD}} module uses the following formulation to solve the least-squares problem:
+    \begin{center}
+    \begin{eqnarray}
+        \hat{X}   &=& \sum_{k=1}^K \frac{\sigma_k}{\lambda^2 + \sigma_k^2} v_k u_k^T Y,
+    \label{eq:inverseSec_TikhonovSolutions1}
+    \end{eqnarray}
+    \end{center} 
+    where $Y$ are the ECG measurements, $X$ are the unknown potentials on the heart, $\lambda$ is the regularization parameter and $\sigma_k$, $u_k$ and $v_k$ are the singular values, left and right singular vectors of the forward matrix $A$ and $K$ is its rank.
+    
+    The \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php5/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonovSVD}{{\tt SolveInverseProblemWithTikhonovSVD}} module is shown in \autoref{fig:tik_moduleSVD}.
+    \begin{figure}
+        \begin{center}
+        \includegraphics[width=0.7\textwidth]{ECGToolkitGuide_figures/TikhonovSVD_module.png}
+        \caption{Revised TikhonovSVD module: {\tt SolveInverseProblemWithTikhonovSVD}.  }
+        \label{fig:tik_moduleSVD}
+        \end{center}
+    \end{figure}
+    The inputs and outputs of this module are a superset of \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}}.
+    The new additions permit the user to use pre-computed singular values and vectors of the forward matrix.
+    \noindent{\bf Inputs:}
+    \begin{enumerate}
+        \item Forward Matrix ($A\in\Re^{N,M}$)
+        \item Weights in Source Space ($R\in\Re^{L,M}$ or squared $R^2\in\Re^{M,M}$ o)
+        \item Measured Potentials ($Y\in\Re^{N,T}$)
+        \item Weights in Sensor Space ($P\in\Re^{F,N}$ or squared $P^2\in\Re^{N,N}$)
+        \item Left Singular Vectors ($U\in\Re^{N,N}$ )
+        \item Singular Values ($S\in\Re^{K,K}$ or in vector form $s\in\Re^{K,1}$)
+        \item Right Singular Vectors ($V\in\Re^{M,M}$),
+    \end{enumerate}
+    {\bf Outputs:}
+     \begin{enumerate}
+        \item Inverse Solution ($X\in\Re^{M,T}$)
+        \item Regularization Parameter ($\lambda$)
+        \item Regularized Inverse ($G\in\Re^{M,N}$)
+    \end{enumerate}
+    
+    \subsubsection{Options and Modes of Operation}
+    
+    The options allowed in \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php5/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonovSVD}{{\tt SolveInverseProblemWithTikhonovSVD}} include the use of a pre-computed singular value decomposition of the forward matrix and the method to select the regularization parameter $\lambda$.
+    
+    \noindent{\bf Pre-computed Singular Value Decompositions}
+    
+    When needed, \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php5/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonovSVD}{{\tt SolveInverseProblemWithTikhonovSVD}} automatically computes a Singular Value Decomposition of the input forward matrix using sub-routines found in the Eigen library.
+    However, the module is also prepared to use a pre-computed singular value decomposition. 
+    This option is selected by connecting ALL the input ports of the left and right singular vectors and singular values (ports 5, 6 and 7).
+    In this case, the algorithm skips the computation of the SVD and uses the provided matrices.
+    
+    \noindent{\bf Lambda Method}
+    
+    The solutions to the TikhonovSVD regularization problem depend on the selection of the regularization parameter ($\lambda$).
+    There are multiple approaches in the literature that allow for its selection.
+    \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php5/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonovSVD}{{\tt SolveInverseProblemWithTikhonovSVD}} is currently implemented so that the user can choose between a direct entry, selection using a slider and the L-curve method, described in \autoref{sec:math:regparam}.
+    These methods can be found by selecting the appropriate option in the drop-down menu within the ``Lambda Method'' panel as done in \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}} (see \autoref{fig:tik_module_gui}).
+    
+    
+    \begin{figure}
+        \begin{center}
+        \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/TikhonovSVDNetwork.png}
+        \caption{The SCIRun network for the TikhonovSVD inverse solution example.}
+        \label{fig:TikhonovNetworkExampleSVD}
+        \end{center}
+    \end{figure}
+
+
+  
+\subsection{Truncated SVD Method (TSVD)}
+    
+    The truncated SVD method solves the classical least-squares problem with a low-rank approximation of the forward matrix. 
+    Solutions to this method require the decomposition of the forward matrix $A$ into its left singular vectors $U$, the right singular vetors $V$ and the corresponding singular values $S$. 
+    Then, these are computed following the formula:
+    \begin{center}
+    \begin{eqnarray}
+        \hat{X}   &=& \sum_{k=1}^Q \frac{1}{\sigma_k} v_k u_k^T Y,
+    \label{eq:inverseSec_TikhonovSolutions1}
+    \end{eqnarray}
+    \end{center} 
+    where $Y$ are the ECG measurements, $X$ are the unknown potentials on the heart, $\lambda$ is the regularization parameter and $\sigma_k$, $u_k$ and $v_k$ are the singular values, left and right singular vectors of the forward matrix $A$ and $Q$ is the truncation point.
+    
+    The module \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php5/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTSVD}{{\tt SolveInverseProblemWithTSVD}} is shown along its inputs and outputs in \autoref{fig:TSVD_module}
+    \begin{figure}
+        \begin{center}
+        \includegraphics[width=0.7\textwidth]{ECGToolkitGuide_figures/TSVD_module.png}
+        \caption{Revised TSVD module: {\tt SolveInverseProblemWithTSVD}.  }
+        \label{fig:tik_moduleSVD}
+        \end{center}
+    \end{figure}
+    The inputs and outputs of this module are a superset of \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}}.
+    The new additions permit the user to use pre-computed singular values and vectors of the forward matrix.
+    \noindent{\bf Inputs:}
+    \begin{enumerate}
+        \item Forward Matrix ($A\in\Re^{N,M}$)
+        \item Weights in Source Space ($R\in\Re^{L,M}$ or squared $R^2\in\Re^{M,M}$ o)
+        \item Measured Potentials ($Y\in\Re^{N,T}$)
+        \item Weights in Sensor Space ($P\in\Re^{F,N}$ or squared $P^2\in\Re^{N,N}$)
+        \item Left Singular Vectors ($U\in\Re^{N,N}$ )
+        \item Singular Values ($S\in\Re^{K,K}$ or in vector form $s\in\Re^{K,1}$)
+        \item Right Singular Vectors ($V\in\Re^{M,M}$),
+    \end{enumerate}
+    {\bf Outputs:}
+     \begin{enumerate}
+        \item Inverse Solution ($X\in\Re^{M,T}$)
+        \item Regularization Parameter ($\lambda$)
+        \item Regularized Inverse ($G\in\Re^{M,N}$)
+    \end{enumerate}
+    
+    
+    \subsubsection{Options and Modes of Operation}
+    
+    The options allowed in \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php5/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonovSVD}{{\tt SolveInverseProblemWithTikhonovSVD}} include the use of a pre-computed singular value decomposition of the forward matrix and the method to select the truncation point (or regularization parameter) $Q$.
+    
+    \noindent{\bf Pre-computed Singular Value Decompositions}
+    
+    When needed, \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php5/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTSVD}{{\tt SolveInverseProblemWithTSVD}} automatically computes a Singular Value Decomposition of the input forward matrix using sub-routines found in the Eigen library.
+    However, the module is also prepared to use a pre-computed singular value decomposition. 
+    This option is selected by connecting ALL the input ports of the left and right singular vectors and singular values (ports 5, 6 and 7).
+    In this case, the algorithm skips the computation of the SVD and uses the provided matrices.
+    
+    \noindent{\bf Lambda Method}
+    
+    The solutions to the TSVD regularization problem depend on the selection of the regularization parameter ($Q$).
+    There are multiple approaches in the literature that allow for its selection.
+    \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php5/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTSVD}{{\tt SolveInverseProblemWithTSVD}} is currently implemented so that the user can choose between a direct entry, selection using a slider and the L-curve method, described in \autoref{sec:math:regparam}.
+    These methods can be found by selecting the appropriate option in the drop-down menu within the ``Lambda Method'' panel as done in \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}} (see \autoref{fig:tik_module_gui}).
+
+
+    \begin{figure}
+        \begin{center}
+        \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/TSVDNetwork.png}
+        \caption{The SCIRun network for the TSVD inverse solution example.}
+        \label{fig:TSVDNetworkExample}
+        \end{center}
+    \end{figure}
+
+
+
+% \subsection{Total Variation}
+
+%     \subsubsection{Options and Modes of Operation}
+    
+    
+   
+% \subsection{Method of Fundamental Solutions}
+
+%     \subsubsection{Options and Modes of Operation}
+    
+   
+\subsection{Isotropy Method}
+    
+    The Isotropy Method is an approach that considers temporal correlations to imrove the conditioning of the inverse taken. 
+    In SCIRun we have implemented this approach with a combination of modules and \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}}.
+    Our implementation of the Isotropy Method can be found in the example network ``potential-based-inverse/greensite-inverse-IsotropyMethod.srn5'', shown in \autoref{fig:IsotropyMethod}.
+    
+    The network is composed of the standard sections of a simulation network to loading data, visualizing and synthesizing the ECG measurements. 
+    The specific blocks that correspond to the Isotropy Method are the ``Temporal Decomposition'', ``solving'' and ``Temporal Reconstruction''. Here we describe this blocks in more detail:
+    \begin{enumerate}
+        \item The {\bf temporal decomposition} block computes the singular value decomposition of the input data, truncates the right singular vectors (corresponding to time) and projects the input data into this lower dimensional space.
+        \item The {\bf solving } block consists on a Tikhonov module that solves the inverse problem for the input data projected onto the low dimensional temporal space.
+        \item The {\bf temporal reconstruction} block, uses the truncated right singular vectors from (1) to reconstruct the full temporal behavior of the inverse solutions obtained in the Tikhonov solver.
+    \end{enumerate}
+
+    \subsubsection{Options and Modes of Operation}
+    
+    As implemented, the Isotropy Method does not have many options for operation. The most important parameter that needs to be determined by the user is the truncation point of the right singular vectors, which can be accessed in the ``SelectSubMatrix'' module within the ``temporal decomposition'' block. 
+    The GUI for this module, shown in \autoref{fig:IsotropyMethod_gui}, allows to select a submatrix from an input matrix. In the case of the isotropy method, the users are only interested in the ``end'' parameter from the column range selector (lower right entry) since it determined where to truncate the right singular vectors.
+    
+    This implementation of the Isotropy Method has extra parameters that determine the operation of the Tikhonov inverse. These parameters are specific to the \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}} module and we refer the user to \autoref{sec:inverse:tikhonov} for more details.
+    
+    \begin{figure}
+        \begin{center}
+        \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/IsotropyMethod_networkExample.png}
+        \caption{The SCIRun network for the Isotropy Method inverse solution example.}
+        \label{fig:IsotropyMethod}
+        \end{center}
+    \end{figure}
+    
+   
+% \subsection{Spline-Based Inverse Method}
+
+%     The spline-based inverse method is another approach that takes into account the temporal characteristics of the signal. In this particular case, it projects the input data onto a 1D manifold characterized with a spline \cite{}.
+%     The current implementation of this method uses the MATLAB-python interface capabilities as well as the implemented inverse methods.
+%     Similarly to the Isotropy Method, the spline-based inverse is composed of three main blocks ``temporal decomposition'', ``inverse solving'' and ``temporal recontruction''. 
+%     The main difference concerns the temporal decomposition and reconstruction steps, which now are non-linear and involve the estimation fo a 1D manifold.
+%     In the following, we will describe these three blocks:
+    
+%     \noindent{\bf Manifold Estimation:}
+    
+%     \begin{verbatim}
+%     %		This code implements the inverse solutions pipeline presented in
+%     %		the paper:
+%     %	        Erem, Coll-font, Martinez Orellana - 2013 - 
+%     %	        Using Transmural Regularization and Dynamic Modeling 
+%     %	        for Non-Invasive Cardiac Potential Imaging of 
+%     %	        Endocardial Pacing Sites with Imprecise Thoracic Geometry.
+%     %
+%     %		Inputs
+%     %				  i1 - <N,T>double - measured potentials on the torso.
+%     %				  i2 - <N,M>double - forward matrix.
+%     %				  i3 - <L,M>double - regularization matrix.
+%     %				  i4 - <3,1>int - regularization constant params.
+%     %				                  i4(1) - log10 min lambda.
+%     %				                  i4(2) - log10 max lambda
+%     %				                  i4(3) - num lambda.
+%     %		Outputs
+%     %				  o1 - <M,T>double - estimated heart potentials.
+%     \end{verbatim}
+
+
+%     \noindent{\bf Inverse Solution:}
+%     \begin{verbatim}
+    
+%     \end{verbatim}
+
+%     \begin{figure}
+%         \begin{center}
+%         \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/splineInverse_Network.png}
+%         \caption{The SCIRun network for the Spline-Based Method inverse solution example.}
+%         \label{fig:splineInverse}
+%         \end{center}
+%     \end{figure}
+    
+    
+
+% \subsection{Non-Decreasing Inverse Method}
+
+%     The Non-Decreasing Inverse Method estimates the transmembrane potentials by solving a constrained Tikhonov problem.
+%     Thus the function to be optimized over is a standard Tikhonov problem but restricts the solutions to always be non-decreasing.
+%     Thus, the problem to be solved is:
+%     \begin{equation}\begin{split}
+%     		\min_{x(t), t=1\dots T} &\|y(t) - Ax(t)\|_2^2 + \lambda*\|Rx(t)\|_2^2 \\
+%     		&s.t.\\
+%       		&\hspace{2cm}x(1) >= minB\\
+%          	&\hspace{2cm}x(t+1) >= x(t), \hspace{.2cm}t=1\dots T-1\\
+%          	&\hspace{2cm}x(T) <= maxB
+%     \end{split}
+%     \end{equation}
+%     Where $minB$ and $maxB$ are the minimum and maximum bounds for the TMP.
+%     For memory efficiency, this problem is implemented with an ADMM solver.
+    
+%     This model assumes that the electrical sources of the heart model the transmembrane potentials on each node of the geometry. The inputs and ouputs of the MATLAB implementation can be seen here:
+%     \begin{verbatim}
+%     %% MESSNARZ INVERSE SCRIPT FOR SCIRUN
+%     %
+%     %           (...)
+%     %			INPUT:
+%     % 					- A - <N M>double - forward operator of the linear system.
+%     % 					- R - <H,M>double - regularization matrix.
+%     % 					- ECG - <N,T>double - Body surface measurements.
+%     % 					- lambda - double - regularization term.
+%     % 					- initialx - <M,T>double - initial guess for the TMP
+%     % 					solution.
+%     % 					- rho - double - augmented term weight.
+%     % 					- min_r - double - stopping criteria for the primal
+%     % 					residual.
+%     % 					- min_s - double - stopping criteria for the dual residual.
+%     %					- margin - <2,1>double - minimum and maximum bounds for
+%     %					the transmembrane potentials.
+%     % 					- verbose - boolean - print ADMM iteratinons information.
+%     %
+%     %			OUTPUT:
+%     % 					- xk - <M,T>double - estimated TMP.
+%     % 					- zk - <M,T+1>double - estimated slack variable.
+%     %           (...)
+%     %
+%     \end{verbatim}
+%     \noindent{\bf Inputs:}
+%     \begin{enumerate}
+%         \item Forward Matrix ($A\in\Re^{N,M}$)
+%         \item Regularization matrix ($R\in\Re^{F,N}$)
+%         \item Measured Potentials ($Y\in\Re^{N,T}$)
+%         \item Regularization parameter ($\lambda\in\Re$)
+%         \item Initial guess for the transmembrane potentials ($X_0\in\Re^{N,1}$ )
+%         \item ADMM parameters: weight of augmented lagrangian, stopping paramter for primal and dual objectives ($\rho, min_r, min_s \in\Re^{+}$)
+%         \item Lower and upper bounds (margin) of the transmembrane potentials ($marg\in\Re^2$)
+%     \end{enumerate}
+    
+%     \noindent{\bf Outputs:}
+%     \begin{enumerate}
+%         \item Heart potentials ($xk\in\Re^{M,T}$ )
+%     \end{enumerate}
+    
+%     The resulting potentials have sharp increases of potentials similar to the typically observed in TMPs for most of the nodes on the heart geometry.
+%     In general, the final solution is insensitive to the initial guess but it will affect the time of convergence.
+%     The script is set up such that the initial guess for the first lambda is a simple ramp, after each initial guess is the final result of the previous lambda. 
+%     The decision of the correct lambda is done automatically using an L-corner detection.
+%     This algorithm is implemented as the SCIRUN network shown in \autoref{fig:nonDecreasingNetwork}
+    
+%     NOTE: This code requires the software package reguTools (http://www.imm.dtu.dk/~pcha/Regutools/) to be incorporated in the default path from MATLAB.
+
+%     \subsubsection{Options and Modes of Operation}
+%     \begin{figure}
+%         \begin{center}
+%         \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/nonDecreasingNetwork.png}
+%         \caption{The SCIRun network for the Non-Decreasing Inverse Method inverse solution example.}
+%         \label{fig:nonDecreasingNetwork}
+%         \end{center}
+%     \end{figure}
+
+
+   
+\subsection{Activation-Based Method}
+    
+    The activation-based inverse method solves the inverse problem in electrocardiography through the estimation of the activation times (\emph{i.e.} the depolarization times) on the heart.
+    This inverse method assumes that the sources on the heart are modeled with a potentials over time at each node are parameterized  by the time of activation.
+    This assumption allows the inverse method to resolve the inverse problem by estimating the activation times at every node on the heart geometry.
+    
+    The inverse problem being solved is thus a non-linear optimization problem for which there is no closed-form solution. 
+    The implementation of the activation-based inverse in SCIRun is done with a Gauss-Newton iterative method that solves:
+    \begin{center}
+        \begin{eqnarray}
+            min_{X} \|Y - A \Phi(\tau, \omega) \|^{2}_{2} + \lambda \| R\Phi(\tau, \omega) \|^{2}_{2},
+        \label{eq:inverseSec_actBasedObj}
+        \end{eqnarray}
+    \end{center}
+    where $\Phi(\cdot)$ is the pre-defined temporal waveform at each node and is paramaterized by $\tau$ and $\omega$, which correspond to the time of activation and the slope of the depolarixzation wave respectively.
+    $Y$ are the measured body surface potentials, $A$ the forward matrix and $R$ the regularization matrix.
+    
+    The inputs and outputs of this inverse method can be observed in the ``InterfaceWithPython'' module in the network example shown in \autoref{fig:activationBasedNetwork} and in the header of the MATLAB implementation:
+    \begin{verbatim}
+        function tau = ActGaussNewton(A,Y,L,tauinit,lambda,w,minstep)
+        % Implements the Gauss-Newton algorithm for solving the activation-based
+        % inverse problem of electrocardiography.
+        % => minimizes the objective function ||Y-A*X||^2+lambda*||L*X||^2 where
+        % X is parameterized by the C^1 polynomial approximation to a step function
+        % as explained in "The Depolarization Sequence of the Human Heart Surface
+        % Computed from Measured Body Surface Potentials" by Geertjan Huiskamp and
+        % Adriaan van Oosterom.
+        %
+        % Input Variables:
+        % A: Forward matrix
+        % Y: Observations (columns index time from 1 to T=size(Y,2))
+        % L: Regularization matrix (typically a surface Laplacian approximation)
+        % lambda: Regularization parameter
+        % w: Width parameter in step function approximation
+        % tauinit: Initial phase shifts for starting the algorithm
+        %
+        % Output Variables:
+        % tau: Solution phase shifts of the step functions
+    \end{verbatim}
+    
+    \noindent{\bf Inputs:}
+    \begin{enumerate}
+        \item Forward Matrix ($A\in\Re^{N,M}$)
+        \item Measured Potentials ($Y\in\Re^{N,T}$)
+        \item Regularization matrix ($R\in\Re^{F,N}$)
+        \item Initial guess for the activation times ($\tau\in\Re^{N,1}$ )
+        \item Regularization parameter ($\lambda\in\Re$)
+        \item Activation waveform transition width ($\omega\in\Re^{+}$)
+        \item Convergence parameter ($\epsilon\in\Re^{+}$)
+    \end{enumerate}
+    The initial guess is the set of activation times from which the Gauss-Newton algorithm starts pursuing a more suitable inverse solution. 
+    The transition width controls the number of time samples (not necessarily integer) taken by each source to transition from inactivated to activated in this method. 
+    The convergence parameter is the minimum norm of the step taken by the iterations within the Gauss-Newton algorithm before the method is deemed to have converged to a suitable solution. 
+    
+    \noindent{\bf Outputs:}
+    \begin{enumerate}
+        \item Activation times ($\tau\in\Re^{M,1}$ )
+    \end{enumerate}
+    The only output of the method is the inverse solution in the form of an array of activation times.
+    
+    \begin{figure}
+        \begin{center}
+        \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/activationBasedNetwork.png}
+        \caption{The SCIRun network for the Activation-Based Method inverse solution example.}
+        \label{fig:activationBasedNetwork}
+        \end{center}
+    \end{figure}
+
+
+% \subsection{Wavefront-Based Potential Reconstruction (WBPR)}
+
+%     The Wavefront-Based Potential Reconstruction (WBPR) method imposes prior knowledge about the spatial patterns of electric potentials on the heart during the QRS complex to reconstruct an inverse solution. 
+%     This inverse method assumes a source model characterizing the extracellular potentials on the heart surface and introduces a regularization term that imposes them to be similar to a pre-specified shape.
+    
+%     The inputs and outputs of this inverse method can be observed in the ``InterfaceWithPython'' module in the network example shown in \autoref{fig:WBPRNetwork} and in the header of the MATLAB implementation:
+%     \begin{verbatim}
+%     function [x_WBPR_forward,x_WBPR_backward] = WBPR(A,y,heart,first_act,last_act)
+%     % Function to calculate the WBPR solutions
+%     % Inputs:
+%     %   A: forward matrix
+%     %   y: torso data
+%     %   heart: heart geometry
+%     %   first_act: first activated node
+%     %   last_act: last activated node
+%     %
+%     % Outputs:
+%     %   x_WBPR_forward: inverse solution using forward WBPR
+%     %   x_WBPR_backward: inverse solution using backward WBPR
+%     \end{verbatim}
+
+%     \noindent{\bf Inputs:}
+%     \begin{enumerate}
+%         \item Forward Matrix ($A\in\Re^{N,M}$)
+%         \item Measured Potentials ($Y\in\Re^{N,T}$)
+%         \item Heart geometry (struct containing nodes and triangles)
+%         \item First and last nodes to activate ()
+%     \end{enumerate}
+   
+%     \noindent{\bf Outputs:}
+%     \begin{enumerate}
+%         \item forward WBPR solution ($X_f\in\Re^{M,T}$ )
+%         \item backward WBPR solution ($X_b\in\Re^{M,T}$ )
+%     \end{enumerate}
+%     As output, WBPR produces two inverse solutions. The procedure by which the inverse solutions are obtained may be run both forward and backward in time. Therefore, the ``forward WBPR'' solution is that obtained by applying the method starting from the earliest sample time and ending at the latest. On the other hand, the ``backward WBPR'' solution is obtained by starting from the latest sample time and traversing the samples in reverse until ending at the earliest.
+
+%     NOTE: This code requires the software package reguTools (http://www.imm.dtu.dk/~pcha/Regutools/) to be incorporated in the default path from MATLAB.
+
+%     \begin{figure}
+%         \begin{center}
+%         \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/WBPRNetwork.png}
+%         \caption{The SCIRun network for the WBPR Method inverse solution example.}
+%         \label{fig:WBPRNetwork}
+%         \end{center}
+%     \end{figure}
 
