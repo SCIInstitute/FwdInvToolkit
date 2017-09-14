@@ -8,7 +8,7 @@ def verify_network_node(network_xml):
     #  If one network is upgrade or created with the new version, the rest must be upgraded too.
     #  load and save each network to upgrade it.
     #  Run the script resave_networks.py to upgrade all networks.
-    assert len(network_xml) == 10 # update when version changes
+    assert len(network_xml) == 15 # update when version changes
     assert network_xml[0].tag == 'networkInfo'
     assert network_xml[1].tag == 'modulePositions'
     assert network_xml[2].tag == 'moduleNotes'
