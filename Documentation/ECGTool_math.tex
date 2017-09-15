@@ -286,7 +286,7 @@ provided an example SCIRun network to implement one of them, the so-called
 source vectors consisting of a $1$ at each source node in turn and $0$ at
 all other source nodes \cite{JDT:Gul97}. From this collection of solutions we 
 can obtain the desired transfer matrix, which we will denote as $\mathbf{A}$ 
-as used in eq.~\ref{eg:TransMat}. 
+as used in eq.~\ref{eq:TransMat}. 
 This network is described below in Ch.~\ref{ch:fwd}.
 
 \subsection{BEM in the Forward/Inverse Toolkit}
@@ -410,6 +410,7 @@ describe the basic formulation behind these approaches, while usage details
 are in Ch.~\ref{ch:inv}.
 
 \subsubsection{Standard Tikhonov regularization}
+\label{sec:math_tikhonov}
 
 The Tikhonov regularization minimizes $ \| Ax - y \|$ in order to solve $Ax=y$, 
 which is the same as eq.~\ref{eq:TransMat} with $x$ replacing $x(t)$ for the 
@@ -465,6 +466,7 @@ An alternative approach to solve the Tikhonov minimization involves a singular v
 decomposition (SVD) of the matrix $\mathbf{A}$. The SVD results in several factor matrices, from which one then obtains the inverse solution. The SVD approach is also implemented in SCIRun and will be described below.
 
 \subsubsection{Choosing the regularization parameter:}
+\label{sec:math_regparam}
 
 Choosing an appropriate value as a regularization parameter is critical for achieving useful solutions.
 The solution typically depends on it in a sensitive fashion, and good
