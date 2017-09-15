@@ -65,7 +65,7 @@ def test_toolkit_file():
     # count is first:
     assert networks[0].tag == 'count'
     # update actual network count here:
-    assert networks[0].text == '14'
+    assert networks[0].text == '12'
 
     # item_version next:
     assert networks[1].tag == 'item_version'
