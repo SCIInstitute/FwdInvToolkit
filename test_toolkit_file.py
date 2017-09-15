@@ -7,7 +7,7 @@ def verify_network_node(network_xml):
     #  when the network format changes, the version number will change.
     #  If one network is upgrade or created with the new version, the rest must be upgraded too.
     #  load and save each network to upgrade it.
-    #  Run the script resave_networks.py to upgrade all networks.  
+    #  Run the script resave_networks.py to upgrade all networks.
     assert len(network_xml) == 10 # update when version changes
     assert network_xml[0].tag == 'networkInfo'
     assert network_xml[1].tag == 'modulePositions'
@@ -65,7 +65,7 @@ def test_toolkit_file():
     # count is first:
     assert networks[0].tag == 'count'
     # update actual network count here:
-    assert networks[0].text == '11'
+    assert networks[0].text == '14'
 
     # item_version next:
     assert networks[1].tag == 'item_version'
