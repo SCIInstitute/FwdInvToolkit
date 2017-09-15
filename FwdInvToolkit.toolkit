@@ -28331,7 +28331,7 @@ p, li { white-space: pre-wrap; }
 			<second>
 				<networkInfo>
 					<modules>
-						<count>43</count>
+						<count>45</count>
 						<item_version>0</item_version>
 						<item>
 							<first>AlignMeshBoundingBoxes:0</first>
@@ -28593,7 +28593,7 @@ p, li { white-space: pre-wrap; }
 												<name>TextEntry</name>
 												<value>
 													<which>2</which>
-													<value>0.0000000001</value>
+													<value>2</value>
 												</value>
 											</second>
 										</item>
@@ -28733,6 +28733,38 @@ p, li { white-space: pre-wrap; }
 							</second>
 						</item>
 						<item>
+							<first>FlipSurfaceNormals:0</first>
+							<second>
+								<module>
+									<package_name_>SCIRun</package_name_>
+									<category_name_>ChangeMesh</category_name_>
+									<module_name_>FlipSurfaceNormals</module_name_>
+								</module>
+								<state>
+									<stateMap>
+										<count>0</count>
+										<item_version>0</item_version>
+									</stateMap>
+								</state>
+							</second>
+						</item>
+						<item>
+							<first>FlipSurfaceNormals:1</first>
+							<second>
+								<module>
+									<package_name_>SCIRun</package_name_>
+									<category_name_>ChangeMesh</category_name_>
+									<module_name_>FlipSurfaceNormals</module_name_>
+								</module>
+								<state>
+									<stateMap>
+										<count>0</count>
+										<item_version>0</item_version>
+									</stateMap>
+								</state>
+							</second>
+						</item>
+						<item>
 							<first>GetFieldBoundary:0</first>
 							<second>
 								<module>
@@ -28774,7 +28806,7 @@ p, li { white-space: pre-wrap; }
 								</module>
 								<state>
 									<stateMap>
-										<count>25</count>
+										<count>27</count>
 										<item_version>0</item_version>
 										<item>
 											<first>
@@ -28866,6 +28898,30 @@ p, li { white-space: pre-wrap; }
 											</first>
 											<second>
 												<name>InputField:7</name>
+												<value>
+													<which>2</which>
+													<value>fieldInput3</value>
+												</value>
+											</second>
+										</item>
+										<item>
+											<first>
+												<name>InputField:8</name>
+											</first>
+											<second>
+												<name>InputField:8</name>
+												<value>
+													<which>2</which>
+													<value>fieldInput2</value>
+												</value>
+											</second>
+										</item>
+										<item>
+											<first>
+												<name>InputField:9</name>
+											</first>
+											<second>
+												<name>InputField:9</name>
 												<value>
 													<which>2</which>
 													<value>fieldInput3</value>
@@ -28969,6 +29025,7 @@ p, li { white-space: pre-wrap; }
 
 sys.path.append(os.environ[&apos;SCIRUNDATADIR&apos;]+&apos;/PythonLibrary/MFS_inverse&apos;)
 from mfs_inverse import *
+import numpy
 
 scale_out = 1.0
 scale_in = 0.5
@@ -28979,7 +29036,10 @@ tank = fieldInput2
 sock_pts = fieldInput3
 tank_pot = matrixInput1
 electnodes = matrixInput2
-lmbd = matrixInput3
+
+# set lambda options here
+lmbd = numpy.linspace(0.00000001,1,100).tolist()
+lmbd_method = &apos;cresco&apos;
 
 # modify geometry for visualization
 print(len(tank[&apos;node&apos;]))
@@ -28991,16 +29051,20 @@ for k in electnodes:
   k_t = int(k[0])
   new_tank_node.append(tank[&apos;node&apos;][k_t])
 
-
+t_p = [[-t[0]] for t in tank_pot]
 
 # run mfs inverse
-epis = mfs_inverse(heart,tank,sock_pts,tank_pot,electnodes,lmbd[0][0],scale_out,scale_in)
+epis = mfs_inverse(heart,tank,sock_pts,t_p,electnodes,scale_out,scale_in,lmbd_method,lmbd,False,0.0)
 
+print(type(epis))
+print(epis.shape)
+#print(epis)
 
 # convert output to list.
-epi_out=[[]]*len(epis)
-for k in range(0,len(epis)):
-  epi_out[k] = [epis[k]]
+#epi_out=[[]]*len(epis)
+#for k in range(0,len(epis)):
+#  epi_out[k] = [epis[k]]
+epi_out=epis.tolist()
 
 
 #field =[[0]*len(new_tank_node)]
@@ -29019,7 +29083,8 @@ fieldOutput1 = new_tank
 
 #print(fieldOutput1)
 
-
+#print(type(epi_out))
+#print(epi_out)
 # send output
 matrixOutput1 = epi_out
 
@@ -29618,7 +29683,7 @@ matrixOutput1 = epi_out
 												<name>FixedMax</name>
 												<value>
 													<which>1</which>
-													<value>1.56427286097704443e+00</value>
+													<value>9.71543258091670658e+00</value>
 												</value>
 											</second>
 										</item>
@@ -29630,7 +29695,7 @@ matrixOutput1 = epi_out
 												<name>FixedMin</name>
 												<value>
 													<which>1</which>
-													<value>-9.57253795822079212e+00</value>
+													<value>-2.55329052254606736e+00</value>
 												</value>
 											</second>
 										</item>
@@ -29746,7 +29811,7 @@ matrixOutput1 = epi_out
 												<name>FixedMax</name>
 												<value>
 													<which>1</which>
-													<value>8.20278959281147202e+00</value>
+													<value>8.11905675273246885e+00</value>
 												</value>
 											</second>
 										</item>
@@ -29758,7 +29823,7 @@ matrixOutput1 = epi_out
 												<name>FixedMin</name>
 												<value>
 													<which>1</which>
-													<value>-1.30251228068234237e+01</value>
+													<value>-1.29159610799100104e+01</value>
 												</value>
 											</second>
 										</item>
@@ -34324,7 +34389,7 @@ matrixOutput1 = epi_out
 								</module>
 								<state>
 									<stateMap>
-										<count>12</count>
+										<count>16</count>
 										<item_version>0</item_version>
 										<item>
 											<first>
@@ -34449,6 +34514,18 @@ matrixOutput1 = epi_out
 										</item>
 										<item>
 											<first>
+												<name>TikhonovImplementation</name>
+											</first>
+											<second>
+												<name>TikhonovImplementation</name>
+												<value>
+													<which>2</which>
+													<value>standardTikhonov</value>
+												</value>
+											</second>
+										</item>
+										<item>
+											<first>
 												<name>TikhonovResidualSubcase</name>
 											</first>
 											<second>
@@ -34465,6 +34542,42 @@ matrixOutput1 = epi_out
 											</first>
 											<second>
 												<name>TikhonovSolutionSubcase</name>
+												<value>
+													<which>0</which>
+													<value>0</value>
+												</value>
+											</second>
+										</item>
+										<item>
+											<first>
+												<name>regularizationChoice</name>
+											</first>
+											<second>
+												<name>regularizationChoice</name>
+												<value>
+													<which>0</which>
+													<value>0</value>
+												</value>
+											</second>
+										</item>
+										<item>
+											<first>
+												<name>regularizationResidualSubcase</name>
+											</first>
+											<second>
+												<name>regularizationResidualSubcase</name>
+												<value>
+													<which>0</which>
+													<value>0</value>
+												</value>
+											</second>
+										</item>
+										<item>
+											<first>
+												<name>regularizationSolutionSubcase</name>
+											</first>
+											<second>
+												<name>regularizationSolutionSubcase</name>
 												<value>
 													<which>0</which>
 													<value>0</value>
@@ -35395,7 +35508,7 @@ matrixOutput1 = epi_out
 												<name>ShowViewer</name>
 												<value>
 													<which>3</which>
-													<value>0</value>
+													<value>1</value>
 												</value>
 											</second>
 										</item>
@@ -35961,7 +36074,7 @@ matrixOutput1 = epi_out
 						</item>
 					</modules>
 					<connections>
-						<count>61</count>
+						<count>63</count>
 						<item_version>0</item_version>
 						<item>
 							<moduleId1_>AlignMeshBoundingBoxes:0</moduleId1_>
@@ -36084,6 +36197,30 @@ matrixOutput1 = epi_out
 							</port2_>
 						</item>
 						<item>
+							<moduleId1_>FlipSurfaceNormals:0</moduleId1_>
+							<port1_>
+								<name>OutputField</name>
+								<id>0</id>
+							</port1_>
+							<moduleId2_>TransformMeshWithTransform:1</moduleId2_>
+							<port2_>
+								<name>InputField</name>
+								<id>0</id>
+							</port2_>
+						</item>
+						<item>
+							<moduleId1_>FlipSurfaceNormals:1</moduleId1_>
+							<port1_>
+								<name>OutputField</name>
+								<id>0</id>
+							</port1_>
+							<moduleId2_>InterfaceWithPython:0</moduleId2_>
+							<port2_>
+								<name>InputField</name>
+								<id>8</id>
+							</port2_>
+						</item>
+						<item>
 							<moduleId1_>GetFieldBoundary:0</moduleId1_>
 							<port1_>
 								<name>BoundaryField</name>
@@ -36161,9 +36298,9 @@ matrixOutput1 = epi_out
 								<name>Field</name>
 								<id>0</id>
 							</port1_>
-							<moduleId2_>ShowField:2</moduleId2_>
+							<moduleId2_>FlipSurfaceNormals:0</moduleId2_>
 							<port2_>
-								<name>Field</name>
+								<name>InputField</name>
 								<id>0</id>
 							</port2_>
 						</item>
@@ -36173,9 +36310,9 @@ matrixOutput1 = epi_out
 								<name>Field</name>
 								<id>0</id>
 							</port1_>
-							<moduleId2_>TransformMeshWithTransform:1</moduleId2_>
+							<moduleId2_>ShowField:2</moduleId2_>
 							<port2_>
-								<name>InputField</name>
+								<name>Field</name>
 								<id>0</id>
 							</port2_>
 						</item>
@@ -36209,10 +36346,10 @@ matrixOutput1 = epi_out
 								<name>Field</name>
 								<id>0</id>
 							</port1_>
-							<moduleId2_>InterfaceWithPython:0</moduleId2_>
+							<moduleId2_>FlipSurfaceNormals:1</moduleId2_>
 							<port2_>
 								<name>InputField</name>
-								<id>6</id>
+								<id>0</id>
 							</port2_>
 						</item>
 						<item>
@@ -36632,7 +36769,7 @@ matrixOutput1 = epi_out
 							<moduleId2_>InterfaceWithPython:0</moduleId2_>
 							<port2_>
 								<name>InputField</name>
-								<id>7</id>
+								<id>9</id>
 							</port2_>
 						</item>
 						<item>
@@ -36698,7 +36835,7 @@ matrixOutput1 = epi_out
 					</connections>
 				</networkInfo>
 				<modulePositions>
-					<count>43</count>
+					<count>45</count>
 					<item_version>0</item_version>
 					<item>
 						<first>AlignMeshBoundingBoxes:0</first>
@@ -36750,6 +36887,20 @@ matrixOutput1 = epi_out
 						</second>
 					</item>
 					<item>
+						<first>FlipSurfaceNormals:0</first>
+						<second>
+							<first>3.32000000000000000e+02</first>
+							<second>2.72000000000000000e+02</second>
+						</second>
+					</item>
+					<item>
+						<first>FlipSurfaceNormals:1</first>
+						<second>
+							<first>9.08359456249999539e+02</first>
+							<second>3.19725156249999941e+02</second>
+						</second>
+					</item>
+					<item>
 						<first>GetFieldBoundary:0</first>
 						<second>
 							<first>6.60000000000000000e+01</first>
@@ -36787,8 +36938,8 @@ matrixOutput1 = epi_out
 					<item>
 						<first>ReadField:1</first>
 						<second>
-							<first>2.23000000000000000e+02</first>
-							<second>7.20000000000000000e+01</second>
+							<first>2.69000000000000000e+02</first>
+							<second>6.10000000000000000e+01</second>
 						</second>
 					</item>
 					<item>
@@ -36969,7 +37120,7 @@ matrixOutput1 = epi_out
 					<item>
 						<first>TransformMeshWithTransform:0</first>
 						<second>
-							<first>8.46000000000000000e+02</first>
+							<first>8.44250993749999907e+02</first>
 							<second>5.27000000000000000e+02</second>
 						</second>
 					</item>
@@ -37093,7 +37244,7 @@ node numbers</noteText>
 					<item_version>0</item_version>
 				</connectionNotes>
 				<moduleTags>
-					<count>43</count>
+					<count>45</count>
 					<item_version>0</item_version>
 					<item>
 						<first>AlignMeshBoundingBoxes:0</first>
@@ -37121,6 +37272,14 @@ node numbers</noteText>
 					</item>
 					<item>
 						<first>EvaluateLinearAlgebraUnary:0</first>
+						<second>-1</second>
+					</item>
+					<item>
+						<first>FlipSurfaceNormals:0</first>
+						<second>-1</second>
+					</item>
+					<item>
+						<first>FlipSurfaceNormals:1</first>
 						<second>-1</second>
 					</item>
 					<item>
