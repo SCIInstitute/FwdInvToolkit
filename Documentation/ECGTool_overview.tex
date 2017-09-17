@@ -1,5 +1,16 @@
 \chapter{Overview}
 
+\begin{figure}
+    \begin{center}
+    \includegraphics[width=0.75\textwidth]{ECGToolkitGuide_figures/fwd_inv_diag.pdf}
+    \caption{Forward and inverse problems in electrocardiology.  The forward simulation involves 
+        computing the torso potentials with know cardiac sources and torso geometry.  The inverse 
+        solution, called ECG Imaging (ECG) consists of inverting the forward model to calculate cardiac
+        sources from body surface recordings.}
+    \label{fig:fwdinv_diag}
+    \end{center}
+    \end{figure}
+    
 \begin{introduction}
 
 This guide describes and documents the SCIRun ECG Forward/Inverse
@@ -12,11 +23,10 @@ and visualizing data. If the reader is not familiar with these operations,
 we suggest you first consult the SCIRun Basic Tutorial, also distributed in
 the SCIRun documentation.
 
-For more information regarding the basic science associated with forward and inverse calculations please see (\href{ecg-imaging.org}). This website serves as the central platform for the Consortium of Electrocardiographic Imaging (CEI). CEI also hosts the EDGAR data repository where anyone can access and download experimental data from around the world. 
-
 The purpose of this toolkit is to advance the state of forward and inverse
 solutions in this field by offering a common platform for investigators and
-others to compare geometries and geometric representations, forward and inverse algorithms and data, with the maximum degree of both flexibility
+others to compare geometries and geometric representations, forward and 
+inverse algorithms and data, with the maximum degree of both flexibility
 and commonality that we can achieve. Thus, we hope to increase the
 "reproducibility'' of developments in this field and help
 move these technologies closer to useful clinical applications. As such, the
@@ -45,7 +55,7 @@ environment and personnel in SCI have also been integral to the development of t
 \end{introduction}
 
 \section{Toolkit overview and capabilities}
-
+    
 Computational modeling of bioelectric fields often requires the solution of
 electrocardiographic or electroencephalographic forward and inverse
 problems in order to non-invasively analyze electrophysiological events
@@ -111,22 +121,24 @@ included, and can easily be included in user-built networks.
 \hline
 {\bf Forward tools} & {\bf Inverse Tools}\\ \hline
 \hline
-Potential-Based FEM/BEM & Activation-Based$^{\&}$$^{*}$\\ \hline
-Activation-Based FEM$^{\dag}$ & Potential-Based Regularization  Methods\\ \hline
-FEM Lead Field Calculation &   -  Tikhonov  \\ \hline
-Stiffness Matrix Calculation &- Tikhonov SVD  \\ \hline
+Potential-Based FEM/BEM$^\dag$ & Activation-Based$^{\&*\ddag}$\\ \hline
+FEM Lead Field Calculation& Potential-Based Regularization  Methods\\ \hline
+Stiffness Matrix Calculation &   -  Tikhonov  \\ \hline
+ &- Tikhonov SVD  \\ \hline
  & - Truncated SVD\\ \hline
  & - Isotropy method$^{*}$\\ \hline
- & - Gauss-Newton Method$^{*}$\\ \hline
+ & - Gauss-Newton Method$^{*\ddag}$\\ \hline
  & - Wavefront based potential reconstruction$^*$\\ \hline
- & - Total Variation \\ \hline
+ & - Total Variation$^{*}$ \\ \hline
+ & - Method of Fundamental Solution (MFS) $^\ddag$\\ \hline
 \end{tabular}
 \caption{Algorithms currently included in the CIBC ECG Forward/Inverse
 toolkit \newline
-$^\dag$Activation-based BEM forward solution is currently
-unavailable in the toolkit \newline
+$^\dag$Activation-based forward solution is not yet
+unavailable\newline
 $^{\&}$Based on a Gauss-Newton optimization \newline
-$^{*}$Requires Matlab
+$^{*}$ Matlab implementation
+$^\ddag$ Python implementation
 }
 \label{tab:prop}
 \end{table}
