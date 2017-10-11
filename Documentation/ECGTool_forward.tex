@@ -4,7 +4,7 @@
 
 As described previously, the forward problem predicts the potentials observed along some measurement surface (commonly the body surface) given a set of known electrical sources and the geometry through which those source fields conduct. In this chapter, we will provide an overview of the forward problem as it is implemented in the Fwd/Inv toolkit, which generally calculates torso surface potentials given a set of known cardiac source parameters. Of course, these toolkit networks can be manipulated to incorporate other source models (\eg{} brain potentials or transmural cardiac potentials) or solution representations (\eg{} scalp or epicardial potentials) as needed. 
 
-The forward problem can be broken down into two fundamental concepts: 1) how to represent the source and 2) how that source maps to desired observation locations (\eg{} torso surface). One can conceptualize these two concepts in the classic sense by considering the function $(A)x = b$,  where $b$ represents a set of unknowns on the torso surface (observation locations) and $x$ is the cardiac source or source formulation. The function $A$, therefore, represents how source potentials are to be mapped to the observation field and is dependent on the choice of source model, the solution approach (\ie{} FEM/BEM), and relevant torso specific requirements such as conductivities and geometry.
+The forward problem can be broken down into two fundamental concepts: 1) how to represent the source and 2) how that source maps to desired observation locations (\eg{} torso surface). One can conceptualize these two concepts in the classic sense by considering the function $\mathbf{y}(t) = \mathbf{A}\mathbf{x}(t)$,  where $\mathbf{y}(t)$ (Eq.~\ref{eq:TransMat}) represents a set of unknowns on the torso surface (observation locations) and $\mathbf{x}(t)$ is the cardiac source or source formulation. The function $A$, therefore, represents how source potentials are to be mapped to the observation field and is dependent on the choice of source model, the solution approach (\ie{} FEM/BEM), and relevant torso specific requirements such as conductivities and geometry.
 
 The two most common source formulation models used in cardiac forward problems are cardiac potentials and activation times. The use of cardiac potentials is arguably a more intuitive formulation in that it is typically potentials that are recorded from cardiac-specific electrodes.  Activation times must be {\em derived} from recorded signals and are, therefore, one step removed from the original recordings.  In terms of abbreviated physiology, cardiac potentials relate the interaction of cardiac cells to changes in the extracellular potential fields of the myocardium. These extracellular cardiac potentials are then projected to the torso surface. The activation-time-based source formulation, on the other hand, deals with the fact that when inactive and active tissues exist in close proximity, a source much like a dipole or layer of dipoles can be generated that is representative of the propagating activation wavefront, which then projects to the torso surface. Both of these source models contain several assumptions, but each provides a generally accurate model that can be computationally reasonable.
 
@@ -110,20 +110,20 @@ The resulting output of the {\tt BuildFEMatrix} module is a stiffness matrix for
 \begin{figure}[b]
 \begin{center}
 \includegraphics[width=\textwidth]{ECGToolkitGuide_figures/AddKnowns.png}
-\caption{{\bf AddKnownsToLinearSystem Module.} The {\tt AddKnownsToLinearSystem} module recalibrates  the stiffness matrix and RHS vector for a FE solution given known values in $\mathbf{x}$ and (optionally) $\mathbf{b}$.}
+\caption{{\bf AddKnownsToLinearSystem Module.} The {\tt AddKnownsToLinearSystem} module recalibrates  the stiffness matrix and RHS vector for a FE solution given known values in $\mathbf{x}(t)$ and (optionally) $\mathbf{y}(t)$.}
 \label{fig:AddKnowns}
 \end{center}
 \vspace{-.25 in}
 \end{figure}
 
 {\tt AddKnownsToLinearSystem} makes it possible to add known values as boundary conditions
-to the linear system $Ax=b$, where some values of
-$\mathbf{x}$ are already known. 
-The module receives the stiffness matrix $\mathbf{A}$ along with an $\mathbf{x}$ matrix with known values imposed at the specific indices where data is known and $NaN$ values occupying the remaining vector entries. 
+to the linear system $\mathbf{y}(t) = \mathbf{A}\mathbf{x}(t)$, where some values of
+$\mathbf{x(t)}$ are already known. 
+The module receives the stiffness matrix $\mathbf{A}$ along with an $\mathbf{x(t)}$ matrix with known values imposed at the specific indices where data is known and $NaN$ values occupying the remaining vector entries. 
 A right-hand-side (RHS) matrix may also be provided if any of the solution values are also known, but it is not required. 
 If an RHS field is not included then it is assumed that the vector contains all zeros. % | Is this true...it isn't NaNs?
 Using the provided inputs, the module adjusts the linear system according to the known values. 
-This means that $\mathbf{A}$ and the RHS vector $\mathbf{b}$ are altered in such a way that the product of the new stiffness matrix and RHS $\mathbf{(A2)^{-1}} \mathbf{b2}$ (referring to Figure \ref{fig:AddKnowns}) will produce an $\mathbf{x}$ that contains the defined values at the specified locations. 
+This means that $\mathbf{A}$ and the RHS vector $\mathbf{y}(t)$ are altered in such a way that the product of the new stiffness matrix and RHS $\mathbf{(A2)^{-1}} \mathbf{b2}$ (referring to Figure \ref{fig:AddKnowns}) will produce an $\mathbf{x(t)}$ that contains the defined values at the specified locations. 
 
 %\newpage
 \section{Example Networks for Boundary Element Solutions}
@@ -172,7 +172,7 @@ Finally, the results are visualized and displayed using SCIRun's {\tt ShowField}
 \section{Example Networks for Finite Element Solutions}
 
 There are two examples in the Fwd/Inv toolkit for calculating the potential-based forward problem using finite element method. The first example is a direct calculation of the projection of the cardiac potentials into the torso mesh, satisfying Laplace's equation, and from thence to the torso surface. 
-The second example involves the generation of the lead field matrix, or transfer matrix, that is then used  to perform the forward calculation that very much resembles the $\mathbf{Ax=b}$ formulation seen in the BEM method above.
+The second example involves the generation of the lead field matrix, or transfer matrix, that is then used  to perform the forward calculation that very much resembles the $\mathbf{y}(t) = \mathbf{A}\mathbf{x}(t)$ formulation seen in the BEM method above.
 
 \subsection{Potential Based Forward FEM Simulation: Laplacian Solve}
 
@@ -233,7 +233,7 @@ The results are smoothed using the {\tt FairMesh} module and visualized.
 \subsection{Potential Based Forward FEM Simulation: Lead Field Calculation}
 
 The following example utilizes two networks in order to produce 1) a lead field matrix with which to solve 
-2) a traditional $\mathbf{Ax=b}$ forward solution. 
+2) a traditional $\mathbf{y}(t) = \mathbf{A}\mathbf{x}(t)$ forward solution. 
 Figure \ref{fig:FEMLead} shows a basic implementation of the finite element method used to calculate a lead field matrix and Figure \ref{fig:FEM_LeadNet} shows how that lead field matrix can be applied to generate a forward solution. 
 These networks also show the complete networks available in the Fwd/Inv toolkit in all their complexity.  
 Input meshes are segmentations that include multiple label masks (including one for the heart volume with a closed epicardium), which require manipulation prior to use. 

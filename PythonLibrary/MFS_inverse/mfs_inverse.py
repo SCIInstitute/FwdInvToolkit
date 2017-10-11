@@ -40,14 +40,22 @@
     Bad leads can be marked with 'nan' and these potentials and
     jacket locations are adjusted accordingly.
 
-    5) electrodes - list of of ints that maps the jacket (measurement)
+    5) electnums - list of of ints that maps the jacket (measurement)
     electrodes to the tank surface node numbers.
 
-    6) lmbd - the value of the regularisation parameter.
-
-    7) scale_out - distance to move points of the tank surface
+    6) scale_out - distance to move points of the tank surface
     
-    8) scale_in - distance to move points of the heart surface
+    7) scale_in - distance to move points of the heart surface
+    
+    8) lmbd_method - method of picking the regularization paramter
+    
+    9) lmbd - the value of the regularisation parameter. if lmbd_method is manual, 
+    lmbd must be a single value, otherwise it should be a list of possible values,
+    eg, numpy.linspace(0.0001,10,100).tolist()
+    
+    10) viz_regularization - (boolean) option to plot the values of the regularization values
+    
+    11) gammaa - addition parameter needed for rgcv method.
     
     The ouput is:
     
@@ -58,11 +66,15 @@
 
 # import required routines from various packages
 from sys import argv
-from numpy import sqrt,pi,array,cross,zeros,einsum,arccos,sum,append,dot,diag,transpose,ones,reshape
+from numpy import sqrt,pi,array,cross,zeros,einsum,arccos,sum,append,dot,diag,transpose,ones,reshape,isnan,linspace,where,diff,sign,argmin,argmax
 from numpy.linalg import norm,svd
-from math import isnan
+#from math import isnan
 
-def mfs_inverse(heart, tank, sock,tank_pots, electnums,lmbd,scale_out,scale_in):
+def mfs_inverse(heart,tank,sock,tank_pots,electnums,scale_out,scale_in,lmbd_method,lmbda,viz_regularization,gamma):
+
+
+
+
 
 # read closed heart nodes and mesh
     heart_closed_verts = array(heart['node'])
@@ -87,14 +99,25 @@ def mfs_inverse(heart, tank, sock,tank_pots, electnums,lmbd,scale_out,scale_in):
     if elecs.shape[0] <= elecs.max():
         elecs = elecs-1
 # flatten array to create proper vector
-    elecs = elecs.flatten()
+    print(elecs.shape)
+#elecs = elecs.flatten().T
+    print('elecs =')
+    print(elecs.shape)
+    #    print(elecs)
 
 # read jacket potentials
     bspm = array(tank_pots)
-    bspm = bspm.flatten()
-
+    sz_bspm = bspm.shape
+    print(type(bspm))
+    #bspm = bspm.flatten()
+    print('bspm =')
+    print(bspm.shape)
+#    print(bspm)
 # clean up nan's from bspm
     new_bspm,new_elecs = cleanbspm(bspm,elecs)
+    print('bspm new=')
+    print(bspm.shape)
+#print(new_bspm)
 
 # get normals to vertices
     inner_norms = norm_arr(heart_closed_verts,heart_closed_tris)
@@ -109,14 +132,19 @@ def mfs_inverse(heart, tank, sock,tank_pots, electnums,lmbd,scale_out,scale_in):
     fict_pts = append(new_out_verts,new_in_verts,axis=0)
 
 # set up rhs vector
-    rhs = append(new_bspm,zeros(len(new_elecs)))
+    rhs = append(new_bspm,zeros((new_elecs.size,sz_bspm[1])), axis=0)
+    print(rhs.shape)
+#print(rhs)
 
 # set up vector of surface points and normals at electrodes
 # this assumes that the electrodes are given node numbers in the mesh.
     jacket,jacket_norms = assign_elec(new_elecs,tank_closed_verts,outer_norms)
-
+    #print(jacket)
+#print(jacket_norms)
 # build coefficient matrix A
     amat = get_mat(jacket,fict_pts,jacket_norms)
+    print('amat =')
+    print(amat.shape)
 
 # perform SVD of matrix A
 # see numpy manual for full explanation
@@ -124,12 +152,60 @@ def mfs_inverse(heart, tank, sock,tank_pots, electnums,lmbd,scale_out,scale_in):
 
 # determine u^T b
     alpha = dot(transpose(u),rhs)
+    print('alpha =')
+    print(alpha.shape)
+    #print(alpha)
+
+# find regularization parameter lambda
+    if lmbd_method == 'manual':
+        if type(lmbda) is not float:
+            raise ValueError('manual option needs a single lambda value')
+        lamb = lmbda
+    elif min(lmbda)<=0:
+      raise ValueError('lmbda values should be greater than zero')
+    elif lmbd_method == 'l_curve':
+        lamb = find_lambda_lc(lmbda,u,s,vt,rhs,amat,alpha,viz_regularization)
+    elif lmbd_method == 'zc':
+        lamb = find_lambda_zc(lmbda,u,s,vt,rhs,amat,viz_regularization)
+    elif lmbd_method == 'cresco':
+        lamb = find_lambda_cresco(lmbda,s,alpha,viz_regularization)
+    elif lmbd_method == 'gcv':
+        lamb = find_lambda_gcv(lmbda,amat,u,s,vt,alpha,rhs,viz_regularization)
+    elif lmbd_method == 'rgcv':
+        lamb = find_lambda_gcv(lmbda,gamma,amat,u,s,vt,alpha,viz_regularization)
+    else:
+        raise ValueError('lmbd_method input must be: manual, l_curve, zc, cresco, gcv, or rgcv')
+
+    print('running test')
+    print('running lc')
+    print('s shape = \f',s.shape)
+    lamb = find_lambda_lc(lmbda,u,s,vt,rhs,amat,alpha,viz_regularization)
+    print('running zc')
+    print('s shape = \f',s.shape)
+    lamb = find_lambda_zc(lmbda,u,s,vt,rhs,amat,viz_regularization)
+    print('running cresco')
+    print('s shape = \f',s.shape)
+    lamb = find_lambda_cresco(lmbda,s,alpha,viz_regularization)
+    print('running gcv')
+    print('s shape = \f',s.shape)
+    lamb = find_lambda_gcv(lmbda,amat,u,s,vt,alpha,rhs,viz_regularization)
+    print('running rgcv')
+    print('s shape = \f',s.shape)
+    lamb = find_lambda_rgcv(lmbda,gamma,amat,u,s,vt,alpha,rhs,viz_regularization)
+
 
 # calculate vector of coefficients, a, using Tikhonov
-    avec = tik_inv(u,s,vt,rhs,lmbd)
+    avec = tik_inv(u,s,vt,rhs,lamb)
+    print('avecs =')
+    print(avec.shape)
+#print(avec)
+
 
 # final epicardial potentials
     epi_pot = epis(avec,sock_verts,fict_pts)
+    print('epi_pot =')
+    print(epi_pot.shape)
+#print(epi_pot)
 
     return epi_pot
 
@@ -219,12 +295,20 @@ def normder(x,y,normal):
 # routine to remove any jacket node that represents a 'bad electrode' 
 # the potential for that node should be recorded as 'nan'
 def cleanbspm(bspm,jacket):
-    new_bspm = []
-    new_jack = []
-    for i in range(len(bspm)):
-        if not isnan(bspm[i]):
-            new_bspm.append(bspm[i])
-            new_jack.append(jacket[i])
+    new_jack=jacket[~isnan(bspm).any(axis=1)]
+    new_bspm=bspm[~isnan(bspm).any(axis=1)]
+    #print(~isnan(bspm).any(axis=1))
+    #print('jacket = ')
+    #print(jacket)
+    #print('bspm =')
+    #print(bspm)
+
+  #    new_bspm = []
+  #  new_jack = []
+  #  for i in range(len(bspm)):
+  #      if not isnan(bspm[i]):
+  #          new_bspm.append(bspm[i])
+  #          new_jack.append(jacket[i])
     return new_bspm,new_jack
 
 # routine to fill coefficient matrix
@@ -256,13 +340,185 @@ def tik_inv(u,s,vt,b,l):
 #     x - vector required points, 
 #     y - vector of ficticious pts
 def epis(a,x,y):
-    vec = a[0]*ones(len(x))
+    print('a=')
+    print(a.shape)
+    print('x=')
+    print(x.shape)
+    #print(len(x))
+    print('y=')
+    print(y.shape)
+    #print(len(y))
+    
+    vec = a[0]*ones((len(x),1))
+    #print(vec)
     mat = zeros([len(x),len(y)])
     for i in range(len(x)):
         for j in range(len(y)):
             mat[i,j] = kernel(x[i],y[j])
     vec = vec+dot(mat,a[1:])
+    #    print(dot(mat,a[1:]))
+#    print(vec)
+    print(mat.shape)
+#print(mat)
     return vec
+
+
+# function to calculate CRESO function
+def creso_fun(lamb,sigma,alpha):
+  #print(lamb)
+  #print(sigma.shape)
+    #print(sigma)
+    #print(alpha.shape)
+    creso = sum(sigma**2*alpha**2*(sigma**2-3.0*lamb**2)/(sigma**2+lamb**2)**3)
+    return -creso
+
+# routine to calculate GCV function
+def gcv_fun(lamb,amat,u,sigma,vt,alpha,rhs):
+  # lambda cannot be 0
+    
+    avec_lss = tik_inv(u,sigma,vt,rhs,0.0)
+
+    res = norm(dot(amat,avec_lss)-rhs)
+    numer = sum(lamb**4*alpha**2/(lamb**2+sigma**2)**2)
+    denom = amat.shape[0] - sum(sigma**2/(lamb**2+sigma**2))
+    #    print lamb,res,numer,denom
+    return (numer+res)/denom**2
+
+
+# routine to RGCV function
+# Note:  a call to the function GCV is required before calling this function
+def rgcv_fun(lamb,gamma,amat,u,sigma,vt,alpha,rhs):
+    gcv = gcv_fun(lamb,amat,u,sigma,vt,alpha,rhs)
+    mu_fun = sum(sigma**4/(lamb**2+sigma**2)**2)
+    return (gamma+(1.0-gamma)*mu_fun)*gcv
+
+# routine to calculate the curvature of the L-curve
+def l_curve(lamb,u,sigma,vt,rhs,amat,alpha):
+    # lambda cannot be 0
+    avec = tik_inv(u,sigma,vt,rhs,lamb)
+    rho = norm(dot(amat,avec)-rhs)
+    eta = norm(avec)
+    rho2 = rho**2
+    eta2 = eta**2
+    #print(lamb)
+    #print(min(abs(sigma)))
+    #print(min(abs(alpha)))
+    eta_dash = -4.0/lamb*sum(lamb**2*sigma**2/(sigma**2+lamb**2)**3*alpha**2)
+    kappa = 2.0*eta2*rho2*(lamb**2*eta_dash*rho2+2.0*eta2*rho2*lamb+lamb**4*eta2*eta_dash)/\
+      (eta_dash*(lamb**2*eta2**2+rho2**2)**(1.5))
+    return kappa
+
+# function to evaluate zero-crossing function
+def zc_func(lamb,u,sigma,vt,rhs,amat):
+    avec = tik_inv(u,sigma,vt,rhs,lamb)
+    rho = norm(dot(amat,avec)-rhs)
+    eta = norm(avec)
+    return lamb**2*eta**2-rho**2
+
+def find_lambda_zc(lamb,u,s,vt,rhs,amat,viz):
+    zc = [zc_func(l,u,s,vt,rhs,amat) for l in lamb]
+    print('zc =')
+    print(zc)
+    zca=array(zc)
+    zc_ind=where(diff(sign(zca)))[0]
+    
+    
+    if len(zc_ind)==0:
+        raise ValueError('no zero crossing found with the lambda values provided')
+    if len(zc_ind)==1:
+        print('only one zero crossing found.  Consider increasing resolution of lambda values')
+
+    zc_ind=zc_ind[0]
+
+    print(type(zc_ind))
+    print(zc_ind)
+    m=(zc[zc_ind+1]-zc[zc_ind])/(lamb[zc_ind+1]-lamb[zc_ind])
+#b=zc[zc_ind+1]-m*lam[zc_ind+1]
+    zc_lambda=-(zc[zc_ind] - m*lamb[zc_ind])/m
+    
+
+    
+    
+    print('lambda value = \f',zc_lambda)
+
+    if viz:
+        print('regularization visualization not implemented yet')
+
+    return zc_lambda
+
+def find_lambda_cresco(lamb,s,alpha,viz):
+    crsc=[creso_fun(l,s,alpha) for l in lamb]
+    print('crsc =')
+    print(crsc)
+    ind =argmin(array(crsc))
+    crsc_lambda = lamb[ind]
+
+    print('lambda value = \f',crsc_lambda)
+    
+    if ind==0 or ind==(len(lamb)-1):
+        print('min lambda found at the edge of the range. Consider expanding.')
+  
+    if viz:
+        print('regularization visualization not implemented yet')
+    
+    return crsc_lambda
+
+def find_lambda_lc(lamb,u,s,vt,rhs,amat,alpha,viz):
+    lc= [l_curve(l,u,s,vt,rhs,amat,alpha) for l in lamb]
+    print('lc =')
+    print(lc)
+    ind = argmax(array(lc))
+    lc_lambda = lamb[ind]
+    
+    print('lambda value = \f',lc_lambda)
+    
+    if ind==0 or ind==(len(lamb)-1):
+      print('min lambda found at the edge of the range. Consider expanding.')
+  
+    if viz:
+        print('regularization visualization not implemented yet')
+
+    return lc_lambda
+
+def find_lambda_gcv(lamb,amat,u,s,vt,alpha,rhs,viz):
+  #print('find_gcv sigma shape= \f',s.shape)
+    gcv=[gcv_fun(l,amat,u,s,vt,alpha,rhs) for l in lamb]
+    print('gcv= ')
+    print(gcv)
+    ind =argmax(array(gcv))
+    gcv_lambda = lamb[ind]
+  
+    print('lambda value = \f',gcv_lambda)
+  
+    if ind==0 or ind==(len(lamb)-1):
+        print('min lambda found at the edge of the range. Consider expanding.')
+
+    if viz:
+        print('regularization visualization not implemented yet')
+
+
+    return gcv_lambda
+
+def find_lambda_rgcv(lamb,gamma,amat,u,s,vt,alpha,rhs,viz):
+    rgcv=[rgcv_fun(l,gamma,amat,u,s,vt,alpha,rhs) for l in lamb]
+    print('rgcv= ')
+    print(rgcv)
+    ind = argmax(array(rgcv))
+    rgcv_lambda = lamb[ind]
+    
+    print('lambda value = \f',rgcv_lambda)
+    
+    if ind==0 or ind==(len(lamb)-1):
+      print('min lambda found at the edge of the range. Consider expanding.')
+
+    if viz:
+        print('regulariza}tion visualization not implemented yet')
+    
+
+    return rgcv_lambda
+
+
+
 
 # start of main code
 
