@@ -10,7 +10,7 @@ The inverse problem of electrocardiography is to find suitable electrical source
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Tikhonov Regularization}\label{sec:inverse:tikhonov}
     
-    As described in \autoref{sec:math:standardTikhonov}, Tikhonov regularization is a classical inverse method that solves the following least squares problem:
+    As described in Sec.~\ref{sec:math_tikhonov}, Tikhonov regularization is a classical inverse method that solves the following least squares problem:
     \begin{center}
         \begin{eqnarray}
             min_{X} \| P (Y - A X) \|^{2}_{2} + \lambda^{2} \| RX \|^{2}_{2},
@@ -97,7 +97,7 @@ The inverse problem of electrocardiography is to find suitable electrical source
     
     The solutions to the Tikhonov regularization problem depend on the selection of the regularization parameter ($\lambda$).
     There are multiple approaches in the literature that allow for its selection.
-    \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}} is currently implemented so that the user can choose between a direct entry, selection using a slider and the L-curve method, described in \autoref{sec:math:regparam}.
+    \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}} is currently implemented so that the user can choose between a direct entry, selection using a slider and the L-curve method, described in Sec.~\ref{sec:math_regparam}.
     These methods can be found by selecting the appropriate option in the drop-down menu within the ``Lambda Method'' panel.
     
     
@@ -167,7 +167,7 @@ The inverse problem of electrocardiography is to find suitable electrical source
     
     The solutions to the TikhonovSVD regularization problem depend on the selection of the regularization parameter ($\lambda$).
     There are multiple approaches in the literature that allow for its selection.
-    \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php5/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonovSVD}{{\tt SolveInverseProblemWithTikhonovSVD}} is currently implemented so that the user can choose between a direct entry, selection using a slider and the L-curve method, described in \autoref{sec:math:regparam}.
+    \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php5/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonovSVD}{{\tt SolveInverseProblemWithTikhonovSVD}} is currently implemented so that the user can choose between a direct entry, selection using a slider and the L-curve method, described in Sec.~\ref{sec:math_regparam}.
     These methods can be found by selecting the appropriate option in the drop-down menu within the ``Lambda Method'' panel as done in \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}} (see \autoref{fig:tik_module_gui}).
     
     
@@ -237,7 +237,7 @@ The inverse problem of electrocardiography is to find suitable electrical source
     
     The solutions to the TSVD regularization problem depend on the selection of the regularization parameter ($Q$).
     There are multiple approaches in the literature that allow for its selection.
-    \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php5/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTSVD}{{\tt SolveInverseProblemWithTSVD}} is currently implemented so that the user can choose between a direct entry, selection using a slider and the L-curve method, described in \autoref{sec:math:regparam}.
+    \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php5/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTSVD}{{\tt SolveInverseProblemWithTSVD}} is currently implemented so that the user can choose between a direct entry, selection using a slider and the L-curve method, described in Sec.~\ref{sec:math_regparam}.
     These methods can be found by selecting the appropriate option in the drop-down menu within the ``Lambda Method'' panel as done in \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}} (see \autoref{fig:tik_module_gui}).
 
 
@@ -283,13 +283,13 @@ The inverse problem of electrocardiography is to find suitable electrical source
     
     This implementation of the Isotropy Method has extra parameters that determine the operation of the Tikhonov inverse. These parameters are specific to the \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}} module and we refer the user to \autoref{sec:inverse:tikhonov} for more details.
     
-    \begin{figure}
-        \begin{center}
-        \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/IsotropyMethod_networkExample.png}
-        \caption{The SCIRun network for the Isotropy Method inverse solution example.}
-        \label{fig:IsotropyMethod}
-        \end{center}
-    \end{figure}
+%    \begin{figure}
+%        \begin{center}
+%        \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/IsotropyMethod_networkExample.png}
+%        \caption{The SCIRun network for the Isotropy Method inverse solution example.}
+%        \label{fig:IsotropyMethod}
+%        \end{center}
+%    \end{figure}
     
    
 % \subsection{Spline-Based Inverse Method}
@@ -475,13 +475,13 @@ The inverse problem of electrocardiography is to find suitable electrical source
     \end{enumerate}
     The only output of the method is the inverse solution in the form of an array of activation times.
     
-    \begin{figure}
-        \begin{center}
-        \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/activationBasedNetwork.png}
-        \caption{The SCIRun network for the Activation-Based Method inverse solution example.}
-        \label{fig:activationBasedNetwork}
-        \end{center}
-    \end{figure}
+%    \begin{figure}
+%        \begin{center}
+%        \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/activationBasedNetwork.png}
+%        \caption{The SCIRun network for the Activation-Based Method inverse solution example.}
+%        \label{fig:activationBasedNetwork}
+%        \end{center}
+%    \end{figure}
 
 
 % \subsection{Wavefront-Based Potential Reconstruction (WBPR)}

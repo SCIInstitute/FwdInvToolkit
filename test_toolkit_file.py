@@ -49,7 +49,7 @@ def compare_toolkit_network_versions(toolkit_version, network_file):
         assert elements_equal(a, b)
 
 def test_toolkit_file():
-    toolkit_file = 'Networks/FwdInvToolkit.toolkit'
+    toolkit_file = 'FwdInvToolkit.toolkit'
 
     assert os.path.isfile(toolkit_file)
 
