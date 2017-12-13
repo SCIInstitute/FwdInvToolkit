@@ -1928,8 +1928,8 @@
 								<second>
 									<name>LambdaMin</name>
 									<value>
-										<which>0</which>
-										<value>1</value>
+										<which>1</which>
+										<value>1.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -2390,7 +2390,7 @@
 									<name>ScaleBarLength</name>
 									<value>
 										<which>1</which>
-										<value>-0.00000000000000000e+00</value>
+										<value>0.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -2426,7 +2426,7 @@
 									<name>ScaleBarNumTicks</name>
 									<value>
 										<which>0</which>
-										<value>1</value>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -2934,8 +2934,8 @@
 		<item>
 			<first>ReadMatrix:1</first>
 			<second>
-				<first>3.49300000000000182e+02</first>
-				<second>2.30000000000000000e+01</second>
+				<first>3.44300000000000182e+02</first>
+				<second>5.00000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
