@@ -4,7 +4,7 @@
 <networkFile class_id="0" tracking_level="0" version="6">
 	<networkInfo class_id="1" tracking_level="0" version="0">
 		<modules class_id="2" tracking_level="0" version="0">
-			<count>45</count>
+			<count>44</count>
 			<item_version>0</item_version>
 			<item class_id="3" tracking_level="0" version="0">
 				<first>AlignMeshBoundingBoxes:0</first>
@@ -155,46 +155,6 @@
 				</second>
 			</item>
 			<item>
-				<first>ClipFieldByFunction:2</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>NewField</category_name_>
-						<module_name_>ClipFieldByFunction</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>2</count>
-							<item_version>0</item_version>
-							<item>
-								<first>
-									<name>ClipMethod</name>
-								</first>
-								<second>
-									<name>ClipMethod</name>
-									<value>
-										<which>2</which>
-										<value>All Nodes</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>FunctionString</name>
-								</first>
-								<second>
-									<name>FunctionString</name>
-									<value>
-										<which>2</which>
-										<value>INDEX &lt; 192;</value>
-									</value>
-								</second>
-							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
 				<first>CreateFieldData:0</first>
 				<second>
 					<module>
@@ -266,7 +226,7 @@
 									<name>TextEntry</name>
 									<value>
 										<which>2</which>
-										<value>2</value>
+										<value>0.001</value>
 									</value>
 								</second>
 							</item>
@@ -428,22 +388,6 @@
 						<package_name_>SCIRun</package_name_>
 						<category_name_>ChangeMesh</category_name_>
 						<module_name_>FlipSurfaceNormals</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>0</count>
-							<item_version>0</item_version>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
-				<first>GetFieldBoundary:0</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>NewField</category_name_>
-						<module_name_>GetFieldBoundary</module_name_>
 					</module>
 					<state>
 						<stateMap>
@@ -700,8 +644,8 @@ sys.path.append(os.environ[&apos;SCIRUNDATADIR&apos;]+&apos;/PythonLibrary/MFS_i
 from mfs_inverse import *
 import numpy
 
-scale_out = 1.0
-scale_in = 0.5
+scale_out = 0.0005
+scale_in = 0.00025
 
 # get inputs
 heart = fieldInput1
@@ -711,12 +655,12 @@ tank_pot = matrixInput1
 electnodes = matrixInput2
 
 # set lambda options here
-lmbd = numpy.linspace(0.00000001,1,100).tolist()
-lmbd_method = &apos;cresco&apos;
+lmbd = numpy.linspace(0.000000001,1,100).tolist()
+lmbd_method = &apos;creso&apos;
+#lmbd = matrixInput3
+#lmbd = lmbd[0][0]
 
 # modify geometry for visualization
-print(len(tank[&apos;node&apos;]))
-#print(electnodes[100][0])
 
 new_tank_node=[]
 new_tank_face=[]
@@ -724,43 +668,21 @@ for k in electnodes:
   k_t = int(k[0])
   new_tank_node.append(tank[&apos;node&apos;][k_t])
 
-t_p = [[-t[0]] for t in tank_pot]
+t_p = [[t[0]] for t in tank_pot]
 
 # run mfs inverse
-epis = mfs_inverse(heart,tank,sock_pts,t_p,electnodes,scale_out,scale_in,lmbd_method,lmbd,False,0.0)
+[epis, lambd_o,curve] = mfs_inverse(heart,tank,sock_pts,t_p,electnodes,scale_out,scale_in,lmbd_method,lmbd,False,0.0)
 
-print(type(epis))
-print(epis.shape)
-#print(epis)
-
-# convert output to list.
-#epi_out=[[]]*len(epis)
-#for k in range(0,len(epis)):
-#  epi_out[k] = [epis[k]]
 epi_out=epis.tolist()
 
-
-#field =[[0]*len(new_tank_node)]
-#new_tank=sock_pts
-#new_tank[&apos;field&apos;]=field
-#new_tank[&apos;node&apos;]=new_tank_node
 new_tank={&apos;node&apos;:new_tank_node}
-
-
-
-#print(tank)
-print(len(new_tank_node))
 
 
 fieldOutput1 = new_tank
 
-#print(fieldOutput1)
-
-#print(type(epi_out))
-#print(epi_out)
-# send output
 matrixOutput1 = epi_out
-
+matrixOutput2 = [[lambd_o]]
+matrixOutput3 = [curve]
 
 
 
@@ -1325,6 +1247,38 @@ matrixOutput1 = epi_out
 				</second>
 			</item>
 			<item>
+				<first>ReportMatrixInfo:1</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>Math</category_name_>
+						<module_name_>ReportMatrixInfo</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>0</count>
+							<item_version>0</item_version>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>ReportMatrixInfo:2</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>Math</category_name_>
+						<module_name_>ReportMatrixInfo</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>0</count>
+							<item_version>0</item_version>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
 				<first>RescaleColorMap:0</first>
 				<second>
 					<module>
@@ -1356,7 +1310,7 @@ matrixOutput1 = epi_out
 									<name>FixedMax</name>
 									<value>
 										<which>1</which>
-										<value>9.71543258091670658e+00</value>
+										<value>3.09515078901511970e+03</value>
 									</value>
 								</second>
 							</item>
@@ -1368,7 +1322,7 @@ matrixOutput1 = epi_out
 									<name>FixedMin</name>
 									<value>
 										<which>1</which>
-										<value>-2.55329052254606736e+00</value>
+										<value>-9.86426171570426050e+03</value>
 									</value>
 								</second>
 							</item>
@@ -1750,34 +1704,6 @@ matrixOutput1 = epi_out
 			</item>
 			<item>
 				<first>SetFieldData:2</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>ChangeFieldData</category_name_>
-						<module_name_>SetFieldData</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>
-									<name>keepTypeCheckBox</name>
-								</first>
-								<second>
-									<name>keepTypeCheckBox</name>
-									<value>
-										<which>3</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
-				<first>SetFieldData:3</first>
 				<second>
 					<module>
 						<package_name_>SCIRun</package_name_>
@@ -2208,7 +2134,7 @@ matrixOutput1 = epi_out
 									<name>SphereScaleValue</name>
 									<value>
 										<which>1</which>
-										<value>1.00000000000000000e+00</value>
+										<value>2.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -2680,7 +2606,7 @@ matrixOutput1 = epi_out
 									<name>SphereScaleValue</name>
 									<value>
 										<which>1</which>
-										<value>1.13000000000000012e+00</value>
+										<value>2.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -7181,7 +7107,7 @@ matrixOutput1 = epi_out
 									<name>ShowViewer</name>
 									<value>
 										<which>3</which>
-										<value>1</value>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -7665,7 +7591,7 @@ matrixOutput1 = epi_out
 									<name>ShowViewer</name>
 									<value>
 										<which>3</which>
-										<value>1</value>
+										<value>0</value>
 									</value>
 								</second>
 							</item>
@@ -7894,18 +7820,6 @@ matrixOutput1 = epi_out
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>GetFieldBoundary:0</moduleId1_>
-				<port1_>
-					<name>BoundaryField</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>ClipFieldByFunction:2</moduleId2_>
-				<port2_>
-					<name>InputFields</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
 				<moduleId1_>GetFieldData:0</moduleId1_>
 				<port1_>
 					<name>OutputMatrix</name>
@@ -7948,6 +7862,30 @@ matrixOutput1 = epi_out
 					<id>0</id>
 				</port1_>
 				<moduleId2_>SetFieldData:0</moduleId2_>
+				<port2_>
+					<name>InputMatrix</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>InterfaceWithPython:0</moduleId1_>
+				<port1_>
+					<name>PythonMatrix2</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>ReportMatrixInfo:1</moduleId2_>
+				<port2_>
+					<name>InputMatrix</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>InterfaceWithPython:0</moduleId1_>
+				<port1_>
+					<name>PythonMatrix3</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>ReportMatrixInfo:2</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
 					<id>0</id>
@@ -8128,18 +8066,6 @@ matrixOutput1 = epi_out
 					<id>0</id>
 				</port1_>
 				<moduleId2_>SetFieldData:1</moduleId2_>
-				<port2_>
-					<name>InputMatrix</name>
-					<id>0</id>
-				</port2_>
-			</item>
-			<item>
-				<moduleId1_>ReadMatrix:0</moduleId1_>
-				<port1_>
-					<name>Matrix</name>
-					<id>0</id>
-				</port1_>
-				<moduleId2_>SetFieldData:3</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
 					<id>0</id>
@@ -8508,7 +8434,7 @@ matrixOutput1 = epi_out
 		</connections>
 	</networkInfo>
 	<modulePositions class_id="16" tracking_level="0" version="0">
-		<count>45</count>
+		<count>44</count>
 		<item_version>0</item_version>
 		<item class_id="17" tracking_level="0" version="0">
 			<first>AlignMeshBoundingBoxes:0</first>
@@ -8525,13 +8451,6 @@ matrixOutput1 = epi_out
 			</second>
 		</item>
 		<item>
-			<first>ClipFieldByFunction:2</first>
-			<second>
-				<first>1.60000000000000000e+01</first>
-				<second>9.45000000000000000e+02</second>
-			</second>
-		</item>
-		<item>
 			<first>CreateFieldData:0</first>
 			<second>
 				<first>1.14800000000000000e+03</first>
@@ -8541,8 +8460,8 @@ matrixOutput1 = epi_out
 		<item>
 			<first>CreateMatrix:0</first>
 			<second>
-				<first>7.24000000000000000e+02</first>
-				<second>1.78000000000000000e+02</second>
+				<first>7.59000000000000000e+02</first>
+				<second>1.46000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -8574,13 +8493,6 @@ matrixOutput1 = epi_out
 			</second>
 		</item>
 		<item>
-			<first>GetFieldBoundary:0</first>
-			<second>
-				<first>6.60000000000000000e+01</first>
-				<second>8.20000000000000000e+02</second>
-			</second>
-		</item>
-		<item>
 			<first>GetFieldData:0</first>
 			<second>
 				<first>1.19100000000000000e+03</first>
@@ -8590,8 +8502,8 @@ matrixOutput1 = epi_out
 		<item>
 			<first>InterfaceWithPython:0</first>
 			<second>
-				<first>6.20000000000000000e+02</first>
-				<second>6.04000000000000000e+02</second>
+				<first>6.22000000000000000e+02</first>
+				<second>6.05000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -8639,8 +8551,8 @@ matrixOutput1 = epi_out
 		<item>
 			<first>ReadMatrix:0</first>
 			<second>
-				<first>5.02000000000000000e+02</first>
-				<second>1.68000000000000000e+02</second>
+				<first>4.66000000000000000e+02</first>
+				<second>1.56000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -8655,6 +8567,20 @@ matrixOutput1 = epi_out
 			<second>
 				<first>5.58000000000000000e+02</first>
 				<second>7.83000000000000000e+02</second>
+			</second>
+		</item>
+		<item>
+			<first>ReportMatrixInfo:1</first>
+			<second>
+				<first>6.45000000000000000e+02</first>
+				<second>7.41000000000000000e+02</second>
+			</second>
+		</item>
+		<item>
+			<first>ReportMatrixInfo:2</first>
+			<second>
+				<first>8.46000000000000000e+02</first>
+				<second>7.89000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -8711,13 +8637,6 @@ matrixOutput1 = epi_out
 			<second>
 				<first>1.23400000000000000e+03</first>
 				<second>9.60000000000000000e+02</second>
-			</second>
-		</item>
-		<item>
-			<first>SetFieldData:3</first>
-			<second>
-				<first>1.11700000000000000e+03</first>
-				<second>7.08000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -8917,7 +8836,7 @@ node numbers</noteText>
 		<item_version>0</item_version>
 	</connectionNotes>
 	<moduleTags class_id="22" tracking_level="0" version="0">
-		<count>45</count>
+		<count>44</count>
 		<item_version>0</item_version>
 		<item class_id="23" tracking_level="0" version="0">
 			<first>AlignMeshBoundingBoxes:0</first>
@@ -8925,10 +8844,6 @@ node numbers</noteText>
 		</item>
 		<item>
 			<first>BuildBEMatrix:0</first>
-			<second>-1</second>
-		</item>
-		<item>
-			<first>ClipFieldByFunction:2</first>
 			<second>-1</second>
 		</item>
 		<item>
@@ -8953,10 +8868,6 @@ node numbers</noteText>
 		</item>
 		<item>
 			<first>FlipSurfaceNormals:1</first>
-			<second>-1</second>
-		</item>
-		<item>
-			<first>GetFieldBoundary:0</first>
 			<second>-1</second>
 		</item>
 		<item>
@@ -9004,6 +8915,14 @@ node numbers</noteText>
 			<second>-1</second>
 		</item>
 		<item>
+			<first>ReportMatrixInfo:1</first>
+			<second>-1</second>
+		</item>
+		<item>
+			<first>ReportMatrixInfo:2</first>
+			<second>-1</second>
+		</item>
+		<item>
 			<first>RescaleColorMap:0</first>
 			<second>-1</second>
 		</item>
@@ -9033,10 +8952,6 @@ node numbers</noteText>
 		</item>
 		<item>
 			<first>SetFieldData:2</first>
-			<second>-1</second>
-		</item>
-		<item>
-			<first>SetFieldData:3</first>
 			<second>-1</second>
 		</item>
 		<item>

@@ -4,7 +4,7 @@
 <networkFile class_id="0" tracking_level="0" version="6">
 	<networkInfo class_id="1" tracking_level="0" version="0">
 		<modules class_id="2" tracking_level="0" version="0">
-			<count>18</count>
+			<count>17</count>
 			<item_version>0</item_version>
 			<item class_id="3" tracking_level="0" version="0">
 				<first>BuildNoiseColumnMatrix:5</first>
@@ -1862,178 +1862,6 @@
 				</second>
 			</item>
 			<item>
-				<first>SolveInverseProblemWithTikhonov:2</first>
-				<second>
-					<module>
-						<package_name_>SCIRun</package_name_>
-						<category_name_>Inverse</category_name_>
-						<module_name_>SolveInverseProblemWithTikhonov</module_name_>
-					</module>
-					<state>
-						<stateMap>
-							<count>13</count>
-							<item_version>0</item_version>
-							<item>
-								<first>
-									<name>LCurveText</name>
-								</first>
-								<second>
-									<name>LCurveText</name>
-									<value>
-										<which>2</which>
-										<value></value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>LambdaCorner</name>
-								</first>
-								<second>
-									<name>LambdaCorner</name>
-									<value>
-										<which>0</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>LambdaFromDirectEntry</name>
-								</first>
-								<second>
-									<name>LambdaFromDirectEntry</name>
-									<value>
-										<which>1</which>
-										<value>9.99999999999999955e-07</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>LambdaMax</name>
-								</first>
-								<second>
-									<name>LambdaMax</name>
-									<value>
-										<which>1</which>
-										<value>1.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>LambdaMin</name>
-								</first>
-								<second>
-									<name>LambdaMin</name>
-									<value>
-										<which>1</which>
-										<value>9.99999999999999955e-07</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>LambdaNum</name>
-								</first>
-								<second>
-									<name>LambdaNum</name>
-									<value>
-										<which>0</which>
-										<value>200</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>LambdaResolution</name>
-								</first>
-								<second>
-									<name>LambdaResolution</name>
-									<value>
-										<which>1</which>
-										<value>9.99999999999999955e-07</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>LambdaSliderValue</name>
-								</first>
-								<second>
-									<name>LambdaSliderValue</name>
-									<value>
-										<which>1</which>
-										<value>0.00000000000000000e+00</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>RegularizationMethod</name>
-								</first>
-								<second>
-									<name>RegularizationMethod</name>
-									<value>
-										<which>2</which>
-										<value>lcurve</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>TikhonovImplementation</name>
-								</first>
-								<second>
-									<name>TikhonovImplementation</name>
-									<value>
-										<which>2</which>
-										<value>NoMethodSelected</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>regularizationChoice</name>
-								</first>
-								<second>
-									<name>regularizationChoice</name>
-									<value>
-										<which>0</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>regularizationResidualSubcase</name>
-								</first>
-								<second>
-									<name>regularizationResidualSubcase</name>
-									<value>
-										<which>0</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-							<item>
-								<first>
-									<name>regularizationSolutionSubcase</name>
-								</first>
-								<second>
-									<name>regularizationSolutionSubcase</name>
-									<value>
-										<which>0</which>
-										<value>0</value>
-									</value>
-								</second>
-							</item>
-						</stateMap>
-					</state>
-				</second>
-			</item>
-			<item>
 				<first>SolveInverseProblemWithTikhonovSVD:2</first>
 				<second>
 					<module>
@@ -2161,7 +1989,7 @@
 									<name>TikhonovImplementation</name>
 									<value>
 										<which>2</which>
-										<value>NoMethodSelected</value>
+										<value>TikhonovSVD</value>
 									</value>
 								</second>
 							</item>
@@ -2538,7 +2366,7 @@
 									<name>ScaleBarFontSize</name>
 									<value>
 										<which>0</which>
-										<value>1</value>
+										<value>99</value>
 									</value>
 								</second>
 							</item>
@@ -2562,7 +2390,7 @@
 									<name>ScaleBarLength</name>
 									<value>
 										<which>1</which>
-										<value>0.00000000000000000e+00</value>
+										<value>2.00000000000000000e+01</value>
 									</value>
 								</second>
 							</item>
@@ -2586,7 +2414,7 @@
 									<name>ScaleBarMultiplier</name>
 									<value>
 										<which>1</which>
-										<value>9.99899999999999949e+01</value>
+										<value>7.00000000000000000e+00</value>
 									</value>
 								</second>
 							</item>
@@ -2598,7 +2426,7 @@
 									<name>ScaleBarNumTicks</name>
 									<value>
 										<which>0</which>
-										<value>0</value>
+										<value>18</value>
 									</value>
 								</second>
 							</item>
@@ -3045,7 +2873,7 @@
 		</connections>
 	</networkInfo>
 	<modulePositions class_id="16" tracking_level="0" version="0">
-		<count>18</count>
+		<count>17</count>
 		<item_version>0</item_version>
 		<item class_id="17" tracking_level="0" version="0">
 			<first>BuildNoiseColumnMatrix:5</first>
@@ -3106,8 +2934,8 @@
 		<item>
 			<first>ReadMatrix:1</first>
 			<second>
-				<first>3.49300000000000182e+02</first>
-				<second>2.30000000000000000e+01</second>
+				<first>3.44300000000000182e+02</first>
+				<second>5.00000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
@@ -3136,13 +2964,6 @@
 			<second>
 				<first>4.27779125000000249e+02</first>
 				<second>1.22973162499999989e+03</second>
-			</second>
-		</item>
-		<item>
-			<first>SolveInverseProblemWithTikhonov:2</first>
-			<second>
-				<first>-5.08960818749999760e+02</first>
-				<second>7.80056787499999700e+02</second>
 			</second>
 		</item>
 		<item>
@@ -3355,7 +3176,7 @@ and Inverse Solution Potentials</noteText>
 		<item_version>0</item_version>
 	</connectionNotes>
 	<moduleTags class_id="22" tracking_level="0" version="0">
-		<count>18</count>
+		<count>17</count>
 		<item_version>0</item_version>
 		<item class_id="23" tracking_level="0" version="0">
 			<first>BuildNoiseColumnMatrix:5</first>
@@ -3408,10 +3229,6 @@ and Inverse Solution Potentials</noteText>
 		<item>
 			<first>ShowField:13</first>
 			<second>3</second>
-		</item>
-		<item>
-			<first>SolveInverseProblemWithTikhonov:2</first>
-			<second>-1</second>
 		</item>
 		<item>
 			<first>SolveInverseProblemWithTikhonovSVD:2</first>
