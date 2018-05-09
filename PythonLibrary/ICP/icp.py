@@ -4,7 +4,7 @@ Created on Thu Jul 14 11:22:17 2016
 
 @author: andrewcorbato
 """
-def icp(model,data,*args):
+def icp(model,data,*arg):
 #   ICP Iterative Closest Point Algorithm. Takes use of
 #   Delaunay tesselation of points in model.
 #
@@ -110,66 +110,83 @@ def icp(model,data,*args):
 #   To clear old global tesselation variables run: "clear global Tes ir jc" (tes_flag=1)
 #   or run: "clear global Tes Tesind Tesver" (tes_flag=2) in Command Window.
 #
-#   m-file can be downloaded for free at
+#   based on an m-file can be downloaded for free at
 #   http://www.mathworks.com/matlabcentral/fileexchange/loadFile.do?objectId=12627&objectType=FILE
 #
-#   icp version 1.4
 #
-#   written by Per Bergstrm 2007-03-07
 
     import numpy as np
     import scipy as sp
     from numpy import matlib as ml
     from numpy import matrix as mx
+    import sys
 
-    if model == False and data == False:
-        import sys
-        sys.exit('ERROR: Only one input. There must be at least two inputs.')
-    elif model == False:
-        import sys
-        sys.exit('ERROR: Model cannot be an empty matrix.')
+    if model.any() == False and data.any() == False:
+        raise ValueError('ERROR: Only one input. There must be at least two inputs.')
+    elif model.any() == False:
+        raise ValueError('ERROR: Model cannot be an empty matrix.')
     global MODEL, DATA, TR, TT, TS
     
     dims_model = np.shape(model)
     if dims_model[1]<dims_model[0]:
-        global MODEL
         MODEL = np.transpose(model)
     else:
-        global MODEL
         MODEL = model
         
     dims_data = np.shape(data)
     if dims_data[1]<dims_data[0]:
         data = np.transpose(data)
         dims_data = np.shape(data)
-        global DATA        
         DATA = data
     else:
-        global DATA
         DATA = data
         
     if dims_data[0] is not dims_model[0]:
-        import sys
-        sys.exit('ERROR: DATA and MODEL cannot have different dimensions.')
-# default options       
-    if len(args) == 0:
-        options = {'max_iter': 104, 'min_iter': 4,'fitting': 2,'thres': 1e-05, \
+        raise ValueError('ERROR: DATA and MODEL cannot have different dimensions.')
+# default options
+    if not len(arg)==0:
+        opt = arg[0]
+    else:
+        opt = {'max_iter': 104, 'min_iter': 4,'fitting': [2],'thres': 1e-05, \
         'init_flag': 1,'tes_flag': 1, 'delta': 10,'mode': 'rigid', \
         'refpnt': np.array([]),}
-    elif len(args) != 9:
-        import sys
-        sys.exit('ERROR: Options dictionary must have 9 entries.')
+
+    print(opt)
+
+    if not isinstance(opt, dict):
+        raise ValueError("opt must be dictionary of options")
+    if not 'max_iter' in opt:
+        opt['max_iter'] = 104;
+    if not 'min_iter' in opt:
+        opt['min_iter'] = 4;
+    if not 'fitting' in opt:
+        opt['fitting'] = [2];
+    if not 'thres' in opt:
+        opt['thres'] = 1e-5;
+    if not 'delta' in opt:
+        opt['delta'] = 10;
+    if not 'mode' in opt:
+        opt['mode'] = 'rigid';
+    if not 'refpnt' in opt:
+        opt['refpnt'] = np.array([]);
+    if not 'init_flag' in opt:
+        opt['init_flag'] = 1;
+    if not 'tes_flag' in opt:
+        opt['tes_flag'] = 1;
+
+
+
 
 # move options out of dictionary for ease of use
-    max_iter = args['max_iter']
-    min_iter = args['min_iter']
-    fitting = args['fitting']
-    thres = args['thres']
-    init_flag = args['init_flag']
-    tes_flag = args['tes_flag']
-    delta = args['delta']
-    mode = args['mode']
-    refpnt = args['refpnt']
+    max_iter = opt['max_iter']
+    min_iter = opt['min_iter']
+    fitting = opt['fitting']
+    thres = opt['thres']
+    init_flag = opt['init_flag']
+    tes_flag = opt['tes_flag']
+    delta = opt['delta']
+    mode = opt['mode']
+    refpnt = opt['refpnt']
     
 # input error checks
     if (tes_flag != 0 and tes_flag != 1 and tes_flag != 2 and tes_flag != 3):
@@ -178,7 +195,7 @@ def icp(model,data,*args):
 must be 0-3.')    
     if dims_model[1] == dims_model[0] and tes_flag is not 0:
         import sys
-        sys.exit('ERROR: This icp method requires the number of model points \
+        raise ValueError('ERROR: This icp method requires the number of model points \
 to be greater than the dimension')
     if max_iter < min_iter:
         max_iter = min_iter
@@ -309,9 +326,10 @@ def icp_init(init_flag,fitting):
         DATA = DATA + ml.repmat(TT,1,N) # apply transformation
     else:
         import sys
-        sys.exit('ERROR: Wrong init_flag')
+        raise ValueError('ERROR: Wrong init_flag')
 ###############################################################################    
 def icp_struct(tes_flag):
+    global Tes, ir, jc, Tesind, Tesver
     if tes_flag != 3:
         if tes_flag == 0:
             global ir
@@ -321,7 +339,7 @@ def icp_struct(tes_flag):
                 dims_Tesind = np.shape(Tesind)
                 if dims_Tesind[0] == 0:
                     import sys
-                    sys.exit('ERROR: No tesselation system exists')
+                    raise ValueError('ERROR: No tesselation system exists')
                 else:
                     tes_flag = 2
             else:
@@ -329,7 +347,7 @@ def icp_struct(tes_flag):
     elif tes_flag == 3:
         return tes_flag
     else:
-        global MODEL, Tes
+      
         [m,n] = np.shape(MODEL)
         if m == 1:
             ind1 = np.argsort(MODEL)
@@ -364,7 +382,6 @@ def icp_struct(tes_flag):
     Tes = np.sort(np.sort(Tes,axis=1),axis=1)
     [mT,nT] = np.shape(Tes)
     if tes_flag == 1:
-        global ir, jc
         num = np.zeros((1,n))
         for jj in range(0,mT,1):
             for kk in range(0,nT,1):
@@ -381,7 +398,6 @@ def icp_struct(tes_flag):
                 ir[ind[Tes[i,j]]] = i
                 ind[Tes[i,j]] = ind[Tes[i,j]]+1
     else: # tes_flag ==2
-        global Tesind, Tesver
         Tesind = np.zeros(mT,nT)
         Tesver = np.zeros(mT,nT)
         couvec = np.zeros(mT,1)
@@ -458,8 +474,8 @@ def icp_closest_start(tes_flag,fitting):
 # ICP_CLOSEST_START finds indexes of closest MODEL points for each point in DATA.
 # The _start version allocates memory for iclosest and finds the closest MODEL points
 # to the DATA points
+    global MODEL, DATA, Tes, ir, jc, iclosest
     if tes_flag == 3:
-        global MODEL, DATA, iclosest
         dims_MODEL = np.shape(MODEL)
         dims_DATA = np.shape(DATA)
         mm = dims_MODEL[1]
@@ -477,17 +493,16 @@ def icp_closest_start(tes_flag,fitting):
         ERROR += err(dist,fitting,ID)
         
     elif tes_flag == 1:
-        global MODEL, DATA, Tes, ir, jc, iclosest
         dims_DATA = np.shape(DATA)
         md = dims_DATA[1]
         dims_MODEL = np.shape(MODEL)
         iclosest = np.zeros((1,md))
         mid = np.round(md/2)
-        iclosest(mid) = np.round((dims_MODEL[1]/2))
+        iclosest[mid] = np.round((dims_MODEL[1]/2))
         bol = 1
         while bol:
             bol = np.logical_not(bol)
-            distc = np.linalg.norm((DATA[:,mid]-MODEL[:,iclosest(mid)]))
+            distc = np.linalg.norm((DATA[:,mid]-MODEL[:,iclosest[mid]]))
             distcc = 2*distc
             for i in range(ir[jc[iclosest[mid]]],ir[jc[iclosest[mid]+1]-1],1):
                 for ind in Tes[i,:]:
@@ -495,7 +510,7 @@ def icp_closest_start(tes_flag,fitting):
                     if distcc<distc:
                         distc = distcc
                         bol = np.logical_not(bol)
-                        iclosest(mid) = ind
+                        iclosest[mid] = ind
                         break
                 if bol:
                     break
@@ -514,7 +529,7 @@ def icp_closest_start(tes_flag,fitting):
                         if distcc<distc:
                             distc = distcc
                             bol = np.logical_not(bol)
-                            iclosest(mid) = ind
+                            iclosest[mid] = ind
                             break
                     if bol:
                         break
@@ -533,10 +548,9 @@ def icp_closest_start(tes_flag,fitting):
                         if distcc<distc:
                             distc = distcc
                             bol = np.logical_not(bol)
-                            iclosest(mid) = ind
+                            iclosest[mid] = ind
                             break
     else: # tes_flag == 2
-        global MODEL, DATA, Tes, Tesind, Tesver, icTesind, iclosest
         dims_DATA = np.shape(DATA)
         md = dims_DATA[1]
         iclosest = np.zeros((1,md))
@@ -691,8 +705,8 @@ def icp_transformation(fitting,refpnt,delta,optmode):
                     b = np.concatenate(0,DATA[0,n],0,0,DATA[1,n],0,0,DATA[2,n],0,0,1,0, axis=1)
                     c = np.concatenate(0,0,DATA[0,n],0,0,DATA[1,n],0,0,DATA[2,n],0,0,1, axis=1)
                     P[ind,:] = np.concatenate(a,b,c, axis=0)
-                    q[ind] = MODEL[0:2,iclosest[p_ind[n]]
-                    ind += 3
+                    q[ind] = MODEL[0:2,iclosest[p_ind[n]]]
+                    ind = 3
     if mode == 'affine':
         theta = q/P
         a_r = np.concatenate(theta[0],theta[3],theta[6],axis=0)
@@ -734,7 +748,7 @@ def err(dist,fitting,ind):
         ERR = dist**2
     else:
         ERR = 0
-        print(WARNING: Unknown fitting value.)
+        print('WARNING: Unknown fitting value.')
     return ERR
 ###############################################################################        
 def weightfcn(distances):
