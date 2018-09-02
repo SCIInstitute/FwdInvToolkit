@@ -1573,7 +1573,7 @@ matrixOutput3 = [curve]
 									<name>FixedMax</name>
 									<value>
 										<which>1</which>
-										<value>4.46921299893047959e+01</value>
+										<value>4.46921299893041990e+01</value>
 									</value>
 								</second>
 							</item>
@@ -1585,7 +1585,7 @@ matrixOutput3 = [curve]
 									<name>FixedMin</name>
 									<value>
 										<which>1</which>
-										<value>-7.20574961746247880e+01</value>
+										<value>-7.20574961746263796e+01</value>
 									</value>
 								</second>
 							</item>
@@ -7734,7 +7734,7 @@ matrixOutput3 = [curve]
 									<name>ScaleBarFontSize</name>
 									<value>
 										<which>0</which>
-										<value>1</value>
+										<value>99</value>
 									</value>
 								</second>
 							</item>
@@ -7854,7 +7854,7 @@ matrixOutput3 = [curve]
 									<name>ShowViewer</name>
 									<value>
 										<which>3</which>
-										<value>1</value>
+										<value>0</value>
 									</value>
 								</second>
 							</item>

@@ -333,18 +333,9 @@ def cleanbspm(bspm,jacket):
     print(len(bspm.shape))
 #    print(bspm)
 #    print(bspm.shape(axis=1))
-    if len(bspm.shape)==1:
-        bspm_ = zeros([len(jacket),1])
-    else:
-        bspm_ = zeros([len(jacket),len(bspm[0,:])])
 
-    print('bspm_ size: ',bspm_.shape)
-    for k in range(len(jacket)):
-        bspm_[k,:] = bspm[int(jacket[k,0]),:]
-    
-#    bspm = bspm[int(jacket),:]
-    new_jack=jacket[~isnan(bspm_).any(axis=1)]
-    new_bspm=bspm_[~isnan(bspm_).any(axis=1)]
+    new_jack=jacket[~isnan(bspm).any(axis=1)]
+    new_bspm=bspm[~isnan(bspm).any(axis=1)]
     return new_bspm,new_jack
 
 # routine to fill coefficient matrix
