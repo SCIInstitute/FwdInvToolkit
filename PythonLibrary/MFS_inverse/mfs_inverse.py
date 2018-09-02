@@ -68,20 +68,23 @@
 
 # import required routines from various packages
 from sys import argv
-from numpy import sqrt,pi,array,cross,zeros,einsum,arccos,sum,append,dot,diag,transpose,ones,reshape,isnan,linspace,where,diff,sign,argmin,argmax
+from numpy import sqrt,pi,array,cross,zeros,einsum,arccos,sum,append,dot,diag,transpose,ones,reshape,isnan,linspace,where,diff,sign,argmin,argmax,mean,max,min
 from numpy.linalg import norm,svd
 import scipy
 #import pyqtgraph
 #from math import isnan
 
-def mfs_inverse(heart,tank,sock,tank_pots,electnums,scale_out,scale_in,lmbd_method,lmbda,viz_regularization,gamma):
+def mfs_inverse(heart,tank,sock,tank_pots,electnums,scale_factor,scale_method,lmbd_method,lmbda,viz_regularization,gamma):
 
 # read closed heart nodes and mesh
     heart_closed_verts = array(heart['node'])
     heart_closed_tris = array(heart['face'])
 # allows for either 0 and 1 based node numbering
-    if heart_closed_verts.shape[0] == heart_closed_tris.max():
+#    print('heart min max',heart_closed_tris.min(),heart_closed_tris.max())
+#    print(heart_closed_tris)
+    if heart_closed_verts.shape[0] == heart_closed_tris.max() and heart_closed_tris.min()>0:
         heart_closed_tris = heart_closed_tris-1
+        print('shifting heart indices')
 
 # read sock nodes
     sock_verts = array(sock['node'])
@@ -90,14 +93,20 @@ def mfs_inverse(heart,tank,sock,tank_pots,electnums,scale_out,scale_in,lmbd_meth
     tank_closed_verts = array(tank['node'])
     tank_closed_tris = array(tank['face'])
 # allows for either 0 and 1 based node numbering
-    if tank_closed_verts.shape[0] == tank_closed_tris.max():
+#    print('tank min max',tank_closed_tris.min(),tank_closed_tris.max())
+#    print(tank_closed_tris)
+    if tank_closed_verts.shape[0] == tank_closed_tris.max() and tank_closed_tris.min()>0:
         tank_closed_tris = tank_closed_tris-1
+        print('shifting tank indices')
 
 # read jacket nodes
+#    print(elecsnums)
     elecs = array(electnums)
 # allows for either 0 and 1 based node numbering
-    if elecs.shape[0] <= elecs.max():
+    if (elecs.shape[0] <= elecs.max()) and elecs.min()>0:
         elecs = elecs-1
+        print('shifting electrodes')
+#    print(elecs)
 
 # read jacket potentials
     bspm = array(tank_pots)
@@ -112,8 +121,19 @@ def mfs_inverse(heart,tank,sock,tank_pots,electnums,scale_out,scale_in,lmbd_meth
 
 # scale surfaces to obtain ficticious points
 # note: current setup for outward pointing normals on both surfaces
-    new_in_verts = scale_surf(heart_closed_verts,inner_norms,-scale_in)
-    new_out_verts = scale_surf(tank_closed_verts,outer_norms,scale_out)
+    new_in_verts = scale_surf(heart_closed_verts,inner_norms,-scale_factor,scale_method)
+    new_out_verts = scale_surf(tank_closed_verts,outer_norms,scale_factor,scale_method)
+
+
+#    print(heart_closed_verts.shape)
+#    print(tank_closed_verts.shape)
+#    H_points_m=mean(heart_closed_verts,axis=0)
+#    T_points_m=mean(tank_closed_verts,axis=0)
+#    print(H_points_m)
+#    print(T_points_m)
+
+#    new_in_verts = (heart_closed_verts-H_points_m)*0.8+H_points_m
+#    new_out_verts = (tank_closed_verts-T_points_m)*1.2+T_points_m
 
 # set up vector of ficticious points
     fict_pts = append(new_out_verts,new_in_verts,axis=0)
@@ -125,16 +145,22 @@ def mfs_inverse(heart,tank,sock,tank_pots,electnums,scale_out,scale_in,lmbd_meth
 # this assumes that the electrodes are given node numbers in the mesh.
     jacket,jacket_norms = assign_elec(new_elecs,tank_closed_verts,outer_norms)
 
+#    scipy.io.savemat('temp_output.mat',{'jacket':jacket, 'jacket_norm':jacket_norms, 'fict_pts':fict_pts})
+
 # build coefficient matrix A
     amat = get_mat(jacket,fict_pts,jacket_norms)
-
 
 # perform SVD of matrix A
 # see numpy manual for full explanation
     u,s,vt = svd(amat,full_matrices=False)
+#    scipy.io.savemat('/Users/jess/FP/MFS/Bordeaux/temp_amat.mat',{'amat':amat,'u':u,'s':s,'vt':vt})
+
     s = s.reshape(-1,1)
 # determine u^T b
     alpha = dot(transpose(u),rhs)
+
+    print('rhs = ', rhs.shape)
+    print('alpha = ', alpha.shape)
 
 # find regularization parameter lambda
     if lmbd_method == 'manual':
@@ -157,8 +183,13 @@ def mfs_inverse(heart,tank,sock,tank_pots,electnums,scale_out,scale_in,lmbd_meth
     else:
         raise ValueError('lmbd_method input must be: manual, l_curve, zc, creso, gcv, or rgcv')
 
+    print('lambda =',lamb)
+
     avec = tik_inv(u,s,vt,rhs,lamb)
     epi_pot = epis(avec,sock_verts,fict_pts)
+
+    print('avec = ',avec.shape)
+    print('epi_pot = ',epi_pot.shape)
 
     return epi_pot,lamb,curve
 
@@ -256,8 +287,21 @@ def norm_arr(vertices,faces):
 
 
 # function to scale a surface
-def scale_surf(verts,norms,scale):
-    new_verts = verts+scale*norms
+def scale_surf(verts,norms,scale,scale_method):
+  
+    if scale_method == "normals":
+        dist = norm(max(verts,axis=0)-min(verts,axis=0))
+        new_verts = verts+scale*norms*dist 
+    elif scale_method == "scale":
+        points_m=mean(verts,axis=0)
+        new_verts = (verts-points_m)*(1-scale)+points_m
+    elif scale_method == "RBF":
+        raise ValueError(" RBF method not yet implemented")
+
+    else:
+        raise ValueError("scale_method not recognized")
+
+
     return new_verts
 
 # function to assign electrodes to node positions and normals
@@ -284,14 +328,30 @@ def normder(x,y,normal):
 # routine to remove any jacket node that represents a 'bad electrode' 
 # the potential for that node should be recorded as 'nan'
 def cleanbspm(bspm,jacket):
-    new_jack=jacket[~isnan(bspm).any(axis=1)]
-    new_bspm=bspm[~isnan(bspm).any(axis=1)]
+    print('bspm size: ',bspm.shape)
+    print('jacket size: ',jacket.shape)
+    print(len(bspm.shape))
+#    print(bspm)
+#    print(bspm.shape(axis=1))
+    if len(bspm.shape)==1:
+        bspm_ = zeros([len(jacket),1])
+    else:
+        bspm_ = zeros([len(jacket),len(bspm[0,:])])
+
+    print('bspm_ size: ',bspm_.shape)
+    for k in range(len(jacket)):
+        bspm_[k,:] = bspm[int(jacket[k,0]),:]
+    
+#    bspm = bspm[int(jacket),:]
+    new_jack=jacket[~isnan(bspm_).any(axis=1)]
+    new_bspm=bspm_[~isnan(bspm_).any(axis=1)]
     return new_bspm,new_jack
 
 # routine to fill coefficient matrix
 # x - vector of jacket points
 # y - vector of ficticious points
 def get_mat(x,y,normal):
+    print('running get_mat()')
 # create array of zeros of appropriate size
     mat = zeros([2*len(x),len(y)+1],dtype=float)
 # set array values in the top half of the first column to 1.0
@@ -300,7 +360,7 @@ def get_mat(x,y,normal):
     for i in range(len(x)):
         for j in range(len(y)):
 # create upper half of coefficient matrix
-#print('{} , {}'.format(i,j))
+#            print('{} , {} : {}, {}'.format(i,j,kernel(x[i],y[j]),normder(x[i],y[j],normal[i])))
             mat[i,j+1] = kernel(x[i],y[j])
 # create lower half of coefficient matrix
             mat[i+len(x),j+1] = normder(x[i],y[j],normal[i])
@@ -318,10 +378,17 @@ def tik_inv(u,s,vt,b,l):
 #     x - vector required points, 
 #     y - vector of ficticious pts
 def epis(a,x,y):
+    print('start epis')
+    print(a.shape)
+    print(x.shape)
+    print(y.shape)
     vec = a[0]*ones((len(x),1))
     mat = zeros([len(x),len(y)])
     for i in range(len(x)):
         for j in range(len(y)):
+#            print(x[i])
+#            print(y[j])
+#            print(kernel(x[i],y[j]))
             mat[i,j] = kernel(x[i],y[j])
     vec = vec+dot(mat,a[1:])
     return vec

@@ -776,8 +776,8 @@ sys.path.append(os.environ[&apos;SCIRUNDATADIR&apos;]+&apos;/PythonLibrary/MFS_i
 from mfs_inverse import *
 import numpy
 
-scale_out = 0.05
-scale_in = 0.02
+scale_factor = 0.2
+scale_method = &apos;normals&apos;
 
 
 
@@ -790,7 +790,7 @@ electnodes = matrixInput2
 lmbda= matrixInput3
 lmbd=lmbda[0][0]
 
-lmbd = numpy.linspace(0.00000001,1,10000).tolist()
+lmbd = numpy.linspace(0.000000001,0.0001,1000).tolist()
 lmbd_method = &apos;creso&apos;
 
 
@@ -805,7 +805,7 @@ for k in electnodes:
 
 
 # run mfs inverse
-[epis,lamb_o,curve] = mfs_inverse(heart,tank,sock_pts,tank_pot,electnodes,scale_out,scale_in,lmbd_method,lmbd,False,0.0)
+[epis,lamb_o,curve] = mfs_inverse(heart,tank,sock_pts,tank_pot,electnodes,scale_factor,scale_method,lmbd_method,lmbd,False,0.0)
 
 epi_out=epis.tolist()
 
@@ -1474,7 +1474,7 @@ matrixOutput3 = [curve]
 									<name>FixedMax</name>
 									<value>
 										<which>1</which>
-										<value>8.76099126141573947e+02</value>
+										<value>6.39615512795987371e+01</value>
 									</value>
 								</second>
 							</item>
@@ -1486,7 +1486,7 @@ matrixOutput3 = [curve]
 									<name>FixedMin</name>
 									<value>
 										<which>1</which>
-										<value>-4.87195264196177845e+02</value>
+										<value>-1.38078989333325353e+03</value>
 									</value>
 								</second>
 							</item>
@@ -4615,7 +4615,7 @@ matrixOutput3 = [curve]
 									<name>ScaleBarHeight</name>
 									<value>
 										<which>1</which>
-										<value>0.00000000000000000e+00</value>
+										<value>9.99899999999999949e+01</value>
 									</value>
 								</second>
 							</item>
@@ -4627,7 +4627,7 @@ matrixOutput3 = [curve]
 									<name>ScaleBarLength</name>
 									<value>
 										<which>1</which>
-										<value>0.00000000000000000e+00</value>
+										<value>9.99899999999999949e+01</value>
 									</value>
 								</second>
 							</item>
@@ -4723,7 +4723,7 @@ matrixOutput3 = [curve]
 									<name>ShowViewer</name>
 									<value>
 										<which>3</which>
-										<value>0</value>
+										<value>1</value>
 									</value>
 								</second>
 							</item>
