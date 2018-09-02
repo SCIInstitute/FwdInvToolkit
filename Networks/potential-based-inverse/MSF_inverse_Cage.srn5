@@ -4,7 +4,7 @@
 <networkFile class_id="0" tracking_level="0" version="6">
 	<networkInfo class_id="1" tracking_level="0" version="0">
 		<modules class_id="2" tracking_level="0" version="0">
-			<count>36</count>
+			<count>40</count>
 			<item_version>0</item_version>
 			<item class_id="3" tracking_level="0" version="0">
 				<first>BuildBEMatrix:0</first>
@@ -326,6 +326,58 @@
 				</second>
 			</item>
 			<item>
+				<first>EvaluateLinearAlgebraUnary:0</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>Math</category_name_>
+						<module_name_>EvaluateLinearAlgebraUnary</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>3</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>FunctionString</name>
+								</first>
+								<second>
+									<name>FunctionString</name>
+									<value>
+										<which>2</which>
+										<value>x+10</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Operator</name>
+								</first>
+								<second>
+									<name>Operator</name>
+									<value>
+										<which>0</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ScalarValue</name>
+								</first>
+								<second>
+									<name>ScalarValue</name>
+									<value>
+										<which>0</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
 				<first>GetFieldData:0</first>
 				<second>
 					<module>
@@ -373,7 +425,7 @@
 									<name>MaxIndex</name>
 									<value>
 										<which>0</which>
-										<value>509</value>
+										<value>100</value>
 									</value>
 								</second>
 							</item>
@@ -421,7 +473,7 @@
 									<name>SliceIndex</name>
 									<value>
 										<which>0</which>
-										<value>134</value>
+										<value>37</value>
 									</value>
 								</second>
 							</item>
@@ -461,7 +513,7 @@
 									<name>MaxIndex</name>
 									<value>
 										<which>0</which>
-										<value>509</value>
+										<value>100</value>
 									</value>
 								</second>
 							</item>
@@ -509,7 +561,7 @@
 									<name>SliceIndex</name>
 									<value>
 										<which>0</which>
-										<value>134</value>
+										<value>37</value>
 									</value>
 								</second>
 							</item>
@@ -549,7 +601,7 @@
 									<name>MaxIndex</name>
 									<value>
 										<which>0</which>
-										<value>509</value>
+										<value>100</value>
 									</value>
 								</second>
 							</item>
@@ -597,7 +649,7 @@
 									<name>SliceIndex</name>
 									<value>
 										<which>0</which>
-										<value>134</value>
+										<value>37</value>
 									</value>
 								</second>
 							</item>
@@ -615,7 +667,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>22</count>
+							<count>25</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -739,6 +791,42 @@
 							</item>
 							<item>
 								<first>
+									<name>InputMatrix:6</name>
+								</first>
+								<second>
+									<name>InputMatrix:6</name>
+									<value>
+										<which>2</which>
+										<value>matrixInput1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>InputMatrix:7</name>
+								</first>
+								<second>
+									<name>InputMatrix:7</name>
+									<value>
+										<which>2</which>
+										<value>matrixInput2</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>InputMatrix:8</name>
+								</first>
+								<second>
+									<name>InputMatrix:8</name>
+									<value>
+										<which>2</which>
+										<value>matrixInput3</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>NumberOfRetries</name>
 								</first>
 								<second>
@@ -757,7 +845,7 @@
 									<name>PollingIntervalMilliseconds</name>
 									<value>
 										<which>0</which>
-										<value>200</value>
+										<value>50</value>
 									</value>
 								</second>
 							</item>
@@ -774,10 +862,11 @@
 
 sys.path.append(os.environ[&apos;SCIRUNDATADIR&apos;]+&apos;/PythonLibrary/MFS_inverse&apos;)
 from mfs_inverse import *
+
 import numpy
 
-scale_out = 0.05
-scale_in = 0.02
+scale_factor = 0.2
+scale_method = &apos;normals&apos;
 
 
 
@@ -790,7 +879,7 @@ electnodes = matrixInput2
 lmbda= matrixInput3
 lmbd=lmbda[0][0]
 
-lmbd = numpy.linspace(0.00000001,1,10000).tolist()
+lmbd = numpy.linspace(0.000000001,0.0001,1000).tolist()
 lmbd_method = &apos;creso&apos;
 
 
@@ -805,7 +894,7 @@ for k in electnodes:
 
 
 # run mfs inverse
-[epis,lamb_o,curve] = mfs_inverse(heart,tank,sock_pts,tank_pot,electnodes,scale_out,scale_in,lmbd_method,lmbd,False,0.0)
+[epis,lamb_o,curve] = mfs_inverse(heart,tank,sock_pts,tank_pot,electnodes,scale_factor,scale_method,lmbd_method,lmbd,False,0.0)
 
 epi_out=epis.tolist()
 
@@ -935,6 +1024,216 @@ matrixOutput3 = [curve]
 									<value>
 										<which>2</which>
 										<value>stringOutput3</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>LinePlotter:0</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>Math</category_name_>
+						<module_name_>LinePlotter</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>13</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>CurveStyle</name>
+								</first>
+								<second>
+									<name>CurveStyle</name>
+									<value>
+										<which>2</which>
+										<value>Lines</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>DataTitle</name>
+								</first>
+								<second>
+									<name>DataTitle</name>
+									<value>
+										<which>2</which>
+										<value>Data title</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>HorizontalAxisPosition</name>
+								</first>
+								<second>
+									<name>HorizontalAxisPosition</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>HorizontalAxisVisible</name>
+								</first>
+								<second>
+									<name>HorizontalAxisVisible</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PlotBackgroundColor</name>
+								</first>
+								<second>
+									<name>PlotBackgroundColor</name>
+									<value>
+										<which>2</which>
+										<value></value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PlotColors</name>
+								</first>
+								<second>
+									<name>PlotColors</name>
+									<value>
+										<which>5</which>
+										<value>
+											<count>5</count>
+											<item_version>0</item_version>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>2</which>
+													<value>Color(0.152941,0.129412,0.235294)</value>
+												</value>
+											</item>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>2</which>
+													<value>Color(0.352941,0.207843,0.164706)</value>
+												</value>
+											</item>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>2</which>
+													<value>Color(0.639216,0.231373,0.12549)</value>
+												</value>
+											</item>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>2</which>
+													<value>Color(0.643137,0.47451,0.388235)</value>
+												</value>
+											</item>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>2</which>
+													<value>Color(0.65098,0.647059,0.478431)</value>
+												</value>
+											</item>
+										</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PlotTitle</name>
+								</first>
+								<second>
+									<name>PlotTitle</name>
+									<value>
+										<which>2</which>
+										<value>Plot title</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>ShowPointSymbols</name>
+								</first>
+								<second>
+									<name>ShowPointSymbols</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>TransposeData</name>
+								</first>
+								<second>
+									<name>TransposeData</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>VerticalAxisPosition</name>
+								</first>
+								<second>
+									<name>VerticalAxisPosition</name>
+									<value>
+										<which>1</which>
+										<value>0.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>VerticalAxisVisible</name>
+								</first>
+								<second>
+									<name>VerticalAxisVisible</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>XAxisLabel</name>
+								</first>
+								<second>
+									<name>XAxisLabel</name>
+									<value>
+										<which>2</which>
+										<value>x axis</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>YAxisLabel</name>
+								</first>
+								<second>
+									<name>YAxisLabel</name>
+									<value>
+										<which>2</which>
+										<value>y axis</value>
 									</value>
 								</second>
 							</item>
@@ -1346,7 +1645,7 @@ matrixOutput3 = [curve]
 									<name>FixedMax</name>
 									<value>
 										<which>1</which>
-										<value>8.75694211277247270e+00</value>
+										<value>3.41358815481135025e+00</value>
 									</value>
 								</second>
 							</item>
@@ -1358,7 +1657,7 @@ matrixOutput3 = [curve]
 									<name>FixedMin</name>
 									<value>
 										<which>1</which>
-										<value>-6.52453057018040727e+00</value>
+										<value>-8.98526109407475815e+00</value>
 									</value>
 								</second>
 							</item>
@@ -1410,7 +1709,7 @@ matrixOutput3 = [curve]
 									<name>FixedMax</name>
 									<value>
 										<which>1</which>
-										<value>3.69113333973170166e+00</value>
+										<value>7.50986087817636871e-01</value>
 									</value>
 								</second>
 							</item>
@@ -1422,7 +1721,7 @@ matrixOutput3 = [curve]
 									<name>FixedMin</name>
 									<value>
 										<which>1</which>
-										<value>-2.45485989299534912e+00</value>
+										<value>-1.44521988580754623e+00</value>
 									</value>
 								</second>
 							</item>
@@ -1474,7 +1773,7 @@ matrixOutput3 = [curve]
 									<name>FixedMax</name>
 									<value>
 										<which>1</which>
-										<value>8.76099126141573947e+02</value>
+										<value>5.11853614120005815e+01</value>
 									</value>
 								</second>
 							</item>
@@ -1486,7 +1785,7 @@ matrixOutput3 = [curve]
 									<name>FixedMin</name>
 									<value>
 										<which>1</which>
-										<value>-4.87195264196177845e+02</value>
+										<value>-7.73361727833728764e+02</value>
 									</value>
 								</second>
 							</item>
@@ -1551,6 +1850,182 @@ matrixOutput3 = [curve]
 									<value>
 										<which>0</which>
 										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>rowCheckBox</name>
+								</first>
+								<second>
+									<name>rowCheckBox</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>rowEndSpinBox</name>
+								</first>
+								<second>
+									<name>rowEndSpinBox</name>
+									<value>
+										<which>0</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>rowStartSpinBox</name>
+								</first>
+								<second>
+									<name>rowStartSpinBox</name>
+									<value>
+										<which>0</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>SelectSubMatrix:1</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>Math</category_name_>
+						<module_name_>SelectSubMatrix</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>6</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>columnCheckBox</name>
+								</first>
+								<second>
+									<name>columnCheckBox</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>columnEndSpinBox</name>
+								</first>
+								<second>
+									<name>columnEndSpinBox</name>
+									<value>
+										<which>0</which>
+										<value>170</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>columnStartSpinBox</name>
+								</first>
+								<second>
+									<name>columnStartSpinBox</name>
+									<value>
+										<which>0</which>
+										<value>70</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>rowCheckBox</name>
+								</first>
+								<second>
+									<name>rowCheckBox</name>
+									<value>
+										<which>3</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>rowEndSpinBox</name>
+								</first>
+								<second>
+									<name>rowEndSpinBox</name>
+									<value>
+										<which>0</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>rowStartSpinBox</name>
+								</first>
+								<second>
+									<name>rowStartSpinBox</name>
+									<value>
+										<which>0</which>
+										<value>0</value>
+									</value>
+								</second>
+							</item>
+						</stateMap>
+					</state>
+				</second>
+			</item>
+			<item>
+				<first>SelectSubMatrix:2</first>
+				<second>
+					<module>
+						<package_name_>SCIRun</package_name_>
+						<category_name_>Math</category_name_>
+						<module_name_>SelectSubMatrix</module_name_>
+					</module>
+					<state>
+						<stateMap>
+							<count>6</count>
+							<item_version>0</item_version>
+							<item>
+								<first>
+									<name>columnCheckBox</name>
+								</first>
+								<second>
+									<name>columnCheckBox</name>
+									<value>
+										<which>3</which>
+										<value>1</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>columnEndSpinBox</name>
+								</first>
+								<second>
+									<name>columnEndSpinBox</name>
+									<value>
+										<which>0</which>
+										<value>170</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>columnStartSpinBox</name>
+								</first>
+								<second>
+									<name>columnStartSpinBox</name>
+									<value>
+										<which>0</which>
+										<value>70</value>
 									</value>
 								</second>
 							</item>
@@ -4723,7 +5198,7 @@ matrixOutput3 = [curve]
 									<name>ShowViewer</name>
 									<value>
 										<which>3</which>
-										<value>0</value>
+										<value>1</value>
 									</value>
 								</second>
 							</item>
@@ -4805,7 +5280,7 @@ matrixOutput3 = [curve]
 			</item>
 		</modules>
 		<connections class_id="13" tracking_level="0" version="0">
-			<count>57</count>
+			<count>61</count>
 			<item_version>0</item_version>
 			<item class_id="14" tracking_level="0" version="0">
 				<moduleId1_>BuildBEMatrix:0</moduleId1_>
@@ -4852,7 +5327,7 @@ matrixOutput3 = [curve]
 				<moduleId2_>InterfaceWithPython:0</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
-					<id>5</id>
+					<id>8</id>
 				</port2_>
 			</item>
 			<item>
@@ -4892,6 +5367,18 @@ matrixOutput3 = [curve]
 				</port2_>
 			</item>
 			<item>
+				<moduleId1_>EvaluateLinearAlgebraUnary:0</moduleId1_>
+				<port1_>
+					<name>Result</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>LinePlotter:0</moduleId2_>
+				<port2_>
+					<name>DependentVariables</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
 				<moduleId1_>GetFieldData:0</moduleId1_>
 				<port1_>
 					<name>OutputMatrix</name>
@@ -4900,7 +5387,7 @@ matrixOutput3 = [curve]
 				<moduleId2_>InterfaceWithPython:0</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
-					<id>4</id>
+					<id>7</id>
 				</port2_>
 			</item>
 			<item>
@@ -5185,7 +5672,7 @@ matrixOutput3 = [curve]
 					<name>Matrix</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>GetMatrixSlice:0</moduleId2_>
+				<moduleId2_>SelectSubMatrix:2</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
 					<id>0</id>
@@ -5197,7 +5684,7 @@ matrixOutput3 = [curve]
 					<name>Matrix</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>GetMatrixSlice:1</moduleId2_>
+				<moduleId2_>EvaluateLinearAlgebraUnary:0</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
 					<id>0</id>
@@ -5209,10 +5696,10 @@ matrixOutput3 = [curve]
 					<name>Matrix</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>InterfaceWithPython:0</moduleId2_>
+				<moduleId2_>SelectSubMatrix:1</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
-					<id>3</id>
+					<id>0</id>
 				</port2_>
 			</item>
 			<item>
@@ -5308,6 +5795,42 @@ matrixOutput3 = [curve]
 				<moduleId2_>SolveInverseProblemWithTikhonov:0</moduleId2_>
 				<port2_>
 					<name>ForwardMatrix</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>SelectSubMatrix:1</moduleId1_>
+				<port1_>
+					<name>ResultMatrix</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>GetMatrixSlice:1</moduleId2_>
+				<port2_>
+					<name>InputMatrix</name>
+					<id>0</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>SelectSubMatrix:1</moduleId1_>
+				<port1_>
+					<name>ResultMatrix</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>InterfaceWithPython:0</moduleId2_>
+				<port2_>
+					<name>InputMatrix</name>
+					<id>6</id>
+				</port2_>
+			</item>
+			<item>
+				<moduleId1_>SelectSubMatrix:2</moduleId1_>
+				<port1_>
+					<name>ResultMatrix</name>
+					<id>0</id>
+				</port1_>
+				<moduleId2_>GetMatrixSlice:0</moduleId2_>
+				<port2_>
+					<name>InputMatrix</name>
 					<id>0</id>
 				</port2_>
 			</item>
@@ -5494,7 +6017,7 @@ matrixOutput3 = [curve]
 		</connections>
 	</networkInfo>
 	<modulePositions class_id="16" tracking_level="0" version="0">
-		<count>36</count>
+		<count>40</count>
 		<item_version>0</item_version>
 		<item class_id="17" tracking_level="0" version="0">
 			<first>BuildBEMatrix:0</first>
@@ -5532,6 +6055,13 @@ matrixOutput3 = [curve]
 			</second>
 		</item>
 		<item>
+			<first>EvaluateLinearAlgebraUnary:0</first>
+			<second>
+				<first>4.09000000000000000e+02</first>
+				<second>-2.23000000000000000e+02</second>
+			</second>
+		</item>
+		<item>
 			<first>GetFieldData:0</first>
 			<second>
 				<first>-1.97000000000000000e+02</first>
@@ -5562,15 +6092,22 @@ matrixOutput3 = [curve]
 		<item>
 			<first>InterfaceWithPython:0</first>
 			<second>
-				<first>-2.12000000000000000e+02</first>
-				<second>3.90000000000000000e+01</second>
+				<first>-2.25000000000000000e+02</first>
+				<second>2.40000000000000000e+01</second>
+			</second>
+		</item>
+		<item>
+			<first>LinePlotter:0</first>
+			<second>
+				<first>6.90000000000000000e+01</first>
+				<second>-8.10000000000000000e+01</second>
 			</second>
 		</item>
 		<item>
 			<first>MapFieldDataOntoNodes:0</first>
 			<second>
-				<first>-2.21000000000000000e+02</first>
-				<second>-2.18000000000000000e+02</second>
+				<first>-2.10000000000000000e+02</first>
+				<second>-2.25000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -5655,6 +6192,20 @@ matrixOutput3 = [curve]
 			<second>
 				<first>5.19000000000000000e+02</first>
 				<second>-1.10000000000000000e+01</second>
+			</second>
+		</item>
+		<item>
+			<first>SelectSubMatrix:1</first>
+			<second>
+				<first>2.62000000000000000e+02</first>
+				<second>-2.60000000000000000e+02</second>
+			</second>
+		</item>
+		<item>
+			<first>SelectSubMatrix:2</first>
+			<second>
+				<first>1.32000000000000000e+02</first>
+				<second>-2.64000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
@@ -5836,7 +6387,7 @@ p, li { white-space: pre-wrap; }
 		<item_version>0</item_version>
 	</connectionNotes>
 	<moduleTags class_id="22" tracking_level="0" version="0">
-		<count>36</count>
+		<count>40</count>
 		<item_version>0</item_version>
 		<item class_id="23" tracking_level="0" version="0">
 			<first>BuildBEMatrix:0</first>
@@ -5859,6 +6410,10 @@ p, li { white-space: pre-wrap; }
 			<second>-1</second>
 		</item>
 		<item>
+			<first>EvaluateLinearAlgebraUnary:0</first>
+			<second>-1</second>
+		</item>
+		<item>
 			<first>GetFieldData:0</first>
 			<second>-1</second>
 		</item>
@@ -5876,6 +6431,10 @@ p, li { white-space: pre-wrap; }
 		</item>
 		<item>
 			<first>InterfaceWithPython:0</first>
+			<second>-1</second>
+		</item>
+		<item>
+			<first>LinePlotter:0</first>
 			<second>-1</second>
 		</item>
 		<item>
@@ -5928,6 +6487,14 @@ p, li { white-space: pre-wrap; }
 		</item>
 		<item>
 			<first>SelectSubMatrix:0</first>
+			<second>-1</second>
+		</item>
+		<item>
+			<first>SelectSubMatrix:1</first>
+			<second>-1</second>
+		</item>
+		<item>
+			<first>SelectSubMatrix:2</first>
 			<second>-1</second>
 		</item>
 		<item>
