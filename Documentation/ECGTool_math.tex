@@ -505,6 +505,16 @@ Tikhonov regularization is applied to each remaining system. After solving
 these systems, the decorrelation is reversed to restore the
 temporal correlation which had been estimated and removed previously.
 
+\subsubsection{Spline-Based Inverse Method}
+
+As in the Isotropy method, the Spline-Based method enforces prior knowledge in time.
+This method, introduced by Erem {\it et.al.}, enforces a smooth temporal behavior of the potentials on the heart through the paramaterization with a spline curve.
+The main assumption behind this model is that the sequence of multi-dimensional potentials, discretetized on the body surface by electrodes and heart by nodes on the geometry, across time lie on a 1D manifold embedded in a high dimensional space. 
+Thus, position along this curve is equivalent to phase of cardiac cycle.
+As in the Isotropy method, the spline-inverse first attempts to estimate the temporal structure of the heart potentials by fitting a smooth-varying spline on the measured torso potentials. 
+Then, it solves the inverse problem for the reduced set of knot points that characterize the fitted spline with a first order Tikhonov inverse method.
+The full temporal sequence of heart potentials is finally reconstructed by combining the inverse solutions obtained for each knot point with the temporal structure obtained from the torso potentials.
+
 \subsubsection{Total Variation Method} \label{sec:inv-tv}
 
 The effect of the $\ell_{2}$-norm regularization in Eq.~(\ref{tik_problem}) is
