@@ -283,135 +283,135 @@ The inverse problem of electrocardiography is to find suitable electrical source
     
     This implementation of the Isotropy Method has extra parameters that determine the operation of the Tikhonov inverse. These parameters are specific to the \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}} module and we refer the user to \autoref{sec:inverse:tikhonov} for more details.
     
-%    \begin{figure}
-%        \begin{center}
-%        \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/IsotropyMethod_networkExample.png}
-%        \caption{The SCIRun network for the Isotropy Method inverse solution example.}
-%        \label{fig:IsotropyMethod}
-%        \end{center}
-%    \end{figure}
+   \begin{figure}
+       \begin{center}
+       \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/IsotropyMethod_networkExample.png}
+       \caption{The SCIRun network for the Isotropy Method inverse solution example.}
+       \label{fig:IsotropyMethod}
+       \end{center}
+   \end{figure}
     
    
-% \subsection{Spline-Based Inverse Method}
+\subsection{Spline-Based Inverse Method}
 
-%     The spline-based inverse method is another approach that takes into account the temporal characteristics of the signal. In this particular case, it projects the input data onto a 1D manifold characterized with a spline \cite{}.
-%     The current implementation of this method uses the MATLAB-python interface capabilities as well as the implemented inverse methods.
-%     Similarly to the Isotropy Method, the spline-based inverse is composed of three main blocks ``temporal decomposition'', ``inverse solving'' and ``temporal recontruction''. 
-%     The main difference concerns the temporal decomposition and reconstruction steps, which now are non-linear and involve the estimation fo a 1D manifold.
-%     In the following, we will describe these three blocks:
+    The spline-based inverse method is another approach that takes into account the temporal characteristics of the signal. In this particular case, it projects the input data onto a 1D manifold characterized with a spline \cite{}.
+    The current implementation of this method uses the MATLAB-python interface capabilities as well as the implemented inverse methods.
+    Similarly to the Isotropy Method, the spline-based inverse is composed of three main blocks ``temporal decomposition'', ``inverse solving'' and ``temporal recontruction''. 
+    The main difference concerns the temporal decomposition and reconstruction steps, which now are non-linear and involve the estimation fo a 1D manifold.
+    In the following, we will describe these three blocks:
     
-%     \noindent{\bf Manifold Estimation:}
+    \noindent{\bf Manifold Estimation:}
     
-%     \begin{verbatim}
-%     %		This code implements the inverse solutions pipeline presented in
-%     %		the paper:
-%     %	        Erem, Coll-font, Martinez Orellana - 2013 - 
-%     %	        Using Transmural Regularization and Dynamic Modeling 
-%     %	        for Non-Invasive Cardiac Potential Imaging of 
-%     %	        Endocardial Pacing Sites with Imprecise Thoracic Geometry.
-%     %
-%     %		Inputs
-%     %				  i1 - <N,T>double - measured potentials on the torso.
-%     %				  i2 - <N,M>double - forward matrix.
-%     %				  i3 - <L,M>double - regularization matrix.
-%     %				  i4 - <3,1>int - regularization constant params.
-%     %				                  i4(1) - log10 min lambda.
-%     %				                  i4(2) - log10 max lambda
-%     %				                  i4(3) - num lambda.
-%     %		Outputs
-%     %				  o1 - <M,T>double - estimated heart potentials.
-%     \end{verbatim}
+    \begin{verbatim}
+    %		This code implements the inverse solutions pipeline presented in
+    %		the paper:
+    %	        Erem, Coll-font, Martinez Orellana - 2013 - 
+    %	        Using Transmural Regularization and Dynamic Modeling 
+    %	        for Non-Invasive Cardiac Potential Imaging of 
+    %	        Endocardial Pacing Sites with Imprecise Thoracic Geometry.
+    %
+    %		Inputs
+    %				  i1 - <N,T>double - measured potentials on the torso.
+    %				  i2 - <N,M>double - forward matrix.
+    %				  i3 - <L,M>double - regularization matrix.
+    %				  i4 - <3,1>int - regularization constant params.
+    %				                  i4(1) - log10 min lambda.
+    %				                  i4(2) - log10 max lambda
+    %				                  i4(3) - num lambda.
+    %		Outputs
+    %				  o1 - <M,T>double - estimated heart potentials.
+    \end{verbatim}
 
 
-%     \noindent{\bf Inverse Solution:}
-%     \begin{verbatim}
+    \noindent{\bf Inverse Solution:}
+    \begin{verbatim}
     
-%     \end{verbatim}
+    \end{verbatim}
 
-%     \begin{figure}
-%         \begin{center}
-%         \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/splineInverse_Network.png}
-%         \caption{The SCIRun network for the Spline-Based Method inverse solution example.}
-%         \label{fig:splineInverse}
-%         \end{center}
-%     \end{figure}
+    \begin{figure}
+        \begin{center}
+        \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/splineInverse_Network.png}
+        \caption{The SCIRun network for the Spline-Based Method inverse solution example.}
+        \label{fig:splineInverse}
+        \end{center}
+    \end{figure}
     
     
 
-% \subsection{Non-Decreasing Inverse Method}
+\subsection{Non-Decreasing Inverse Method}
 
-%     The Non-Decreasing Inverse Method estimates the transmembrane potentials by solving a constrained Tikhonov problem.
-%     Thus the function to be optimized over is a standard Tikhonov problem but restricts the solutions to always be non-decreasing.
-%     Thus, the problem to be solved is:
-%     \begin{equation}\begin{split}
-%     		\min_{x(t), t=1\dots T} &\|y(t) - Ax(t)\|_2^2 + \lambda*\|Rx(t)\|_2^2 \\
-%     		&s.t.\\
-%       		&\hspace{2cm}x(1) >= minB\\
-%          	&\hspace{2cm}x(t+1) >= x(t), \hspace{.2cm}t=1\dots T-1\\
-%          	&\hspace{2cm}x(T) <= maxB
-%     \end{split}
-%     \end{equation}
-%     Where $minB$ and $maxB$ are the minimum and maximum bounds for the TMP.
-%     For memory efficiency, this problem is implemented with an ADMM solver.
+    The Non-Decreasing Inverse Method estimates the transmembrane potentials by solving a constrained Tikhonov problem.
+    Thus the function to be optimized over is a standard Tikhonov problem but restricts the solutions to always be non-decreasing.
+    Thus, the problem to be solved is:
+    \begin{equation}\begin{split}
+    		\min_{x(t), t=1\dots T} &\|y(t) - Ax(t)\|_2^2 + \lambda*\|Rx(t)\|_2^2 \\
+    		&s.t.\\
+      		&\hspace{2cm}x(1) >= minB\\
+         	&\hspace{2cm}x(t+1) >= x(t), \hspace{.2cm}t=1\dots T-1\\
+         	&\hspace{2cm}x(T) <= maxB
+    \end{split}
+    \end{equation}
+    Where $minB$ and $maxB$ are the minimum and maximum bounds for the TMP.
+    For memory efficiency, this problem is implemented with an ADMM solver.
     
-%     This model assumes that the electrical sources of the heart model the transmembrane potentials on each node of the geometry. The inputs and ouputs of the MATLAB implementation can be seen here:
-%     \begin{verbatim}
-%     %% MESSNARZ INVERSE SCRIPT FOR SCIRUN
-%     %
-%     %           (...)
-%     %			INPUT:
-%     % 					- A - <N M>double - forward operator of the linear system.
-%     % 					- R - <H,M>double - regularization matrix.
-%     % 					- ECG - <N,T>double - Body surface measurements.
-%     % 					- lambda - double - regularization term.
-%     % 					- initialx - <M,T>double - initial guess for the TMP
-%     % 					solution.
-%     % 					- rho - double - augmented term weight.
-%     % 					- min_r - double - stopping criteria for the primal
-%     % 					residual.
-%     % 					- min_s - double - stopping criteria for the dual residual.
-%     %					- margin - <2,1>double - minimum and maximum bounds for
-%     %					the transmembrane potentials.
-%     % 					- verbose - boolean - print ADMM iteratinons information.
-%     %
-%     %			OUTPUT:
-%     % 					- xk - <M,T>double - estimated TMP.
-%     % 					- zk - <M,T+1>double - estimated slack variable.
-%     %           (...)
-%     %
-%     \end{verbatim}
-%     \noindent{\bf Inputs:}
-%     \begin{enumerate}
-%         \item Forward Matrix ($A\in\Re^{N,M}$)
-%         \item Regularization matrix ($R\in\Re^{F,N}$)
-%         \item Measured Potentials ($Y\in\Re^{N,T}$)
-%         \item Regularization parameter ($\lambda\in\Re$)
-%         \item Initial guess for the transmembrane potentials ($X_0\in\Re^{N,1}$ )
-%         \item ADMM parameters: weight of augmented lagrangian, stopping paramter for primal and dual objectives ($\rho, min_r, min_s \in\Re^{+}$)
-%         \item Lower and upper bounds (margin) of the transmembrane potentials ($marg\in\Re^2$)
-%     \end{enumerate}
+    This model assumes that the electrical sources of the heart model the transmembrane potentials on each node of the geometry. The inputs and ouputs of the MATLAB implementation can be seen here:
+    \begin{verbatim}
+    %% MESSNARZ INVERSE SCRIPT FOR SCIRUN
+    %
+    %           (...)
+    %			INPUT:
+    % 					- A - <N M>double - forward operator of the linear system.
+    % 					- R - <H,M>double - regularization matrix.
+    % 					- ECG - <N,T>double - Body surface measurements.
+    % 					- lambda - double - regularization term.
+    % 					- initialx - <M,T>double - initial guess for the TMP
+    % 					solution.
+    % 					- rho - double - augmented term weight.
+    % 					- min_r - double - stopping criteria for the primal
+    % 					residual.
+    % 					- min_s - double - stopping criteria for the dual residual.
+    %					- margin - <2,1>double - minimum and maximum bounds for
+    %					the transmembrane potentials.
+    % 					- verbose - boolean - print ADMM iteratinons information.
+    %
+    %			OUTPUT:
+    % 					- xk - <M,T>double - estimated TMP.
+    % 					- zk - <M,T+1>double - estimated slack variable.
+    %           (...)
+    %
+    \end{verbatim}
+    \noindent{\bf Inputs:}
+    \begin{enumerate}
+        \item Forward Matrix ($A\in\Re^{N,M}$)
+        \item Regularization matrix ($R\in\Re^{F,N}$)
+        \item Measured Potentials ($Y\in\Re^{N,T}$)
+        \item Regularization parameter ($\lambda\in\Re$)
+        \item Initial guess for the transmembrane potentials ($X_0\in\Re^{N,1}$ )
+        \item ADMM parameters: weight of augmented lagrangian, stopping paramter for primal and dual objectives ($\rho, min_r, min_s \in\Re^{+}$)
+        \item Lower and upper bounds (margin) of the transmembrane potentials ($marg\in\Re^2$)
+    \end{enumerate}
     
-%     \noindent{\bf Outputs:}
-%     \begin{enumerate}
-%         \item Heart potentials ($xk\in\Re^{M,T}$ )
-%     \end{enumerate}
+    \noindent{\bf Outputs:}
+    \begin{enumerate}
+        \item Heart potentials ($xk\in\Re^{M,T}$ )
+    \end{enumerate}
     
-%     The resulting potentials have sharp increases of potentials similar to the typically observed in TMPs for most of the nodes on the heart geometry.
-%     In general, the final solution is insensitive to the initial guess but it will affect the time of convergence.
-%     The script is set up such that the initial guess for the first lambda is a simple ramp, after each initial guess is the final result of the previous lambda. 
-%     The decision of the correct lambda is done automatically using an L-corner detection.
-%     This algorithm is implemented as the SCIRUN network shown in \autoref{fig:nonDecreasingNetwork}
+    The resulting potentials have sharp increases of potentials similar to the typically observed in TMPs for most of the nodes on the heart geometry.
+    In general, the final solution is insensitive to the initial guess but it will affect the time of convergence.
+    The script is set up such that the initial guess for the first lambda is a simple ramp, after each initial guess is the final result of the previous lambda. 
+    The decision of the correct lambda is done automatically using an L-corner detection.
+    This algorithm is implemented as the SCIRUN network shown in \autoref{fig:nonDecreasingNetwork}
     
-%     NOTE: This code requires the software package reguTools (http://www.imm.dtu.dk/~pcha/Regutools/) to be incorporated in the default path from MATLAB.
+    NOTE: This code requires the software package reguTools (http://www.imm.dtu.dk/~pcha/Regutools/) to be incorporated in the default path from MATLAB.
 
-%     \subsubsection{Options and Modes of Operation}
-%     \begin{figure}
-%         \begin{center}
-%         \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/nonDecreasingNetwork.png}
-%         \caption{The SCIRun network for the Non-Decreasing Inverse Method inverse solution example.}
-%         \label{fig:nonDecreasingNetwork}
-%         \end{center}
-%     \end{figure}
+    % % \subsubsection{Options and Modes of Operation}
+    % \begin{figure}
+    %     \begin{center}
+    %     \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/nonDecreasingNetwork.png}
+    %     \caption{The SCIRun network for the Non-Decreasing Inverse Method inverse solution example.}
+    %     \label{fig:nonDecreasingNetwork}
+    %     \end{center}
+    % \end{figure}
 
 
    
@@ -475,58 +475,58 @@ The inverse problem of electrocardiography is to find suitable electrical source
     \end{enumerate}
     The only output of the method is the inverse solution in the form of an array of activation times.
     
-%    \begin{figure}
-%        \begin{center}
-%        \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/activationBasedNetwork.png}
-%        \caption{The SCIRun network for the Activation-Based Method inverse solution example.}
-%        \label{fig:activationBasedNetwork}
-%        \end{center}
-%    \end{figure}
+   \begin{figure}
+       \begin{center}
+       \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/activationBasedNetwork.png}
+       \caption{The SCIRun network for the Activation-Based Method inverse solution example.}
+       \label{fig:activationBasedNetwork}
+       \end{center}
+   \end{figure}
 
 
-% \subsection{Wavefront-Based Potential Reconstruction (WBPR)}
+\subsection{Wavefront-Based Potential Reconstruction (WBPR)}
 
-%     The Wavefront-Based Potential Reconstruction (WBPR) method imposes prior knowledge about the spatial patterns of electric potentials on the heart during the QRS complex to reconstruct an inverse solution. 
-%     This inverse method assumes a source model characterizing the extracellular potentials on the heart surface and introduces a regularization term that imposes them to be similar to a pre-specified shape.
+    The Wavefront-Based Potential Reconstruction (WBPR) method imposes prior knowledge about the spatial patterns of electric potentials on the heart during the QRS complex to reconstruct an inverse solution. 
+    This inverse method assumes a source model characterizing the extracellular potentials on the heart surface and introduces a regularization term that imposes them to be similar to a pre-specified shape.
     
-%     The inputs and outputs of this inverse method can be observed in the ``InterfaceWithPython'' module in the network example shown in \autoref{fig:WBPRNetwork} and in the header of the MATLAB implementation:
-%     \begin{verbatim}
-%     function [x_WBPR_forward,x_WBPR_backward] = WBPR(A,y,heart,first_act,last_act)
-%     % Function to calculate the WBPR solutions
-%     % Inputs:
-%     %   A: forward matrix
-%     %   y: torso data
-%     %   heart: heart geometry
-%     %   first_act: first activated node
-%     %   last_act: last activated node
-%     %
-%     % Outputs:
-%     %   x_WBPR_forward: inverse solution using forward WBPR
-%     %   x_WBPR_backward: inverse solution using backward WBPR
-%     \end{verbatim}
+    The inputs and outputs of this inverse method can be observed in the ``InterfaceWithPython'' module in the network example shown in \autoref{fig:WBPRNetwork} and in the header of the MATLAB implementation:
+    \begin{verbatim}
+    function [x_WBPR_forward,x_WBPR_backward] = WBPR(A,y,heart,first_act,last_act)
+    % Function to calculate the WBPR solutions
+    % Inputs:
+    %   A: forward matrix
+    %   y: torso data
+    %   heart: heart geometry
+    %   first_act: first activated node
+    %   last_act: last activated node
+    %
+    % Outputs:
+    %   x_WBPR_forward: inverse solution using forward WBPR
+    %   x_WBPR_backward: inverse solution using backward WBPR
+    \end{verbatim}
 
-%     \noindent{\bf Inputs:}
-%     \begin{enumerate}
-%         \item Forward Matrix ($A\in\Re^{N,M}$)
-%         \item Measured Potentials ($Y\in\Re^{N,T}$)
-%         \item Heart geometry (struct containing nodes and triangles)
-%         \item First and last nodes to activate ()
-%     \end{enumerate}
+    \noindent{\bf Inputs:}
+    \begin{enumerate}
+        \item Forward Matrix ($A\in\Re^{N,M}$)
+        \item Measured Potentials ($Y\in\Re^{N,T}$)
+        \item Heart geometry (struct containing nodes and triangles)
+        \item First and last nodes to activate ()
+    \end{enumerate}
    
-%     \noindent{\bf Outputs:}
-%     \begin{enumerate}
-%         \item forward WBPR solution ($X_f\in\Re^{M,T}$ )
-%         \item backward WBPR solution ($X_b\in\Re^{M,T}$ )
-%     \end{enumerate}
-%     As output, WBPR produces two inverse solutions. The procedure by which the inverse solutions are obtained may be run both forward and backward in time. Therefore, the ``forward WBPR'' solution is that obtained by applying the method starting from the earliest sample time and ending at the latest. On the other hand, the ``backward WBPR'' solution is obtained by starting from the latest sample time and traversing the samples in reverse until ending at the earliest.
+    \noindent{\bf Outputs:}
+    \begin{enumerate}
+        \item forward WBPR solution ($X_f\in\Re^{M,T}$ )
+        \item backward WBPR solution ($X_b\in\Re^{M,T}$ )
+    \end{enumerate}
+    As output, WBPR produces two inverse solutions. The procedure by which the inverse solutions are obtained may be run both forward and backward in time. Therefore, the ``forward WBPR'' solution is that obtained by applying the method starting from the earliest sample time and ending at the latest. On the other hand, the ``backward WBPR'' solution is obtained by starting from the latest sample time and traversing the samples in reverse until ending at the earliest.
 
-%     NOTE: This code requires the software package reguTools (http://www.imm.dtu.dk/~pcha/Regutools/) to be incorporated in the default path from MATLAB.
+    NOTE: This code requires the software package reguTools (http://www.imm.dtu.dk/~pcha/Regutools/) to be incorporated in the default path from MATLAB.
 
-%     \begin{figure}
-%         \begin{center}
-%         \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/WBPRNetwork.png}
-%         \caption{The SCIRun network for the WBPR Method inverse solution example.}
-%         \label{fig:WBPRNetwork}
-%         \end{center}
-%     \end{figure}
+    \begin{figure}
+        \begin{center}
+        \includegraphics[width=0.9\textwidth]{ECGToolkitGuide_figures/WBPRNetwork.png}
+        \caption{The SCIRun network for the WBPR Method inverse solution example.}
+        \label{fig:WBPRNetwork}
+        \end{center}
+    \end{figure}
 
