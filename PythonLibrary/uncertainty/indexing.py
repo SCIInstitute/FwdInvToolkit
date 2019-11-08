@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.misc import comb
+from scipy.special import comb
 
 def hyperbolic_cross_indices(d, k):
     """
@@ -8,7 +8,7 @@ def hyperbolic_cross_indices(d, k):
     """
 
     from itertools import combinations
-    from scipy.misc import comb
+    from scipy.special import comb
 
     assert k >= 0
     assert d >= 1
