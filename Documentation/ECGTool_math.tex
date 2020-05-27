@@ -4,7 +4,7 @@
 
 In this chapter we describe the basic mathematical formulations and some
 solution approaches to the forward and inverse problems of
-electrocardiography. The goal of solutions to the forward problem, also called ECG 
+electrocardiography. The goal of solutions to the forward problem, also called ECG
 forward Simulation, is to
 predict potentials that could be measured in any accessible location
 (usually the surface of the torso) given a description of the cardiac
@@ -13,23 +13,23 @@ The goal of solutions to the inverse problem, also called ECG imaging or ECGI,
 is to predict cardiac sources given a set
 of measurements and the same geometry and conductivity information. It is
 important to note that a solution to ECG Imaging presupposes an
-available solution to the forward simulation. 
-Here we briefly summarize the basic background to 
+available solution to the forward simulation.
+Here we briefly summarize the basic background to
 facilitate our description of the toolkit capabilities in subsequent chapters.
 Please refer to the list of literature on the CEI webpage
-for more information (\url{http://www.ecg-imaging.org/home/publications}). 
+for more information (\url{http://www.ecg-imaging.org/home/publications}).
 
 
 Solving both forward and inverse problems requires a specific model formulation of
-the cardiac electrical sources. This toolkit contains examples from the two arguably 
-most dominant equivalent source models used in current forward and inverse 
-problem research. One model, which we will refer to as the ``activation-based'' 
-source model, assumes that the dominant feature of cardiac electrical activity 
+the cardiac electrical sources. This toolkit contains examples from the two arguably
+most dominant equivalent source models used in current forward and inverse
+problem research. One model, which we will refer to as the ``activation-based''
+source model, assumes that the dominant feature of cardiac electrical activity
 is the timing of the arrival of the depolarization wavefront (known as ``activation times'')
-at each location in the heart. (A similar problem, in which the equivalent 
-sources called ''recovery times'' are the timing of repolarization at each 
-location, is solved in a similar fashion.) Classical results have shown that, 
-under assumptions of isotropy and homogeneity of 
+at each location in the heart. (A similar problem, in which the equivalent
+sources called ''recovery times'' are the timing of repolarization at each
+location, is solved in a similar fashion.) Classical results have shown that,
+under assumptions of isotropy and homogeneity of
 the myocardium, activation-based models can be reduced to the activation
 times on the surface of the heart \cite{RSM:Oos2004}. In this context, this is usually taken as
 the epicardial (outer) and endocardial (inner) heart surfaces, connected
@@ -94,7 +94,7 @@ electrical potentials. The boundary conditions are given by:
 \Phi}{\partial \hat{n}} \right|_\Omega &= 0 \label{eq:bc}
 \end{align}
 \noindent where $\Omega_{k}$ is the surface on which the sources are located,
-$V_k$ are the potentials on that surface, and $\hat{n}$ are the surface normals 
+$V_k$ are the potentials on that surface, and $\hat{n}$ are the surface normals
 of the surface.
 
 As an alternative to solving this problem directly, a (weighted) integral
@@ -108,8 +108,8 @@ here) is equivalent to solving the original, or ``strong'' form.
 In a tractable geometry, such as a set of concentric or even eccentric
 spheres, this PDE can be solved via analytical expansions. However in
 complex geometries such as realistic torso models, numerical solutions must
-be applied. 
-%Again there is a large literature on such numerical methods. 
+be applied.
+%Again there is a large literature on such numerical methods.
 Two of these methods have predominated in the literature for
 forward electrocardiography: the Finite Element Method (FEM) and the
 Boundary Element Method (BEM). It is these two methods which have been
@@ -284,9 +284,9 @@ There are several approaches to this problem. In this toolkit we have
 provided an example SCIRun network to implement one of them, the so-called
 ``lead field'' method, which solves the matrix equation repeatedly for
 source vectors consisting of a $1$ at each source node in turn and $0$ at
-all other source nodes \cite{JDT:Gul97}. From this collection of solutions we 
-can obtain the desired transfer matrix, which we will denote as $\mathbf{A}$ 
-as used in eq.~\ref{eq:TransMat}. 
+all other source nodes \cite{JDT:Gul97}. From this collection of solutions we
+can obtain the desired transfer matrix, which we will denote as $\mathbf{A}$
+as used in Eq.~(\ref{eq:TransMat}).
 This network is described below in Ch.~\ref{ch:fwd}.
 
 \subsection{BEM in the Forward/Inverse Toolkit}
@@ -315,7 +315,7 @@ elements.
 In the BEM method, these integrals involve as unknowns the
 potential and its gradient. The integration involves the computation of the
 distance between each node within the surface and to all others surfaces.
-In complicated geometries, and in all cases when the node is integrated 
+In complicated geometries, and in all cases when the node is integrated
 against the points on its ``own''
 surface, there are numerical difficulties computing these integrals. In those cases
 there are a number of sophisticated solutions which have been proposed in the literature (and
@@ -390,7 +390,7 @@ regularizing this problem.
 
 \subsection{Activation-based Inverse Solutions in the Forward/Inverse Toolkit}
 
-Since the acitvation-based inverse problem is non-linear, iterative solutions 
+Since the acitvation-based inverse problem is non-linear, iterative solutions
 are employed. An ``initial guess'', or starting point, is required. Then
 solutions are iteratively re-computed until a desired convergence criterion
 is met. Currently in the toolkit, we have a Matlab version of a Gauss-Newton
@@ -412,16 +412,16 @@ are in Ch.~\ref{ch:inv}.
 \subsubsection{Standard Tikhonov regularization}
 \label{sec:math_tikhonov}
 
-The Tikhonov regularization minimizes $ \| Ax - y \|$ in order to solve $Ax=y$, 
-which is the same as eq.~\ref{eq:TransMat} with $x$ replacing $x(t)$ for the 
-unknown solution and $y$ replacing $y(t)$ for the given measurement. The 
-forward solution matrix $\mathbf{A}$ is of size $m\times n$, where $m$ is the 
-number of measurement channels and $n$ is the number of source reconstruction 
-points). The system $Ax$ can be overdetermined ($m > n$), underdetermined 
-($m <n$) or $m=n$. $A$ is often ill-conditioned or singular, so it needs to be 
-regularized. The Tikhonov regularization is often used to overcome those 
-problems by introducing a minimum solution norm constraint, such as 
-$\lambda \|Lx\|_2^2$. The solution of the problem can be found by 
+The Tikhonov regularization minimizes $ \| Ax - y \|$ in order to solve $Ax=y$,
+which is the same as Eq.~(\ref{eq:TransMat}) with $x$ replacing $x(t)$ for the
+unknown solution and $y$ replacing $y(t)$ for the given measurement. The
+forward solution matrix $\mathbf{A}$ is of size $m\times n$, where $m$ is the
+number of measurement channels and $n$ is the number of source reconstruction
+points). The system $Ax$ can be overdetermined ($m > n$), underdetermined
+($m <n$) or $m=n$. $A$ is often ill-conditioned or singular, so it needs to be
+regularized. The Tikhonov regularization is often used to overcome those
+problems by introducing a minimum solution norm constraint, such as
+$\lambda \|Lx\|_2^2$. The solution of the problem can be found by
 minimizing the following function:
 \begin{center}
 \begin{eqnarray}
@@ -432,7 +432,7 @@ minimizing the following function:
 
 \noindent where $\lambda$ is the regularization parameter, which is a user defined scalar value. The matrix $\mathbf{P}$ represents the \textit{a priori} knowledge of the measurements. The matrix $\mathbf{L}$ describes the property of the solution $x$ to be constrained.
 Conceptually, $\lambda$ trades off between the misfit between predicted and measured data (the first term in the equation) and the \textit{a priori} constraint.
-An approximate solution $\hat{x}$ of \ref{tik_problem} is given for the
+An approximate solution $\hat{x}$ of Eq.~(\ref{tik_problem}) is given for the
 overdetermined case ($n > m$) as follows:
 \begin{center}
 \begin{eqnarray}
@@ -456,9 +456,9 @@ C^{T})^{^-1})^{-1} y &=& \hat{x} \\
 \end{eqnarray}
 \end{center}
 \noindent with source space weighting $ W,L \in n \times n $ and sensor space
-weighting $ C,P \in m \times m $. 
+weighting $ C,P \in m \times m $.
 
-When $n=m$, either of the above formulations can be used. 
+When $n=m$, either of the above formulations can be used.
 %Inverting the weighting matrices depends on the case and used the reconstruction method (so the posed apriori knowledge).
 Both solutions are equal but the computational effort may differ. Furthermore, both representations can be solved numerically by a direct method (\textit{e.g.} Gaussian elimination) or an iterative method (\textit{e.g.} conjugate gradients). Both methods are implemented in SCIRun.
 
@@ -509,9 +509,9 @@ temporal correlation which had been estimated and removed previously.
 
 As in the Isotropy method, the Spline-Based method enforces prior knowledge in time.
 This method, introduced by Erem {\it et.al.}, enforces a smooth temporal behavior of the potentials on the heart through the paramaterization with a spline curve.
-The main assumption behind this model is that the sequence of multi-dimensional potentials, discretetized on the body surface by electrodes and heart by nodes on the geometry, across time lie on a 1D manifold embedded in a high dimensional space. 
+The main assumption behind this model is that the sequence of multi-dimensional potentials, discretetized on the body surface by electrodes and heart by nodes on the geometry, across time lie on a 1D manifold embedded in a high dimensional space.
 Thus, position along this curve is equivalent to phase of cardiac cycle.
-As in the Isotropy method, the spline-inverse first attempts to estimate the temporal structure of the heart potentials by fitting a smooth-varying spline on the measured torso potentials. 
+As in the Isotropy method, the spline-inverse first attempts to estimate the temporal structure of the heart potentials by fitting a smooth-varying spline on the measured torso potentials.
 Then, it solves the inverse problem for the reduced set of knot points that characterize the fitted spline with a first order Tikhonov inverse method.
 The full temporal sequence of heart potentials is finally reconstructed by combining the inverse solutions obtained for each knot point with the temporal structure obtained from the torso potentials.
 
