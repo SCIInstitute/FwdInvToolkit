@@ -98,7 +98,7 @@ $V_k$ are the potentials on that surface, and $\hat{n}$ are the surface normals
 of the surface.
 
 As an alternative to solving this problem directly, a (weighted) integral
-can be taken over the solution domain on both sides of Eq.~(\ref{eq:eq})
+can be taken over the solution domain on both sides of \autoref{eq:eq}
 and the resulting integral equation solved for $\Phi$ at locations of
 interest. This is usually referred to as the ``weak form'' of the PDE
 solution, and (aside from discontinuities which theoretically could be
@@ -135,7 +135,7 @@ come out of the integrals, leaving subintegrals over known functions which
 result in a set of weights. The result in either case is a system of
 linear equations.
 
-The boundary conditions in Eq.~(\ref{eq:bc}) are applied differently  in FEM
+The boundary conditions in \autoref{eq:bc} are applied differently  in FEM
 and BEM, another important difference between the two methods.
 
 
@@ -195,7 +195,7 @@ $\{\Phi_i\}$ are the corresponding (unknown) coefficients at those nodes.
 Note that if the
 $\{\Phi_i\}$ can be determined, then the potential everywhere in the volume
 can be approximated via the basis expansion in
-Eq.~(\ref{eq:approx}). Usually, the basis functions are (Cartesian product)
+\autoref{eq:approx}. Usually, the basis functions are (Cartesian product)
 low-order polynomials, most commonly tri-linear functions, designed so that
 each function is $1$ at its ``own'' node and decays to $0$ at the other nodes of
 all elements which share that node (in which case $\Phi_{i}$ becomes a
@@ -203,8 +203,8 @@ direct approximation of the potential at node $i$).
 
 
 The Galerkin method is applied to solve this Laplace equation. In
-particular, the basis expansion in Eq.~(\ref{eq:approx}) is substituted
-into Eq.~(\ref{eq:eq}), both sides of the equation are multiplied by a set
+particular, the basis expansion in \autoref{eq:approx} is substituted
+into \autoref{eq:eq}, both sides of the equation are multiplied by a set
 of ``trial'' or ``test'' functions (typically taken to be the same family of
 functions as the basis functions $\{N_{i}\}$), and then the equation is
 integrated over the solution domain, resulting in a weak form of the
@@ -275,7 +275,7 @@ require multiple solutions performed for the given geometry, \textit{e.g.},
 when a time series of body surface potentials needs to be generated
 from a time series of sources.
 In this case, it can be useful to extract a ``transfer matrix''
-from Eq.~(\ref{eq:mat_eq}), which directly relates the known sources to the
+from \autoref{eq:mat_eq}, which directly relates the known sources to the
 unknown and desired measurement potentials. Once this is done, solving the
 forward problem reduces to matrix-vector multiplication rather than the
 solution of a linear system.
@@ -286,7 +286,7 @@ provided an example SCIRun network to implement one of them, the so-called
 source vectors consisting of a $1$ at each source node in turn and $0$ at
 all other source nodes \cite{JDT:Gul97}. From this collection of solutions we
 can obtain the desired transfer matrix, which we will denote as $\mathbf{A}$
-as used in Eq.~(\ref{eq:TransMat}).
+as used in \autoref{eq:TransMat}.
 This network is described below in Ch.~\ref{ch:fwd}.
 
 \subsection{BEM in the Forward/Inverse Toolkit}
@@ -361,7 +361,7 @@ and $y(p,t)$ is the measurement surface potential at any time $t$ and at a
 position $p$ on the body surface. One advantage of the activation-based
 formulation is that the number of unknowns over an entire cardiac cycle is
 the number of solution nodes taken on the heart surface. On the other hand,
-as can be seen in Eq.~(\ref{eq:act}), the forward equation is non-linear in
+as can be seen in \autoref{eq:act}, the forward equation is non-linear in
 the unknown activation times.
 
 In the potential-based case, the forward matrix can be applied in a more
@@ -413,7 +413,7 @@ are in Ch.~\ref{ch:inv}.
 \label{sec:math_tikhonov}
 
 The Tikhonov regularization minimizes $ \| Ax - y \|$ in order to solve $Ax=y$,
-which is the same as Eq.~(\ref{eq:TransMat}) with $x$ replacing $x(t)$ for the
+which is the same as \autoref{eq:TransMat} with $x$ replacing $x(t)$ for the
 unknown solution and $y$ replacing $y(t)$ for the given measurement. The
 forward solution matrix $\mathbf{A}$ is of size $m\times n$, where $m$ is the
 number of measurement channels and $n$ is the number of source reconstruction
@@ -432,7 +432,7 @@ minimizing the following function:
 
 \noindent where $\lambda$ is the regularization parameter, which is a user defined scalar value. The matrix $\mathbf{P}$ represents the \textit{a priori} knowledge of the measurements. The matrix $\mathbf{L}$ describes the property of the solution $x$ to be constrained.
 Conceptually, $\lambda$ trades off between the misfit between predicted and measured data (the first term in the equation) and the \textit{a priori} constraint.
-An approximate solution $\hat{x}$ of Eq.~(\ref{tik_problem}) is given for the
+An approximate solution $\hat{x}$ of \autoref{tik_problem} is given for the
 overdetermined case ($n > m$) as follows:
 \begin{center}
 \begin{eqnarray}
@@ -517,7 +517,7 @@ The full temporal sequence of heart potentials is finally reconstructed by combi
 
 \subsubsection{Total Variation Method} \label{sec:inv-tv}
 
-The effect of the $\ell_{2}$-norm regularization in Eq.~(\ref{tik_problem}) is
+The effect of the $\ell_{2}$-norm regularization in \autoref{tik_problem} is
 typically to produce smooth solutions, where the smoothness is taken as a
 worthwhile cost to increase reliability in the face of
 ill-conditioning. However, cardiac wavefronts are relatively sharp
@@ -543,7 +543,7 @@ Specifically, total variation regularization can be formulated as follows:
 the last sum is over the elements of the matrix-vector product.
 
 
-To solve this minimization problem, Eq.~(\ref{eq:tv}) is differentiated
+To solve this minimization problem, \autoref{eq:tv} is differentiated
 with respect to $\mathbf{x}$ and the gradient is set to zero. Because the total variation term, $TV(u)$, is not differentiable at zero, a positive constant $\beta$ is added:
 %
 \begin{eqnarray} \label{eqn:tv-term2}
