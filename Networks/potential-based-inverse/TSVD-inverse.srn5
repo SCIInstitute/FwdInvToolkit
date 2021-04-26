@@ -1862,12 +1862,12 @@
 				</second>
 			</item>
 			<item>
-				<first>SolveInverseProblemWithTikhonovTSVD:0</first>
+				<first>SolveInverseProblemWithTSVD:0</first>
 				<second>
 					<module>
 						<package_name_>SCIRun</package_name_>
 						<category_name_>Inverse</category_name_>
-						<module_name_>SolveInverseProblemWithTikhonovTSVD</module_name_>
+						<module_name_>SolveInverseProblemWithTSVD</module_name_>
 					</module>
 					<state>
 						<stateMap>
@@ -2588,7 +2588,7 @@
 					<name>LeftSingularMatrix</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>SolveInverseProblemWithTikhonovTSVD:0</moduleId2_>
+				<moduleId2_>SolveInverseProblemWithTSVD:0</moduleId2_>
 				<port2_>
 					<name>matrixU</name>
 					<id>0</id>
@@ -2600,7 +2600,7 @@
 					<name>RightSingularMatrix</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>SolveInverseProblemWithTikhonovTSVD:0</moduleId2_>
+				<moduleId2_>SolveInverseProblemWithTSVD:0</moduleId2_>
 				<port2_>
 					<name>matrixV</name>
 					<id>0</id>
@@ -2612,7 +2612,7 @@
 					<name>SingularValues</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>SolveInverseProblemWithTikhonovTSVD:0</moduleId2_>
+				<moduleId2_>SolveInverseProblemWithTSVD:0</moduleId2_>
 				<port2_>
 					<name>singularValues</name>
 					<id>0</id>
@@ -2672,7 +2672,7 @@
 					<name>Result</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>SolveInverseProblemWithTikhonovTSVD:0</moduleId2_>
+				<moduleId2_>SolveInverseProblemWithTSVD:0</moduleId2_>
 				<port2_>
 					<name>MeasuredPotentials</name>
 					<id>0</id>
@@ -2768,7 +2768,7 @@
 					<name>Matrix</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>SolveInverseProblemWithTikhonovTSVD:0</moduleId2_>
+				<moduleId2_>SolveInverseProblemWithTSVD:0</moduleId2_>
 				<port2_>
 					<name>ForwardMatrix</name>
 					<id>0</id>
@@ -2823,7 +2823,7 @@
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>SolveInverseProblemWithTikhonovTSVD:0</moduleId1_>
+				<moduleId1_>SolveInverseProblemWithTSVD:0</moduleId1_>
 				<port1_>
 					<name>InverseSolution</name>
 					<id>0</id>
@@ -2967,7 +2967,7 @@
 			</second>
 		</item>
 		<item>
-			<first>SolveInverseProblemWithTikhonovTSVD:0</first>
+			<first>SolveInverseProblemWithTSVD:0</first>
 			<second>
 				<first>2.28000000000000000e+02</first>
 				<second>7.60000000000000000e+02</second>
@@ -3048,7 +3048,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;(single time instant) &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;from data matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Choose a column
-(single time instant) 
+(single time instant)
 from data matrix</noteText>
 				<position>0</position>
 				<fontSize>13</fontSize>
@@ -3076,7 +3076,7 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.SF NS Text&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;Load Epicardial &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:16pt;&quot;&gt;Potential Data Matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Load Epicardial 
+				<noteText>Load Epicardial
 Potential Data Matrix</noteText>
 				<position>3</position>
 				<fontSize>13</fontSize>
@@ -3119,7 +3119,7 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.SF NS Text&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;Visualize Solution &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:16pt; color:#ffffff;&quot;&gt;to Inverse Problem&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
-				<noteText>Visualize Solution 
+				<noteText>Visualize Solution
 to Inverse Problem</noteText>
 				<position>5</position>
 				<fontSize>13</fontSize>
@@ -3231,7 +3231,7 @@ and Inverse Solution Potentials</noteText>
 			<second>3</second>
 		</item>
 		<item>
-			<first>SolveInverseProblemWithTikhonovTSVD:0</first>
+			<first>SolveInverseProblemWithTSVD:0</first>
 			<second>9</second>
 		</item>
 		<item>
@@ -3286,4 +3286,3 @@ and Inverse Solution Potentials</noteText>
 	</subnetworks>
 </networkFile>
 </boost_serialization>
-
