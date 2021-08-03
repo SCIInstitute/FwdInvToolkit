@@ -300,36 +300,35 @@ They can be simply nested or can have a more complex arrangement. Given
 that assumption, the surfaces of those subdomains become a sufficient
 domain upon which to solve the problem for the entire domain.
 
-Briefly, one of the Green's Theorems from vector
-calculus is applied to an integrated form of Laplace's equation to transform the
-differential problem into a Fredholm integral problem \cite{RSM:Bar77}. The surfaces are
-each subdivided (tessellated) into a collection of small surface (or
-boundary) elements. Then (two-dimensional) basis functions (again usually
-low-order polynomials) are used to
-approximate the quantities of interest between the nodes of the resulting
-surface meshes. Given this discretization, after
-manipulation of the resulting integral equation,
-the integrals required can
-be computed through a series of numerical integrations over the mesh
-elements.
-In the BEM method, these integrals involve as unknowns the
-potential and its gradient. The integration involves the computation of the
-distance between each node within the surface and to all others surfaces.
-In complicated geometries, and in all cases when the node is integrated 
-against the points on its ``own''
-surface, there are numerical difficulties computing these integrals. In those cases
-there are a number of sophisticated solutions which have been proposed in the literature (and
-some of them are adopted in the SCIRun implementation).
-The result of all these integrals is a transfer matrix, which again we will
-denote $\mathbf{A}$, relating the source potentials or currents to the
-unknown measurement potentials. In the BEM case, because of the all-to-all
-nature of the integrations required, this matrix will be dense, not
-sparse. On the other hand, the size of the equation will be directly
-determined by the number of measurements and sources rather than the
-number of nodes in the entire domain. (We note that there is an alternative
-formulation of the BEM method which retains the potentials at all nodes on
-all surfaces, and which can be reduced to the transfer matrix described
-here, but we omit the details as usual.)
+Briefly, one of the Green's Theorems from vector calculus is applied
+to an integrated form of Laplace's equation to transform the
+differential problem into a Fredholm integral problem
+\cite{RSM:Bar77}. The surfaces are each subdivided (tessellated) into
+a collection of small surface (or boundary) elements. Then
+(two-dimensional) basis functions (again usually low-order
+polynomials) are used to approximate the quantities of interest
+between the nodes of the resulting surface meshes. Given this
+discretization, after manipulation of the resulting integral equation,
+the integrals required can be computed through a series of numerical
+integrations over the mesh elements. In the BEM method, these
+integrals involve as unknowns the potential and its gradient. The
+integration involves the computation of the distance between each node
+within the surface and to all others surfaces. In complicated
+geometries, and in all cases when the node is integrated against the
+points on its ``own'' surface, there are numerical difficulties
+computing these integrals. In those cases there are a number of
+sophisticated solutions which have been proposed in the literature
+(and some of them are adopted in the SCIRun implementation). The
+result of all these integrals is a transfer matrix, which again we
+will denote $\mathbf{A}$, relating the source potentials or currents
+to the unknown measurement potentials. In the BEM case, because of the
+all-to-all nature of the integrations required, this matrix will be
+dense, not sparse. On the other hand, the size of the equation will be
+directly determined by the number of measurements and sources rather
+than the number of nodes in the entire domain. (We note that there is
+an alternative formulation of the BEM method which retains the
+potentials at all nodes on all surfaces, and which can be reduced to
+the transfer matrix described here, but we omit the details as usual.)
 
 
 \section{Solutions to the Inverse Problem in the Forward/Inverse Toolkit}
@@ -341,16 +340,17 @@ approaches assume the availability of a forward transfer matrix
 $\mathbf{A}$, calculated by any appropriate method, including either FEM or
 BEM.
 
-In the activation-based case, the source model is that the unknowns are an
-activation surface. (That is, activation times as a function of position on
-the heart surface, which we denote as $\tau(x)$, where $x$ indicates
-position on the heart surface.)
-The assumptions required for the activation-based model imply that the temporal waveform of the potential
-(and current) at each source node has a fixed form, the same at all
-locations on the surface.
-This is assumed to be either a step function or a smoothed version of a step function (using
-piecewise polynomials or inverse trigonometric functions). We denote this
-function as $u(t)$. Thus the relevant forward equation can be written as
+In the activation-based case, the source model is that the unknowns
+are an activation surface. (That is, activation times as a function of
+position on the heart surface, which we denote as $\tau(x)$, where $x$
+indicates position on the heart surface.) The assumptions required for
+the activation-based model imply that the temporal waveform of the
+potential (and current) at each source node has a fixed form, the same
+at all locations on the surface. This is assumed to be either a step
+function or a smoothed version of a step function (using piecewise
+polynomials or inverse trigonometric functions). We denote this
+function as $u(t)$. Thus the relevant forward equation can be written
+as
 
 \begin{equation} y(p,t) = \int_{x} \mathbf{A}_{p,x}u(t-\tau(x))\,dx \label{eq:act}
 \end{equation}
@@ -430,10 +430,15 @@ minimizing the following function:
 \end{eqnarray}
 \end{center}
 
-\noindent where $\lambda$ is the regularization parameter, which is a user defined scalar value. The matrix $\mathbf{P}$ represents the \textit{a priori} knowledge of the measurements. The matrix $\mathbf{L}$ describes the property of the solution $x$ to be constrained.
-Conceptually, $\lambda$ trades off between the misfit between predicted and measured data (the first term in the equation) and the \textit{a priori} constraint.
-An approximate solution $\hat{x}$ of \ref{tik_problem} is given for the
-overdetermined case ($n > m$) as follows:
+\noindent where $\lambda$ is the regularization parameter, which is a
+user defined scalar value. The matrix $\mathbf{P}$ represents the
+\textit{a priori} knowledge of the measurements. The matrix
+$\mathbf{L}$ describes the property of the solution $x$ to be
+constrained. Conceptually, $\lambda$ trades off between the misfit
+between predicted and measured data (the first term in the equation)
+and the \textit{a priori} constraint. An approximate solution
+$\hat{x}$ of \ref{tik_problem} is given for the overdetermined case
+($n > m$) as follows:
 \begin{center}
 \begin{eqnarray}
     \| P^{-1} (y - A x) \|^{2}_{2} + \lambda^{2} \| L x \|^{2}_{2} &=& f(x)

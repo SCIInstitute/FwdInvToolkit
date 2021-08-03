@@ -45,7 +45,7 @@ def run_network(heart_geom_file,torso_geom_file,heart_pot_file,translation_param
     if not translation_params.size==3:
       raise ValueError('translation params must be length 3')
         # relative path to SCIRun executable
-    scirun_call = os.path.join(curr_dir,'../../../testing_software/SCIRun/bin/SCIRun/SCIRun_test')
+    scirun_call = os.path.join(curr_dir,'../../../SCIRun/bin/SCIRun/SCIRun_test')
     scirun_net = os.path.join(curr_dir,'../../Networks/uncertainty-forward/uncertainty_forward.srn5')
     output_filename = heart_geom_file+'.tmp_solution.txt'
     
@@ -76,8 +76,8 @@ def run_network(heart_geom_file,torso_geom_file,heart_pot_file,translation_param
     
     return pot_solution
 
-def run_visualization(sens_output_file,sens_tot_file,sens_global_file,gt_output_file,pce_output_file):
-    scirun_call = os.path.join(curr_dir,'../../../testing_software/SCIRun/bin/SCIRun/SCIRun_test')
+def run_visualization( sens_output_file, sens_tot_file, sens_global_file, gt_output_file, pce_output_file):
+    scirun_call = os.path.join(curr_dir,'../../../SCIRun/bin/SCIRun/SCIRun_test')
     scirun_net= os.path.join(curr_dir,'../../Networks/uncertainty-forward/uncertainty_forward_visualization.srn5')
     torso_geom_file = os.path.join(curr_dir,'../../Data/pot_based_BEM_forward/tank.fld')
 
