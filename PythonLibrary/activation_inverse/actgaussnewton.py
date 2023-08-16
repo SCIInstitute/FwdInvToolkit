@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import scipy as sp
+#import scipy as sp
 import numpy as np
 import numpy.linalg as la
 #import scipy.io as sio
@@ -39,6 +39,7 @@ def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
     print('size Y = ',Y.shape)
     
 #    sio.savemat('/Users/jess/Downloads/Y.mat', {'Y_tmp': Y})
+#    sio.savemat('/Users/jess/Downloads/A.mat', {'A_tmp': A})
     
     dims_tau = np.shape(tau)
     step = 2*np.ones(dims_tau)
@@ -69,18 +70,18 @@ def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
     
 #       calculate the step direction
         G = np.dot(J.T,J)
-        #print('trying to save')
+        print('trying to save')
         #sio.savemat('/Users/jess/Downloads/G.mat', {'G_tmp': G})
         #sio.savemat('/Users/jess/Downloads/r.mat', {'r_tmp': r})
         #print('size r = ',r.shape)
         #print('norm r = ',la.norm(r))
-        #print('max r = ',np.max(r))
+        print('max r = ',np.max(r))
         
         size_G = np.shape(G)
-        #print('size G = ',size_G)
-        #print('G= ',G)
-        #print('norm G = ',la.norm(G))
-        #print('max G = ',np.max(G))
+        print('size G = ',size_G)
+        print('G= ',G)
+        print('norm G = ',la.norm(G))
+        print('max G = ',np.max(G))
         
         print('starting condition test')
         s = la.svd(G, full_matrices = 0,compute_uv=0)
@@ -158,6 +159,7 @@ def ActGaussNewton(A, Y, L, tauinit, Lambda, w, minstep):
 
 ###############################################################################
 def agnresidual(A,Y,L,tau,Lambda,w):
+    print('starting agnresidual function')
 
     dim_A = np.shape(A)
     dim_Y = np.shape(Y)
@@ -167,22 +169,29 @@ def agnresidual(A,Y,L,tau,Lambda,w):
     u = np.linspace(1,T,T)
     
     H = np.zeros((N,T))
-    
+    print('set up matrices')
     for k in range(0,N):
         H[k,:] = polyactrow(u-tau[k],w[k])
     
-    #sio.savemat('/Users/jess/Downloads/H.mat', {'H_tmp': H})
+#    sio.savemat('/Users/jess/Downloads/H.mat', {'H_tmp': H})
 
-#print("size Y = ",np.shape(Y))
-#    print("size A = ",np.shape(A))
-#    print("size H = ",np.shape(H))
+    print("size Y = ",np.shape(Y))
+    print("size A = ",np.shape(A))
+    print("size H = ",np.shape(H))
 
-    E = Y-np.dot(A,H)
+    temp = np.dot(A,H)
+    E = Y- temp
+    print('size E = ',E.shape)
     R = np.sqrt(Lambda)*np.dot(L,H)
+    print('size R = ',R.shape)
     dims_E = np.shape(E)
     dims_R = np.shape(R)
     vec_E = np.reshape(E.T,(dims_E[0]*dims_E[1])).T
+    print('size vec_E = ',vec_E.shape)
     vec_R = np.reshape(R.T,(dims_R[0]*dims_R[1])).T
+    print('size vec_R = ',vec_R.shape)
+    
+    print('concatinating vectors')
 
 #    sio.savemat('/Users/jess/Downloads/E.mat', {'E_tmp': E})
 #    sio.savemat('/Users/jess/Downloads/R.mat', {'R_tmp': R})
@@ -195,6 +204,7 @@ def agnresidual(A,Y,L,tau,Lambda,w):
                  
 ###############################################################################
 def agnjacobian(A,Y,L,tau,Lambda,w):
+    print('starting agnjacobian')
     dim_A = np.shape(A)
     dim_Y = np.shape(Y)
     M = dim_A[0]

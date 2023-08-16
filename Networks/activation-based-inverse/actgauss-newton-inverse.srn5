@@ -198,7 +198,7 @@
 				</second>
 			</item>
 			<item>
-				<first>InterfaceWithPython:1</first>
+				<first>InterfaceWithPython:0</first>
 				<second>
 					<module>
 						<package_name_>SCIRun</package_name_>
@@ -207,7 +207,7 @@
 					</module>
 					<state>
 						<stateMap>
-							<count>18</count>
+							<count>19</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -464,6 +464,19 @@ matrixOutput1 = c</value>
 									<value>
 										<which>2</which>
 										<value>stringOutput3</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>PythonTopLevelCode</name>
+								</first>
+								<second>
+									<name>PythonTopLevelCode</name>
+									<value>
+										<which>2</which>
+										<value># Main namespace/top level context code goes here; for example, import statements and global variables.
+# This code will be executed before the &apos;Code&apos; tab, and no input/output variables are available.</value>
 									</value>
 								</second>
 							</item>
@@ -1797,7 +1810,7 @@ matrixOutput1 = c</value>
 					</module>
 					<state>
 						<stateMap>
-							<count>39</count>
+							<count>50</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -1832,6 +1845,97 @@ matrixOutput1 = c</value>
 									<value>
 										<which>2</which>
 										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>CameraDistance</name>
+								</first>
+								<second>
+									<name>CameraDistance</name>
+									<value>
+										<which>1</which>
+										<value>3.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>CameraLookAt</name>
+								</first>
+								<second>
+									<name>CameraLookAt</name>
+									<value>
+										<which>5</which>
+										<value>
+											<count>3</count>
+											<item_version>0</item_version>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>1</which>
+													<value>0.00000000000000000e+00</value>
+												</value>
+											</item>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>1</which>
+													<value>0.00000000000000000e+00</value>
+												</value>
+											</item>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>1</which>
+													<value>0.00000000000000000e+00</value>
+												</value>
+											</item>
+										</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>CameraRotation</name>
+								</first>
+								<second>
+									<name>CameraRotation</name>
+									<value>
+										<which>5</which>
+										<value>
+											<count>4</count>
+											<item_version>0</item_version>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>1</which>
+													<value>1.00000000000000000e+00</value>
+												</value>
+											</item>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>1</which>
+													<value>0.00000000000000000e+00</value>
+												</value>
+											</item>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>1</which>
+													<value>0.00000000000000000e+00</value>
+												</value>
+											</item>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>1</which>
+													<value>0.00000000000000000e+00</value>
+												</value>
+											</item>
+										</value>
 									</value>
 								</second>
 							</item>
@@ -1933,6 +2037,18 @@ matrixOutput1 = c</value>
 							</item>
 							<item>
 								<first>
+									<name>HeadLightAzimuth</name>
+								</first>
+								<second>
+									<name>HeadLightAzimuth</name>
+									<value>
+										<which>0</which>
+										<value>180</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>HeadLightColor</name>
 								</first>
 								<second>
@@ -1940,6 +2056,18 @@ matrixOutput1 = c</value>
 									<value>
 										<which>2</which>
 										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>HeadLightInclination</name>
+								</first>
+								<second>
+									<name>HeadLightInclination</name>
+									<value>
+										<which>0</which>
+										<value>90</value>
 									</value>
 								</second>
 							</item>
@@ -1957,6 +2085,18 @@ matrixOutput1 = c</value>
 							</item>
 							<item>
 								<first>
+									<name>Light1Azimuth</name>
+								</first>
+								<second>
+									<name>Light1Azimuth</name>
+									<value>
+										<which>0</which>
+										<value>180</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>Light1Color</name>
 								</first>
 								<second>
@@ -1964,6 +2104,18 @@ matrixOutput1 = c</value>
 									<value>
 										<which>2</which>
 										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Light1Inclination</name>
+								</first>
+								<second>
+									<name>Light1Inclination</name>
+									<value>
+										<which>0</which>
+										<value>90</value>
 									</value>
 								</second>
 							</item>
@@ -1981,6 +2133,18 @@ matrixOutput1 = c</value>
 							</item>
 							<item>
 								<first>
+									<name>Light2Azimuth</name>
+								</first>
+								<second>
+									<name>Light2Azimuth</name>
+									<value>
+										<which>0</which>
+										<value>180</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>Light2Color</name>
 								</first>
 								<second>
@@ -1988,6 +2152,18 @@ matrixOutput1 = c</value>
 									<value>
 										<which>2</which>
 										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Light2Inclination</name>
+								</first>
+								<second>
+									<name>Light2Inclination</name>
+									<value>
+										<which>0</which>
+										<value>90</value>
 									</value>
 								</second>
 							</item>
@@ -2005,6 +2181,18 @@ matrixOutput1 = c</value>
 							</item>
 							<item>
 								<first>
+									<name>Light3Azimuth</name>
+								</first>
+								<second>
+									<name>Light3Azimuth</name>
+									<value>
+										<which>0</which>
+										<value>180</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>Light3Color</name>
 								</first>
 								<second>
@@ -2012,6 +2200,18 @@ matrixOutput1 = c</value>
 									<value>
 										<which>2</which>
 										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Light3Inclination</name>
+								</first>
+								<second>
+									<name>Light3Inclination</name>
+									<value>
+										<which>0</which>
+										<value>90</value>
 									</value>
 								</second>
 							</item>
@@ -2281,7 +2481,7 @@ matrixOutput1 = c</value>
 					</module>
 					<state>
 						<stateMap>
-							<count>39</count>
+							<count>50</count>
 							<item_version>0</item_version>
 							<item>
 								<first>
@@ -2316,6 +2516,97 @@ matrixOutput1 = c</value>
 									<value>
 										<which>2</which>
 										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>CameraDistance</name>
+								</first>
+								<second>
+									<name>CameraDistance</name>
+									<value>
+										<which>1</which>
+										<value>3.00000000000000000e+00</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>CameraLookAt</name>
+								</first>
+								<second>
+									<name>CameraLookAt</name>
+									<value>
+										<which>5</which>
+										<value>
+											<count>3</count>
+											<item_version>0</item_version>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>1</which>
+													<value>0.00000000000000000e+00</value>
+												</value>
+											</item>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>1</which>
+													<value>0.00000000000000000e+00</value>
+												</value>
+											</item>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>1</which>
+													<value>0.00000000000000000e+00</value>
+												</value>
+											</item>
+										</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>CameraRotation</name>
+								</first>
+								<second>
+									<name>CameraRotation</name>
+									<value>
+										<which>5</which>
+										<value>
+											<count>4</count>
+											<item_version>0</item_version>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>1</which>
+													<value>1.00000000000000000e+00</value>
+												</value>
+											</item>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>1</which>
+													<value>0.00000000000000000e+00</value>
+												</value>
+											</item>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>1</which>
+													<value>0.00000000000000000e+00</value>
+												</value>
+											</item>
+											<item>
+												<name>listElement</name>
+												<value>
+													<which>1</which>
+													<value>0.00000000000000000e+00</value>
+												</value>
+											</item>
+										</value>
 									</value>
 								</second>
 							</item>
@@ -2417,6 +2708,18 @@ matrixOutput1 = c</value>
 							</item>
 							<item>
 								<first>
+									<name>HeadLightAzimuth</name>
+								</first>
+								<second>
+									<name>HeadLightAzimuth</name>
+									<value>
+										<which>0</which>
+										<value>180</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>HeadLightColor</name>
 								</first>
 								<second>
@@ -2424,6 +2727,18 @@ matrixOutput1 = c</value>
 									<value>
 										<which>2</which>
 										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>HeadLightInclination</name>
+								</first>
+								<second>
+									<name>HeadLightInclination</name>
+									<value>
+										<which>0</which>
+										<value>90</value>
 									</value>
 								</second>
 							</item>
@@ -2441,6 +2756,18 @@ matrixOutput1 = c</value>
 							</item>
 							<item>
 								<first>
+									<name>Light1Azimuth</name>
+								</first>
+								<second>
+									<name>Light1Azimuth</name>
+									<value>
+										<which>0</which>
+										<value>180</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>Light1Color</name>
 								</first>
 								<second>
@@ -2448,6 +2775,18 @@ matrixOutput1 = c</value>
 									<value>
 										<which>2</which>
 										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Light1Inclination</name>
+								</first>
+								<second>
+									<name>Light1Inclination</name>
+									<value>
+										<which>0</which>
+										<value>90</value>
 									</value>
 								</second>
 							</item>
@@ -2465,6 +2804,18 @@ matrixOutput1 = c</value>
 							</item>
 							<item>
 								<first>
+									<name>Light2Azimuth</name>
+								</first>
+								<second>
+									<name>Light2Azimuth</name>
+									<value>
+										<which>0</which>
+										<value>180</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>Light2Color</name>
 								</first>
 								<second>
@@ -2472,6 +2823,18 @@ matrixOutput1 = c</value>
 									<value>
 										<which>2</which>
 										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Light2Inclination</name>
+								</first>
+								<second>
+									<name>Light2Inclination</name>
+									<value>
+										<which>0</which>
+										<value>90</value>
 									</value>
 								</second>
 							</item>
@@ -2489,6 +2852,18 @@ matrixOutput1 = c</value>
 							</item>
 							<item>
 								<first>
+									<name>Light3Azimuth</name>
+								</first>
+								<second>
+									<name>Light3Azimuth</name>
+									<value>
+										<which>0</which>
+										<value>180</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
 									<name>Light3Color</name>
 								</first>
 								<second>
@@ -2496,6 +2871,18 @@ matrixOutput1 = c</value>
 									<value>
 										<which>2</which>
 										<value>Color(0,0,0)</value>
+									</value>
+								</second>
+							</item>
+							<item>
+								<first>
+									<name>Light3Inclination</name>
+								</first>
+								<second>
+									<name>Light3Inclination</name>
+									<value>
+										<which>0</which>
+										<value>90</value>
 									</value>
 								</second>
 							</item>
@@ -2841,7 +3228,7 @@ matrixOutput1 = c</value>
 					<name>ResultMatrix</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>InterfaceWithPython:1</moduleId2_>
+				<moduleId2_>InterfaceWithPython:0</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
 					<id>2</id>
@@ -2865,7 +3252,7 @@ matrixOutput1 = c</value>
 					<name>Result</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>InterfaceWithPython:1</moduleId2_>
+				<moduleId2_>InterfaceWithPython:0</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
 					<id>3</id>
@@ -2884,7 +3271,7 @@ matrixOutput1 = c</value>
 				</port2_>
 			</item>
 			<item>
-				<moduleId1_>InterfaceWithPython:1</moduleId1_>
+				<moduleId1_>InterfaceWithPython:0</moduleId1_>
 				<port1_>
 					<name>PythonMatrix1</name>
 					<id>0</id>
@@ -2925,7 +3312,7 @@ matrixOutput1 = c</value>
 					<name>Field</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>InterfaceWithPython:1</moduleId2_>
+				<moduleId2_>InterfaceWithPython:0</moduleId2_>
 				<port2_>
 					<name>InputField</name>
 					<id>0</id>
@@ -2997,7 +3384,7 @@ matrixOutput1 = c</value>
 					<name>Matrix</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>InterfaceWithPython:1</moduleId2_>
+				<moduleId2_>InterfaceWithPython:0</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
 					<id>0</id>
@@ -3021,7 +3408,7 @@ matrixOutput1 = c</value>
 					<name>Matrix</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>InterfaceWithPython:1</moduleId2_>
+				<moduleId2_>InterfaceWithPython:0</moduleId2_>
 				<port2_>
 					<name>InputMatrix</name>
 					<id>1</id>
@@ -3117,7 +3504,7 @@ matrixOutput1 = c</value>
 					<name>Pathname</name>
 					<id>0</id>
 				</port1_>
-				<moduleId2_>InterfaceWithPython:1</moduleId2_>
+				<moduleId2_>InterfaceWithPython:0</moduleId2_>
 				<port2_>
 					<name>InputString</name>
 					<id>0</id>
@@ -3171,12 +3558,12 @@ matrixOutput1 = c</value>
 		<item>
 			<first>EvaluateLinearAlgebraBinary:0</first>
 			<second>
-				<first>4.40000000000000000e+01</first>
-				<second>2.31000000000000000e+02</second>
+				<first>-1.60000000000000000e+01</first>
+				<second>2.25000000000000000e+02</second>
 			</second>
 		</item>
 		<item>
-			<first>InterfaceWithPython:1</first>
+			<first>InterfaceWithPython:0</first>
 			<second>
 				<first>3.90050000000000068e+02</first>
 				<second>4.15750000000000000e+02</second>
@@ -3341,17 +3728,15 @@ for initial guess</noteText>
 			</second>
 		</item>
 		<item>
-			<first>InterfaceWithPython:1</first>
+			<first>InterfaceWithPython:0</first>
 			<second>
 				<noteHTML>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.SF NS Text&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;;&quot;&gt;Executes Gauss Newton calculations.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;;&quot;&gt;Runs matlab in Python.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;;&quot;&gt;Open the Python Console window.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Executes Gauss Newton calculations.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Open the Python Console window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</noteHTML>
 				<noteText>Executes Gauss Newton calculations.
-Runs matlab in Python.
 Open the Python Console window.</noteText>
 				<position>0</position>
 				<fontSize>13</fontSize>
@@ -3464,7 +3849,7 @@ p, li { white-space: pre-wrap; }
 			<second>-1</second>
 		</item>
 		<item>
-			<first>InterfaceWithPython:1</first>
+			<first>InterfaceWithPython:0</first>
 			<second>9</second>
 		</item>
 		<item>

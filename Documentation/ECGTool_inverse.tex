@@ -254,6 +254,82 @@ The inverse problem of electrocardiography is to find suitable electrical source
 % \subsection{Total Variation}
 
 %     \subsubsection{Options and Modes of Operation}
+   
+    
+   
+\subsection{Method of Fundamental Solutions}
+
+Method of Fundamental Solutions (MFS) is a method to approximate
+solutions to partial differential equations, such as Laplace's
+equation used in bioelectricity problems.  MFS is similar to BEM in
+that it is formulated to take into account boundary conditions and
+solutions, but not volumetric ones.  However, MFS is considered
+meshless, even though points representing the heart and torso regions
+are needed, because the points do not need tessellation, as do BEM and
+FEM. In MFS the points representing these regions must be outside the
+computational domain, \ie{} in the myocardium and outside the torso,
+but as close to the boundary as possible.  Also, unlike BEM and FEM
+methods, computing a forward matrix is not necessary.  Instead, the
+MFS computes the coefficients representing pericardial potential
+values based on analytical evaluation of the potential distribution
+and the boundary condition \cite{JDT:Mat77,JDT:Wan2006}.  These
+coefficients are are usually solved for with Tikhonov regularization
+\cite{JDT:Wan2006,JDT:Joh2018}.  In this toolkit, we implemented MFS
+as described by Wang and Rudy \cite{JDT:Wan2006} with the methods to
+choose the regularization parameters described by Johnston
+\cite{JDT:Joh2018}.  It is implemented in a python library
+(`PythonLibrary/MFS\_inverse/mfs\_inverse.py') that can be called from
+SCIRun using the InterfaceWithPython module, as shown in
+`MSF\_inverse\_Cage.srn5' and `MSF\_inverse\_python.srn5'.
+
+\noindent{\bf Inputs:}
+    \begin{enumerate}
+        \item Heart boundary ($H\in\Re^{N,3}$)
+        \item Torso boundary ($T\in\Re^{M,3}$)
+		\item Heart recording points ($P\in\Re^{F,3}$)
+		\item Measured Potentials ($Y\in\Re^{K,T}$)
+		\item Torso Electrodes ($C$ list of $K$ indices)
+        \item options
+    \end{enumerate}
+    {\bf Outputs:}
+     \begin{enumerate}
+        \item Inverse Solution ($X\in\Re^{F,T}$)
+        \item Regularization Parameter ($\lambda$)
+        \item Regularized Curve 
+    \end{enumerate}
+	
+
+\subsubsection{Options and Modes of Operation}
+
+Options for the algorithm are the scale method (along the normals or
+by scaling the point cloud), scale factor, regularization parameter
+choosing method \cite{JDT:Joh2018}, lambda range, gamma (for some
+techniques).  The implementation has an option to plot the
+regularization function.
+
+
+
+
+	
+	
+    
+   
+\subsection{Isotropy Method}
+
+    The Isotropy Method is an approach that considers temporal correlations
+    to imrove the conditioning of the inverse taken. In SCIRun we have
+    implemented this approach with a combination of modules and
+    \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt
+    SolveInverseProblemWithTikhonov}}. Our implementation of the Isotropy
+    Method can be found in the example network
+    ``potential-based-inverse/greensite-inverse-IsotropyMethod.srn5'',
+    shown in \autoref{fig:IsotropyMethod}.
+
+    The network is composed of the standard sections of a simulation
+    network to loading data, visualizing and synthesizing the ECG
+    measurements. The specific blocks that correspond to the Isotropy
+    Method are the ``Temporal Decomposition'', ``solving'' and ``Temporal
+    Reconstruction''. Here we describe this blocks in more detail: 
 
 
 
@@ -262,26 +338,41 @@ The inverse problem of electrocardiography is to find suitable electrical source
 %     \subsubsection{Options and Modes of Operation}
 
 
-\subsection{Isotropy Method}
 
-    The Isotropy Method is an approach that considers temporal correlations to imrove the conditioning of the inverse taken.
-    In SCIRun we have implemented this approach with a combination of modules and \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}}.
-    Our implementation of the Isotropy Method can be found in the example network ``potential-based-inverse/greensite-inverse-IsotropyMethod.srn5'', shown in \autoref{fig:IsotropyMethod}.
 
-    The network is composed of the standard sections of a simulation network to loading data, visualizing and synthesizing the ECG measurements.
-    The specific blocks that correspond to the Isotropy Method are the ``Temporal Decomposition'', ``solving'' and ``Temporal Reconstruction''. Here we describe this blocks in more detail:
     \begin{enumerate}
-        \item The {\bf temporal decomposition} block computes the singular value decomposition of the input data, truncates the right singular vectors (corresponding to time) and projects the input data into this lower dimensional space.
-        \item The {\bf solving } block consists on a Tikhonov module that solves the inverse problem for the input data projected onto the low dimensional temporal space.
-        \item The {\bf temporal reconstruction} block, uses the truncated right singular vectors from (1) to reconstruct the full temporal behavior of the inverse solutions obtained in the Tikhonov solver.
+		\item The {\bf temporal decomposition} block computes the
+		singular value decomposition of the input data, truncates the
+		right singular vectors (corresponding to time) and projects
+		the input data into this lower dimensional space.  
+		\item The {\bf solving } block consists on a Tikhonov module
+		that solves the inverse problem for the input data projected
+		onto the low dimensional temporal space.
+		\item The {\bf temporal reconstruction} block, uses the
+		truncated right singular vectors from (1) to reconstruct the
+		full temporal behavior of the inverse solutions obtained in
+		the Tikhonov solver.
     \end{enumerate}
 
     \subsubsection{Options and Modes of Operation}
 
-    As implemented, the Isotropy Method does not have many options for operation. The most important parameter that needs to be determined by the user is the truncation point of the right singular vectors, which can be accessed in the ``SelectSubMatrix'' module within the ``temporal decomposition'' block.
-    The GUI for this module, shown in \autoref{fig:IsotropyMethod_gui}, allows to select a submatrix from an input matrix. In the case of the isotropy method, the users are only interested in the ``end'' parameter from the column range selector (lower right entry) since it determined where to truncate the right singular vectors.
+    As implemented, the Isotropy Method does not have many options for
+    operation. The most important parameter that needs to be determined by
+    the user is the truncation point of the right singular vectors, which
+    can be accessed in the ``SelectSubMatrix'' module within the ``temporal
+    decomposition'' block. The GUI for this module, shown in
+    \autoref{fig:IsotropyMethod_gui}, allows to select a submatrix from an
+    input matrix. In the case of the isotropy method, the users are only
+    interested in the ``end'' parameter from the column range selector
+    (lower right entry) since it determined where to truncate the right
+    singular vectors.
 
-    This implementation of the Isotropy Method has extra parameters that determine the operation of the Tikhonov inverse. These parameters are specific to the \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt SolveInverseProblemWithTikhonov}} module and we refer the user to \autoref{sec:inverse:tikhonov} for more details.
+    This implementation of the Isotropy Method has extra parameters that
+    determine the operation of the Tikhonov inverse. These parameters are
+    specific to the
+    \href{http://scirundocwiki.sci.utah.edu/SCIRunDocs/index.php/CIBC:Documentation:SCIRun:Reference:BioPSE:SolveInverseProblemWithTikhonov}{{\tt
+    SolveInverseProblemWithTikhonov}} module and we refer the user to
+    \autoref{sec:inverse:tikhonov} for more details.
 
    \begin{figure}
        \begin{center}

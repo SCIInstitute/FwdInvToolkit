@@ -18,8 +18,7 @@
 
 # usage:
 #
-#   mfs_inverse(heart,tank,sock, tank_pots, electrodes, lambda, scale_out, scale_in)
-
+#   mfs_inverse(heart,tank,sock, tank_pots, electnum, scale_factor, scale_method, lambda_method, lambda, viz_regularization,gamma)
 
     The program requires the following input:
 
@@ -32,9 +31,6 @@
     
     3) sock - list of (x,y,z) triples that represent the locations of
     the sock electrodes. This can be the points file associated with the heart mesh
-    
-    a file of ints that maps the jacket (measurement)
-    electrodes to the tank surface node numbers.
 
     4) tank_pots - potentials recorded at the jacket locations.
     Bad leads can be marked with 'nan' and these potentials and
@@ -43,11 +39,14 @@
     5) electnums - list of of ints that maps the jacket (measurement)
     electrodes to the tank surface node numbers.
 
-    6) scale_out - distance to move points of the tank surface
+    6) scale_factor - distance of scaling based on the method
     
-    7) scale_in - distance to move points of the heart surface
+    7) scale_method - method of scaling the points.  Options are "normals", "scale", and "rbf".
+        "normals" : Projects points along the normals calculated via mesh tessellation.
+        "scale" : Scales the points using the center of the volume.
+        "rbf" : Projects the points along the normals calculated via RBF (not implemented).
     
-    8) lmbd_method - method of picking the regularization paramter. lmbd_method input must be: manual, l_curve, zc, creso, gcv, or rgcv
+    8) lambda_method - method of picking the regularization paramter. lmbd_method input must be: manual, l_curve, zc, creso, gcv, or rgcv
     
     9) lmbda - the value of the regularisation parameter. if lmbd_method is manual,
     lmbd must be a single value, otherwise it should be a list of possible values,
@@ -70,7 +69,7 @@
 from sys import argv
 from numpy import sqrt,pi,array,cross,zeros,einsum,arccos,sum,append,dot,diag,transpose,ones,reshape,isnan,linspace,where,diff,sign,argmin,argmax,mean,max,min
 from numpy.linalg import norm,svd
-import scipy
+#import scipy
 #import pyqtgraph
 #from math import isnan
 
@@ -111,6 +110,9 @@ def mfs_inverse(heart,tank,sock,tank_pots,electnums,scale_factor,scale_method,lm
 # read jacket potentials
     bspm = array(tank_pots)
     sz_bspm = bspm.shape
+    
+    print(bspm.shape)
+    print(elecs.shape)
 
 # clean up nan's from bspm
     new_bspm,new_elecs = cleanbspm(bspm,elecs)
