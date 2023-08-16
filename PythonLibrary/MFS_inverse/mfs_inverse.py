@@ -69,7 +69,7 @@
 from sys import argv
 from numpy import sqrt,pi,array,cross,zeros,einsum,arccos,sum,append,dot,diag,transpose,ones,reshape,isnan,linspace,where,diff,sign,argmin,argmax,mean,max,min
 from numpy.linalg import norm,svd
-import scipy
+#import scipy
 #import pyqtgraph
 #from math import isnan
 
