@@ -1,12 +1,21 @@
 # script to resave all networks in the toolkit.
 # Runs in SCIRun with the -S flag.
-# usage: ./.SCIRun_test -S resave_networks.py
+# usage: ./SCIRun_test -S resave_networks.py
 
 import os #Import OS to build file paths later
-import os.path
 
 # directory with networks
 net_dir = "Networks/"
+
+#print(os.path.dirname(os.environ['SCIRUNDATADIR']))
+
+cwd= os.getcwd()
+filepath = os.path.dirname(__file__)
+#print(os.path.join(cwd,filepath))
+
+if not os.path.samefile(os.environ['SCIRUNDATADIR'],os.path.join(cwd,filepath)):
+  print("SCIRUNDATADIR does not seem to be correctly set.  Please set SCIRUNDATADIR to the FwdInvToolkit directory (location of this file) in SCIRun before running this script")
+  scirun_force_quit()
 
 files = os.walk(net_dir)
 for dirpath, dirnames, filenames in os.walk(net_dir):
