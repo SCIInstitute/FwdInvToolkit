@@ -2,6 +2,8 @@ import xml.etree.ElementTree as ET
 import os
 import glob
 
+# Toolkit file is created using the bundle_toolkit tool in SCIRun (SCIRun must be built localy)
+
 def verify_network_node(network_xml):
     #  this is testing the network version number of the networks in the toolkit.
     #  when the network format changes, the version number will change.
