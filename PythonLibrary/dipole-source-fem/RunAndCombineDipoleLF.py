@@ -14,8 +14,13 @@ default_scirun = "/Applications/SCIRun.app/Contents/MacOS/SCIRun"
 
 default_tag = "pointsource"
 default_volmesh="tetvolmesh_1.47E+04.mat"
+default_surfmesh="trisurfmesh_1.47E+04.mat"
+default_sourcepoints="volume_source_points_1.47E+04.mat"
 default_net_path = "../../Networks/dipole-source-fem"
 default_output_path="../../Data/DipoleSphere"
+
+#surfmesh="trisurfmesh"+volmesh[10:]
+#pointvol="volume_source_points"+volmesh[10:]
 
 #tmp=scipy.io.loadmat(os.path.join(output_path, pointvol))
 #pv_size = tmp["SCIRUNFIELD"]["node"].shape
@@ -210,7 +215,7 @@ def find_index_from_filename(filename, file_root):
   
   return f_ind[0]
 
-def rerun_solution(filename,file_root,scirun_net, scirun_call):
+def rerun_solution(filename,file_root,scirun_net, scirun_call, tvmesh_file, tsmesh_file, vpmesh_file):
   
   f_ind = find_index_from_filename(filename, file_root)
   
@@ -222,6 +227,9 @@ def rerun_solution(filename,file_root,scirun_net, scirun_call):
   fid.close()
   
   os.environ["INDEXFILE"]=ind_file
+  os.environ["VOLMESHFILE"]=tvmesh_file
+  os.environ["SURFMESHFILE"]=tsmesh_file
+  os.environ["SOURCEPOINTSFILE"]=vpmesh_file
   
   subprocess.call(scirun_call+" -E "+scirun_net, shell=True)
 #  os.system(scirun_call+" -E "+scirun_net )
@@ -234,25 +242,31 @@ def main(argv):
   output_path = default_output_path
   net_path = default_net_path
   volmesh = default_volmesh
+  surfmesh = default_surfmesh
+  pointvol = default_sourcepoints
   tag = default_tag
   scirun = default_scirun
 
-  opts, args = getopt.getopt(argv, "hrt:m:o:s:n:",
-                  ["help", "type=","mesh=","odir=","SCIRun=", "netpath=" ])
+  opts, args = getopt.getopt(argv, "hrt:m:s:o:x:n:",
+                  ["help", "rerun", "type=", "vmesh=", "smesh=", "points=", "odir=","SCIRun=", "netpath=" ])
   
   for opt, arg in opts:
     if opt == "-h" or opt == "--help" :
-      print("python RunAndCombineDipoleLF.py -r -t <source type ([pointsource], forward)> -m <tetmesh filename> -o <output path> -s <scirun executable> -n <scirun network path>" )
+      print("python RunAndCombineDipoleLF.py -r -t <source type ([pointsource], forward)> -m <tetmesh filename> -s <trisurf filename> -p <volume points filename> -o <output path> -x <scirun executable> -n <scirun network path>" )
       sys.exit()
     elif opt in ("-t", "--type"):
       tag = arg
-    elif opt in ("-m", "--mesh"):
+    elif opt in ("-m", "--vmesh"):
       volmesh = arg
-    elif opt in ("-r"):
+    elif opt in ("-s", "--smesh"):
+      surfmesh = arg
+    elif opt in ("-p", "--points"):
+      pointvol = arg
+    elif opt in ("-r", "--rerun"):
       rerun=True
     elif opt in ("-o", "--odir"):
       output_path = arg
-    elif opt in ("-s", "--SCIRun"):
+    elif opt in ("-x", "--SCIRun"):
       scirun = arg
     elif opt in ("-n", "--netpath"):
       net_path = arg
@@ -263,9 +277,6 @@ def main(argv):
   num_files = param_dict[tag]["fnum"]
   expectsize = param_dict[tag]["ssize"]
   scirun_net = os.path.join(net_path,param_dict[tag]["sr_net"])
-  
-  surfmesh="trisurfmesh"+volmesh[10:]
-  pointvol="volume_source_points"+volmesh[10:]
   
   ind_files = sorted(glob.glob(os.path.join(solution_dir, "*"+file_root+"*index_file.txt")))
   
@@ -280,7 +291,10 @@ def main(argv):
     print("rerun solution for missing files")
     if len(missing_files)>0 and rerun:
       for m in missing_files:
-        rerun_solution(m, file_root, scirun_net, scirun)
+        rerun_solution(m, file_root, scirun_net, scirun,
+              os.path.join(output_path, volmesh),
+              os.path.join(output_path, surfmesh),
+              os.path.join(output_path, pointvol))
     return
     
   matrix = load_solutions(files, tag, expectsize)
@@ -299,7 +313,11 @@ def main(argv):
     if rerun:
       for f in matrix[1]:
         print("rerunning ", f)
-        ind_file = rerun_solution(f, file_root, scirun_net, scirun)
+        ind_file = rerun_solution(f, file_root, scirun_net, scirun,
+              os.path.join(output_path, volmesh),
+              os.path.join(output_path, surfmesh),
+              os.path.join(output_path, pointvol))
+              
       os.remove(ind_file)
   
   return

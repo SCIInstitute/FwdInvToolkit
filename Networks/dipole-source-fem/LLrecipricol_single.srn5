@@ -1586,7 +1586,7 @@
 									<name>ScriptEnvironmentVariable</name>
 									<value object_id="_94">
 										<which>2</which>
-										<value>SURFMESHFILE</value>
+										<value>SOURCEPOINTSFILE</value>
 									</value>
 								</second>
 							</item>
