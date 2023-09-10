@@ -7,13 +7,15 @@ import scipy.io
 import subprocess
 
 thresh = 200
-# needs to be built with the matrix fix to work
-scirun_call = "/Users/jess/software/SCIRun_testing2/bin_headless/SCIRun/SCIRun_test"
+
+
+# SCIRun needs to be built with the matrix fix to work
+default_scirun = "/Applications/SCIRun.app/Contents/MacOS/SCIRun"
 
 default_tag = "pointsource"
 default_volmesh="tetvolmesh_1.47E+04.mat"
-default_srnet = "/Users/jess/CIBC/EEG/nets/current_reciprocal_test_single.srn5"
-default_output_path="/Users/jess/CIBC/EEG/LF_testing/"
+default_net_path = "../../Networks/dipole-source-fem"
+default_output_path="../../Data/DipoleSphere"
 
 #tmp=scipy.io.loadmat(os.path.join(output_path, pointvol))
 #pv_size = tmp["SCIRUNFIELD"]["node"].shape
@@ -26,19 +28,13 @@ ts_size=(4080, 1)
 
 param_dict = {}
 param_dict["pointsource"] = {
-  "sr_net" : "/Users/jess/CIBC/EEG/nets/current_reciprocal_test_single.srn5",
+  "sr_net" : "LLrecipricol_single.srn5",
   "tag"    : "_recip_pointsource_lead",
   "fnum"   : ts_size[0],
   "ssize"  : (pv_size[0], 3)
 }
-param_dict["dipole"]= {
-  "sr_net" : "/Users/jess/CIBC/EEG/nets/current_reciprocal_test_single.srn5",
-  "tag"    : "_recip_dipole_lead",
-  "fnum"   : ts_size[0],
-  "ssize"  : (pv_size[0], 3)
-}
 param_dict["forward"] = {
-  "sr_net" : "/Users/jess/CIBC/EEG/nets/current_direct_test_single.srn5",
+  "sr_net" : "LLdirect_single.srn5",
   "tag"    : "_forward_3vect",
   "fnum"   : pv_size[0],
   "ssize"  : (ts_size[0], 3)
@@ -214,7 +210,7 @@ def find_index_from_filename(filename, file_root):
   
   return f_ind[0]
 
-def rerun_solution(filename,file_root,scirun_net):
+def rerun_solution(filename,file_root,scirun_net, scirun_call):
   
   f_ind = find_index_from_filename(filename, file_root)
   
@@ -236,14 +232,16 @@ def main(argv):
 
   rerun = False
   output_path = default_output_path
+  net_path = default_net_path
   volmesh = default_volmesh
   tag = default_tag
+  scirun = default_scirun
 
-  opts, args = getopt.getopt(argv,"hrt:m:o:",["type=","mesh="])
+  opts, args = getopt.getopt(argv,"hrt:m:o:s:n:",["type=","mesh=","odir=","SCIRun=", "netpath=" ])
   
   for opt, arg in opts:
     if opt == '-h':
-      print("combine_LF_sols.py -r -t <source type [(pointsource), dipole, forward]> -m <tetmesh filename> -o <output path>")
+      print("combine_LF_sols.py -r -t <source type [(pointsource), dipole, forward]> -m <tetmesh filename> -o <output path> -s <scirun executable> -n <scirun network path>" )
       sys.exit()
     elif opt in ("-t", "--type"):
       tag = arg
@@ -253,14 +251,17 @@ def main(argv):
       rerun=True
     elif opt in ("-o", "--odir"):
       output_path = arg
-    
+    elif opt in ("-s", "--SCIRun"):
+      scirun = arg
+    elif opt in ("-n", "--netpath"):
+      net_path = arg
+      
   solution_dir = os.path.join(output_path, volmesh[:-4]+"/")
   
   file_root = volmesh[:-4]+param_dict[tag]["tag"]
   num_files = param_dict[tag]["fnum"]
   expectsize = param_dict[tag]["ssize"]
-  scirun_net = param_dict[tag]["sr_net"]
-  
+  scirun_net = os.path.join(net_path,param_dict[tag]["sr_net"])
   
   surfmesh="trisurfmesh"+volmesh[10:]
   pointvol="volume_source_points"+volmesh[10:]
@@ -278,7 +279,7 @@ def main(argv):
     print("rerun solution for missing files")
     if len(missing_files)>0 and rerun:
       for m in missing_files:
-        rerun_solution(m,file_root,scirun_net)
+        rerun_solution(m, file_root, scirun_net, scirun)
     return
     
   matrix = load_solutions(files, tag, expectsize)
@@ -297,7 +298,7 @@ def main(argv):
     if rerun:
       for f in matrix[1]:
         print("rerunning ", f)
-        ind_file = rerun_solution(f,file_root,scirun_net)
+        ind_file = rerun_solution(f, file_root, scirun_net, scirun)
       os.remove(ind_file)
   
   return
