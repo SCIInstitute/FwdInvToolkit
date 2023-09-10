@@ -237,11 +237,12 @@ def main(argv):
   tag = default_tag
   scirun = default_scirun
 
-  opts, args = getopt.getopt(argv,"hrt:m:o:s:n:",["type=","mesh=","odir=","SCIRun=", "netpath=" ])
+  opts, args = getopt.getopt(argv, "hrt:m:o:s:n:",
+                  ["help", "type=","mesh=","odir=","SCIRun=", "netpath=" ])
   
   for opt, arg in opts:
-    if opt == '-h':
-      print("combine_LF_sols.py -r -t <source type [(pointsource), dipole, forward]> -m <tetmesh filename> -o <output path> -s <scirun executable> -n <scirun network path>" )
+    if opt == "-h" or opt == "--help" :
+      print("python RunAndCombineDipoleLF.py -r -t <source type ([pointsource], forward)> -m <tetmesh filename> -o <output path> -s <scirun executable> -n <scirun network path>" )
       sys.exit()
     elif opt in ("-t", "--type"):
       tag = arg
