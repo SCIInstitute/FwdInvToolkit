@@ -28,8 +28,11 @@ default_output_path="../../Data/DipoleSphere"
 #tmp=scipy.io.loadmat(os.path.join(output_path, surfmesh))
 #tv_size = tmp["SCIRUNFIELD"]["node"].shape
 
-pv_size=(6642, 1)
-ts_size=(4080, 1)
+#pv_size=(6642, 1)
+#ts_size=(4080, 1)
+
+pv_size=(13264, 1)
+ts_size=(1296, 1)
 
 param_dict = {}
 param_dict["pointsource"] = {
@@ -47,29 +50,22 @@ param_dict["forward"] = {
 
 
 
-#file_root = "vol_recip_sol_1.47E+04_pointsource_lead"
-#file_root = "vol_recip_sol_1.47E+04_dipole_lead"
-#file_root = "tetvolmesh_1.47E+04_recip_pointsource_lead"
-#file_root = "tetvolmesh_1.47E+04_recip_dipole_lead"
-#file_root = "tetvolmesh_1.47E+04_forward_3vect"
-
-
-#
-#num_files=4080
-#expectsize = (6642,3)
-
-#num_files=6642
-#expectsize = (4080,3)
-
-
-
 def check_sol_size(sol, expectsize):
   return sol.shape == expectsize
   
 def check_sol(sol, expectsize, prev_sol = []):
+  message ="no problem detected"
   if not prev_sol.any():
     prev_sol = np.zeros(sol.shape)
   
+  
+  if abs(np.sum(sol)) < 0.000001:
+    message = "low amplitude (zeros) detected"
+    return False, message
+  elif np.max(np.abs(sol))> 1e300:
+    message = "possible inf detected"
+    return False, message
+    
   rms = np.sqrt(np.sum(sol*sol))/np.prod(expectsize)
   ratio = abs(np.std(sol)/rms)
 #  ratio = abs(np.std(sol)/np.mean(sol))
@@ -79,22 +75,17 @@ def check_sol(sol, expectsize, prev_sol = []):
 #  print("mean: ", np.mean(sol))
 #  print("RMS: ", rms)
 #  print("ratio: ", ratio)
-  
-  
-  if abs(np.sum(sol)) < 0.000001 or np.max(sol)> 1e300:
-    return False
     
   if ratio>thresh:
-    print("possible problem, high std/mean")
-    print("ratio: ", ratio )
-    return False
+    message = "possible problem, high std/mean.  ratio: "+str(ratio)
+    return False, message
     
   if (sol == prev_sol).all():
-    print("same as prev")
+    message = "solution same as prev"
 #    print(prev_sol)
-    return False
+    return False, message
   
-  return True
+  return True, message
   
   
   
@@ -143,7 +134,7 @@ def check_files(sol_path, file_root, num_files):
   missing_files = []
   for m_i in missing_ind:
     num_digits = len(str(num_files))
-    m_file= file_root+"_"+f"{m_i:04}"+".mat"
+    m_file= file_root+"_"+f"{m_i:05}"+".mat"
 #    print(m_file)
     missing_files.append(os.path.join(sol_path, m_file))
     
@@ -164,7 +155,7 @@ def load_solutions(files, tag,  expectsize):
     tmp = scipy.io.loadmat(f)
     vars=[k for k in tmp.keys() if not k[0]=='_']
     if not vars:
-        print("No data found in file",os.path.join(results_dir,f))
+        print("No data found in file",os.path.join(f))
         return False
     elif len(vars)>1:
         print("multiple variables found in file, using: ",vars[0])
@@ -173,8 +164,9 @@ def load_solutions(files, tag,  expectsize):
 #    print(sol.shape)
     
     if check_sol_size(sol, expectsize):
-      if not check_sol(sol, expectsize, prev_sol):
-        print("Something seems wrong with "+f+".  Either zeros or likely garbage.  continuing, but don't use LF")
+      solution_check = check_sol(sol, expectsize, prev_sol)
+      if not solution_check[0]:
+        print("problem detected with "+f+".  "+solution_check[1])
         rerun_files.append(f)
       
 #      print(sol)
@@ -215,7 +207,7 @@ def find_index_from_filename(filename, file_root):
   
   return f_ind[0]
 
-def rerun_solution(filename,file_root,scirun_net, scirun_call, tvmesh_file, tsmesh_file, vpmesh_file):
+def rerun_solution(filename,file_root,scirun_net, scirun_call, interactive, tvmesh_file, tsmesh_file, vpmesh_file):
   
   f_ind = find_index_from_filename(filename, file_root)
   
@@ -231,7 +223,12 @@ def rerun_solution(filename,file_root,scirun_net, scirun_call, tvmesh_file, tsme
   os.environ["SURFMESHFILE"]=tsmesh_file
   os.environ["SOURCEPOINTSFILE"]=vpmesh_file
   
-  subprocess.call(scirun_call+" -E "+scirun_net, shell=True)
+  flags = " -x0 -E "
+  
+  if interactive:
+    flags = " -e "
+    
+  subprocess.call(scirun_call+flags+scirun_net, shell=True)
 #  os.system(scirun_call+" -E "+scirun_net )
   
   return ind_file
@@ -239,6 +236,7 @@ def rerun_solution(filename,file_root,scirun_net, scirun_call, tvmesh_file, tsme
 def main(argv):
 
   rerun = False
+  interactive = False
   output_path = default_output_path
   net_path = default_net_path
   volmesh = default_volmesh
@@ -247,8 +245,8 @@ def main(argv):
   tag = default_tag
   scirun = default_scirun
 
-  opts, args = getopt.getopt(argv, "hrt:m:s:o:x:n:",
-                  ["help", "rerun", "type=", "vmesh=", "smesh=", "points=", "odir=","SCIRun=", "netpath=" ])
+  opts, args = getopt.getopt(argv, "hrit:m:s:o:x:n:",
+                  ["help", "rerun", "interactive", "type=", "vmesh=", "smesh=", "points=", "odir=","SCIRun=", "netpath=" ])
   
   for opt, arg in opts:
     if opt == "-h" or opt == "--help" :
@@ -270,8 +268,13 @@ def main(argv):
       scirun = arg
     elif opt in ("-n", "--netpath"):
       net_path = arg
+    elif opt in ("-i", "--interactive"):
+      interactive=True
       
   solution_dir = os.path.join(output_path, volmesh[:-4]+"/")
+  
+  if not os.path.exists(solution_dir):
+    os.mkdir(solution_dir)
   
   file_root = volmesh[:-4]+param_dict[tag]["tag"]
   num_files = param_dict[tag]["fnum"]
@@ -291,7 +294,7 @@ def main(argv):
     print("rerun solution for missing files")
     if len(missing_files)>0 and rerun:
       for m in missing_files:
-        rerun_solution(m, file_root, scirun_net, scirun,
+        rerun_solution(m, file_root, scirun_net, scirun, interactive,
               os.path.join(output_path, volmesh),
               os.path.join(output_path, surfmesh),
               os.path.join(output_path, pointvol))
@@ -313,7 +316,7 @@ def main(argv):
     if rerun:
       for f in matrix[1]:
         print("rerunning ", f)
-        ind_file = rerun_solution(f, file_root, scirun_net, scirun,
+        ind_file = rerun_solution(f, file_root, scirun_net, scirun, interactive,
               os.path.join(output_path, volmesh),
               os.path.join(output_path, surfmesh),
               os.path.join(output_path, pointvol))
