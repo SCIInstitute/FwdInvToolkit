@@ -13,9 +13,9 @@ thresh = 200
 default_scirun = "/Applications/SCIRun.app/Contents/MacOS/SCIRun"
 
 default_tag = "pointsource"
-default_volmesh="tetvolmesh_1.47E+04.mat"
-default_surfmesh="trisurfmesh_1.47E+04.mat"
-default_sourcepoints="volume_source_points_1.47E+04.mat"
+default_volmesh="tetvolmesh_3.59E+03.mat"
+default_surfmesh="trisurfmesh_3.59E+03.mat"
+default_sourcepoints="volume_source_points_3.59E+03.mat"
 default_net_path = "../../Networks/dipole-source-fem"
 default_output_path="../../Data/DipoleSphere"
 

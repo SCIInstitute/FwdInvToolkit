@@ -2091,7 +2091,7 @@
 									<name>FormatString</name>
 									<value object_id="_129">
 										<which>2</which>
-										<value>%04d</value>
+										<value>%05d</value>
 									</value>
 								</second>
 							</item>
@@ -2131,7 +2131,7 @@
 									<name>FormatString</name>
 									<value object_id="_131">
 										<which>2</which>
-										<value>%04d</value>
+										<value>%05d</value>
 									</value>
 								</second>
 							</item>
@@ -6882,28 +6882,28 @@
 												<name>listElement</name>
 												<value object_id="_495">
 													<which>1</which>
-													<value>5.99985867738723755e-02</value>
+													<value>5.99985793232917786e-02</value>
 												</value>
 											</item>
 											<item>
 												<name>listElement</name>
 												<value object_id="_496">
 													<which>1</which>
-													<value>-3.81455928087234497e-01</value>
+													<value>-3.81455868482589722e-01</value>
 												</value>
 											</item>
 											<item>
 												<name>listElement</name>
 												<value object_id="_497">
 													<which>1</which>
-													<value>-7.93542504310607910e-01</value>
+													<value>-7.93542385101318359e-01</value>
 												</value>
 											</item>
 											<item>
 												<name>listElement</name>
 												<value object_id="_498">
 													<which>1</which>
-													<value>4.70300048589706421e-01</value>
+													<value>4.70299988985061646e-01</value>
 												</value>
 											</item>
 										</value>
@@ -8027,7 +8027,7 @@
 									<name>WindowPositionX</name>
 									<value object_id="_615">
 										<which>0</which>
-										<value>1194</value>
+										<value>1380</value>
 									</value>
 								</second>
 							</item>
@@ -8051,7 +8051,7 @@
 									<name>WindowSizeX</name>
 									<value object_id="_617">
 										<which>0</which>
-										<value>486</value>
+										<value>300</value>
 									</value>
 								</second>
 							</item>
@@ -9991,17 +9991,47 @@ p, li { white-space: pre-wrap; }
 		</item>
 	</moduleTags>
 	<disabledModules class_id="24" tracking_level="0" version="0">
-		<count>2</count>
+		<count>14</count>
 		<item_version>0</item_version>
-		<item>PrintMatrixIntoString:3</item>
+		<item>EvaluateLinearAlgebraBinary:0</item>
 		<item>EvaluateLinearAlgebraUnary:0</item>
+		<item>GetFieldBoundary:1</item>
+		<item>PrintMatrixIntoString:3</item>
+		<item>PrintStringIntoString:4</item>
+		<item>ReadMatrix:1</item>
+		<item>RescaleColorMap:0</item>
+		<item>RescaleColorMap:1</item>
+		<item>SetFieldData:4</item>
+		<item>ShowField:0</item>
+		<item>ShowField:1</item>
+		<item>ShowField:2</item>
+		<item>ShowField:3</item>
+		<item>ShowField:4</item>
 	</disabledModules>
 	<disabledConnections>
-		<count>3</count>
+		<count>21</count>
 		<item_version>0</item_version>
-		<item>EvaluateLinearAlgebraUnary:0--ReadMatrix:0</item>
 		<item>PrintMatrixIntoString:3--EvaluateLinearAlgebraUnary:0</item>
+		<item>RescaleColorMap:0--GetFieldBoundary:1</item>
+		<item>ShowField:2--GetFieldBoundary:1</item>
 		<item>PrintStringIntoString:4--PrintMatrixIntoString:3</item>
+		<item>ReadMatrix:1--PrintStringIntoString:4</item>
+		<item>EvaluateLinearAlgebraUnary:0--ReadMatrix:0</item>
+		<item>EvaluateLinearAlgebraBinary:0--ReadMatrix:1</item>
+		<item>SetFieldData:4--ReadMatrix:1</item>
+		<item>ShowField:0--RescaleColorMap:0</item>
+		<item>ShowField:1--RescaleColorMap:0</item>
+		<item>ShowField:2--RescaleColorMap:1</item>
+		<item>ShowField:3--RescaleColorMap:1</item>
+		<item>ShowField:4--RescaleColorMap:1</item>
+		<item>GetFieldBoundary:1--SetFieldData:4</item>
+		<item>RescaleColorMap:1--SetFieldData:4</item>
+		<item>ShowField:3--SetFieldData:4</item>
+		<item>ViewScene:0--ShowField:0</item>
+		<item>ViewScene:0--ShowField:1</item>
+		<item>ViewScene:0--ShowField:2</item>
+		<item>ViewScene:0--ShowField:3</item>
+		<item>ViewScene:0--ShowField:4</item>
 	</disabledConnections>
 	<moduleTagLabels class_id="25" tracking_level="0" version="0">
 		<count>0</count>
