@@ -2089,7 +2089,7 @@
 									<name>Filename</name>
 									<value object_id="_121">
 										<which>2</which>
-										<value>%SCIRUNDATADIR%/Data/DipoleSphere/tetvolmesh_1.47E+04.mat</value>
+										<value>%SCIRUNDATADIR%/Data/DipoleSphere/tetvolmesh_3.59E+03.mat</value>
 									</value>
 								</second>
 							</item>
@@ -2165,7 +2165,7 @@
 									<name>Filename</name>
 									<value object_id="_126">
 										<which>2</which>
-										<value>%SCIRUNDATADIR%/Data/DipoleSphere/trisurfmesh_1.47E+04.mat</value>
+										<value>%SCIRUNDATADIR%/Data/DipoleSphere/trisurfmesh_3.59E+03.mat</value>
 									</value>
 								</second>
 							</item>
@@ -2241,7 +2241,7 @@
 									<name>Filename</name>
 									<value object_id="_131">
 										<which>2</which>
-										<value>%SCIRUNDATADIR%/Data/DipoleSphere/volume_source_points_1.47E+04.mat</value>
+										<value>%SCIRUNDATADIR%/Data/DipoleSphere/volume_source_points_3.59E+03.mat</value>
 									</value>
 								</second>
 							</item>
@@ -2505,7 +2505,7 @@
 									<name>FixedMax</name>
 									<value object_id="_149">
 										<which>1</which>
-										<value>2.82946676355159816e+01</value>
+										<value>6.29090184985671641e+00</value>
 									</value>
 								</second>
 							</item>
@@ -2517,7 +2517,7 @@
 									<name>FixedMin</name>
 									<value object_id="_150">
 										<which>1</which>
-										<value>2.77047664577284991e-19</value>
+										<value>2.35018222182546397e-18</value>
 									</value>
 								</second>
 							</item>
@@ -5188,28 +5188,28 @@
 												<name>listElement</name>
 												<value object_id="_358">
 													<which>1</which>
-													<value>-3.05749773979187012e-01</value>
+													<value>-1.64501126855611801e-02</value>
 												</value>
 											</item>
 											<item>
 												<name>listElement</name>
 												<value object_id="_359">
 													<which>1</which>
-													<value>4.20454412698745728e-01</value>
+													<value>-6.19613051414489746e-01</value>
 												</value>
 											</item>
 											<item>
 												<name>listElement</name>
 												<value object_id="_360">
 													<which>1</which>
-													<value>-4.33323979377746582e-01</value>
+													<value>-4.57164645195007324e-01</value>
 												</value>
 											</item>
 											<item>
 												<name>listElement</name>
 												<value object_id="_361">
 													<which>1</which>
-													<value>7.36183047294616699e-01</value>
+													<value>6.37816250324249268e-01</value>
 												</value>
 											</item>
 										</value>
@@ -6149,14 +6149,14 @@
 															<name>Edges</name>
 															<value object_id="_455">
 																<which>3</which>
-																<value>0</value>
+																<value>1</value>
 															</value>
 														</item>
 														<item>
 															<name>Faces</name>
 															<value object_id="_456">
 																<which>3</which>
-																<value>0</value>
+																<value>1</value>
 															</value>
 														</item>
 														<item>
@@ -6295,7 +6295,7 @@
 									<name>Filename</name>
 									<value object_id="_468">
 										<which>2</which>
-										<value>%SCIRUNDATADIR%/Data/DipoleSphere/tetvolmesh_1.47E+04/tetvolmesh_1.47E+04_forward_3vect_0263.mat</value>
+										<value>%SCIRUNDATADIR%/Data/DipoleSphere/tetvolmesh_3.59E+03/tetvolmesh_3.59E+03_forward_3vect_00263.mat</value>
 									</value>
 								</second>
 							</item>
