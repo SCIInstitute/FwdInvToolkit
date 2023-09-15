@@ -31,8 +31,11 @@ default_output_path="../../Data/DipoleSphere"
 #pv_size=(6642, 1)
 #ts_size=(4080, 1)
 
-pv_size=(13264, 1)
-ts_size=(1296, 1)
+#pv_size=(13264, 1)
+#ts_size=(1296, 1)
+
+pv_size=(1028, 1)
+ts_size=(642, 1)
 
 param_dict = {}
 param_dict["pointsource"] = {
